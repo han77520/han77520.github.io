@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 
+
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="关于, 瀚77的博客">
@@ -35,7 +36,14 @@
 
 
 
+
+
+
+
 <body>
+
+    
+
     <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
@@ -125,6 +133,17 @@
       <i class="fas fa-address-book" style="zoom: 0.6;"></i>
       
       <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/navigate" class="waves-effect waves-light">
+      
+      <i class="fas fa-location-arrow" style="zoom: 0.6;"></i>
+      
+      <span>导航</span>
     </a>
     
   </li>
@@ -228,6 +247,17 @@
 			    <i class="fa-fw fas fa-address-book"></i>
 			
 			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/navigate" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-location-arrow"></i>
+			
+			导航
 		</a>
           
         </li>
@@ -433,6 +463,12 @@
 
 
 
+    <a href="https://space.bilibili.com/406750122" class="tooltipped" target="_blank" data-tooltip="在B站上关注我" " data-position="top" data-delay="50">
+        <i class="fas fa-play-circle"></i>
+    </a>
+
+
+
 
 
 
@@ -473,6 +509,12 @@
 
     <a href="mailto:1721616038@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://space.bilibili.com/406750122" class="tooltipped" target="_blank" data-tooltip="在B站上关注我" " data-position="top" data-delay="50">
+        <i class="fas fa-play-circle"></i>
     </a>
 
 
@@ -609,7 +651,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"web","value":1},{"name":"选项详解","value":1}],
+                data: [{"name":"选项详解","value":1},{"name":"web","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -633,7 +675,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["web","setting"]
+                data: ["setting","web"]
             }
         ],
         yAxis: [
@@ -816,14 +858,14 @@
         <div class="tag-chips center-align">
             
             
-            <a href="/tags/web/">
-                <span class="chip center-align waves-effect waves-light chip-default">web</span>
+            <a href="/tags/setting/">
+                <span class="chip center-align waves-effect waves-light chip-default">setting</span>
             </a>
             
             
             
-            <a href="/tags/setting/">
-                <span class="chip center-align waves-effect waves-light chip-default">setting</span>
+            <a href="/tags/web/">
+                <span class="chip center-align waves-effect waves-light chip-default">web</span>
             </a>
             
             
@@ -998,6 +1040,12 @@
 
     <a href="mailto:1721616038@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://space.bilibili.com/406750122" class="tooltipped" target="_blank" data-tooltip="在B站上关注我" " data-position="top" data-delay="50">
+        <i class="fas fa-play-circle"></i>
     </a>
 
 
@@ -1197,11 +1245,15 @@ $(function () {
 color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
 </script>
 
-<!-- 樱花 -->
-<script type="text/javascript" src="/js/sakura.js"></script>
+<!-- 樱花-->
+<!-- <script type="text/javascript" src="/js/sakura.js"></script> -->
 
-<!-- 樱花 -->
+<!-- 雪花 -->
+<script type="text/javascript" src="/js/snow.js"></script>
+
+<!-- 趣味标题 -->
 <script type="text/javascript" src="/js/Title.js"></script>
+
 </body>
 
 </html>
