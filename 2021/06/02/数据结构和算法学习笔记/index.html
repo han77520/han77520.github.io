@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Front-matter 选项详解, 瀚77的博客">
+    <meta name="keywords" content="数据结构和算法, 瀚77的博客">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Front-matter 选项详解 | 瀚77的博客</title>
+    <title>数据结构和算法 | 瀚77的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Front-matter 选项详解</h1>
+                    <h1 class="description center-align post-title">数据结构和算法</h1>
                 </div>
             </div>
         </div>
@@ -449,15 +449,6 @@
                 </div>
                 <div class="col s5 right-align">
                     
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
-                                选项详解
-                            </a>
-                        
-                    </div>
-                    
                 </div>
             </div>
 
@@ -472,21 +463,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-02
+                    2021-06-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    506
+                    787
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -506,90 +497,34 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <table>
-<thead>
-<tr>
-<th>配置选项</th>
-<th>默认值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>title</td>
-<td><code>Markdown</code> 的文件标题</td>
-<td>文章标题，强烈建议填写此选项</td>
-</tr>
-<tr>
-<td>date</td>
-<td>文件创建时的日期时间</td>
-<td>发布时间，强烈建议填写此选项，且最好保证全局唯一</td>
-</tr>
-<tr>
-<td>author</td>
-<td>根 <code>_config.yml</code> 中的 <code>author</code></td>
-<td>文章作者</td>
-</tr>
-<tr>
-<td>mg</td>
-<td><code>featureImages</code> 中的某个值</td>
-<td>文章特征图，推荐使用图床(腾讯云、七牛云、又拍云等)来做图片的路径.如: <code>http://xxx.com/xxx.jpg</code></td>
-</tr>
-<tr>
-<td>top</td>
-<td><code>true</code></td>
-<td>推荐文章（文章是否置顶），如果 <code>top</code> 值为 <code>true</code>，则会作为首页推荐文章</td>
-</tr>
-<tr>
-<td>cover</td>
-<td><code>false</code></td>
-<td><code>v1.0.2</code>版本新增，表示该文章是否需要加入到首页轮播封面中</td>
-</tr>
-<tr>
-<td>coverImg</td>
-<td>无</td>
-<td><code>v1.0.2</code>版本新增，表示该文章在首页轮播封面需要显示的图片路径，如果没有，则默认使用文章的特色图片</td>
-</tr>
-<tr>
-<td>password</td>
-<td>无</td>
-<td>文章阅读密码，如果要对文章设置阅读验证密码的话，就可以设置 <code>password</code> 的值，该值必须是用 <code>SHA256</code> 加密后的密码，防止被他人识破。前提是在主题的 <code>config.yml</code> 中激活了 <code>verifyPassword</code> 选项</td>
-</tr>
-<tr>
-<td>toc</td>
-<td><code>true</code></td>
-<td>是否开启 TOC，可以针对某篇文章单独关闭 TOC 的功能。前提是在主题的 <code>config.yml</code> 中激活了 <code>toc</code> 选项</td>
-</tr>
-<tr>
-<td>mathjax</td>
-<td><code>false</code></td>
-<td>是否开启数学公式支持 ，本文章是否开启 <code>mathjax</code>，且需要在主题的 <code>_config.yml</code> 文件中也需要开启才行</td>
-</tr>
-<tr>
-<td>summary</td>
-<td>无</td>
-<td>文章摘要，自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要</td>
-</tr>
-<tr>
-<td>categories</td>
-<td>无</td>
-<td>文章分类，本主题的分类表示宏观上大的分类，只建议一篇文章一个分类</td>
-</tr>
-<tr>
-<td>tags</td>
-<td>无</td>
-<td>文章标签，一篇文章可以多个标签</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>文章标题</td>
-<td>文章关键字，SEO 时需要</td>
-</tr>
-<tr>
-<td>reprintPolicy</td>
-<td>cc_by</td>
-<td>文章转载规则， 可以是 cc_by, cc_by_nd, cc_by_sa, cc_by_nc, cc_by_nc_nd, cc_by_nc_sa, cc0, noreprint 或 pay 中的一个</td>
-</tr>
-</tbody></table>
+                <h1 id="学习方法"><a href="#学习方法" class="headerlink" title="学习方法"></a>学习方法</h1><p>1&gt; 阅读完每一章时，一定要在理解基础上记忆一些关键东西。最佳的效果就是你可以不看书也做到一点也不错地默写出相关算法</p>
+<p>2&gt; 阅读完每一章，一定要适当练习，在阅读中的人们只是自我感觉可以理解，而并非真正的明白</p>
+<p>3&gt;  学习不可能一蹴而就，数构和算法如果通过一本书可以掌握，本身就是笑话</p>
+<p>4&gt; 在之后的编程学习和工作中，尽量把学到的数构和算法知识运用到实际开发中。</p>
+<h1 id="数据结构绪论"><a href="#数据结构绪论" class="headerlink" title="数据结构绪论"></a>数据结构绪论</h1><p>   <strong>程序设计 = 数据结构 +  算法</strong></p>
+<h2 id="基本概念和术语"><a href="#基本概念和术语" class="headerlink" title="基本概念和术语"></a>基本概念和术语</h2><h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>​    是描述客观事物的<strong>符号</strong>，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号的集合。</p>
+<p>​    <strong>包括</strong>：整型，实型等数值型类型</p>
+<p>​                字符，声音，图像，视频等非数值类型</p>
+<p>​    <strong>符号具备的前提</strong>：可以输入到计算机中</p>
+<p>​                                   能被计算机程序处理</p>
+<h3 id="数据元素"><a href="#数据元素" class="headerlink" title="数据元素"></a>数据元素</h3><p>​     是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理，也被称为<strong>记录</strong></p>
+<p>​     比如在人类中，什么是数据元素?    答案：  人    </p>
+<p>​     在动物中，牛马羊等就是数据元素</p>
+<h3 id="数据项："><a href="#数据项：" class="headerlink" title="数据项："></a>数据项：</h3><p>​    一个数据元素可以由若干个数据项组成</p>
+<p>比如人这样的数据元素：可以有眼、口、鼻、耳这些数据型，还有性别，年龄、姓名、联系电话等数据项</p>
+<p>   <strong>数据项是不可分割的最小单位</strong></p>
+<p>虽然数据项是最小单位，但在讨论问题时，数据元素才是数据结构中建立数据模型的着眼点。</p>
+<h3 id="数据对象"><a href="#数据对象" class="headerlink" title="数据对象"></a>数据对象</h3><p>​    是<strong>性质相同</strong>的数据元素的集合，是数据的子集</p>
+<p>​         性质相同是指数据元素具有相同数量和类型的数据项。</p>
+<p>​    实际应用中，处理的数据元素通常具有相同性质，在不产生混淆的情况下，<strong>都将数据对象简称为数据</strong></p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>​       是相互之间存在一种或多种特定关系的数据元素的<strong>集合</strong></p>
+<p>​       是一门研究非数值计算的程序设计问题中的操作对象，以及它们之间的关系和操作等相关问题的学科</p>
+<h2 id="逻辑结构与物理结构"><a href="#逻辑结构与物理结构" class="headerlink" title="逻辑结构与物理结构"></a>逻辑结构与物理结构</h2><h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><p> 逻辑结构：是指数据对象中数据元素之间的相互关系</p>
+<h4 id="集合结构"><a href="#集合结构" class="headerlink" title="集合结构"></a>集合结构</h4><p>​      集合结构中的数据元素除了同属于一个集合外，它们之间没有其他关系</p>
+<h4 id="线性结构"><a href="#线性结构" class="headerlink" title="线性结构"></a>线性结构</h4><p>​     线性结构中的数据元素之间是一对一的关系</p>
+<h4 id="树形结构"><a href="#树形结构" class="headerlink" title="树形结构"></a>树形结构</h4><p>​     树形结构中的数据元素之间存在一种一对多的层次关系</p>
+<h4 id="图形结构"><a href="#图形结构" class="headerlink" title="图形结构"></a>图形结构</h4><p>​     图形结构的数据元素是多对多的关系</p>
+<h3 id="物理结构"><a href="#物理结构" class="headerlink" title="物理结构"></a>物理结构</h3><p>​    是指数据的逻辑结构在计算机中的存储形式。</p>
 
                 
             </div>
@@ -616,7 +551,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/">http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/</a>
+                    <a href="http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1092,29 +1027,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <a href="/2021/06/03/java%E5%A4%8D%E4%B9%A0/">
                     <div class="card-image">
                         
+                        <img src="https://img2.baidu.com/it/u=449057306,1501837017&fm=26&fmt=auto&gp=0.jpg" class="responsive-img" alt="java复习">
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="数据结构和算法">
-                        
-                        <span class="card-title">数据结构和算法</span>
+                        <span class="card-title">java复习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            模糊知识点
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-03
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            han77
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/review/" class="post-category">
+                                    review
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1122,8 +1060,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/setting/">
-                        <span class="chip bg-color">setting</span>
+                    <a href="/tags/%E5%A4%8D%E4%B9%A0/">
+                        <span class="chip bg-color">复习</span>
                     </a>
                     
                 </div>
@@ -1137,13 +1075,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="搭建自己的博客">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
                         
-                        <span class="card-title">搭建自己的博客</span>
+                        <span class="card-title">Front-matter 选项详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1160,8 +1098,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/web/" class="post-category">
-                                    web
+                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
+                                    选项详解
                                 </a>
                             
                             
@@ -1171,8 +1109,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/web/">
-                        <span class="chip bg-color">web</span>
+                    <a href="/tags/setting/">
+                        <span class="chip bg-color">setting</span>
                     </a>
                     
                 </div>
