@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-06-05T01:16:49.799Z</updated>
+  <updated>2021-06-05T01:48:08.125Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>现阶段学习存在的问题</title>
+    <link href="http://han77520.github.io/2021/06/03/hello-world/"/>
+    <id>http://han77520.github.io/2021/06/03/hello-world/</id>
+    <published>2021-06-04T02:15:38.000Z</published>
+    <updated>2021-06-05T01:48:08.125Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt; 不注重基础&lt;/p&gt;
+&lt;p&gt;光看不动手 ：应该是做中学&lt;/p&gt;
+&lt;p&gt;独立做题时直接蒙圈，没有认识到听懂和能使用是两回事  &lt;/p&gt;
+&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>java复习</title>
     <link href="http://han77520.github.io/2021/06/03/%E5%A4%8D%E4%B9%A0%E6%97%B6%E4%B8%8D%E6%B8%85%E6%A5%9A%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
     <id>http://han77520.github.io/2021/06/03/%E5%A4%8D%E4%B9%A0%E6%97%B6%E4%B8%8D%E6%B8%85%E6%A5%9A%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/</id>
     <published>2021-06-04T02:15:38.000Z</published>
-    <updated>2021-06-05T01:16:49.799Z</updated>
+    <updated>2021-06-05T06:34:51.774Z</updated>
     
     
       
@@ -81,7 +105,7 @@
     <link href="http://han77520.github.io/2021/06/02/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
     <id>http://han77520.github.io/2021/06/02/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</id>
     <published>2021-06-02T09:13:21.000Z</published>
-    <updated>2021-06-02T16:44:58.593Z</updated>
+    <updated>2021-06-05T01:33:10.201Z</updated>
     
     
       
@@ -98,27 +122,6 @@
     
     
     <category term="web" scheme="http://han77520.github.io/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://han77520.github.io/2021/06/01/hello-world/"/>
-    <id>http://han77520.github.io/2021/06/01/hello-world/</id>
-    <published>2021-06-02T07:05:46.999Z</published>
-    <updated>2021-06-02T07:05:46.999Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
