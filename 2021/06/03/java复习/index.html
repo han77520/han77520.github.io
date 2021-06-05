@@ -479,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    17 分
                 </div>
                 
 
@@ -1057,6 +1057,53 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>   高内聚：类的内部数据操作细节自己完成，不允许外部干涉</p>
+<p>   低耦合：仅对外部暴露少量的方法用于使用</p>
+<h4 id="封装性的体现"><a href="#封装性的体现" class="headerlink" title="封装性的体现"></a>封装性的体现</h4><p>​    1&gt;我们将类的属性xxx私有化(private),同时，提供公共(public)方法来获取(getXxx)和设置(setXxx)此属性的值。</p>
+<p>​    2&gt; 不对外暴露的私有的方法 </p>
+<p>​    3&gt; 单例模式(私有化构造器)    等等</p>
+<p>​        <strong>封装性的体现不等同于封装性</strong></p>
+<h4 id="权限修饰符"><a href="#权限修饰符" class="headerlink" title="权限修饰符"></a>权限修饰符</h4><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>类内部</th>
+<th>同一个包</th>
+<th>不同包的子类</th>
+<th>同一个工程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>private</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>缺省</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>protected</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td>public</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody></table>
+<p>权限修饰符<strong>不能修饰代码块</strong></p>
+<p>类只能被  缺省  和   public修饰</p>
 
                 
             </div>
@@ -1559,7 +1606,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/03/hello-world/">
+                <a href="/2021/06/03/%E7%8E%B0%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/">
                     <div class="card-image">
                         
                         
@@ -1830,7 +1877,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.8k</span>&nbsp;字
+                class="white-color">5k</span>&nbsp;字
             
             
             
