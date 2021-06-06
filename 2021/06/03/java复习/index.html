@@ -479,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    22 分
                 </div>
                 
 
@@ -1120,6 +1120,119 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <h4 id="子类对象实例化的过程"><a href="#子类对象实例化的过程" class="headerlink" title="子类对象实例化的过程"></a>子类对象实例化的过程</h4><p>从过程来看  ：</p>
 <p>​        当通过子类的构造器创建子类对象时，一定会直接或者间接的调用其父类的构造器，进而调用父类的构造器，直到调用了java.lang.Object类中的空参构造器为止。正因为加载过所有的父类的结构，所有才可以看到内存中有父类中的结构，子类对象才可以考虑进行调用</p>
 <p>  明确：虽然创建子类对象时：调用了父类的构造器，但是自始至终就创建过一个对象，即为new的子类对象，没有new就没有创建</p>
+<h3 id="多态-polymorphic"><a href="#多态-polymorphic" class="headerlink" title="多态(polymorphic)"></a>多态(polymorphic)</h3><p> 帕里摩尔fie克</p>
+<p>向上转型就是多态</p>
+<p>一个事物的多个形态   父类的引用指向子类的对象</p>
+<p>多态性使用的前提  1&gt; 继承性  2&gt; 子类重写了父类的方法</p>
+<p>用处：可以省去重载方法的设计，只需要设计一个方法，其参数是父类就可以，比如Object中的equals(Objec object)  方法，用的时候只需要传入当前类就可以。</p>
+<p><strong>注意：</strong></p>
+<p>​        有了对象多态性以后，内存中实际上加载了子类和父类所有的属性和方法，但是由于变量声明为父类类型，导致编译时，只能调用父类中声明的属性和方法，子类特有的属性和方法不能调用</p>
+<p>​       如何调用子类特有的属性和方法？</p>
+<p>   使用强制类型转换符</p>
+<p><strong>强转：</strong></p>
+<p>​        内存中的地址值有两部分：<strong>类型 +  @  +   具体的地址</strong></p>
+<p>因为有类型的限制，直接赋值时不行的，但加上强制类型转换符就可以把地址值中的类型 变成 想要转成的类型</p>
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>如果 a   instanceof   A返回true，则a    instanceof    B 也返回true。其中B是A 的父类</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>exer<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/*
+ * 练习：
+ * 1.若子类重写了父类方法，就意味着子类里定义的方法彻底覆盖了父类里的同名方法，
+ * 系统将不可能把父类里的方法转移到子类中：编译看左边，运行看右边
+ * 
+ * 2.对于实例变量则不存在这样的现象，即使子类里定义了与父类完全相同的实例变量，
+ * 这个实例变量依然不可能覆盖父类中定义的实例变量：编译运行都看左边
+ * 
+ * 
+ * 
+ * 
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Base</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Sub</span> <span class="token keyword">extends</span> <span class="token class-name">Base</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FieldMethodTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Sub s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//20</span>
+        s<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//20</span>
+        
+        Base b <span class="token operator">=</span> s<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//多态性</span>
+        <span class="token comment" spellcheck="true">//==：对于引用数据类型来讲，比较的是两个引用数据类型变量的地址值是否相同</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b <span class="token operator">==</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//10</span>
+        b<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//20  做的时候出错了</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="可变形参"><a href="#可变形参" class="headerlink" title="可变形参"></a>可变形参</h3><p> int… arr  与   int[] arr  是一个意思，都代表可变形参，只不过形式不同而已</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>exer<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//考查多态的笔试题目：</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">InterviewTest1</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Base1 base <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sub1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        base<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// sub_1  </span>
+
+        Sub1 s <span class="token operator">=</span> <span class="token punctuation">(</span>Sub1<span class="token punctuation">)</span>base<span class="token punctuation">;</span>
+        s<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// sub_2</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Base1</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> arr<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"base1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Sub1</span> <span class="token keyword">extends</span> <span class="token class-name">Base1</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"sub_1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//与父类的add()构成重载</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"sub_2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="运算符-1"><a href="#运算符-1" class="headerlink" title="==运算符"></a>==运算符</h3><p>用==运算符比较八种基本数据类型时，除了boolean以外，其他类型两两比较时，只要数值相等，就返回true</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token function">sout</span><span class="token punctuation">(</span>i <span class="token operator">==</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+
+<span class="token keyword">double</span> d <span class="token operator">=</span> <span class="token number">10.0</span><span class="token punctuation">;</span>
+<span class="token function">sout</span><span class="token punctuation">(</span>d <span class="token operator">==</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+
+<span class="token keyword">char</span> c <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token function">sout</span><span class="token punctuation">(</span>c <span class="token operator">==</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+
+<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">65</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> c <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>
+<span class="token function">sout</span><span class="token punctuation">(</span> x <span class="token operator">==</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true+</span>
+
+<span class="token comment" spellcheck="true">/*
+==符号使用时，必须保证符号两边的类型必须一致
+    比如：两边都是基本数据类型(boolean除外)，
+         两边都是同一个引用类型。
+      否则报错。
+*/</span>
+</code></pre>
+<h3 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h3><p>比较之前最好先判断x是否是null。</p>
+<p>x.equals(null)   永远是false。</p>
 
                 
             </div>
@@ -1893,7 +2006,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.7k</span>&nbsp;字
+                class="white-color">6.6k</span>&nbsp;字
             
             
             
