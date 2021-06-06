@@ -479,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.1k
+                    6.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    28 分
                 </div>
                 
 
@@ -1233,6 +1233,232 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </code></pre>
 <h3 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h3><p>比较之前最好先判断x是否是null。</p>
 <p>x.equals(null)   永远是false。</p>
+<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h3><pre class=" language-java"><code class="language-java">  <span class="token keyword">return</span> <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"@"</span> <span class="token operator">+</span> Integer<span class="token punctuation">.</span><span class="token function">toHexString</span><span class="token punctuation">(</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+ * 包装类的使用:
+ * 1.java提供了8种基本数据类型对应的包装类，使得基本数据类型的变量具有类的特征
+ * 
+ * 2.掌握的：基本数据类型、包装类、String三者之间的相互转换
+ * 
+ * 
+ * 
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WrapperTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">//String类型 --->基本数据类型、包装类：调用包装类的parseXxx(String s)</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        String str1 <span class="token operator">=</span> <span class="token string">"123"</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//错误的情况：</span>
+<span class="token comment" spellcheck="true">//        int num1 = (int)str1;</span>
+<span class="token comment" spellcheck="true">//        Integer in1 = (Integer)str1;</span>
+        <span class="token comment" spellcheck="true">//可能会报NumberFormatException</span>
+        <span class="token keyword">int</span> num2 <span class="token operator">=</span> Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>num2 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        String str2 <span class="token operator">=</span> <span class="token string">"true1"</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> b1 <span class="token operator">=</span> Boolean<span class="token punctuation">.</span><span class="token function">parseBoolean</span><span class="token punctuation">(</span>str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//fales</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">//基本数据类型、包装类--->String类型：调用String重载的valueOf(Xxx xxx)</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//方式1：连接运算</span>
+        String str1 <span class="token operator">=</span> num1 <span class="token operator">+</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//方式2：调用String的valueOf(Xxx xxx)</span>
+        <span class="token keyword">float</span> f1 <span class="token operator">=</span> <span class="token number">12.3f</span><span class="token punctuation">;</span>
+        String str2 <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>f1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//"12.3"</span>
+        
+        Double d1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Double</span><span class="token punctuation">(</span><span class="token number">12.4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String str3 <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>d1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str3<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//"12.4"</span>
+        
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">/*
+     * JDK 5.0 新特性：自动装箱 与自动拆箱
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//        int num1 = 10;</span>
+<span class="token comment" spellcheck="true">//        //基本数据类型-->包装类的对象</span>
+<span class="token comment" spellcheck="true">//        method(num1);</span>
+        
+        <span class="token comment" spellcheck="true">//自动装箱：基本数据类型 --->包装类</span>
+        <span class="token keyword">int</span> num2 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        Integer in1 <span class="token operator">=</span> num2<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//自动装箱</span>
+        
+        <span class="token keyword">boolean</span> b1 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        Boolean b2 <span class="token operator">=</span> b1<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//自动装箱</span>
+        
+        <span class="token comment" spellcheck="true">//自动拆箱：包装类--->基本数据类型</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>in1<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">int</span> num3 <span class="token operator">=</span> in1<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//自动拆箱</span>
+        
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">//包装类--->基本数据类型:调用包装类Xxx的xxxValue()</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Integer in1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">int</span> i1 <span class="token operator">=</span> in1<span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i1 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        
+        Float f1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float</span><span class="token punctuation">(</span><span class="token number">12.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">float</span> f2 <span class="token operator">=</span> f1<span class="token punctuation">.</span><span class="token function">floatValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>f2 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">//基本数据类型 --->包装类：调用包装类的构造器</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//        System.out.println(num1.toString());</span>
+        Integer in1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span>num1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>in1<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        Integer in2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>in2<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment" spellcheck="true">//报异常</span>
+<span class="token comment" spellcheck="true">//        Integer in3 = new Integer("123abc");</span>
+<span class="token comment" spellcheck="true">//        System.out.println(in3.toString());</span>
+        
+        Float f1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float</span><span class="token punctuation">(</span><span class="token number">12.3f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Float f2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float</span><span class="token punctuation">(</span><span class="token string">"12.3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>f1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>f2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        Boolean b1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Boolean</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Boolean b2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Boolean</span><span class="token punctuation">(</span><span class="token string">"TrUe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Boolean b3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Boolean</span><span class="token punctuation">(</span><span class="token string">"true123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b3<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>
+        
+        
+        Order order <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span>isMale<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span>isFemale<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//null</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Order</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">boolean</span> isMale<span class="token punctuation">;</span>
+    Boolean isFemale<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="错题"><a href="#错题" class="headerlink" title="错题"></a>错题</h3><pre class=" language-java"><code class="language-java">
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Integer i <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Integer j <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i <span class="token operator">==</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>
+        
+        <span class="token comment" spellcheck="true">//Integer内部定义了IntegerCache结构，IntegerCache中定义了Integer[],</span>
+        <span class="token comment" spellcheck="true">//保存了从-128~127范围的整数。如果我们使用自动装箱的方式，给Integer赋值的范围在</span>
+        <span class="token comment" spellcheck="true">//-128~127范围内时，可以直接使用数组中的元素，不用再去new了。目的：提高效率</span>
+        
+        Integer m <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        Integer n <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>m <span class="token operator">==</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+
+        Integer x <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//相当于new了一个Integer对象</span>
+        Integer y <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//相当于new了一个Integer对象</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>x <span class="token operator">==</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>exer4<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Scanner<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Vector<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/*
+ *  利用Vector代替数组处理：从键盘读入学生成绩（以负数代表输入结束），找出最高分，并输出学生成绩等级。
+    提示：数组一旦创建，长度就固定不变，所以在创建数组前就需要知道它的长度。
+    而向量类java.util.Vector可以根据需要动态伸缩。
+    
+    创建Vector对象：Vector v=new Vector();
+    给向量添加元素：v.addElement(Object obj);   //obj必须是对象
+    取出向量中的元素：Object  obj=v.elementAt(0);
+    注意第一个元素的下标是0，返回值是Object类型的。
+    计算向量的长度：v.size();
+    若与最高分相差10分内：A等；20分内：B等；
+          30分内：C等；其它：D等 
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ScoreTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//1.实例化Scanner，用于从键盘获取学生成绩</span>
+        Scanner scan <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment" spellcheck="true">//2.创建Vector对象：Vector v=new Vector();相当于原来的数组</span>
+        Vector v <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment" spellcheck="true">//3.通过for(;;)或while(true)方式，给Vector中添加数组</span>
+        <span class="token keyword">int</span> maxScore <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"请输入学生成绩（以负数代表输入结束）"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> score <span class="token operator">=</span> scan<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//3.2 当输入是负数时，跳出循环</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>score <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>score <span class="token operator">></span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"输入的数据非法，请重新输入"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//3.1 添加操作：：v.addElement(Object obj)</span>
+            <span class="token comment" spellcheck="true">//jdk5.0之前：</span>
+<span class="token comment" spellcheck="true">//            Integer inScore = new Integer(score);</span>
+<span class="token comment" spellcheck="true">//            v.addElement(inScore);//多态</span>
+            <span class="token comment" spellcheck="true">//jdk5.0之后：</span>
+            v<span class="token punctuation">.</span><span class="token function">addElement</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//自动装箱</span>
+            <span class="token comment" spellcheck="true">//4.获取学生成绩的最大值</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>maxScore <span class="token operator">&lt;</span> score<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                maxScore <span class="token operator">=</span> score<span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        
+        <span class="token comment" spellcheck="true">//5.遍历Vector，得到每个学生的成绩，并与最大成绩比较，得到每个学生的等级。</span>
+        <span class="token keyword">char</span> level<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> v<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            Object obj <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">elementAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//jdk 5.0之前：</span>
+<span class="token comment" spellcheck="true">//            Integer inScore = (Integer)obj;</span>
+<span class="token comment" spellcheck="true">//            int score = inScore.intValue();</span>
+            <span class="token comment" spellcheck="true">//jdk 5.0之后：</span>
+            <span class="token keyword">int</span> score <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>obj<span class="token punctuation">;</span>
+            
+            <span class="token keyword">if</span><span class="token punctuation">(</span>maxScore <span class="token operator">-</span> score <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                level <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>maxScore <span class="token operator">-</span> score <span class="token operator">&lt;=</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                level <span class="token operator">=</span> <span class="token string">'B'</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>maxScore <span class="token operator">-</span> score <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                level <span class="token operator">=</span> <span class="token string">'C'</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                level <span class="token operator">=</span> <span class="token string">'D'</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"student-"</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">" score is "</span> <span class="token operator">+</span> score <span class="token operator">+</span> <span class="token string">",level is "</span> <span class="token operator">+</span> level<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
 
                 
             </div>
@@ -2006,7 +2232,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">6.6k</span>&nbsp;字
+                class="white-color">7.8k</span>&nbsp;字
             
             
             
