@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-06-05T01:48:08.125Z</updated>
+  <updated>2021-06-06T01:58:01.036Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="http://han77520.github.io/2021/06/03/%E7%8E%B0%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://han77520.github.io/2021/06/03/%E7%8E%B0%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/</id>
     <published>2021-06-04T02:15:38.000Z</published>
-    <updated>2021-06-05T01:48:08.125Z</updated>
+    <updated>2021-06-06T01:58:01.036Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt; 不注重基础&lt;/p&gt;
+    <summary type="html">&lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;不注重基础&lt;/p&gt;
 &lt;p&gt;光看不动手 ：应该是做中学&lt;/p&gt;
 &lt;p&gt;独立做题时直接蒙圈，没有认识到听懂和能使用是两回事  &lt;/p&gt;
 &lt;p&gt;</summary>
@@ -45,7 +45,7 @@
     <link href="http://han77520.github.io/2021/06/03/java%E5%A4%8D%E4%B9%A0/"/>
     <id>http://han77520.github.io/2021/06/03/java%E5%A4%8D%E4%B9%A0/</id>
     <published>2021-06-04T02:15:38.000Z</published>
-    <updated>2021-06-05T16:07:43.333Z</updated>
+    <updated>2021-06-06T09:31:12.223Z</updated>
     
     
       
@@ -67,8 +67,8 @@
   
   <entry>
     <title>数据结构和算法</title>
-    <link href="http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
+    <id>http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</id>
     <published>2021-06-02T16:26:49.000Z</published>
     <updated>2021-06-05T15:15:43.979Z</updated>
     
