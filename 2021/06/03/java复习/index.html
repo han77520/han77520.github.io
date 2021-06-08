@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.7k
+                    9.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    42 分
+                    43 分
                 </div>
                 
 
@@ -816,12 +816,12 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </thead>
 <tbody><tr>
 <td>2</td>
-<td><strong>String to String(int[] a)</strong></td>
+<td>String toString(int[] a)</td>
 <td>输出数组信息</td>
 </tr>
 <tr>
 <td>3</td>
-<td><strong>void fill(int[] a, int val)</strong></td>
+<td>void fill(int[] a, int val)</td>
 <td>用指定值替换原数组</td>
 </tr>
 <tr>
@@ -1891,13 +1891,38 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>​        1.call()可以有返回值的。</p>
 <p>​        2.call()可以抛出异常，被外面的操作捕获，获取异常的信息</p>
 <p>​        3.Callable是支持泛型的</p>
-<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>好处：</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>好处： </p>
 <p>1.提高响应速度（减少了创建新线程的时间）</p>
 <p>2.降低资源消耗（重复利用线程池中线程，不需要每次都创建）</p>
 <p>3.便于线程管理</p>
 <p>​        corePoolSize：核心池的大小</p>
 <p>​        maximumPoolSize：最大线程数</p>
 <p>​        keepAliveTime：线程没有任务时最多保持多长时间后会终止</p>
+<h2 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h2><h3 id="String-1"><a href="#String-1" class="headerlink" title="String"></a>String</h3><p>​        具体的看常用类那一章的PDF第十页</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//String --->  char[]的转换   </span>
+string<span class="token punctuation">.</span><span class="token function">toCharArrary</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//String --->  byte[]的转换</span>
+string<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/*
+    1.常量与常量的拼接结果在常量池。且常量池中不会存在相同内容的常量。
+    2.只要其中有一个是变量，结果就在堆中。
+    3.如果拼接的结果调用intern()方法，返回值就在常量池中
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        String s1 <span class="token operator">=</span> <span class="token string">"javaEEhadoop"</span><span class="token punctuation">;</span>
+        String s2 <span class="token operator">=</span> <span class="token string">"javaEE"</span><span class="token punctuation">;</span>
+        String s3 <span class="token operator">=</span> s2 <span class="token operator">+</span> <span class="token string">"hadoop"</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s1 <span class="token operator">==</span> s3<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>
+
+        <span class="token keyword">final</span> String s4 <span class="token operator">=</span> <span class="token string">"javaEE"</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//s4:常量</span>
+        String s5 <span class="token operator">=</span> s4 <span class="token operator">+</span> <span class="token string">"hadoop"</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s1 <span class="token operator">==</span> s5<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
 
                 
             </div>
@@ -2433,19 +2458,19 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="数据结构和算法">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
                         
-                        <span class="card-title">数据结构和算法</span>
+                        <span class="card-title">Front-matter 选项详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据结构和算法，一定要学好   哈哈哈
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -2454,11 +2479,23 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            han77
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
+                                    选项详解
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/setting/">
+                        <span class="chip bg-color">setting</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -2659,7 +2696,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.5k</span>&nbsp;字
+                class="white-color">11.7k</span>&nbsp;字
             
             
             
