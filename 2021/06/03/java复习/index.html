@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-07
+                    2021-06-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.7k
+                    9.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    38 分
+                    42 分
                 </div>
                 
 
@@ -1846,6 +1846,58 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>程序在执行过程中，一旦出现异常，就会在异常出生成一个对应异常类的对象，并将此对象抛出，由try-catch-finally或者throws捕获。</p>
+<p>如果父类的方法没有抛异常，则子类重写的方法是不能抛异常的，只能是try-catch。</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>一个java应用程序中，至少有三个线程，main()线程，gc()线程，垃圾回收线程</p>
+<p>一个继承了Thread的子类对象只能调用一次start()方法。</p>
+<pre class=" language-java"><code class="language-java"><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//①启动线程  ②调用当前线程的run()方法，是当前线程！</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">yield</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//线程让步，暂停当前线程，把执行机会让给优先级相同或者更高的线程</span>
+
+<span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：<span class="token comment" spellcheck="true">//当某个程序执行流中调用其他线程的join()方法时，调用线程即(本线程)将被阻塞，直到join()方法加入的join线程执行完为止</span>
+
+<span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//静态方法，返回执行当前代码的线程</span>
+<span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//让线程死亡</span>
+</code></pre>
+<p>线程优先级：MAX_PRIORITY: 10</p>
+<p>​                       MIN_PRIORITY: 1</p>
+<p>​                       NORM_PRIORITY: 5</p>
+<p>getPriority()：返回线程优先级</p>
+<p>setPriority()：改变线程优先级</p>
+<p>优先级的高低只是从概率上来说的，并不是你优先级高就一定在优先级低的前面执行        </p>
+<p>继承Thread和实现Runnable这两种方式的比较<br>        开发中 优先选择，实现Runnable接口的方式<br>        原因 1.实现的方式没有类的单继承性的局限性<br>                2. 实现的方式更适合来处理多个线程有共享数据的情况<br>    联系 public class Thread implements Runnable<br>    相同点 两种方式都需要重写run()，将线程要执行的逻辑声明在run()中</p>
+<p>使运行期到阻塞期的方法： sleep(long time)、join()、等待同步锁、wait()</p>
+<h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><p>  在对继承Thread的类加同步代码块的时候，一定要注意<strong>充当锁的对象是static</strong>的或者用<strong>当前类.class</strong>充当锁</p>
+<p>​                                      加同步方法的时候，一定要给同步方法加static，同步锁是<strong>当前类.class</strong></p>
+<p>实现了Runnable接口的实现类的同步代码块和同步方法都可以使当前对象，也可以是新new的任何类的对象</p>
+<p>非静态的同步方法，同步监视器是当前对象</p>
+<p>静态同步方法，同步监视器是当前类.class</p>
+<h3 id="Lock锁"><a href="#Lock锁" class="headerlink" title="Lock锁"></a>Lock锁</h3><p>Lock是一个接口。</p>
+<p>​    synchronized和Lock的异同？</p>
+<p>​       相同：都可以解决线程安全问题</p>
+<p>​      不同：</p>
+<p>​            synchronized机制在执行完相应的同步代码以后，自动的释放同步监视器</p>
+<p>​            Lock需要手动的启动和结束同步。</p>
+<h3 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h3><p>1.wait()，notify()，notifyAll()三个方法<strong>必须使用</strong>在同步代码块或同步方法中。</p>
+<p>2.wait()，notify()，notifyAll()三个方法的调用者必须是同步代码块或同步方法中的同步监视器。</p>
+<p>​     否则，会出现IllegalMonitorStateException异常</p>
+<p>3.wait()，notify()，notifyAll()三个方法是定义在java.lang.Object类中。</p>
+<p>面试题：sleep() 和 wait()的异同</p>
+<p>1.相同点：一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
+<p>2.不同点;1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
+<p>​                2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中</p>
+<p>​                3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，                wait()会释放锁。</p>
+<h3 id="callable"><a href="#callable" class="headerlink" title="callable"></a>callable</h3><p>需要借助  FutureTask 接口，来和Tnread建立关系</p>
+<p>如何理解实现Callable接口的方式创建多线程比实现Runnable接口创建多线程方式强大？</p>
+<p>​        1.call()可以有返回值的。</p>
+<p>​        2.call()可以抛出异常，被外面的操作捕获，获取异常的信息</p>
+<p>​        3.Callable是支持泛型的</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>好处：</p>
+<p>1.提高响应速度（减少了创建新线程的时间）</p>
+<p>2.降低资源消耗（重复利用线程池中线程，不需要每次都创建）</p>
+<p>3.便于线程管理</p>
+<p>​        corePoolSize：核心池的大小</p>
+<p>​        maximumPoolSize：最大线程数</p>
+<p>​        keepAliveTime：线程没有任务时最多保持多长时间后会终止</p>
 
                 
             </div>
@@ -2607,7 +2659,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.5k</span>&nbsp;字
+                class="white-color">11.5k</span>&nbsp;字
             
             
             
