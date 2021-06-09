@@ -459,21 +459,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-07
+                    2021-06-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    7 分
                 </div>
                 
 
@@ -526,7 +526,40 @@
 <p>抽象是指抽取出事物具有普遍性质的本质</p>
 <p>抽象数据类型，是指一个数学模型及定义在该模型上的一组操作，抽象数据类型的定义仅仅取决于它的一组逻辑特性，而与其在计算机内部如何表示和实现无关</p>
 <p>抽象的意义在于数据类型的数学抽象特性<br>抽象数据类型体现了程序设计中问题分解，抽象和信息隐藏的特性</p>
-
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="算法的定义"><a href="#算法的定义" class="headerlink" title="算法的定义"></a>算法的定义</h2><p>什么是算法？算法是描述解决问题的方法。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>​    算法是解决特定问题求解步骤的描述，在计算机中表现为指令的有限序列，并且每条指令表示一个或多个操作。</p>
+<h2 id="算法的特性"><a href="#算法的特性" class="headerlink" title="算法的特性"></a>算法的特性</h2><h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><p>​    算法可以有零个或者多个输入；至少有一个或多个输出，算法是一定要输出的。</p>
+<h3 id="有穷性"><a href="#有穷性" class="headerlink" title="有穷性"></a>有穷性</h3><p>​    指算法在执行有限的步骤后，自动结束而不会出现无限循环，并且每一个步骤在可接收的时间内完成。</p>
+<p>​    这里又穷的概念不是纯数学意义上的，而是在实际应用中是合理的、可以接收的有界。</p>
+<h3 id="确定性"><a href="#确定性" class="headerlink" title="确定性"></a>确定性</h3><p>​    算法的每一个步骤都具有确定的含义，不会出现二义性。</p>
+<h3 id="可行性"><a href="#可行性" class="headerlink" title="可行性"></a>可行性</h3><p>​    算法的每一步都必须是可行的，每一步都能够通过执行有限次数完成。</p>
+<p>​    其意味着算法可以转换为程序上机运行，并得到正确的结果</p>
+<h2 id="算法设计要求"><a href="#算法设计要求" class="headerlink" title="算法设计要求"></a>算法设计要求</h2><h3 id="正确性"><a href="#正确性" class="headerlink" title="正确性"></a>正确性</h3><p>​    算法的正确性是指算法至少应该具有输入、输出和加工处理无歧义性、能正确反映问题的需求、能够得到问题的正确答案。</p>
+<h4 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h4><blockquote>
+<p>算法程序没有语法错误</p>
+</blockquote>
+<blockquote>
+<p>算法程序对于合法的输入数据能够产生满足要求的输出结果</p>
+</blockquote>
+<blockquote>
+<p>算法程序对于非法的输入数据能够得出满足规格说明的结果</p>
+</blockquote>
+<blockquote>
+<p>算法程序对于精心选择的，甚至刁难的测试数据都有满足要求的输出结果</p>
+</blockquote>
+<p>一般情况下，把层次三作为一个算法是否正确的标准</p>
+<h3 id="可读性"><a href="#可读性" class="headerlink" title="可读性"></a>可读性</h3><p>​    为了便于阅读、理解和交流</p>
+<p>写代码的目的，一方面是为了让计算机执行，但还有一个重要的方面目的为了便于他人和自己阅读。</p>
+<p><strong>可读性是算法好坏很重要的标志！</strong></p>
+<h3 id="健壮性"><a href="#健壮性" class="headerlink" title="健壮性"></a>健壮性</h3><p>​        当输入数据不合法时，算法也能做出相关处理。而不是产生异常或者莫名奇妙的结果。</p>
+<p>​        一个好的算法还应该能对输入数据不合法的情况做合适的处理。比如输入的时间或者距离不应该是负数等。</p>
+<p><strong>健壮性又称为鲁棒性。</strong><br>    1&gt;鲁棒性就是系统的健壮性.比如说,计算机软件在输入错误、磁盘故障、网络过载或有意攻击情况下,能否不死机、不崩溃,就是该软件的鲁棒性.对于控制系统而言,是指系统在一定（结构,大小）的参数摄动下,维持某些性能的特性.根据对性能的不同定义,可分为稳定鲁棒性和性能鲁棒性.以闭环系统的鲁棒性作为目标设计得到的固定控制器称为鲁棒控制器.</p>
+<p>​    2&gt;对于实际工程系统,人们最关心的问题是一个控制系统当其模型参数发生大幅度变化或其结构发生变化时能否仍保持渐近稳定,这叫稳定鲁棒性.进而还要求在模型扰动下系统的品质指标仍然保持在某个许可范围内,这称为品质鲁棒性.鲁棒性理论目前正致力于研究多变量系统具有稳定鲁棒性和品质鲁棒性的各种条件.它的进一步发展和应用,将是控制系统最终能否成功应用于实践的关键.</p>
+<h3 id="时间效率高"><a href="#时间效率高" class="headerlink" title="时间效率高"></a>时间效率高</h3><h3 id="存储量低"><a href="#存储量低" class="headerlink" title="存储量低"></a>存储量低</h3><p>​    设计算法应该尽量满足时间效率高和存储量低的特点。</p>
+<p>​        时间效率是指算法的执行时间</p>
+<p>​       存储量需求是指算法在执行过程中需要的最大存储空间</p>
+<h2 id="效率的度量方法"><a href="#效率的度量方法" class="headerlink" title="效率的度量方法"></a>效率的度量方法</h2><h3 id="事后统计法"><a href="#事后统计法" class="headerlink" title="事后统计法"></a>事后统计法</h3><p>​        这种方法主要是通过设计好的测试程序和数据，利用计算机计时器对不同算法编制的程序的运行时间进行比较，从而确定算法效率的高低。</p>
+<h3 id="事前分析估算法"><a href="#事前分析估算法" class="headerlink" title="事前分析估算法"></a>事前分析估算法</h3>
                 
             </div>
             <hr/>
@@ -1024,6 +1057,46 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2021/06/03/java%E5%A4%8D%E4%B9%A0/">
+                    <div class="card-image">
+                        
+                        <img src="https://img2.baidu.com/it/u=449057306,1501837017&fm=26&fmt=auto&gp=0.jpg" class="responsive-img" alt="java复习">
+                        
+                        <span class="card-title">java复习</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            模糊知识点
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/review/" class="post-category">
+                                    review
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
@@ -1040,9 +1113,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1060,55 +1133,6 @@
                     
                     <a href="/tags/setting/">
                         <span class="chip bg-color">setting</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/06/02/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="搭建自己的博客">
-                        
-                        <span class="card-title">搭建自己的博客</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/web/" class="post-category">
-                                    web
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web/">
-                        <span class="chip bg-color">web</span>
                     </a>
                     
                 </div>
@@ -1311,7 +1335,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.7k</span>&nbsp;字
+                class="white-color">18.9k</span>&nbsp;字
             
             
             
