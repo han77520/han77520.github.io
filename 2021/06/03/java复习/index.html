@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    16k
+                    16.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    72 分
+                    75 分
                 </div>
                 
 
@@ -1849,6 +1849,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>程序在执行过程中，一旦出现异常，就会在异常出生成一个对应异常类的对象，并将此对象抛出，由try-catch-finally或者throws捕获。</p>
 <p>如果父类的方法没有抛异常，则子类重写的方法是不能抛异常的，只能是try-catch。</p>
 <p>常见的编译时异常：</p>
+<p>​     FileNotFoundException：加载配置文件找不到</p>
 <p>​    XPathException</p>
 <p>​    IOException</p>
 <p>   SQLException</p>
@@ -2947,6 +2948,121 @@ hashCode():返回当前对象的哈希值
 
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<h3 id="Map集合"><a href="#Map集合" class="headerlink" title="Map集合"></a>Map集合</h3><p>如果添加时候已经有了一样的entry数组元素，是用新的元素替换旧的元素，而不是像HashSet那样加不进去</p>
+<p>在不断的添加过程中，会涉及到扩容问题，当超出临界值(且要存放的位置非空)时，扩容。默认扩容方式：扩容为原来的2倍，并将原有的数据复制过来。</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//遍历所有的key-value集 </span>
+Set entrySet <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Iterator iterator1 <span class="token operator">=</span> entrySet<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator1<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            Object obj <span class="token operator">=</span> iterator1<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//entrySet集合中的元素都是entry</span>
+            Map<span class="token punctuation">.</span>Entry entry <span class="token operator">=</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token punctuation">)</span> obj<span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"---->"</span> <span class="token operator">+</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//常用方法</span>
+ 添加、删除、修改操作：
+  Object <span class="token function">put</span><span class="token punctuation">(</span>Object key<span class="token punctuation">,</span>Object value<span class="token punctuation">)</span>：将指定key<span class="token operator">-</span>value添加到<span class="token punctuation">(</span>或修改<span class="token punctuation">)</span>当前map对象中
+  <span class="token keyword">void</span> <span class="token function">putAll</span><span class="token punctuation">(</span>Map m<span class="token punctuation">)</span><span class="token operator">:</span>将m中的所有key<span class="token operator">-</span>value对存放到当前map中
+  Object <span class="token function">remove</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span>：移除指定key的key<span class="token operator">-</span>value对，并返回value
+  <span class="token keyword">void</span> <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：清空当前map中的所有数据
+ 元素查询的操作：
+ Object <span class="token function">get</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span>：获取指定key对应的value
+ <span class="token keyword">boolean</span> <span class="token function">containsKey</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span>：是否包含指定的key
+ <span class="token keyword">boolean</span> <span class="token function">containsValue</span><span class="token punctuation">(</span>Object value<span class="token punctuation">)</span>：是否包含指定的value
+ <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：返回map中key<span class="token operator">-</span>value对的个数
+ <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：判断当前map是否为空
+ <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span>：判断当前map和参数对象obj是否相等
+ 元视图操作的方法：
+ Set <span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：返回所有key构成的Set集合
+ Collection <span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：返回所有value构成的Collection集合
+ Set <span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：返回所有key<span class="token operator">-</span>value对构成的Set集合
+     
+总结：常用方法
+添加： <span class="token function">put</span><span class="token punctuation">(</span>Object key<span class="token punctuation">,</span>Object value<span class="token punctuation">)</span>
+删除： <span class="token function">remove</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span>
+修改： <span class="token function">put</span><span class="token punctuation">(</span>Object key<span class="token punctuation">,</span>Object value<span class="token punctuation">)</span>
+查询： <span class="token function">get</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span>
+长度： <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+遍历： <span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>集合类</th>
+<th>Key</th>
+<th>Value</th>
+<th>Super</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hashtable</td>
+<td>不允许为nulll</td>
+<td>不允许为nulll</td>
+<td>Dictionary</td>
+<td>线程安全</td>
+</tr>
+<tr>
+<td>ConcurrentHashMap</td>
+<td>不允许为nulll</td>
+<td>不允许为nulll</td>
+<td>AbstractMap</td>
+<td>锁分段技术(JDK8:CAS)</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>不允许为nulll</td>
+<td>允许为nulll</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>允许为nulll</td>
+<td>允许为nulll</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+</tbody></table>
+<h3 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h3><pre class=" language-java"><code class="language-java"><span class="token function">reverse</span><span class="token punctuation">(</span>List<span class="token punctuation">)</span>：反转 List 中元素的顺序
+<span class="token function">shuffle</span><span class="token punctuation">(</span>List<span class="token punctuation">)</span>：对 List 集合元素进行随机排序
+<span class="token function">sort</span><span class="token punctuation">(</span>List<span class="token punctuation">)</span>：根据元素的自然顺序对指定 List 集合元素按升序排序
+<span class="token function">sort</span><span class="token punctuation">(</span>List，Comparator<span class="token punctuation">)</span>：根据指定的 Comparator 产生的顺序对 List 集合元素进行排序
+<span class="token function">swap</span><span class="token punctuation">(</span>List，<span class="token keyword">int</span>， <span class="token keyword">int</span><span class="token punctuation">)</span>：将指定 list 集合中的 i 处元素和 j 处元素进行交换
+Object <span class="token function">max</span><span class="token punctuation">(</span>Collection<span class="token punctuation">)</span>：根据元素的自然顺序，返回给定集合中的最大元素
+Object <span class="token function">max</span><span class="token punctuation">(</span>Collection，Comparator<span class="token punctuation">)</span>：根据 Comparator 指定的顺序，返回给定集合中的最大元素
+Object <span class="token function">min</span><span class="token punctuation">(</span>Collection<span class="token punctuation">)</span>
+Object <span class="token function">min</span><span class="token punctuation">(</span>Collection，Comparator<span class="token punctuation">)</span>
+<span class="token keyword">int</span> <span class="token function">frequency</span><span class="token punctuation">(</span>Collection，Object<span class="token punctuation">)</span>：返回指定集合中指定元素的出现次数
+    
+<span class="token keyword">void</span> <span class="token function">copy</span><span class="token punctuation">(</span>List dest<span class="token punctuation">,</span>List src<span class="token punctuation">)</span>：将src中的内容复制到dest中  
+ <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        List list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">435</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">87</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">98</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//报异常：IndexOutOfBoundsException("Source dose not fit in dest")</span>
+<span class="token comment" spellcheck="true">//        List dest = new ArrayList();</span>
+<span class="token comment" spellcheck="true">//        Collections.copy(dest,list);</span>
+
+        <span class="token comment" spellcheck="true">//正确的</span>
+        List dest <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span>list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//list.seze();</span>
+        Collections<span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span>dest<span class="token punctuation">,</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>dest<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    
+<span class="token keyword">boolean</span> <span class="token function">replaceAll</span><span class="token punctuation">(</span>List list，Object oldVal，Object newVal<span class="token punctuation">)</span>：使用新值替换Lis
+</code></pre>
 
                 
             </div>
@@ -3708,7 +3824,7 @@ hashCode():返回当前对象的哈希值
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.9k</span>&nbsp;字
+                class="white-color">19.6k</span>&nbsp;字
             
             
             
