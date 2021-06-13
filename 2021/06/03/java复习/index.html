@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-12
+                    2021-06-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    20.9k
+                    23k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    93 分
+                    101 分
                 </div>
                 
 
@@ -503,6 +503,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="记录、总结、思考、提炼、回顾是学习的根本"><a href="#记录、总结、思考、提炼、回顾是学习的根本" class="headerlink" title="记录、总结、思考、提炼、回顾是学习的根本"></a>记录、总结、思考、提炼、回顾是学习的根本</h1><h1 id="复习时不清楚的知识点"><a href="#复习时不清楚的知识点" class="headerlink" title="复习时不清楚的知识点"></a>复习时不清楚的知识点</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><p>成员变量有默认值，但局部变量是没有默认值的</p>
+<p>final修饰的成员变量也是没有默认值的，必须的显示赋值</p>
 <h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><p>基本数据类型布尔型 是<strong>boolean</strong>  <strong>不是</strong>bool</p>
 <h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>float表示的范围比long还大，是因为浮点类型的单精度值具有 4 个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%97%E8%8A%82">字节</a>，包括一个符号位、一个 8 位 二进制指数和一个 23 位尾数。由于尾数的高顺序位始终为 1，因此它不是以数字形式存储的。</p>
 <h3 id="单精度和双精度的区别"><a href="#单精度和双精度的区别" class="headerlink" title="单精度和双精度的区别"></a>单精度和双精度的区别</h3><p>​       含义：表明单精度和双精度精确的范围不一样，单精度，也即float，一般在计算机中存储占用4字节，也32位，有效位数为7位；双精度（double）在计算机中存储占用8字节，64位，有效位数为16位。<br>​      原因：不管float还是double 在计算机上的存储都遵循IEEE规范，使用二进制科学计数法，都包含三个部分：符号位，指数位和尾数部分。其中float的符号位，指数位，尾数部分分别为1,  8,  23.     双精度分别为1,  11,  52。<br>​       精度主要取决于尾数部分的位数，float为23位，除去全部为0的情况以外，最小为2的-23次方，约等于1.19乘以10的-7次方，所以float小数部分只能精确到后面6位，加上小数点前的一位，即有效数字为7位。  类似，double 尾数部分52位，最小为2的-52次方，约为2.22乘以10的-16次方，所以精确到小数点后15位，有效位数为16位。</p>
@@ -694,6 +695,56 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 * 算法有多重要！！！  知道了吗？
 */</span>
 </code></pre>
+<h2 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h2><h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><p>​    对象之间最弱的一种关联方式，是临时性的关联。代码中一般指由局部变量、函数参数、返</p>
+<p>回值建立的对于其他对象的调用关系。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">A</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> B <span class="token function">method</span><span class="token punctuation">(</span>C c<span class="token punctuation">,</span>D d<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    E e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">E</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    B b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">return</span> b<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>​        对象之间一种引用关系，比如客户类与订单类之间的关系。这种关系通常使用类的属性表达。</p>
+<p>关联可以有方向，即导航。一般不作说明的时候，导航是双向的，不需要在线上标出箭头。大部分情况下导航是单向的，可以加一个箭头表示。</p>
+<p>​        关联表示类之间的“持久”关系，这种关系一般表示一种重要的业务之间的关系，需要保存</p>
+<p>的，或者说需要“持久化”的，或者说需要保存到数据库中的。另外，依赖表示类之间的是</p>
+<p>一种“临时、短暂”关系，这种关系是不需要保存的.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Employee</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> eid<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//员工编号</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//员工姓名</span>
+    <span class="token keyword">private</span> Computer coumputer<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//员工所使用的电脑</span>
+    <span class="token comment" spellcheck="true">//....</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Computer</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><p>​    聚合（关联关系的一种）：表示 has-a 的关系。与关联关系一样，聚合关系也是通过实例变</p>
+<p>量来实现这样关系的。关联关系和聚合关系来语法上是没办法区分的，从语义上才能更好的</p>
+<p>区分两者的区别。</p>
+<p>如汽车类与引挚类，轮胎类之间的关系就是整体与个体的关系。</p>
+<p>与关联关系一样，聚合关系也是通过实例变量来实现的</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Car</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Engine engine<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//引擎</span>
+    <span class="token keyword">private</span> Tyre<span class="token punctuation">[</span><span class="token punctuation">]</span> tyres<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//轮胎</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>关联和聚集（聚合）的区别：</p>
+<p>​    关联关系所涉及的两个对象是处在同一个层次上的。比如人和自行车就是一种关联关系，而不是聚合关系，因为人不是由自行车组成的。</p>
+<p>​    聚合关系涉及的两个对象处于不平等的层次上，一个代表整体，一个代表部分。比如电脑和</p>
+<p>它的显示器、键盘、主板以及内存就是聚集关系，因为主板是电脑的组成部分。</p>
+<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><p>​    对象 A 包含对象 B，对象 B 离开对象 A 没有实际意义。是一种更强的关联关系。人包含手，<br>手离开人的躯体就失去了它应有的作用。<br>​    组合：表示 contains-a 的关系，是一种强烈的包含关系。组合类负责被组合类的生命周期。<br>也使用属性表达组合关系，是关联关系的一种，是比聚合关系强的关系。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Window</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> Menu menu<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//菜单</span>
+<span class="token keyword">private</span> Slider slider<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//滑动条</span>
+<span class="token keyword">private</span> Panel panel<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//工作区</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="继承-泛化"><a href="#继承-泛化" class="headerlink" title="继承(泛化)"></a>继承(泛化)</h3><p>​    类与类的继承关系，类与接口的实现关系</p>
+<p>场景：父与子、动物与人、植物与树</p>
 <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h3><p>  1&gt;两者后面都不能跟其他<strong>任何</strong>语句</p>
 <p>  2&gt; 默认跳出包裹此关键字最近的一层循环</p>
 <pre class=" language-java"><code class="language-java">label<span class="token operator">:</span> <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -706,6 +757,15 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><h4 id="native"><a href="#native" class="headerlink" title="native"></a>native</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">native</span> 关键的理解
+    使用 <span class="token keyword">native</span> 关键字说明这个方法是原生函数，也就是这个方法是用 C<span class="token operator">/</span>C<span class="token operator">++</span>等非
+Java 语言实现的，并且被编译成了 <span class="token function">DLL</span><span class="token punctuation">(</span>动态链接库<span class="token punctuation">)</span>，由 java 去调用。
+（<span class="token number">1</span>）为什么要用 <span class="token keyword">native</span> 方法
+    java 使用起来非常方便，然而有些层次的任务用 java 实现起来不容易，或者我们对程序的效率很在意时，问题就来了。例如：有时 java 应用需要与 java 外面的环境交互。这是本地方法存在的主要原因，你可以想想 java 需要与一些底层系统如操作系统或某些硬件交换信息时的情况。本地方法正是这样一种交流机制：它为我们提供了一个非常简洁的接口，而且我们无需去了解 java 应用之外的繁琐的细节。
+（<span class="token number">2</span>）<span class="token keyword">native</span> 声明的方法，对于调用者，可以当做和其他 Java 方法一样使用
+    一个 <span class="token keyword">native</span> method 方法可以返回任何 java 类型，包括非基本类型，而且同样可
+以进行异常控制。<span class="token keyword">native</span> method 的存在并不会对其他类调用这些本地方法产生任何影响，实际上调用这些方法的其他类甚至不知道它所调用的是一个本地方法。JVM 将控制调用本地方法的所有细节。如果一个含有本地方法的类被继承，子类会继承这个本地方法并且可以用 java语言重写这个方法（如果需要的话）。
 </code></pre>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="杨辉三角-面试常考"><a href="#杨辉三角-面试常考" class="headerlink" title="杨辉三角(面试常考)"></a>杨辉三角(面试常考)</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>whw<span class="token punctuation">.</span>java<span class="token punctuation">;</span>
 
@@ -1082,9 +1142,95 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>还得清楚<strong>堆排序、归并排序</strong>并且会写代码，面试题出现过</p>
+<h2 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h2><p><strong>GC是什么? 为什么要有GC</strong></p>
+<p>​        答：GC是垃圾收集的意思（Garbage Collection）,内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java提供的GC功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的，Java语言没有提供释放已分配内存的显示操作方法</p>
+<p>​    垃圾回收机制回收任何对象之前，总会先调用它的finalize方法（如果覆盖该方法，让一个新的引用变量重新引用该对象，则会重新激活对象）。</p>
+<p>​    永远不要主动调用某个对象的finalize方法，应该交给垃圾回收机制调用。</p>
+<p><strong>垃圾回收器的基本原理是什么？垃圾回收器可以马上回收内存吗？有什么办法主动通知虚拟机进行垃圾回收</strong></p>
+<p>​        对于GC来说，当程序员创建对象时，GC就开始监控这个对象的地址、大小以及使用情况。通常，GC采用<strong>有向图</strong>的方式记录和管理堆(heap)中的所有对象。通过这种方式确定哪些对象是”可达的”，哪些对象是”不可达的”。</p>
+<p>当GC确定一些对象为”不可达”时，GC就有责任回收这些内存空间。</p>
+<p>可以。程序员可以手动执行System.gc()，通知GC运行，但是Java语言规范并不保证GC一定会执行，只是加快垃圾回收机制的运行。</p>
+<p>​    可以将对象的引用变量设置为null，暗示垃圾回收机制可以回收该对象。</p>
+<p>​    Java 技术允许使用 finalize() 方法在垃圾收集器将对象从内存中清除出去之前做必要的清理工作。这个方法是由垃圾收集器在确定这个对象没有被引用时对这个对象调用的。它是在 Object 类中定义的，因此所有的类都继承了它。子类覆盖 finalize() 方法以整理系统资源或者执行其他清理工作。finalize() 方法是在垃圾收集器删除对象之前对这个对象调用的</p>
 <h2 id="面向对象上"><a href="#面向对象上" class="headerlink" title="面向对象上"></a>面向对象上</h2><h3 id="×××什么是面向对象×××"><a href="#×××什么是面向对象×××" class="headerlink" title="×××什么是面向对象×××"></a>×××什么是面向对象×××</h3><p>   面向对象是相对于面向过程而言的，面向过程，强调的是功能行为，以函数为最小单位，考虑怎么做。面向对象，将功能封装进对象，强调具备了功能的对象，以类/对象为最小单位，考虑谁来做</p>
 <h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>​    局部变量<strong>没有</strong>默认值，意味着在局部变量调用之前，一定要显示赋值。且存放在栈空间中</p>
 <p>   属性(成员变量），加载到堆空间(非static)，有默认值。</p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><pre class=" language-java"><code class="language-java">成员内部类：
+   一方面，作为外部类的成员：
+     <span class="token operator">></span> 调用外部类的结构
+     <span class="token operator">></span> 可以被<span class="token keyword">static</span>修饰
+     <span class="token operator">></span> 可以被四种不同的权限修饰
+   
+   另一方面，作为一个类：
+     <span class="token operator">></span> 类内可以定义属性、方法、构造器等
+     <span class="token operator">></span> 可以被<span class="token keyword">final</span>修饰，表示此类不能被继承，不使用就可以被继承
+     <span class="token operator">></span> 可以<span class="token keyword">abstract</span>修饰    
+    
+<span class="token keyword">public</span>  <span class="token keyword">class</span> <span class="token class-name">InnerClass</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//创建Dog的实例(静态的成员内部类)</span>
+        Person<span class="token punctuation">.</span>Dog dog <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person<span class="token punctuation">.</span>Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dog<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//创建Bird实例非静态的</span>
+        Person p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Person<span class="token punctuation">.</span>Bird bird <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">Bird</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bird<span class="token punctuation">.</span><span class="token function">sing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        bird<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token string">"黄鹂"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+        String name <span class="token punctuation">;</span>
+        <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">eat</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"人吃饭"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+
+        <span class="token comment" spellcheck="true">//静态成员内部类</span>
+        <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            String name <span class="token operator">=</span> <span class="token string">"锋哥"</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+
+            <span class="token keyword">public</span> <span class="token function">Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"卡拉是条狗"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//非静态成员内部类</span>
+        <span class="token keyword">class</span> <span class="token class-name">Bird</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            String name <span class="token operator">=</span> <span class="token string">"杜鹃鸟"</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">public</span> <span class="token function">Bird</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">sing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"我是一只小小鸟"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Person<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">eat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//调用外部类的非静态的属性</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//方法的形参</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//内部类的属性</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Person<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//外部类属性</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
 <h3 id="理解万事万物皆对象"><a href="#理解万事万物皆对象" class="headerlink" title="理解万事万物皆对象"></a>理解万事万物皆对象</h3><ol>
 <li><p>在Java语言的范畴中，我们都将功能。结构等封装到类中，通过类的实例化，来调用具体的功能结构。</p>
 <p>   ① Scanner, String等</p>
@@ -1176,7 +1322,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </tr>
 </tbody></table>
 <p>权限修饰符<strong>不能修饰代码块</strong></p>
-<p>类只能被  缺省  和   public修饰</p>
+<p><strong>类只能被  缺省  和   public修饰</strong></p>
 <p>如果使用的类或接口是java.lang包下定义的，则可以省略import</p>
 <p>局部变量前不能放置任何访问修饰符 (private，public，和protected)。</p>
 <h2 id="面向对象中"><a href="#面向对象中" class="headerlink" title="面向对象中"></a>面向对象中</h2><h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h4 id="继承的好处"><a href="#继承的好处" class="headerlink" title="继承的好处"></a>继承的好处</h4><p>①：减少了代码的冗余</p>
@@ -1217,9 +1363,6 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
  * 
  * 2.对于实例变量则不存在这样的现象，即使子类里定义了与父类完全相同的实例变量，
  * 这个实例变量依然不可能覆盖父类中定义的实例变量：编译运行都看左边
- * 
- * 
- * 
  * 
  */</span>
 <span class="token keyword">class</span> <span class="token class-name">Base</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -1737,7 +1880,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>​        尤其是使用final修饰形参时，表明此形参是一个常量，当我们调用此方法时，给常量形参赋一个参数，一旦以后赋值以后，就只能在方法体内使用此形参，但不能进行重新赋值。</p>
 <h3 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h3><p>虽然抽象类不能实例化，但是是有构造器的，是为了让子类继承的时候用。</p>
 <p>abstract不能用来修饰属性，构造器等结构</p>
-<p>abstract不能用来四U型hi私有方法、静态方法、final的方法、final的类</p>
+<p>abstract不能用来修饰私有方法、静态方法、final的方法、final的类</p>
 <h3 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h3><p>接口中不能定义构造器，意味着不能实例化</p>
 <p>类实现多个接口时，接口之间用逗号隔开</p>
 <p>接口不能实现接口，能<strong>多继承</strong>接口</p>
@@ -4213,19 +4356,19 @@ UDP协议：
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代理模式">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
                         
-                        <span class="card-title">代理模式</span>
+                        <span class="card-title">Front-matter 选项详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            代理模式
+                            配置详解
                         
                     </div>
                     <div class="publish-info">
@@ -4234,8 +4377,12 @@ UDP协议：
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            han77
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
+                                    选项详解
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -4439,7 +4586,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">27.7k</span>&nbsp;字
+                class="white-color">33.2k</span>&nbsp;字
             
             
             
