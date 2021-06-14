@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-13
+                    2021-06-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    23k
+                    23.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    101 分
+                    102 分
                 </div>
                 
 
@@ -2078,7 +2078,7 @@ Java 语言实现的，并且被编译成了 <span class="token function">DLL</s
 <p>   SQLException</p>
 <p>   IllegalClassFormatException</p>
 <p>   ExecutionException</p>
-<p>  InterruptedException</p>
+<p>  InterruptedException：线程中调用Thread.sleep()是会捕获这个异常</p>
 <p>常见的运行时异常：</p>
 <p>​    XPathException</p>
 <p>​    IllegalThreadException</p>
@@ -2088,16 +2088,19 @@ Java 语言实现的，并且被编译成了 <span class="token function">DLL</s
 <p>​    IllegalArgumentException</p>
 <p>​    NoSuchElementException</p>
 <p>​    NotSerializeableException：类没有实现序列化接口</p>
-<p>​    </p>
+<p>​    NumberFormatException ： Integer.parseInt(string); 这里的string如果不是纯数字的字符串就会报错</p>
 <h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>一个java应用程序中，至少有三个线程，main()线程，gc()线程，垃圾回收线程</p>
 <p>一个继承了Thread的子类对象只能调用一次start()方法。</p>
 <pre class=" language-java"><code class="language-java"><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//①启动线程  ②调用当前线程的run()方法，是当前线程！</span>
-<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">yield</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//线程让步，暂停当前线程，把执行机会让给优先级相同或者更高的线程</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">yield</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//线程让步，暂停当前线程，把执行机会让给优先级相同或者更高的线程,和sleep()一样不会释放锁</span>
 
 <span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：<span class="token comment" spellcheck="true">//当某个程序执行流中调用其他线程的join()方法时，调用线程即(本线程)将被阻塞，直到join()方法加入的join线程执行完为止</span>
 
 <span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//静态方法，返回执行当前代码的线程</span>
+
 <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//让线程死亡</span>
+释放该线程所持有的所有的锁。一般任何进行加锁的代码块，都是为了保护数据的一致性，如果在调用thread<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>后导致了该线程所持有的所有锁的突然释放<span class="token punctuation">(</span>不可控制<span class="token punctuation">)</span>，那么被保护数据就有可能呈现不一致性，其他线程在使用这些被破坏的数据时，有可能导致一些很奇怪的应用程序错误。
+   
 </code></pre>
 <p>线程优先级：MAX_PRIORITY: 10</p>
 <p>​                       MIN_PRIORITY: 1</p>
@@ -2164,7 +2167,7 @@ string<span class="token punctuation">.</span><span class="token function">getBy
 
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="StringBuffer、Builder"><a href="#StringBuffer、Builder" class="headerlink" title="StringBuffer、Builder"></a>StringBuffer、Builder</h3><p>str.length 是添加的char元素的长度，value.length 才等于整个数组的长度，<strong>默认16</strong>  </p>
+<h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>str.length 是添加的char元素的长度，value.length 才等于整个数组的长度，<strong>默认16</strong>  </p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>Test<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">/**
@@ -2211,17 +2214,17 @@ string<span class="token punctuation">.</span><span class="token function">getBy
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/*
-    StringBuffer的常用方法：
-StringBuffer append(xxx)：提供了很多的append()方法，用于进行字符串拼接
-StringBuffer delete(int start,int end)：删除指定位置的内容
-StringBuffer replace(int start, int end, String str)：把[start,end)位置替换为str
-StringBuffer insert(int offset, xxx)：在指定位置插入xxx
-StringBuffer reverse() ：把当前字符序列逆转
-public int indexOf(String str)
-public String substring(int start,int end):返回一个从start开始到end索引结束的左闭右开区间的子字符串
-public int length()
-public char charAt(int n )
-public void setCharAt(int n ,char ch)
+StringBuffer的常用方法：
+  StringBuffer append(xxx)：提供了很多的append()方法，用于进行字符串拼接
+  StringBuffer delete(int start,int end)：删除指定位置的内容
+  StringBuffer replace(int start, int end, String str)：把[start,end)位置替换为str
+  StringBuffer insert(int offset, xxx)：在指定位置插入xxx
+  StringBuffer reverse() ：把当前字符序列逆转
+  public int indexOf(String str)
+  public String substring(int start,int end):返回一个从start开始到end索引结束的左闭右开区间的子字符串
+  public int length()
+  public char charAt(int n )
+  public void setCharAt(int n ,char ch)
 
         总结：
         增：append(xxx)
@@ -2285,7 +2288,7 @@ public void setCharAt(int n ,char ch)
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 </code></pre>
-<h3 id="日期API"><a href="#日期API" class="headerlink" title="日期API"></a>日期API</h3><p>获取星期几的时候，周日是1，以此类推，没有0这一天</p>
+<h3 id="日期API"><a href="#日期API" class="headerlink" title="日期API"></a>日期API</h3><p>获取星期几的时候，周日是1，依此类推，没有0这一天</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * jdk 8之前的日期时间的API测试
  * 1. System类中currentTimeMillis();
@@ -2949,7 +2952,7 @@ hashCode():返回当前对象的哈希值
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p><strong>集合对象每次调用iterator()方法都得到一个全新的迭代器对象，通过集合.iterator()得到iterator</strong></p>
-<h3 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h3><p>面试题:ArrayList、LinkedList、Vector三者的异同<br> 同：三个类都实现了list接口，存储数据的特点相同：有序的，可重复的。<br> 异：ArrayList：作为List接口的主要实现类，线程不安全，效率高；底层使用Object[] elementData存储<br>        LinkedList：对于频繁的插入、删除操作，使用此类效率比ArrayList高,线程不安全；底层使用双向链表存储<br>        Vector：作为List接口的古老实现类，线程安全，效率低；底层使用Object[] elementData存储</p>
+<h3 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h3><p>面试题:ArrayList、LinkedList、Vector三者的异同<br> 同：三个类都实现了list接口，存储数据的特点相同：有序的，可重复的。<br> 异：ArrayList：作为List接口的主要实现类，线程不安全，效率高；底层使用Object[] elementData存储，扩容为                            原来的1.5倍<br>        LinkedList：对于频繁的插入、删除操作，使用此类效率比ArrayList高,线程不安全；底层使用双向链表存储<br>        Vector：作为List接口的古老实现类，线程安全，效率低；底层使用Object[] elementData存储，每次扩容2                        倍</p>
 <p>​    </p>
 <pre class=" language-java"><code class="language-java"><span class="token number">1.1</span> jdk7 的情况下
     ArrayList list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//底层创建了长度是10的Object数组elementData</span>
@@ -4586,7 +4589,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">33.2k</span>&nbsp;字
+                class="white-color">35.7k</span>&nbsp;字
             
             
             
