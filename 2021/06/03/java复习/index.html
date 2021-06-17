@@ -30,8 +30,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
+</head>
 
 
 
@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-15
+                    2021-06-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    24.9k
+                    27.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    109 分
+                    117 分
                 </div>
                 
 
@@ -2145,7 +2145,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//静态方法，返回执行当前代码的线程</span>
 
 <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//让线程死亡</span>
-释放该线程所持有的所有的锁。一般任何进行加锁的代码块，都是为了保护数据的一致性，如果在调用thread<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>后导致了该线程所持有的所有锁的突然释放<span class="token punctuation">(</span>不可控制<span class="token punctuation">)</span>，那么被保护数据就有可能呈现不一致性，其他线程在使用这些被破坏的数据时，有可能导致一些很奇怪的应用程序错误。
+释放该线程所持有的所有的锁。一般任何进行加锁的代码块，都是为了保护数据的一致性，如果在调用thread<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>后导致了该线程所持有的所有锁的突然释放<span class="token punctuation">(</span>不可控制<span class="token punctuation">)</span>，那么被保护数据就有可能呈现不一致性，其他线程在使用这些被破坏的数据时，有可能导致一些应用程序错误。
    
 </code></pre>
 <p>线程优先级：MAX_PRIORITY: 10</p>
@@ -2161,16 +2161,27 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>实现了Runnable接口的实现类的同步代码块和同步方法都可以使当前对象，也可以是新new的任何类的对象</p>
 <p>非静态的同步方法，同步监视器是当前对象</p>
 <p>静态同步方法，同步监视器是当前类.class</p>
-<h3 id="Lock锁"><a href="#Lock锁" class="headerlink" title="Lock锁"></a>Lock锁</h3><p>Lock是一个接口。</p>
+<h3 id="Lock锁"><a href="#Lock锁" class="headerlink" title="Lock锁"></a>Lock锁</h3><p>Lock是一个接口。和condition配合用，精准通知，精准唤醒</p>
 <p>​    synchronized和Lock的异同？</p>
 <p>​       相同：都可以解决线程安全问题</p>
 <p>​      不同：</p>
 <p>​            synchronized机制在执行完相应的同步代码以后，自动的释放同步监视器</p>
-<p>​            Lock需要手动的启动和结束同步。</p>
+<p>​            Lock需要手动的启动和结束同步。如果没有主动的释放锁，就会可能导致出现死锁的现象</p>
+<p>​            synchronized是关键字，Lock是接口</p>
+<p>Lock接口在多线程和并发编程中最大的优势是它们分别为读和写提供了锁</p>
+<h4 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h4><p>可重入锁：最大的作用是避免死锁。</p>
+<p>ReentrantLock支持两种获取锁的方式，一种是公平模型，一种是非公平模型</p>
+<p>公平锁  ：</p>
+<p>​    初始化时， state=0，表示无人抢占了cpu。这时候，(A线程请求锁，占用资源，把state+1，线程A取得了锁，把 state原子性+1,这时候state被改为1，A线程继续执行其他任务，然后线程B请求锁，线程B无法获取锁，生成节点进行排队。初始化的时候，会生成一个空的头节点，然后才是B线程节点，这时候，如果线程A又请求锁，是否需要排队？答案当然是否定的，否则就直接死锁了。当A再次请求锁时是有特权的，如果又获取了锁，状态值加一，释放锁状态值减一。当状态值减到0了，其他线程才有机会获取锁。当A把锁完全释放后，state恢复为0，然后会通知队列唤醒B线程节点，使B可以再次竞争锁。当然，如果B线程后面还有C线程，C线程继续休眠，除非B执行完了，通知了C线程。注意，当一个线程节点被唤醒然后取得了锁，对应节点会从队列中删除。</p>
+<p>非公平锁：</p>
+<p>​    当线程A执行完之后，要唤醒线程B是需要时间的，而且线程B醒来后还要再次竞争锁，所以如果在切换过程当中，来了一个线程C，那么线程C是有可能获取到锁的，如果C获取到了锁，B就只能继续休眠了。</p>
+<p>​    </p>
 <h3 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h3><p>1.wait()，notify()，notifyAll()三个方法<strong>必须使用</strong>在同步代码块或同步方法中。</p>
 <p>2.wait()，notify()，notifyAll()三个方法的调用者必须是同步代码块或同步方法中的同步监视器。</p>
 <p>​     否则，会出现IllegalMonitorStateException异常</p>
 <p>3.wait()，notify()，notifyAll()三个方法是定义在java.lang.Object类中。</p>
+<p>​    notify：通知等待排在第一顺序的线程获得锁进入就绪状态</p>
+<p>​    notifyAll：唤醒全部，优先级高的线程获得锁的概率大</p>
 <p>面试题：sleep() 和 wait()的异同</p>
 <p>1.相同点：一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
 <p>2.不同点;1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
@@ -2188,6 +2199,30 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>​        corePoolSize：核心池的大小</p>
 <p>​        maximumPoolSize：最大线程数</p>
 <p>​        keepAliveTime：线程没有任务时最多保持多长时间后会终止</p>
+<p>特点：  线程复用，控制最大并发数，管理线程</p>
+<p>newCachedThreadPool  创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</p>
+<p>newFixedThreadPool  创建一个指定工作线程数量的线程池。每当提交一个任务就创建一个工作线程，如果工作线程数量达到线程池初始的最大数，则将提交的任务存入到池队列中。</p>
+<p>newSingleThreadExecutor  创建一个单线程化的Executor，即只创建唯一的工作者线程来执行任务，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO,优先级)执行。</p>
+<p>newScheduledThreadPool  创建一个定长的线程池，而且支持定时的以及周期性的任务执行，支持定时及周期性任务执行。</p>
+<h3 id="线程池创建："><a href="#线程池创建：" class="headerlink" title="线程池创建："></a>线程池创建：</h3><p>​      1、在创建了线程池后，开始等待请求。2、当调用execute()方法添加一个请求任务时，线程池会做出如下判断： 2.1如果正在运行的线程数量小于corePoolSize，那么马上创建线程运行这个任务； 2.2如果正在运行的线程数量大于或等于corePoolSize，那么将这个任务放入队列； 2.3如果这个时候队列满了且正在运行的线程数量还小于maximumPoolSize，那么还是要创建非核心线程立刻运行这个任务； 2.4如果队列满了且正在运行的线程数量大于或等于maximumPoolSize，那么线程池会启动饱和拒绝策略来执行。3、当一个线程完成任务时，它会从队列中取下一个任务来执行。4、当一个线程无事可做超过一定的时间（keepAliveTime）时，线程会判断：  如果当前运行的线程数大于corePoolSize，那么这个线程就被停掉。  所以线程池的所有任务完成后，它最终会收缩到corePoolSize的大小。    </p>
+<p>不允许使用Executors去创建，而是通过ThreadPoolExecutor的方法，可以避免请求队列长度为Integer.MAX_VALUE和允许创建的线程数量为Integer.MAX_VALUE引起的oom</p>
+<p>AbortPolicy：直接抛出 java.util.concurrent.RejectedExecutionException异常</p>
+<p>CallerRunsPolicy：将任务返还给调用者线程执行</p>
+<p>DiscardPolicy：直接抛弃无法处理的任务，不予处理不抛异常。如果业务汇总允许任务丢失，这是最好的策略</p>
+<p>DiscardOldestPolicy：抛弃队列中等待最久的任务，然后把当前任务加入队列中尝试再次提交当前任务</p>
+<h2 id="JUC"><a href="#JUC" class="headerlink" title="JUC"></a>JUC</h2><h3 id="核心包："><a href="#核心包：" class="headerlink" title="核心包："></a>核心包：</h3><p>并发包</p>
+<p>并发原子包</p>
+<p>并发locks包</p>
+<h3 id="什么是进程-线程"><a href="#什么是进程-线程" class="headerlink" title="什么是进程/线程"></a>什么是进程/线程</h3><p>​        进程：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元，也是基本的执行单元。</p>
+<p>​         线程：轻量级的进程，依附于某个进程上，共享这个线程所拥有的内存资源。通常在一个进程中可以包含若干个线程，当然一个进程中至少有一个线程，不然没有存在的意义。</p>
+<p>   线程可以利用进程所拥有的资源，在引入线程的操作系统中，通常都是把进程作为分配资源的基本单位，而把线程作为独立运行和独立调度的基本单位，由于线程比进程更小，基本上不拥有系统资源，故对它的调度所付出的开销就会小得多，能更高效的提高系统多个程序间并发执行的程度。 </p>
+<h3 id="并发-并行"><a href="#并发-并行" class="headerlink" title="并发/并行"></a>并发/并行</h3><p>并发：同一时刻多个线程在访问同一个资源，多个线程对一个点</p>
+<p>并行：多项工作一起执行，之后再汇总</p>
+<h3 id="高内聚低耦合"><a href="#高内聚低耦合" class="headerlink" title="高内聚低耦合"></a>高内聚低耦合</h3><p>​    高内聚就是指一个模块是否是高度的聚集和关联，与其他模块之间的关系是否简单明了并且没有很强的关系</p>
+<p>​    低耦合是对模块间关联程度的度量</p>
+<pre><code> 是判断软件设计好坏的标准，主要用于程序的面向对象的设计，主要看类的内聚性是否高，耦合度是否低。目的是使程序模块的可重用性、移植性大大增强。
+</code></pre>
+<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><p>NEW(新建)、RUNNABLE(就绪、运行)、 BLOCKED(阻塞) 、WAITING(一直等) 、TIMED_WAITING(等待一段时间) 、TERMINATED(死亡，终止)</p>
 <h2 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h2><h3 id="String-1"><a href="#String-1" class="headerlink" title="String"></a>String</h3><p>​        String的内存解析具体的看常用类那一章的PDF第十页</p>
 <p>jdk8新增方法   </p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">join</span><span class="token punctuation">(</span>CharSequence delimiter<span class="token punctuation">,</span> CharSequence<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> elements<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -2865,6 +2900,29 @@ StringBuffer的常用方法：
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<h2 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h2><h3 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode()"></a>hashCode()</h3><pre class=" language-java"><code class="language-java"><span class="token number">1</span>、hashCode的存在主要是用于查找的快捷性，如Hashtable，HashMap等，hashCode是用来在散列存储结构中确定对象的存储地址的；
+
+<span class="token number">2</span>、如果两个对象相同，就是适用于<span class="token function">equals</span><span class="token punctuation">(</span>java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Object<span class="token punctuation">)</span> 方法，那么这两个对象的hashCode一定要相同；
+
+<span class="token number">3</span>、如果对象的equals方法被重写，那么对象的hashCode也尽量重写，并且产生hashCode使用的对象，一定要和equals方法中使用的一致，否则就会违反上面提到的第<span class="token number">2</span>点；
+
+<span class="token number">4</span>、两个对象的hashCode相同，并不一定表示两个对象就相同，也就是不一定适用于<span class="token function">equals</span><span class="token punctuation">(</span>java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Object<span class="token punctuation">)</span> 方法，只能够说明这两个对象在散列存储结构中，如Hashtable，他们“存放在同一个篮子里”。
+
+    <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>的作用
+    Java中的hashCode方法就是根据一定的规则将与对象相关的信息（比如对象的存储地址，对象的字段等）映射成一个数值，这个数值称作为散列值。主要是针对HashSet和Map集合类型，比如我们在向HashSet集合里边添加新元素的时候，由于set集合里边不允许元素重复，所以我们在插入新元素之前需要先判断插入元素是否存在，首先根据<span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法得到该对象的hashCode值，如果集合里边不存在该值，可以直接插入进去。如果已经存在，则需要再次通过<span class="token function">equals</span><span class="token punctuation">(</span><span class="token punctuation">)</span>来比较，这样的话可以提升效率。
+
+    重写<span class="token function">equals</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法为什么要同时重写<span class="token function">hashcode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法？
+重写<span class="token function">equals</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法同时重写<span class="token function">hashcode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法，就是为了保证当两个对象通过<span class="token function">equals</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法比较相等时，那么他们的hashCode值也一定要保证相等。
+</code></pre>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>确定性</p>
+<p>不可逆、单向</p>
+<p>分散性、敏感性</p>
+<p>压缩性</p>
+<h3 id="处理冲突的方法"><a href="#处理冲突的方法" class="headerlink" title="处理冲突的方法"></a>处理冲突的方法</h3><p>冲突就是哈希碰撞</p>
+<p>1.rehash 再哈希</p>
+<p>2.链地址法 ，hashMap中用的就是这个</p>
+<p>3.开放定址</p>
+<p>4.公共溢出区</p>
 <h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><p>数组在存储多个数据方面的缺点：<br>    &gt;一旦初始化以后，其长度就不可以修改。<br>    &gt;数组中提供的方法非常有限，对于添加、删除、插入数据等操作，非常不便，效率不高。<br>    &gt;获取数组中实际元素的个数的需求，数组没有现成的属性或方法可用<br>    &gt;数组存储数据特点：有序、可重复。对于无序、不可重复的需求，不能满足。</p>
 <h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
 size():获取添加的元素的个数;
@@ -4546,19 +4604,19 @@ UDP协议：
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代理模式">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
                         
-                        <span class="card-title">代理模式</span>
+                        <span class="card-title">Front-matter 选项详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            代理模式
+                            配置详解
                         
                     </div>
                     <div class="publish-info">
@@ -4567,8 +4625,12 @@ UDP协议：
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            han77
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
+                                    选项详解
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -4772,7 +4834,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">37.5k</span>&nbsp;字
+                class="white-color">39.8k</span>&nbsp;字
             
             
             
