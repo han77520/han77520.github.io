@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-06-15T03:16:56.921Z</updated>
+  <updated>2021-06-18T11:44:54.198Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -21,16 +21,14 @@
     <link href="http://han77520.github.io/2021/06/11/java%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <id>http://han77520.github.io/2021/06/11/java%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
     <published>2021-06-12T03:30:38.000Z</published>
-    <updated>2021-06-15T03:16:56.921Z</updated>
+    <updated>2021-06-18T11:44:54.198Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;strong&gt;Java语言的特点是什么？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&amp;gt;面向对象性：两个基本概念：类、对象；三大特性：封装、继承、多态&lt;/p&gt;
-&lt;p&gt;&amp;gt;健壮性：吸收了C/C++语言的优点，但去掉了其影响程序健壮性的部分（如指针、内存的申请与释放等），提供了</summary>
+    <summary type="html">&lt;p&gt;&lt;strong&gt;如果你参加过一些大厂面试，肯定会遇到一些这样的问题：&lt;/strong&gt;&lt;br&gt;1、看你项目都用的框架，熟悉Spring、mybatis等框架实现原理吗？&lt;br&gt;2、</summary>
         
       
     
@@ -70,7 +68,7 @@
     <link href="http://han77520.github.io/2021/06/03/java%E5%A4%8D%E4%B9%A0/"/>
     <id>http://han77520.github.io/2021/06/03/java%E5%A4%8D%E4%B9%A0/</id>
     <published>2021-06-04T02:15:38.000Z</published>
-    <updated>2021-06-17T14:04:52.044Z</updated>
+    <updated>2021-06-19T16:50:13.903Z</updated>
     
     
       
