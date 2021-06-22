@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-19
+                    2021-06-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    27.2k
+                    27.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    117 分
+                    118 分
                 </div>
                 
 
@@ -759,7 +759,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <span class="token comment" spellcheck="true">//break; 默认跳出包裹此关键字最近的一层循环</span>
             <span class="token comment" spellcheck="true">//continue: 同上</span>
             
-            <span class="token keyword">break</span> label<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//计提数指定表示的一层循环结构</span>
+            <span class="token keyword">break</span> label<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//跳出指定表示的一层循环结构</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -772,16 +772,16 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     一个 <span class="token keyword">native</span> method 方法可以返回任何 java 类型，包括非基本类型，而且同样可
 以进行异常控制。<span class="token keyword">native</span> method 的存在并不会对其他类调用这些本地方法产生任何影响，实际上调用这些方法的其他类甚至不知道它所调用的是一个本地方法。JVM 将控制调用本地方法的所有细节。如果一个含有本地方法的类被继承，子类会继承这个本地方法并且可以用 java语言重写这个方法（如果需要的话）。
 </code></pre>
-<h4 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">transient</span>的作用及使用方法：
+<h4 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h4><pre class=" language-java"><code class="language-java"><span class="token number">1</span><span class="token operator">></span> <span class="token keyword">transient</span>的作用及使用方法：
      java 的<span class="token keyword">transient</span>关键字为我们提供了便利，你只需要实现Serilizable接口，将不需要序列化的属性前添加    关键字<span class="token keyword">transient</span>，序列化对象的时候，这个属性就不会序列化到指定的目的地中；
-<span class="token keyword">transient</span> 使用小结
+<span class="token number">2</span><span class="token operator">></span><span class="token keyword">transient</span> 使用小结
      <span class="token number">1</span>）一旦变量被<span class="token keyword">transient</span>修饰，变量将不再是对象持久化的一部分，该变量内容在序列化后无法获得访问。
      
      <span class="token number">2</span>）<span class="token keyword">transient</span>关键字只能修饰变量，而不能修饰方法和类。注意，本地变量是不能被<span class="token keyword">transient</span>关键字修饰的。       变量如果是用户自定义类变量，则该类需要实现Serializable接口。
      
      <span class="token number">3</span>）被<span class="token keyword">transient</span>关键字修饰的变量不再能被序列化，一个静态变量不管是否被<span class="token keyword">transient</span>修饰，均不能被序列        化。
      
-被<span class="token keyword">transient</span>关键字修饰的变量也是能被序列化
+<span class="token number">3</span><span class="token operator">></span>被<span class="token keyword">transient</span>关键字修饰的变量也是能被序列化
      若实现的是Externalizable接口，则没有任何东西可以自动序列化，需要在writeExternal方法中进行手工指    定所要序列化的变量，这与是否被<span class="token keyword">transient</span>修饰无关。
 </code></pre>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="杨辉三角-面试常考"><a href="#杨辉三角-面试常考" class="headerlink" title="杨辉三角(面试常考)"></a>杨辉三角(面试常考)</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>whw<span class="token punctuation">.</span>java<span class="token punctuation">;</span>
@@ -1562,7 +1562,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     
-    <span class="token comment" spellcheck="true">//包装类--->基本数据类型:调用包装类Xxx的xxxValue()</span>
+    <span class="token comment" spellcheck="true">//包装类--->基本数据类型:调用包装类的XxxValue()</span>
     <span class="token annotation punctuation">@Test</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Integer in1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2363,7 +2363,7 @@ StringBuffer的常用方法：
     //问题2. 扩容问题:如果要添加的数据底层数组盛不下了，那就需要扩容底层的数组。
              默认情况下，扩容为原来容量的2倍 + 2，同时将原有数组中的元素复制到新的数组中。
 
-            指导意义：开发中建议大家使用：StringBuffer(int capacity) 或 StringBuilder(int capacity),省去扩容所需要的资源和时间
+            指导意见：开发中建议大家使用：StringBuffer(int capacity) 或 StringBuilder(int capacity),省去扩容所需要的资源和时间
 */</span>
     <span class="token annotation punctuation">@Test</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -2418,13 +2418,13 @@ StringBuffer的常用方法：
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>date1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token operator">/</span><span class="token comment" spellcheck="true">/*************按照指定的方式格式化和解析：调用带参的构造器*****************
-        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //格式化
         String format1 = sdf1.format(date);
-        System.out.println(format1);//2019-02-18 11:48:27
+        System.out.println(format1);//2019-02-18 18:48:27
         //解析:要求字符串必须是符合SimpleDateFormat识别的格式(通过构造器参数体现),
         //否则，抛 ParseException异常
-        Date date2 = sdf1.parse("2020-02-18 11:48:27");
+        Date date2 = sdf1.parse("2020-02-18 18:48:27");
         System.out.println(date2);
     &amp;#125;
 
@@ -3376,6 +3376,8 @@ Set entrySet <span class="token operator">=</span> map<span class="token punctua
 <td>安全</td>
 </tr>
 </tbody></table>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p> 锁分段技术可有效提升并发访问率</p>
+<p>​    HashTable容器在竞争激烈的并发环境下表现出效率低下的原因是所有访问HashTable的线程都必须竞争同一把锁，假如容器里有多把锁，每一把锁用于锁容器其中一部分数据，那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效提高并发访问效率，这就是ConcurrentHashMap所使用的锁分段技术。首先将数据分成一段一段地存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//put的源码</span>
 <span class="token keyword">public</span> V <span class="token function">put</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> V value<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// HashMap 允许存放 null 键和 null 值。</span>
@@ -4604,19 +4606,19 @@ UDP协议：
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
+                <a href="/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代理模式">
                         
-                        <span class="card-title">Front-matter 选项详解</span>
+                        <span class="card-title">代理模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            配置详解
+                            代理模式
                         
                     </div>
                     <div class="publish-info">
@@ -4625,12 +4627,8 @@ UDP协议：
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
-                                    选项详解
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            han77
                             
                         </span>
                     </div>
@@ -4834,7 +4832,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">41.4k</span>&nbsp;字
+                class="white-color">56k</span>&nbsp;字
             
             
             
