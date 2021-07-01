@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-21
+                    2021-06-23
                 </div>
                 
 
@@ -1375,6 +1375,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <h5 id="有关static的注意点"><a href="#有关static的注意点" class="headerlink" title="有关static的注意点"></a>有关static的注意点</h5><p>子类和父类中的同名同参数的方法要么都声明为非static的(才可以考虑是否重写)，要么都是static的(不可以重写)。</p>
 <p>如果子类想写与父类中的静态方法，则子类的方法也必须得是静态的，不过这就不是重写了，而是成了子类中的一个新的方法，就与父类的静态方法没关系了。</p>
 <p>子类也可以继承父类中的static方法，可以直接  子类调用静态方法，此时调用的是父类中的static方法，但是一旦子类中有和的父类同名的静态方法，则子类调用时就是执行自己的静态方法，而不是父类的了。</p>
+<p><strong>extends 只能放在implements后面</strong></p>
 <h4 id="子类对象实例化的过程"><a href="#子类对象实例化的过程" class="headerlink" title="子类对象实例化的过程"></a>子类对象实例化的过程</h4><p>从过程来看  ：</p>
 <p>​        当通过子类的构造器创建子类对象时，一定会直接或者间接的调用其父类的构造器，进而调用父类的构造器，直到调用了java.lang.Object类中的空参构造器为止。正因为加载过所有的父类的结构，所有才可以看到内存中有父类中的结构，子类对象才可以考虑进行调用</p>
 <p>  明确：虽然创建子类对象时：调用了父类的构造器，但是自始至终就创建过一个对象，即为new的子类对象，没有new就没有创建</p>
@@ -4832,7 +4833,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">56k</span>&nbsp;字
+                class="white-color">46.4k</span>&nbsp;字
             
             
             
