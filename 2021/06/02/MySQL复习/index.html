@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="锁, 瀚77的博客">
+    <meta name="keywords" content="MySQL复习笔记, 瀚77的博客">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>锁 | 瀚77的博客</title>
+    <title>MySQL复习笔记 | 瀚77的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">锁</h1>
+                    <h1 class="description center-align post-title">MySQL复习笔记</h1>
                 </div>
             </div>
         </div>
@@ -445,6 +445,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MySQL%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                MySQL复习笔记
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -459,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-01
+                    2021-07-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.8k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    8 分
                 </div>
                 
 
@@ -493,112 +502,301 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>悲观锁、乐观锁、可重入锁、自旋锁、偏向锁、轻量/重量级锁、读写锁、各种锁及其Java实现！</strong></p>
-<p>网上关于Java中锁的话题可以说资料相当丰富，但相关内容总感觉是一大串术语的罗列，让人云里雾里，读完就忘。本文希望能为Java新人做一篇通俗易懂的整合，旨在消除对各种各样锁的术语的恐惧感，对每种锁的底层实现浅尝辄止，但是在需要时能够知道去查什么。</p>
-<p>首先要打消一种想法，就是一个锁只能属于一种分类。其实并不是这样，比如一个锁可以同时是悲观锁、可重入锁、公平锁、可中断锁等等，就像一 个人可以是男人、医生、健身爱好者、游戏玩家，这并不矛盾。OK，国际惯例，上干货。</p>
-<h2 id="〇、synchronized与Lock"><a href="#〇、synchronized与Lock" class="headerlink" title="〇、synchronized与Lock"></a>〇、synchronized与Lock</h2><p>Java中有两种加锁的方式：一种是用<strong>synchronized关键字</strong>，另一种是用<strong>Lock接口</strong>的实现类。</p>
-<p>形象地说，synchronized关键字是<strong>自动档</strong>，可以满足一切日常驾驶需求。但是如果你想要玩漂移或者各种骚操作，就需要<strong>手动档</strong>了——各种Lock的实现类。</p>
-<p>所以如果你只是想要简单的加个锁，对性能也没什么特别的要求，用synchronized关键字就足够了。自Java 5之后，才在java.util.concurrent.locks包下有了另外一种方式来实现锁，那就是Lock。也就是说，<strong>synchronized是Java语言内置的关键字，而Lock是一个接口</strong>，这个接口的实现类在代码层面实现了锁的功能，具体细节不在本文展开，有兴趣可以研究下AbstractQueuedSynchronizer类，写得可以说是牛逼爆了。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-ddb71ab0b68d65ae70244bfdeb0d6704_720w.jpg" alt="img">其实只需要关注三个类就可以了：ReentrantLock类、ReadLock类、WriteLock类。</p>
-<p><strong>ReentrantLock、ReadLock、WriteLock</strong> 是Lock接口最重要的三个实现类。对应了“可重入锁”、“读锁”和“写锁”，后面会讲它们的用途。</p>
-<p>ReadWriteLock其实是一个工厂接口，而ReentrantReadWriteLock是ReadWriteLock的实现类，它包含两个静态内部类ReadLock和WriteLock。这两个静态内部类又分别实现了Lock接口。</p>
-<p>我们停止深究源码，仅从使用的角度看，Lock与synchronized的区别是什么？在接下来的几个小节中，我将梳理各种锁分类的概念，以及synchronized关键字、各种Lock实现类之间的区别与联系。</p>
-<h2 id="一、悲观锁与乐观锁"><a href="#一、悲观锁与乐观锁" class="headerlink" title="一、悲观锁与乐观锁"></a>一、悲观锁与乐观锁</h2><p>锁的一种宏观分类方式是<strong>悲观锁</strong>和<strong>乐观锁</strong>。悲观锁与乐观锁<strong>并不是特指某个锁</strong>（Java中没有哪个Lock实现类就叫PessimisticLock或OptimisticLock），而是在并发情况下的两种不同策略。</p>
-<p>悲观锁（Pessimistic Lock）, 就是很悲观，每次去拿数据的时候都认为别人会修改。所以每次在拿数据的时候都会上锁。这样别人想拿数据就被挡住，直到悲观锁被释放。</p>
-<p>乐观锁（Optimistic Lock）, 就是很乐观，每次去拿数据的时候都认为别人不会修改。所以<strong>不会上锁，不会上锁！</strong>但是如果想要更新数据，则会在<strong>更新前检查在读取至更新这段时间别人有没有修改过这个数据</strong>。如果修改过，则重新读取，再次尝试更新，循环上述步骤直到更新成功（当然也允许更新失败的线程放弃操作）。</p>
-<p><strong>悲观锁阻塞事务，乐观锁回滚重试</strong>，它们各有优缺点，不要认为一种一定好于另一种。像乐观锁适用于写比较少的情况下，即冲突真的很少发生的时候，这样可以省去锁的开销，加大了系统的整个吞吐量。但如果经常产生冲突，上层应用会不断的进行重试，这样反倒是降低了性能，所以这种情况下用悲观锁就比较合适。</p>
-<h2 id="二、乐观锁的基础——CAS"><a href="#二、乐观锁的基础——CAS" class="headerlink" title="二、乐观锁的基础——CAS"></a>二、乐观锁的基础——CAS</h2><p>说到乐观锁，就必须提到一个概念：<strong>CAS</strong></p>
-<p>什么是CAS呢？Compare-and-Swap，即<strong>比较并替换，</strong>也有叫做Compare-and-Set的，<strong>比较并设置</strong>。</p>
-<p>1、比较：读取到了一个值A，在将其更新为B之前，检查原值是否仍为A（未被其他线程改动）。</p>
-<p>2、设置：如果是，将A更新为B，结束。[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/71156910#ref_1">1]</a>如果不是，则什么都不做。</p>
-<p>上面的两步操作是原子性的，可以简单地理解为瞬间完成，在CPU看来就是一步操作。</p>
-<p>有了CAS，就可以实现一个<strong>乐观锁</strong>：</p>
-<pre class=" language-c"><code class="language-c">data <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 共享数据</span>
+                <h1 id="MySQL复习笔记"><a href="#MySQL复习笔记" class="headerlink" title="MySQL复习笔记"></a>MySQL复习笔记</h1><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="数据库的好处"><a href="#数据库的好处" class="headerlink" title="数据库的好处"></a>数据库的好处</h3><p>1.可以持久化数据到本地</p>
+<p>2.结构化查询</p>
+<h3 id="数据库的常见概念"><a href="#数据库的常见概念" class="headerlink" title="数据库的常见概念"></a>数据库的常见概念</h3><p>1.DB：数据库，存储数据的容器</p>
+<p>2.DBMS: 数据库管理系统，又称为数据库软件或者数据库产品，用于创建或管理DB</p>
+<p>3.SQL：结构化查询语言，用于和数据库通信的语言</p>
+<h3 id="数据库存储数据的特点"><a href="#数据库存储数据的特点" class="headerlink" title="数据库存储数据的特点"></a>数据库存储数据的特点</h3><p>1.数据存放到表中，然后再放到库中</p>
+<p>2.一个库中可以有多张表，每张表具有唯一的表名来标识自己</p>
+<p>3.表中有一个或多个列，列又称为  ‘‘字段’‘  ，相当于java中的属性</p>
+<p>4.表中的每一行数据相当于java中的对象</p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="MySQL的优点"><a href="#MySQL的优点" class="headerlink" title="MySQL的优点"></a>MySQL的优点</h3><p>1、开源、免费、成本低<br>2、性能高、移植性也好<br>3、体积小，便于安装</p>
+<h3 id="MySQL服务的启动和停止"><a href="#MySQL服务的启动和停止" class="headerlink" title="MySQL服务的启动和停止"></a>MySQL服务的启动和停止</h3><p>方式一：通过命令行<br>    net start 服务名<br>    net stop 服务名<br>方式二：计算机——右击——管理——服务</p>
+<h3 id="MySQL服务的登录和退出"><a href="#MySQL服务的登录和退出" class="headerlink" title="MySQL服务的登录和退出"></a>MySQL服务的登录和退出</h3><p>登录：mysql 【-h主机名 -P端口号】 -u用户名  -p密码</p>
+<p>退出：exit或ctrl+C</p>
+<h2 id="DQL"><a href="#DQL" class="headerlink" title="DQL"></a>DQL</h2><h3 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h3><pre class=" language-mysql"><code class="language-mysql">USE employees; #在操作某个表之前，建议写这个
 
-<span class="token comment" spellcheck="true">/* 更新数据的线程会进行如下操作 */</span>
-flag <span class="token operator">=</span> true<span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    oldValue <span class="token operator">=</span> data<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 保存原始数据</span>
-    newValue <span class="token operator">=</span> <span class="token function">doSomething</span><span class="token punctuation">(</span>oldValue<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-    <span class="token comment" spellcheck="true">// 下面的部分为CAS操作，尝试更新data的值</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>data <span class="token operator">==</span> oldValue<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 比较</span>
-        data <span class="token operator">=</span> newValue<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 设置</span>
-        flag <span class="token operator">=</span> false<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 结束</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 啥也不干，循环重试</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">/* 
-   很明显，这样的代码根本不是原子性的，
-   因为真正的CAS利用了CPU指令，
-   这里只是为了展示执行流程，本意是一样的。
-*/</span>
+select 查询列表 from 表名
 </code></pre>
-<p>这是一个简单直观的乐观锁实现，它允许多个线程同时读取（因为根本没有加锁操作），但是只有一个线程可以成功更新数据，并导致其他要更新数据的线程回滚重试。 CAS利用CPU指令，从硬件层面保证了操作的原子性，以达到类似于锁的效果。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-3c683e1f88faa31152fc35d14b8fb8de_720w.jpg" alt="img">Java中真正的CAS操作调用的native方法</p>
-<p>因为整个过程中并没有“加锁”和“解锁”操作，因此乐观锁策略也被称为<strong>无锁编程</strong>。换句话说，乐观锁其实不是“锁”，它仅仅是一个循环重试CAS的算法而已！</p>
-<h2 id="三、自旋锁"><a href="#三、自旋锁" class="headerlink" title="三、自旋锁"></a>三、自旋锁</h2><p>有一种锁叫<strong>自旋锁</strong>。所谓自旋，说白了就是一个 while(true) 无限循环。</p>
-<p>刚刚的乐观锁就有类似的无限循环操作，那么它是自旋锁吗？</p>
-<blockquote>
-<p>感谢评论区<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/zhao-chen-77-90">养猫的虾</a>的指正。</p>
-</blockquote>
-<p>不是。尽管自旋与 while(true) 的操作是一样的，但还是应该将这两个术语分开。“自旋”这两个字，特指自旋锁的自旋。</p>
-<p>然而在JDK中并没有自旋锁（SpinLock）这个类，那什么才是自旋锁呢？读完下个小节就知道了。</p>
-<h2 id="四、synchronized锁升级：偏向锁-→-轻量级锁-→-重量级锁"><a href="#四、synchronized锁升级：偏向锁-→-轻量级锁-→-重量级锁" class="headerlink" title="四、synchronized锁升级：偏向锁 → 轻量级锁 → 重量级锁"></a>四、synchronized锁升级：偏向锁 → 轻量级锁 → 重量级锁</h2><p>前面提到，synchronized关键字就像是汽车的<strong>自动档，</strong>现在详细讲这个过程。一脚油门踩下去，synchronized会从<strong>无锁</strong>升级为<strong>偏向锁</strong>，再升级为<strong>轻量级锁</strong>，最后升级为<strong>重量级锁</strong>，就像自动换挡一样。那么自旋锁在哪里呢？这里的轻量级锁就是一种<strong>自旋锁</strong>。</p>
-<p>初次执行到synchronized代码块的时候，锁对象变成<strong>偏向锁</strong>（通过CAS修改对象头里的锁标志位），字面意思是“偏向于第一个获得它的线程”的锁。执行完同步代码块后，线程并<strong>不会主动释放偏向锁</strong>。当第二次到达同步代码块时，线程会判断此时持有锁的线程是否就是自己（持有锁的线程ID也在对象头里），如果是则正常往下执行。<strong>由于之前没有释放锁，这里也就不需要重新加锁。</strong>如果自始至终使用锁的线程只有一个，很明显偏向锁几乎没有额外开销，性能极高。</p>
-<p>一旦有第二个线程加入<strong>锁竞争</strong>，偏向锁就升级为<strong>轻量级锁（自旋锁）</strong>。这里要明确一下什么是锁竞争：如果多个线程轮流获取一个锁，但是每次获取锁的时候都很顺利，没有发生阻塞，那么就不存在锁竞争。只有当某线程尝试获取锁的时候，发现该锁已经被占用，只能等待其释放，这才发生了锁竞争。</p>
-<p>在轻量级锁状态下继续锁竞争，没有抢到锁的线程将<strong>自旋</strong>，即不停地循环判断锁是否能够被成功获取。获取锁的操作，其实就是通过CAS修改对象头里的锁标志位。先<strong>比较</strong>当前锁标志位是否为“释放”，如果是则将其<strong>设置</strong>为“锁定”，比较并设置是<strong>原子性</strong>发生的。这就算抢到锁了，然后线程将当前锁的持有者信息修改为自己。</p>
-<p>长时间的自旋操作是非常消耗资源的，一个线程持有锁，其他线程就只能在原地空耗CPU，执行不了任何有效的任务，这种现象叫做<strong>忙等（busy-waiting）</strong>。如果多个线程用一个锁，但是没有发生锁竞争，或者发生了很轻微的锁竞争，那么synchronized就用轻量级锁，允许短时间的忙等现象。这是一种折衷的想法，<strong>短时间的忙等，换取线程在用户态和内核态之间切换的开销。</strong></p>
-<p>显然，此忙等是有限度的（有个计数器记录自旋次数，默认允许循环10次，可以通过虚拟机参数更改）。如果锁竞争情况严重，某个达到最大自旋次数的线程，会将轻量级锁升级为<strong>重量级锁</strong>（依然是CAS修改锁标志位，但不修改持有锁的线程ID）。当后续线程尝试获取锁时，发现被占用的锁是重量级锁，则直接将自己挂起（而不是忙等），等待将来被唤醒。在JDK1.6之前，synchronized直接加重量级锁，很明显现在得到了很好的优化。</p>
-<p>一个锁只能按照 偏向锁、轻量级锁、重量级锁的顺序逐渐升级（也有叫<strong>锁膨胀</strong>的），不允许降级。</p>
-<blockquote>
-<p>感谢评论区<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ding-yi-51-99">酷帅俊靓美</a>的问题：<br>偏向锁的一个特性是，持有锁的线程在执行完同步代码块时不会释放锁。那么当第二个线程执行到这个synchronized代码块时是否一定会发生锁竞争然后升级为轻量级锁呢？<br>线程A第一次执行完同步代码块后，当线程B尝试获取锁的时候，发现是偏向锁，会判断线程A是否仍然存活。<strong>如果线程A仍然存活，</strong>将线程A暂停，此时偏向锁升级为轻量级锁，之后线程A继续执行，线程B自旋。但是<strong>如果判断结果是线程A不存在了</strong>，则线程B持有此偏向锁，锁不升级。<br>还有人对此有疑惑，我之前确实没有描述清楚，但如果要展开讲，涉及到太多新概念，可以新开一篇了。更何况有些太底层的东西，我没读过源码，没有自信说自己一定是对的。其实在升级为轻量级锁之前，虚拟机会让线程A尽快在安全点挂起，然后在它的栈中“伪造”一些信息，让线程A在被唤醒之后，认为自己一直持有的是轻量级锁。如果线程A之前正在同步代码块中，那么线程B自旋等待即可。如果线程A之前不在同步代码块中，它会在被唤醒后检查到这一情况并立即释放锁，让线程B可以拿到。这部分内容我之前也没有深入研究过，如果有说的不对的，请多多指教啊！</p>
-</blockquote>
-<h2 id="五、可重入锁（递归锁）"><a href="#五、可重入锁（递归锁）" class="headerlink" title="五、可重入锁（递归锁）"></a>五、可重入锁（递归锁）</h2><p>可重入锁的字面意思是“可以重新进入的锁”，即<strong>允许同一个线程多次获取同一把锁</strong>。比如一个递归函数里有加锁操作，递归过程中这个锁会阻塞自己吗？如果不会，那么这个锁就是<strong>可重入锁</strong>（因为这个原因可重入锁也叫做<strong>递归锁</strong>）<strong>。</strong></p>
-<p>Java里只要以Reentrant开头命名的锁都是可重入锁，而且<strong>JDK提供的所有现成的Lock实现类，包括synchronized关键字锁都是可重入的。</strong>如果你需要不可重入锁，只能自己去实现了。网上不可重入锁的实现真的很多，就不在这里贴代码了。99%的业务场景用可重入锁就可以了，剩下的1%是什么呢？我也不知道，谁可以在评论里告诉我？</p>
-<p><img src="https://pic2.zhimg.com/80/v2-ffbe0e21512c64a1b444cf55d4b3bf61_720w.jpg" alt="img">JDK提供的Lock的实现类都是可重入的</p>
-<h2 id="六、公平锁、非公平锁"><a href="#六、公平锁、非公平锁" class="headerlink" title="六、公平锁、非公平锁"></a>六、公平锁、非公平锁</h2><p>如果多个线程申请一把<strong>公平锁</strong>，那么当锁释放的时候，先申请的先得到，非常公平。显然如果是<strong>非公平锁</strong>，后申请的线程可能先获取到锁，是随机或者按照其他优先级排序的。</p>
-<p>对ReentrantLock类而言，通过构造函数传参<strong>可以指定该锁是否是公平锁，默认是非公平锁</strong>。一般情况下，非公平锁的吞吐量比公平锁大，如果没有特殊要求，优先使用非公平锁。</p>
-<p><img src="https://pic2.zhimg.com/80/v2-7a4a72fe7ace46095cd3ca2e6c5212d9_720w.jpg" alt="img">ReentrantLock构造器可以指定为公平或非公平</p>
-<p>对于synchronized而言，它也是一种<strong>非公平锁</strong>，但是并没有任何办法使其变成公平锁。</p>
-<h2 id="七、可中断锁"><a href="#七、可中断锁" class="headerlink" title="七、可中断锁"></a>七、可中断锁</h2><p>可中断锁，字面意思是“可以<strong>响应中断</strong>的锁”。</p>
-<p>这里的关键是理解什么是<strong>中断</strong>。Java并没有提供任何直接中断某线程的方法，只提供了<strong>中断机制</strong>。何谓“中断机制”？线程A向线程B发出“请你停止运行”的请求（线程B也可以自己给自己发送此请求），但线程B并不会立刻停止运行，而是自行选择合适的时机以自己的方式响应中断，也可以直接忽略此中断。也就是说，Java的<strong>中断不能直接终止线程</strong>，而是需要被中断的线程自己决定怎么处理。这好比是父母叮嘱在外的子女要注意身体，但子女是否注意身体，怎么注意身体则完全取决于自己。[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/71156910#ref_2">2]</a></p>
-<p>回到锁的话题上来，如果线程A持有锁，线程B等待获取该锁。由于线程A持有锁的时间过长，线程B不想继续等待了，我们可以让线程B中断自己或者在别的线程里中断它，这种就是<strong>可中断锁</strong>。</p>
-<p>在Java中，synchronized就是<strong>不可中断锁</strong>，而Lock的实现类都是<strong>可中断锁，</strong>可以简单看下Lock接口。</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/* Lock接口 */</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Lock</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<p>特点：</p>
+<p>  1、查询列表可以是：表中字段、常量值、表达式、函数</p>
+<p>  2、查询的结果是一个虚拟的表格</p>
+<pre class=" language-mysql"><code class="language-mysql">#显示employees的表结构
+DESC employees;
 
-    <span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 拿不到锁就一直等，拿到马上返回。</span>
+#查询单个字段：
+SELECT last_name From employees;
 
-    <span class="token keyword">void</span> <span class="token function">lockInterruptibly</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 拿不到锁就一直等，如果等待时收到中断请求，则需要处理InterruptedException。</span>
+#查询多个字段:
+SELECT last_name,salary,email From employees;
 
-    <span class="token keyword">boolean</span> <span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 无论拿不拿得到锁，都马上返回。拿到返回true，拿不到返回false。</span>
+#查询表中所有字段
+SELECT * From employees;
 
-    <span class="token keyword">boolean</span> <span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token keyword">long</span> time<span class="token punctuation">,</span> TimeUnit unit<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 同上，可以自定义等待的时间。</span>
+#查询常量值
+SELECT 100;
+SELECT 'john';
+#注意：字符型和日期型的常量值必须用单引号引起来，数值型不需要
 
-    <span class="token keyword">void</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+#表达式查询
+SELECT 100 % 98;
 
-    Condition <span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+#查询函数
+SELECT VERSION();
+
+#起别名
+/*
+  1.便于理解
+  2.如果要查询的字段有重名的情况，使用别名区分开来
+  
+  注意：如果别名中有特殊字符，比如空格、_等，需要用 “” ，还有如果别名中需要大写字母，也得用 “” 括起来。
+*/
+#方式一：使用as
+SELECT 100 % 98 AS 结果;
+SELECT last_name AS 姓,first_name AS 名 FROM employees;
+#方式二： 使用空格
+SELECT last_name 姓, first_name 名 FROM employees;
+
+#去重
+SELECT DISTINCT department_id FROM employees;
+
+/*
+   +号的作用 : 仅仅表示运算符
+      两个操作数都是数值型，则做加法运算
+      只要其中一个为字符型，试图将字符型转换为数值型
+            如果转换成功，则继续加法运算
+            如果失败，则将字符型数值转换为0。
+      只要其中一方为null，则结果肯定为null。
+*/
+SELECT 100 + 90;  #190
+SELECT '123' + 90; #213
+SELECT 'John' + 90; #90
+ 
+SECLET 90 + NULL; #NULL
+
+#拼接字符: null和任何的字符拼接结果都是null
+SELECT CONCAT('a','b','c') AS 结果;#必须的加 ‘’ 
+SELECT CONCAT(last_name,first_name) AS 姓名 FROM employees;
+
+/*
+  IFNULL:
+   功能：判断某字段或表达式是否为null，如果为null 返回指定的值，否则返回原本的值
+*/
+SELECT IFNULL(commission_pct,0) AS 奖金率 FROM employees;
+
+/*
+  isnull函数
+  功能：判断某字段或表达式是否为null，如果是，则返回1，否则返回0
+*/
+SELECT ISNULL(commission_pct) FROM employees; 
 </code></pre>
-<h2 id="八、读写锁、共享锁、互斥锁"><a href="#八、读写锁、共享锁、互斥锁" class="headerlink" title="八、读写锁、共享锁、互斥锁"></a>八、读写锁、共享锁、互斥锁</h2><p>读写锁其实是一对锁，一个读锁（共享锁）和一个写锁（互斥锁、排他锁）。</p>
-<p>看下Java里的ReadWriteLock接口，它只规定了两个方法，一个返回读锁，一个返回写锁。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-5ec6ed066c75e59c4f3829ca51db8148_720w.jpg" alt="img"></p>
-<p>记得之前的乐观锁策略吗？所有线程随时都可以读，仅在写之前判断值有没有被更改。</p>
-<p>读写锁其实做的事情是一样的，但是策略稍有不同。很多情况下，线程知道自己读取数据后，是否是为了更新它。那么何不在加锁的时候直接明确这一点呢？如果我读取值是为了更新它（SQL的for update就是这个意思），那么加锁的时候就直接加<strong>写锁</strong>，我持有写锁的时候别的线程无论读还是写都需要等待；如果我读取数据仅为了前端展示，那么加锁时就明确地加一个<strong>读锁，</strong>其他线程如果也要加读锁，不需要等待，可以直接获取（读锁计数器+1）。</p>
-<p>虽然读写锁感觉与乐观锁有点像，但是<strong>读写锁是悲观锁策略</strong>。因为读写锁并没有在<strong>更新前</strong>判断值有没有被修改过，而是在<strong>加锁前</strong>决定应该用读锁还是写锁。乐观锁特指无锁编程，如果仍有疑惑可以再回到第一、二小节，看一下什么是“乐观锁”。</p>
-<p>JDK提供的唯一一个ReadWriteLock接口实现类是ReentrantReadWriteLock。看名字就知道，它不仅提供了读写锁，而是都是可重入锁。 除了两个接口方法以外，ReentrantReadWriteLock还提供了一些便于外界监控其内部工作状态的方法，这里就不一一展开。</p>
-<h2 id="九、回到悲观锁和乐观锁"><a href="#九、回到悲观锁和乐观锁" class="headerlink" title="九、回到悲观锁和乐观锁"></a>九、回到悲观锁和乐观锁</h2><blockquote>
-<p>这篇文章经历过一次修改，我之前认为偏向锁和轻量级锁是乐观锁，重量级锁和Lock实现类为悲观锁，网上很多资料对这些概念的表述也很模糊，各执一词。</p>
-</blockquote>
-<p>先抛出我的结论：</p>
-<p>我们在Java里使用的各种锁，<strong>几乎全都是悲观锁</strong>。synchronized从偏向锁、轻量级锁到重量级锁，全是悲观锁。JDK提供的Lock实现类全是悲观锁。其实只要有“锁对象”出现，那么就一定是悲观锁。因为<strong>乐观锁不是锁，而是一个在循环里尝试CAS的算法。</strong></p>
-<p>那JDK并发包里到底有没有乐观锁呢？</p>
-<p>有。java.util.concurrent.atomic包里面的<strong>原子类</strong>都是利用乐观锁实现的。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-98cd919fe09521bac03aa66d6968aeb2_720w.jpg" alt="img">原子类AtomicInteger的自增方法为乐观锁策略</p>
-<p>为什么网上有些资料认为偏向锁、轻量级锁是乐观锁？理由是它们底层用到了CAS？或者是把“乐观/悲观”与“轻量/重量”搞混了？其实，线程在抢占这些锁的时候，确实是循环+CAS的操作，感觉好像是乐观锁。但问题的关键是，我们说一个锁是悲观锁还是乐观锁，总是应该站在应用层，看它们是如何锁住应用数据的，而不是站在底层看抢占锁的过程。如果一个线程尝试获取锁时，发现已经被占用，它是否继续读取数据，等后续要更新时再决定要不要重试？对于偏向锁、轻量级锁来说，显然答案是否定的。无论是挂起还是忙等，对应用数据的读取操作都被“挡住”了。从这个角度看，它们确实是悲观锁。</p>
-<p>退一步讲，也没有必要在这些术语上狠钻牛角尖，最重要的是理解它们的运行机制。想写得尽量简单一些，却发现洋洋洒洒近万字，只讲了个皮毛。深知自己水平有限，不敢保证完全正确，只能说路漫漫其修远兮，望指正。</p>
+<p><strong>以上着重注意 NULL 的使用规则</strong></p>
+<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><pre class=" language-mysql"><code class="language-mysql">/*
+    select  查询列表  from 表名 where 筛选条件;
+    执行步骤为： from、where、select
+    
+分类：
+一、按条件表达式筛选
+     条件运算符： >  <  =  != 或者 <> 都表示不等于  >=  <=
+     = 运算符不能判断null值
+二、按逻辑表达式筛选
+     逻辑运算符： &&  || !(非) 分别对应 and or not
+     
+三、模糊查询
+     like 、 between and、 in、 is null 、is not null
+        like的特点:
+           一般和通配符搭配使用，可以判断字符型和数值型
+            通配符：
+               % 任意多个字符,包含0个字符
+               _ 任意单个字符
+           
+         IN的含义：判断某字段的值是否属于in列表中的某一项
+         特点：
+             ①使用in提高语句简洁度
+            ②in列表的值类型必须一致或兼容
+            ③in列表中不支持通配符
+*/
+
+#查询工资>12000的员工信息
+SELECT * FROM employees WHERE salary > 12000;
+
+#查询部门编号不等于90号的员工名和部门编号
+SELECT last_name,department_id FROM employees 
+WHERE department_id <> 90
+
+
+
+#查询工资z在10000到20000之间的员工名、工资以及奖金
+SELECT last_name,salary,commission_pct FROM employees
+WHERE salary >= 10000 AND salary <= 20000;
+
+#查询部门编号不是在90到110之间，或者工资高于15000的员工信息
+SELECT * FROM employees
+WHERE NOT(department_id >= 90 AND department_id <= 110) OR salary >15000; 
+
+
+
+#查询员工名中包含字符a的员工信息，注意模糊查询的条件必须要加 ''
+# %为通配符
+SELECT * FROM employees WHERE last_name LIKE '%a%';
+
+#查询员工名中第三个字符为n，第五个字符l的员工名和工资
+select last_name, salary
+FROM employees WHERE last_name LIKE '__n_l%';
+
+#查询员工名中第二个字符为_的员工名  ESCAPE规定转义字符，默认为\
+SELECT last_name 
+FROM employees WHERE last_name LIKE '_$_%' ESCAPE '$';
+
+#查询员工编号在100到120之间的员工信息,包含临界值，并且只能是前小后大
+SELECT * FROM employees 
+WHERE employee_id BETWEEN 100 AND 120;
+
+#查询员工编号不在100到120之间的员工信息
+SELECT * FROM employees 
+WHERE employee_id NOT BETWEEN 100 AND 120;
+
+#查询员工的工种编号是 IT_PROG、AD_VP、AD_PRES中的一个员工名和工种编号
+SELECT last_name, job_id
+FROM employees WHERE job_id IN ('IT_PORT','AD_VP','AD_PRES');
+
+#查询没有奖金的员工名和奖金率
+SELECT last_name, commission_pct FROM employees 
+WHERE commission_pct IS NULL
+#或者
+SELECT last_name, commission_pct FROM employees 
+WHERE commission_pct <=> NULL
+
+#查询有奖金的员工名和奖金率
+SELECT last_name, commission_pct FROM employees 
+WHERE commission_pct IS NOT NULL
+
+#is null 和 <=> 的比较
+
+#IS NULL:仅仅可以判断NULL值，可读性较高，建议使用
+#<=>    :既可以判断NULL值，又可以判断普通的数值，可读性较低
+</code></pre>
+<p><strong>着重注意模糊查询</strong></p>
+<h3 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h3><pre class=" language-mysql"><code class="language-mysql">#语法：
+select 查询列表
+from 表名
+【where  筛选条件】
+order by 排序的字段或表达式 【asc|desc】;
+
+特点：
+1、asc代表的是升序，默认是升序，可以不写
+   desc代表的是降序
+
+2、order by子句可以支持 单个字段、别名、表达式、函数、多个字段
+
+3、order by子句在查询语句的最后面，除了limit子句
+执行顺序  from、where、select、order by
+
+#查询员工信息，要求工资从高到低排序
+SELECT * FROM employees 
+ORDER BY salary DESC;
+
+#查询部门编号>=90的员工信息，并按员工编号降序
+ SELECT * FROM employees WHERE department_id >= 90 
+ ORDER BY hiredate
+ 
+#查询员 工信息 按年薪降序  按别名排序
+ SELECT * , salary*12*(1+IFNULL(commission_pct,0)) 年薪
+ FROM  employees 
+ ORDER BY 年薪 DESC
+ 
+#查询员工名，并且按名字的长度降序  按函数排序
+ SELECT LENGTH(last_name) ,last_name salary
+ FROM employees
+ ORDER BY LENGTH(last_name) DESC
+ 
+#查询员工信息，要求先按工资降序，再按employee_id升序  按多个字段排序
+ SELECT * FROM employees
+ ORDER BY salary ASC ,employee_id DESC
+</code></pre>
+<h3 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h3><pre class=" language-mysql"><code class="language-mysql">概念：类似于java的方法，将一组逻辑语句封装在方法体中，对外暴露方法名
+好处：1、隐藏了实现细节  2、提高代码的重用性
+    
+调用：select 函数名(实参列表) 【from 表】;
+
+特点：
+    ①叫什么（函数名）
+    ②干什么（函数功能）
+    
+分类：
+    1、单行函数
+        如 concat、length、ifnull等
+    2、分组函数
+      功能：做统计使用，又称为统计函数、聚合函数、组函数
+      
+常见函数：
+    一、单行函数
+    字符函数：
+    length:获取字节个数(utf-8一个汉字代表3个字节,gbk为2个字节)
+    concat:拼接字符
+    upper、lower
+    substr、instr、trim、upper、lower、lpad、rpad、replace
+    
+    数学函数：
+    round、ceil、floor、truncate、mod
+    
+    
+#1.length 获取参数值的字节个数
+SELECT LENGTH('john');
+SELECT LENGTH('张三丰hahaha');#15
+
+SHOW VARIABLES LIKE '%char%';  #显示所使用的字符集
+
+#2.concat 拼接字符串
+SELECT CONCAT(last_name,'_',first_name) 姓名 FROM employees;
+
+#3.upper、lower
+SELECT UPPER('john');
+SELECT LOWER('joHn');
+#示例：将姓变大写，名变小写，然后拼接
+SELECT CONCAT(UPPER(last_name),LOWER(first_name))  姓名 FROM employees;
+
+#4.substr、substring
+#注意：索引从1开始
+#截取从指定索引处后面所有字符
+SELECT SUBSTR('李莫愁爱上了陆展元',7)  out_put;
+#截取从指定索引处指定字符长度的字符
+SELECT SUBSTR('李莫愁爱上了陆展元',1,3) out_put;
+
+#案例：姓中首字符大写，其他字符小写然后用_拼接，显示出来
+SELECT CONCAT(UPPER(SUBSTR(last_name,1,1)),'_',LOWER(SUBSTR(last_name,2)))  out_put
+FROM employees;
+
+#5.instr 返回子串第一次出现的索引，如果找不到返回0
+SELECT INSTR('杨不殷六侠悔爱上了殷六侠','殷八侠') AS out_put;
+
+#6.trim 去除前后的字符
+SELECT LENGTH(TRIM('    张翠山    ')) AS out_put; #9
+
+SELECT TRIM('a' FROM 'aaaaa张aaaaaaaa翠山aaaaa')  
+AS out_put; #张aaaaaaaa翠山  ，注意中间是FROM
+
+#7.lpad 用指定的字符实现左填充指定长度
+SELECT LPAD('殷素素',10,'*') AS out_put;
+
+#8.rpad 用指定的字符实现右填充指定长度
+SELECT RPAD('殷素素',12,'ab') AS out_put;
+
+#9.replace 替换全部匹配的
+SELECT REPLACE('周芷若周芷若张无忌爱上了周芷若','周芷若','赵敏') AS out_put;
+</code></pre>
+<h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><pre class=" language-mysql"><code class="language-mysql">试问：
+SELECT * FROM employees
+和
+SELECT * FROM employees 
+WHERE commission_pct 
+LIKE '%%' AND last_name LIKE '%%'
+的结果是否一样？并说明原因
+
+结果：
+  如果判断的字段有null，则不一样，没有null值就一样
+</code></pre>
 
                 
             </div>
@@ -625,7 +823,7 @@ flag <span class="token operator">=</span> true<span class="token punctuation">;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://han77520.github.io/2021/06/02/%E9%94%81/">http://han77520.github.io/2021/06/02/%E9%94%81/</a>
+                    <a href="http://han77520.github.io/2021/06/02/MySQL%E5%A4%8D%E4%B9%A0/">http://han77520.github.io/2021/06/02/MySQL%E5%A4%8D%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1097,31 +1295,30 @@ flag <span class="token operator">=</span> true<span class="token punctuation">;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
+                <a href="/2021/06/03/java%E5%A4%8D%E4%B9%A0/">
                     <div class="card-image">
                         
+                        <img src="https://img2.baidu.com/it/u=449057306,1501837017&fm=26&fmt=auto&gp=0.jpg" class="responsive-img" alt="java复习">
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
-                        
-                        <span class="card-title">Front-matter 选项详解</span>
+                        <span class="card-title">java复习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            配置
+                            模糊知识点
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-03
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
-                                    选项详解
+                            <a href="/categories/review/" class="post-category">
+                                    review
                                 </a>
                             
                             
@@ -1135,22 +1332,22 @@ flag <span class="token operator">=</span> true<span class="token punctuation">;
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E9%94%81/">
+                <a href="/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="锁">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代理模式">
                         
-                        <span class="card-title">锁</span>
+                        <span class="card-title">代理模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            锁
+                            代理模式
                         
                     </div>
                     <div class="publish-info">
@@ -1165,7 +1362,6 @@ flag <span class="token operator">=</span> true<span class="token punctuation">;
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

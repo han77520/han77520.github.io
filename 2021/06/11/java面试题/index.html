@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-05
+                    2021-07-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.8k
+                    16.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    47 分
+                    64 分
                 </div>
                 
 
@@ -1443,6 +1443,214 @@ String s <span class="token operator">=</span> <span class="token keyword">new</
 <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><pre class=" language-java"><code class="language-java">描述一下JVM加载<span class="token keyword">class</span>文件的原理机制<span class="token operator">?</span>
     答：JVM中类的装载是由ClassLoader和它的子类来实现的<span class="token punctuation">,</span>Java ClassLoader 是一个重要的Java运行时系统组件。它负责在运行时查找和装入类文件的类。
 </code></pre>
+<h2 id="java核心的棘手问题"><a href="#java核心的棘手问题" class="headerlink" title="java核心的棘手问题"></a>java核心的棘手问题</h2><pre class=" language-java"><code class="language-java">这些问题主要来自 Java 核心部分，不涉及 Java EE 相关问题。
+
+你可能知道这些棘手的 Java 问题的答案，或者觉得这些不足以挑战你的 Java 知识，但这些问题都是容易在各种 Java 面试中被问到的，而且包括我的朋友和同事在内的许多程序员都觉得很难回答。
+
+为什么等待和通知是在 Object 类而不是 Thread 中声明的？
+一个棘手的 Java 问题，如果 Java 编程语言不是你设计的，你怎么能回答这个问题呢。Java 编程的常识和深入了解有助于回答这种棘手的 Java 核心方面的面试问题。
+
+为什么 wait，notify 和 notifyAll 是在 Object 类中定义的而不是在 Thread 类中定义
+
+这是有名的 Java 面试问题，招 <span class="token number">2</span><span class="token operator">~</span><span class="token number">4</span> 年经验的到高级 Java 开发人员面试都可能碰到。
+
+这个问题的好在它能反映了面试者对等待通知机制的了解<span class="token punctuation">,</span> 以及他对此主题的理解是否明确。
+
+就像为什么 Java 中不支持多继承或者为什么 String 在 Java 中是 <span class="token keyword">final</span> 的问题一样，这个问题也可能有多个答案。
+
+一、为什么在 Object 类中定义 wait 和 notify 方法，每个人都能说出一些理由。从我的面试经验来看<span class="token punctuation">,</span> wait 和 nofity 仍然是大多数 Java 程序员最困惑的，特别是 <span class="token number">2</span> 到 <span class="token number">3</span> 年的开发人员，如果他们要求使用 wait 和 notify<span class="token punctuation">,</span> 他们会很困惑。因此，如果你去参加 Java 面试，请确保对 wait 和 notify 机制有充分的了解，并且可以轻松地使用 wait 来编写代码，并通过生产者<span class="token operator">-</span>消费者问题或实现阻塞队列等了解通知的机制。
+
+为什么等待和通知需要从同步块或方法中调用<span class="token punctuation">,</span> 以及 Java 中的 wait，sleep 和 yield 方法之间的差异，如果你还没有读过，你会觉得有趣。为何 wait，notify 和 notifyAll 属于 Object 类<span class="token operator">?</span> 为什么它们不应该在 Thread 类中<span class="token operator">?</span> 以下是我认为有意义的一些想法：
+
+<span class="token number">1</span><span class="token punctuation">)</span> wait 和 notify 不仅仅是普通方法或同步工具，更重要的是它们是 Java 中两个线程之间的通信机制。对语言设计者而言<span class="token punctuation">,</span> 如果不能通过 Java 关键字<span class="token punctuation">(</span>例如 <span class="token keyword">synchronized</span><span class="token punctuation">)</span>实现通信此机制，同时又要确保这个机制对每个对象可用<span class="token punctuation">,</span> 那么 Object 类则是的正确声明位置。记住同步和等待通知是两个不同的领域，不要把它们看成是相同的或相关的。同步是提供互斥并确保 Java 类的线程安全，而 wait 和 notify 是两个线程之间的通信机制。
+
+<span class="token number">2</span><span class="token punctuation">)</span> 每个对象都可上锁，这是在 Object 类而不是 Thread 类中声明 wait 和 notify 的另一个原因。
+
+<span class="token number">3</span><span class="token punctuation">)</span> 在 Java 中为了进入代码的临界区，线程需要锁定并等待锁定，他们不知道哪些线程持有锁，而只是知道锁被某个线程持有， 并且他们应该等待取得锁<span class="token punctuation">,</span> 而不是去了解哪个线程在同步块内，并请求它们释放锁定。
+
+<span class="token number">4</span><span class="token punctuation">)</span> Java 是基于 Hoare 的监视器的思想。在 Java 中，所有对象都有一个监视器。
+
+线程在监视器上等待，为执行等待，我们需要 <span class="token number">2</span> 个参数：
+
+一个线程
+一个监视器<span class="token punctuation">(</span>任何对象<span class="token punctuation">)</span>
+    在 Java 设计中，线程不能被指定，它总是运行当前代码的线程。但是，我们可以指定监视器<span class="token punctuation">(</span>这是我们称之为等待的对象<span class="token punctuation">)</span>。这是一个很好的设计，因为如果我们可以让任何其他线程在所需的监视器上等待，这将导致“入侵”，导致在设计并发程序时会遇到困难。请记住，在 Java 中，所有在另一个线程的执行中侵入的操作都被弃用了<span class="token punctuation">(</span>例如 stop 方法<span class="token punctuation">)</span>。
+
+为什么 Java 中不支持多重继承？
+我发现这个 Java 核心问题很难回答，因为你的答案可能不会让面试官满意。
+
+在大多数情况下，面试官正在寻找答案中的关键点，如果你提到这些关键点，面试官会很高兴。
+
+在 Java 中回答这种棘手问题的关键是准备好相关主题<span class="token punctuation">,</span> 以应对后续的各种可能的问题。
+
+这是非常经典的问题，与为什么 String 在 Java 中是不可变的很类似<span class="token punctuation">;</span> 这两个问题之间的相似之处在于它们主要是由 Java 创作者的设计决策使然。
+
+为什么 Java 不支持多重继承<span class="token punctuation">,</span> 可以考虑以下两点<span class="token operator">:</span>
+
+<span class="token number">1</span><span class="token punctuation">)</span> 第一个原因是围绕钻石形继承问题产生的歧义，考虑一个类 A 有 <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 方法<span class="token punctuation">,</span> 然后 B 和 C 派生自 A<span class="token punctuation">,</span> 并且有自己的 <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 实现，现在 D 类使用多个继承派生自 B 和 C，如果我们只引用 <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 编译器将无法决定它应该调用哪个 <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>。这也称为 Diamond 问题，因为这个继承方案的结构类似于菱形，见下图<span class="token operator">:</span>
+
+                A <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    
+               <span class="token operator">/</span>     
+             <span class="token operator">/</span>     
+        <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> B     C <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    
+                <span class="token operator">/</span>    
+              <span class="token operator">/</span>    
+             D  <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+
+即使我们删除钻石的顶部 A 类并允许多重继承，我们也将看到这个问题含糊性的一面。
+
+如果你把这个理由告诉面试官，他会问为什么 C<span class="token operator">++</span> 可以支持多重继承而 Java 不行。嗯，在这种情况下，我会试着向他解释我下面给出的第二个原因，它不是因为技术难度<span class="token punctuation">,</span> 而是更多的可维护和更清晰的设计是驱动因素<span class="token punctuation">,</span> 虽然这只能由 Java 言语设计师确认，我们只是推测。
+
+维基百科链接有一些很好的解释，说明在使用多重继承时，由于钻石问题，不同的语言地址问题是如何产生的。
+
+<span class="token number">2</span><span class="token punctuation">)</span> 对我来说第二个也是更有说服力的理由是，多重继承确实使设计复杂化并在转换、构造函数链接等过程中产生问题。假设你需要多重继承的情况并不多，简单起见，明智的决定是省略它。此外，Java 可以通过使用接口支持单继承来避免这种歧义。由于接口只有方法声明而且没有提供任何实现，因此只有一个特定方法的实现，因此不会有任何歧义。
+
+为什么 Java 不支持运算符重载？
+另一个类似棘手的 Java 问题。为什么 C<span class="token operator">++</span> 支持运算符重载而 Java 不支持<span class="token operator">?</span> 有人可能会说<span class="token operator">+</span>运算符在 Java 中已被重载用于字符串连接，不要被这些论据所欺骗。
+
+与 C<span class="token operator">++</span> 不同，Java 不支持运算符重载。Java 不能为程序员提供自由的标准算术运算符重载，例如<span class="token operator">+</span>， <span class="token operator">-</span> ，<span class="token operator">*</span>和<span class="token operator">/</span>等。如果你以前用过 C<span class="token operator">++</span>，那么 Java 与 C<span class="token operator">++</span> 相比少了很多功能，例如 Java 不支持多重继承，Java 中没有指针，Java 中没有引用传递。另一个类似的问题是关于 Java 通过引用传递，这主要表现为 Java 是通过值还是引用传参。虽然我不知道背后的真正原因，但我认为以下说法有些道理，为什么 Java 不支持运算符重载。
+
+<span class="token number">1</span><span class="token punctuation">.</span> 简单性和清晰性。清晰性是 Java 设计者的目标之一。
+
+设计者不是只想复制语言，而是希望拥有一种清晰，真正面向对象的语言。
+
+添加运算符重载比没有它肯定会使设计更复杂，并且它可能导致更复杂的编译器<span class="token punctuation">,</span>，或减慢 JVM，因为它需要做额外的工作来识别运算符的实际含义，并减少优化的机会<span class="token punctuation">,</span> 以保证 Java 中运算符的行为。
+
+<span class="token number">2</span><span class="token punctuation">.</span> 避免编程错误。Java 不允许用户定义的运算符重载，因为如果允许程序员进行运算符重载，将为同一运算符赋予多种含义，这将使任何开发人员的学习曲线变得陡峭，事情变得更加混乱。
+
+据观察，当语言支持运算符重载时，编程错误会增加，从而增加了开发和交付时间。
+
+由于 Java 和 JVM 已经承担了大多数开发人员的责任，如在通过提供垃圾收集器进行内存管理时，因为这个功能增加污染代码的机会<span class="token punctuation">,</span> 成为编程错误之源<span class="token punctuation">,</span> 因此没有多大意义。
+
+<span class="token number">3</span><span class="token punctuation">.</span> VM 复杂性。从 JVM 的角度来看，支持运算符重载使问题变得更加困难。通过更直观，更干净的方式使用方法重载也能实现同样的事情，因此不支持 Java 中的运算符重载是有意义的。
+
+与相对简单的 JVM 相比，复杂的 JVM 可能导致 JVM 更慢，并为保证在 Java 中运算符行为的确定性从而减少了优化代码的机会。
+
+<span class="token number">4</span><span class="token punctuation">.</span> 让开发工具处理更容易。这是在 Java 中不支持运算符重载的另一个好处。省略运算符重载使语言更容易处理，这反过来又更容易开发处理语言的工具，例如 IDE 或重构工具。
+
+Java 中的重构工具远胜于 C<span class="token operator">++</span>。
+                    
+                    
+二、为什么 String 在 Java 中是不可变的？
+                    
+我最喜欢的 Java 面试问题，很棘手，但同时也非常有用。
+
+一些面试者也常问这个问题，为什么 String 在 Java 中是 <span class="token keyword">final</span> 的。
+
+字符串在 Java 中是不可变的，因为 String 对象缓存在 String 池中。
+
+由于缓存的字符串在多个客户之间共享，因此始终存在风险，其中一个客户的操作会影响所有其他客户。
+
+例如，如果一段代码将 String “Test” 的值更改为 “TEST”，则所有其他客户也将看到该值。
+
+由于 String 对象的缓存性能是很重要的一方面，因此通过使 String 类不可变来避免这种风险。
+
+同时，String 是 <span class="token keyword">final</span> 的，因此没有人可以通过扩展和覆盖行为来破坏 String 类的不变性、缓存、散列值的计算等。String 类不可变的另一个原因可能是由于 HashMap。
+
+由于把字符串作为 HashMap 键很受欢迎。
+
+对于键值来说，重要的是它们是不可变的，以便用它们检索存储在 HashMap 中的值对象。由于 HashMap 的工作原理是散列，因此需要具有相同的值才能正常运行。
+
+如果在插入后修改了 String 的内容，可变的 String 将在插入和检索时生成两个不同的哈希码，可能会丢失 Map 中的值对象。
+
+如果你是印度板球迷，你可能能够与我的下一句话联系起来。
+
+字符串是 Java 的 VVS Laxman，即非常特殊的类。
+
+我还没有看到一个没有使用 String 编写的 Java 程序。这就是为什么对 String 的充分理解对于 Java 开发人员来说非常重要。
+
+String 作为数据类型，传输对象和中间人角色的重要性和流行性也使这个问题在 Java 面试中很常见。
+
+为什么 String 在 Java 中是不可变的是 Java 中最常被问到的字符串访问问题之一，它首先讨论了什么是 String，Java 中的 String 如何与 C 和 C<span class="token operator">++</span> 中的 String 不同，然后转向在 Java 中什么是不可变对象，不可变对象有什么好处，为什么要使用它们以及应该使用哪些场景。
+
+这个问题有时也会问：“为什么 String 在 Java 中是 <span class="token keyword">final</span> 的”。
+
+在类似的说明中，如果你正在准备 Java 面试，我建议你看看《Java 程序员面试宝典<span class="token punctuation">(</span>第 <span class="token number">4</span> 版<span class="token punctuation">)</span> 》，这是高级和中级 Java 程序员的优秀资源。
+
+它包含来自所有重要 Java 主题的问题，包括多线程，集合，GC，JVM 内部以及 Spring 和 Hibernate 框架等。
+
+正如我所说，这个问题可能有很多可能的答案，而 String 类的唯一设计者可以放心地回答它。
+
+我在 Joshua Bloch 的 Effective Java 书中期待一些线索，但他也没有提到它。
+
+我认为以下几点解释了为什么 String 类在 Java 中是不可变的或 <span class="token keyword">final</span> 的：
+
+<span class="token number">1</span><span class="token punctuation">.</span> 想象字符串池没有使字符串不可变，它根本不可能。
+
+因为在字符串池的情况下，一个字符串对象<span class="token operator">/</span>文字，例如 “Test” 已被许多参考变量引用，因此如果其中任何一个更改了值，其他参数将自动受到影响，即假设
+
+​```java
+String A<span class="token operator">=</span><span class="token string">"Test"</span><span class="token punctuation">;</span>
+String B<span class="token operator">=</span><span class="token string">"Test"</span><span class="token punctuation">;</span>
+​```
+
+现在字符串 B 调用 <span class="token string">"Test"</span><span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 将同一个对象改为“TEST”，所以 A 也是 “TEST”，这不是期望的结果。
+
+
+
+<span class="token number">2</span><span class="token punctuation">.</span> 字符串已被广泛用作许多 Java 类的参数
+
+例如，为了打开网络连接，你可以将主机名和端口号作为字符串传递，你可以将数据库 URL 作为字符串传递<span class="token punctuation">,</span> 以打开数据库连接，你可以通过将文件名作为参数传递给 File I<span class="token operator">/</span>O 类来打开 Java 中的任何文件。如果 String 不是不可变的，这将导致严重的安全威胁，我的意思是有人可以访问他有权授权的任何文件，然后可以故意或意外地更改文件名并获得对该文件的访问权限。由于不变性，你无需担心这种威胁。这个原因也说明了，为什么 String 在 Java 中是最终的，通过使 java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>String <span class="token keyword">final</span>，Java 设计者确保没有人覆盖 String 类的任何行为。
+
+<span class="token number">3</span><span class="token punctuation">.</span> 由于 String 是不可变的，它可以安全地共享许多线程，这对于多线程编程非常重要。
+
+并且避免了 Java 中的同步问题，不变性也使得 String 实例在 Java 中是线程安全的，这意味着你不需要从外部同步 String 操作。
+
+关于 String 的另一个要点是由截取字符串 SubString 引起的内存泄漏，这不是与线程相关的问题，但也是需要注意的。
+
+<span class="token number">4</span><span class="token punctuation">.</span> 为什么 String 在 Java 中是不可变的另一个原因是允许 String 缓存其哈希码，Java 中的不可变 String 缓存其哈希码，并且不会在每次调用 String 的 hashcode 方法时重新计算，这使得它在 Java 中的 HashMap 中使用的 HashMap 键非常快。
+
+简而言之，因为 String 是不可变的。
+
+所以没有人可以在创建后更改其内容，这保证了 String 的 hashCode 在多次调用时是相同的。
+
+<span class="token number">5</span><span class="token punctuation">.</span> String 不可变的绝对最重要的原因是它被类加载机制使用，因此具有深刻和基本的安全考虑。如果 String 是可变的，加载“java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Writer” 的请求可能已被更改为加载 “mil<span class="token punctuation">.</span>vogoon<span class="token punctuation">.</span>DiskErasingWriter”<span class="token punctuation">.</span> 安全性和字符串池是使字符串不可变的主要原因。
+
+顺便说一句，上面的理由很好回答另一个 Java 面试问题<span class="token operator">:</span> “为什么 String 在 Java 中是最终的”。
+
+要想是不可变的，你必须是最终的，这样你的子类不会破坏不变性。
+
+你怎么看？
+
+
+
+三、为什么 <span class="token keyword">char</span> 数组比 Java 中的 String 更适合存储密码？
+
+另一个基于 String 的棘手 Java 问题，相信我只有很少的 Java 程序员可以正确回答这个问题。这是一个真正艰难的核心 Java 面试问题，并且需要对 String 的扎实知识才能回答这个问题。
+
+这是最近在 Java 面试中向我的一位朋友询问的问题。他正在接受技术主管职位的面试，并且有超过 <span class="token number">6</span> 年的经验。如果你还没有遇到过这种情况，那么字符数组和字符串可以用来存储文本数据，但是选择一个而不是另一个很难。但正如我的朋友所说，任何与 String 相关的问题都必须对字符串的特殊属性有一些线索，比如不变性，他用它来说服访提问的人。在这里，我们将探讨为什么你应该使用 <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span>存储密码而不是 String 的一些原因。
+
+字符串：
+
+<span class="token number">1</span><span class="token punctuation">.</span> 由于字符串在 Java 中是不可变的，如果你将密码存储为纯文本，它将在内存中可用，直到垃圾收集器清除它。
+
+并且为了可重用性，会存在 String 在字符串池中<span class="token punctuation">,</span> 它很可能会保留在内存中持续很长时间，从而构成安全威胁。
+
+由于任何有权访问内存转储的人都可以以明文形式找到密码，这是另一个原因，你应该始终使用加密密码而不是纯文本。
+
+由于字符串是不可变的，所以不能更改字符串的内容，因为任何更改都会产生新的字符串，而如果你使用 <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span>，你就可以将所有元素设置为空白或零。
+
+因此，在字符数组中存储密码可以明显降低窃取密码的安全风险。
+
+<span class="token number">2</span><span class="token punctuation">.</span> Java 本身建议使用 JPasswordField 的 <span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 方法，该方法返回一个 <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> 和不推荐使用的 <span class="token function">getTex</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 方法，该方法以明文形式返回密码，由于安全原因。
+
+应遵循 Java 团队的建议<span class="token punctuation">,</span> 坚持标准而不是反对它。
+
+<span class="token number">3</span><span class="token punctuation">.</span> 使用 String 时，总是存在在日志文件或控制台中打印纯文本的风险；
+
+但如果使用 Array，则不会打印数组的内容而是打印其内存位置。虽然不是一个真正的原因，但仍然有道理。
+    String strPassword <span class="token operator">=</span>“Unknown”<span class="token punctuation">;</span> 
+    <span class="token keyword">char</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> charPassword <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">char</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token string">'U'</span>，<span class="token string">'n'</span>，<span class="token string">'k'</span>，<span class="token string">'w'</span>，<span class="token string">'o'</span>，<span class="token string">'n'</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span> 
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>“字符密码：”<span class="token operator">+</span> strPassword<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>“字符密码：”<span class="token operator">+</span> charPassword<span class="token punctuation">)</span><span class="token punctuation">;</span>
+输出：
+字符串密码：Unknown
+字符密码：<span class="token punctuation">[</span>C <span class="token annotation punctuation">@110b053</span>
+    我还建议使用散列或加密的密码而不是纯文本，并在验证完成后立即从内存中清除它。因此<span class="token punctuation">,</span>在 Java 中<span class="token punctuation">,</span>用字符数组用存储密码比字符串是更好的选择。虽然仅使用 <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span>还不够，还你需要擦除内容才能更安全。
+      
+</code></pre>
 
                 
             </div>
@@ -2210,7 +2418,7 @@ String s <span class="token operator">=</span> <span class="token keyword">new</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">46.9k</span>&nbsp;字
+                class="white-color">53.6k</span>&nbsp;字
             
             
             
