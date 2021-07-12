@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-11
+                    2021-07-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    3.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    13 分
                 </div>
                 
 
@@ -729,8 +729,9 @@ ORDER BY salary DESC;
         如 concat、length、ifnull等
     2、分组函数
       功能：做统计使用，又称为统计函数、聚合函数、组函数
-      
-常见函数：
+    
+</code></pre>
+<h4 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h4><pre class=" language-mysql"><code class="language-mysql">常见函数：
     一、单行函数
     字符函数：
     length:获取字节个数(utf-8一个汉字代表3个字节,gbk为2个字节)
@@ -741,7 +742,19 @@ ORDER BY salary DESC;
     数学函数：
     round、ceil、floor、truncate、mod
     
+    日期函数：
+    now、curdate、curtime、year、month、monthname、day、hour
+    minute、second、str_to_date、date_format
     
+    其他函数：
+    version、database 、user
+    
+    控制函数
+    if、case
+    
+    
+    
+#单行函数
 #1.length 获取参数值的字节个数
 SELECT LENGTH('john');
 SELECT LENGTH('张三丰hahaha');#15
@@ -785,6 +798,305 @@ SELECT RPAD('殷素素',12,'ab') AS out_put;
 
 #9.replace 替换全部匹配的
 SELECT REPLACE('周芷若周芷若张无忌爱上了周芷若','周芷若','赵敏') AS out_put;
+
+
+#数学函数
+#round四舍五入
+SELECT ROUND(-1.55);#-2
+SELECT ROUND(1.567,2);#1.57
+
+#ceil 向上取整,返回>=该参数的最小整数
+SELECT CEIL(-1.02);#2
+
+#floor 向下取整，返回<=该参数的最大整数
+SELECT FLOOR(-9.99);#-10
+
+#truncate 截断
+SELECT TRUNCATE(1.69999,1);
+
+#取余，结果的符号和被除数一样
+/*
+取余公式：
+mod(a,b) ：  a-a/b*b
+
+示例：
+mod(-10,-3):-10- (-10)/(-3)*（-3）=-1
+*/
+SELECT MOD(10,-3);
+SELECT 10%3;
+
+
+#三、日期函数
+
+#now 返回当前系统日期+时间
+SELECT NOW();
+
+#curdate 返回当前系统日期，不包含时间
+SELECT CURDATE();
+
+#curtime 返回当前时间，不包含日期
+SELECT CURTIME();
+
+
+#可以获取指定的部分，年、月、日、小时、分钟、秒
+SELECT YEAR(NOW()) 年;
+SELECT YEAR('1998-1-1') 年;
+
+SELECT MONTH(NOW()) 月;
+SELECT MONTHNAME(NOW()) 月;
+
+#str_to_date 将字符通过指定的格式转换成日期
+SELECT STR_TO_DATE('1998-3-2','%Y-%c-%d') AS out_put;
+
+#查询入职日期为1992-4-3的员工信息
+SELECT * FROM employees WHERE hiredate = '1992-4-3';
+或者
+SELECT * FROM employees WHERE hiredate = STR_TO_DATE('4-3-1992','%c-%d-%Y');
+STR_TO_DATE('4-3-1992','%c-%d-%Y') == '1992-4-3'
+
+#date_format 将日期转换成字符
+SELECT DATE_FORMAT(NOW(),'%y年%m月%d日') AS out_put;
+
+#查询有奖金的员工名和入职日期(xx月/xx日 xx年)
+SELECT last_name,DATE_FORMAT(hiredate,'%m月/%d日 %y年') 入职日期
+FROM employees
+WHERE commission_pct IS NOT NULL;
+
+#查询两个日期的相差天数
+SELECT DATEDIFF('2021-7-12','2000-04-12');
+
+#四、其他函数
+
+SELECT VERSION();
+SELECT DATABASE();
+SELECT USER();
+
+#五、流程控制函数
+#1.if函数： 实现if else 的效果，类似于三元运算符
+SELECT IF(10<5,'大','小');
+
+SELECT last_name,commission_pct,IF(commission_pct IS NULL,'没奖金，呵呵','有奖金，嘻嘻') 备注
+FROM employees;
+
+#2.case函数的使用一： switch case 的效果
+
+/*
+java中
+switch(变量或表达式)&#123;
+    case 常量1：语句1;break;
+    ...
+    default:语句n;break;
+
+
+&#125;
+
+mysql中
+
+case 要判断的字段或表达式(如果是字段不能写别名，只能写它本身的字段名)
+when 常量1 then 要显示的值1或语句1;
+when 常量2 then 要显示的值2或语句2;
+...
+else 要显示的值n或语句n;
+end
+*/
+
+/*案例：查询员工的工资，要求
+
+部门号=30，显示的工资为1.1倍
+部门号=40，显示的工资为1.2倍
+部门号=50，显示的工资为1.3倍
+其他部门，显示的工资为原工资
+
+*/
+
+
+SELECT salary 原始工资,department_id,
+CASE department_id
+WHEN 30 THEN salary*1.1
+WHEN 40 THEN salary*1.2
+WHEN 50 THEN salary*1.3
+ELSE salary
+END AS 新工资
+FROM employees;
+
+
+
+#3.case 函数的使用二：类似于 多重if
+#case后的语句相当于一个字段，要与前面的字段之间有逗号，否则报错
+/*
+java中：
+if(条件1)&#123;
+    语句1；
+&#125;else if(条件2)&#123;
+    语句2；
+&#125;
+...
+else&#123;
+    语句n;
+&#125;
+
+mysql中：
+
+case 
+when 条件1 then 要显示的值1或语句1
+when 条件2 then 要显示的值2或语句2
+。。。
+else 要显示的值n或语句n
+end
+*/
+
+#案例：查询员工的工资的情况
+如果工资>20000,显示A级别
+如果工资>15000,显示B级别
+如果工资>10000，显示C级别
+否则，显示D级别
+
+
+SELECT salary,
+CASE 
+WHEN salary>20000 THEN 'A'
+WHEN salary>15000 THEN 'B'
+WHEN salary>10000 THEN 'C'
+ELSE 'D'
+END AS 工资级别
+FROM employees;
+</code></pre>
+<p><strong>重点关注取余运算的公式和case函数</strong></p>
+<h4 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h4><pre class=" language-mysql"><code class="language-mysql">/*
+功能：
+    用作统计使用，又称为聚合函数或统计函数或组函数
+    
+分类：
+ sum 求和、avg 平均值、max 最大值 、min 最小值 、count 计算非空的值的个数
+ 
+特点：
+1、sum、avg一般用于处理数值型
+   max、min、count可以处理任何类型
+2、以上分组函数都忽略null值
+
+3、可以和distinct搭配实现去重的运算
+
+4、count函数的单独介绍
+一般使用count(*)用作统计行数
+
+5、和分组函数一同查询的字段要求是group by后的字段
+
+*/
+
+#1、简单 的使用
+SELECT SUM(salary) FROM employees;
+SELECT AVG(salary) FROM employees
+SELECT MAX(salary) FROM employees
+SELECT MIN(salary) FROM employees
+SELECT COUNT(salary) FROM employees
+
+#2、参数支持哪些类型
+SELECT MAX(last_name),MIN(last_name) FROM employees;
+
+SELECT MAX(hiredate),MIN(hiredate) FROM employees;
+
+SELECT COUNT(commission_pct) FROM employees;
+SELECT COUNT(last_name) FROM employees;
+
+#3、忽略null值
+SELECT COUNT(commission_pct) FROM employees;
+SELECT commission_pct FROM employees;
+
+
+#4、和distinct搭配
+
+SELECT SUM(DISTINCT salary),SUM(salary) FROM employees;
+
+
+#5、count函数的详细介绍
+
+#只要一行中有一列不为null，就统计
+SELECT COUNT(*) FROM employees;
+
+#在每一行的前面加一个1，统计1的个数，count括号里的值可以是任意的常数
+SELECT COUNT(1) FROM employees;
+
+#查询部门编号为90的员工个数
+SELECT COUNT(*)  FROM employees WHERE department_id = 90
+
+效率：
+MYISAM存储引擎下 ，COUNT(*)的效率高，因为其内部有计数器，能直接返回个数
+INNODB存储引擎下，COUNT(*)和COUNT(1)的效率差不多，比COUNT(字段)要高一些
+</code></pre>
+<h4 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h4><pre class=" language-mysql"><code class="language-mysql">/*
+语法：
+  select 查询列表
+  from 表
+ 【where 筛选条件】
+  group by 分组的字段
+ 【order by 排序的字段】;
+
+特点：
+1、和分组函数一同查询的字段必须是group by后出现的字段
+2、筛选分为两类：分组前筛选(where)和分组后筛选(having)
+
+           针对的表                  位置               连接的关键字
+分组前筛选    原始表                   group by前         where
+    
+分组后筛选    group by后的结果集     group by后            having
+
+一般来讲，能用分组前筛选的，尽量使用分组前筛选，提高效率
+
+3、分组可以按单个字段也可以按多个字段(多个字段之间用逗号隔开，没有顺序要求)
+4、可以搭配着排序使用(放在整个分组查询的最后)
+
+*/
+
+
+#1.简单的分组
+#案例1：查询每个工种的员工平均工资
+SELECT AVG(salary),job_id FROM employees
+GROUP BY job_id;
+
+#案例2：查询每个位置的部门个数
+SELECT COUNT(*),location_id FROM departments
+GROUP BY location_id
+
+
+#2、可以实现分组前的筛选
+
+#案例1：查询邮箱中包含a字符的 每个部门的最高工资
+SELECT MAX(salary),department_id FROM employees
+WHERE email LIKE '%a%' GROUP BY department_id
+
+#案例2：查询有奖金的每个领导手下员工的平均工资 
+SELECT MAX(salary),manager_id FROM employees
+WHERE commission_pct IS NOT NULL GROUP BY manager_id
+
+
+#3、分组后筛选
+
+#案例1：查询哪个部门的员工个数>5
+SELECT COUNT(*), department_id
+FROM employees
+GROUP BY department_id
+HAVING COUNT(*) > 5
+
+#案例2：每个工种有奖金的员工的最高工资>12000的工种编号和最高工资
+SELECT MAX(salary), job_id  FROM employees
+WHERE commission_pct IS NOT NULL GROUP BY job_id
+HAVING MAX(salary) > 12000
+
+#案例3：领导编号>102的每个领导手下的最低工资大于5000的领导编号和最低工资
+SELECT MIN(salary), manager_id FROM employees
+WHERE manager_id > 102 GROUP BY manager_id HAVING MIN(salary) > 5000
+
+#按员工姓名的长度分组，查询每一组的员工个数，筛选员工个数 >5 的有哪些
+SELECT COUNT(*) c ,LENGTH(last_name) len_name  FROM employees
+GROUP BY len_name  HAVING  c > 5
+
+
+#4.按多个字段分组
+#案例：查询每个工种每个部门的最低工资,并按平均工资降序
+SELECT AVG(salary),department_id,job_id
+FROM employees
+GROUP BY department_id,job_id
+ORDER BY AVG(salary) DESC;
 </code></pre>
 <h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><pre class=" language-mysql"><code class="language-mysql">试问：
 SELECT * FROM employees
@@ -1295,30 +1607,31 @@ LIKE '%%' AND last_name LIKE '%%'
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/03/java%E5%A4%8D%E4%B9%A0/">
+                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=449057306,1501837017&fm=26&fmt=auto&gp=0.jpg" class="responsive-img" alt="java复习">
                         
-                        <span class="card-title">java复习</span>
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
+                        
+                        <span class="card-title">Front-matter 选项详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            模糊知识点
+                            配置
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/review/" class="post-category">
-                                    review
+                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
+                                    选项详解
                                 </a>
                             
                             
@@ -1335,19 +1648,19 @@ LIKE '%%' AND last_name LIKE '%%'
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+                <a href="/2021/06/02/%E9%94%81/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代理模式">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="锁">
                         
-                        <span class="card-title">代理模式</span>
+                        <span class="card-title">锁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            代理模式
+                            锁
                         
                     </div>
                     <div class="publish-info">
@@ -1561,7 +1874,7 @@ LIKE '%%' AND last_name LIKE '%%'
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">53.6k</span>&nbsp;字
+                class="white-color">54.7k</span>&nbsp;字
             
             
             
