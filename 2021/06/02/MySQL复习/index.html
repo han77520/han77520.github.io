@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-13
+                    2021-07-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.2k
+                    6.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    27 分
                 </div>
                 
 
@@ -649,7 +649,7 @@ FROM employees WHERE last_name LIKE '__n_l%';
 SELECT last_name 
 FROM employees WHERE last_name LIKE '_$_%' ESCAPE '$';
 
-#查询员工编号在100到120之间的员工信息,包含临界值，并且只能是前小后大
+#查询员工编号在100到120之间的员工信息,包含临界值，BETWEEN只能是前小后大
 SELECT * FROM employees 
 WHERE employee_id BETWEEN 100 AND 120;
 
@@ -1196,7 +1196,7 @@ SELECT e.employee_id, e.last_name, m.employee_id,m.last_name
 FROM employees e, employees m
 WHERE e.`manager_id`=m.`employee_id`;
 </code></pre>
-<p><strong>重点关注别名的注意点、分组、非等值连接</strong></p>
+<p><strong>重点关注别名的注意点、分组、非等值连接、自连接</strong></p>
 <h4 id="sql99语法"><a href="#sql99语法" class="headerlink" title="sql99语法"></a>sql99语法</h4><pre class=" language-mysql"><code class="language-mysql">/*
 语法：
     select 查询列表
@@ -1221,7 +1221,6 @@ WHERE e.`manager_id`=m.`employee_id`;
 #一）内连接
 /*
 语法：
-
 select 查询列表
 from 表1 别名
 inner join 表2 别名
@@ -1240,7 +1239,7 @@ on 连接条件;
 
 */
 
-#1、等值连接
+#一)、等值连接
 #案例1.查询员工名、部门名
 SELECT last_name,department_name
 FROM employees e
@@ -1263,17 +1262,802 @@ INNER JOIN locations l
 ON d.`location_id` = l.`location_id`
 GROUP BY city
 HAVING COUNT(*) > 3;
+
+
+#案例4.查询哪个部门的员工个数>3的部门名和员工个数，并按个数降序（添加排序）
+
+SELECT COUNT(*) 个数 ,department_name
+FROM employees e
+INNER JOIN departments d
+ON e.`department_id` = d.`department_id`
+GROUP BY department_name
+HAVING 个数>3
+ORDER BY 个数 DESC
+
+#5.查询员工名、部门名、工种名，并按部门名降序（添加三表连接）
+SELECT last_name,department_name,job_title
+FROM employees e
+JOIN departments d ON e.`department_id` = d.`department_id`
+JOIN jobs j ON j.`job_id` = e.`job_id`
+ORDER BY department_name DESC
+
+
+#二）非等值连接
+
+#查询员工的工资级别
+SELECT salary,grade_level
+FROM employees e
+JOIN job_grades g
+ON e.`salary` BETWEEN g.`lowest_sal` AND g.`highest_sal`
+
+ #查询工资级别的个数>20的个数，并且按工资级别降序
+SELECT COUNT(*), grade_level
+FROM employees e
+JOIN job_grades j
+ON e.`salary` BETWEEN j.`lowest_sal` AND j.`highest_sal`
+GROUP BY grade_level
+HAVING COUNT(*) > 20
+ORDER BY grade_level DESC
+
+
+ #三）自连接
+ 
+#查询员工的名字、上级的名字
+SELECT e.last_name,m.last_name
+FROM employees e
+JOIN employees m
+ON e.`manager_id` = m.`employee_id`
+
+#查询姓名中包含字符k的员工的名字和上级的名字
+SELECT e.last_name empId,m.last_name managerId
+FROM employees e
+JOIN employees m
+ON e.`manager_id` = m.`employee_id`
+WHERE e.`last_name` LIKE '%k%'
+
+
+ #二、外连接
+ /*
+ 应用场景：用于查询一个表中有，另一个表没有的记录
+ 
+ 特点：
+ 1、外连接的查询结果为主表中的所有记录
+    如果从表中有和它匹配的，则显示匹配的值
+    如果从表中没有和它匹配的，则显示null
+    外连接查询结果=内连接结果+主表中有而从表没有的记录
+ 2、左外连接，left join左边的是主表
+    右外连接，right join右边的是主表
+ 3、左外和右外交换两个表的顺序，可以实现同样的效果 
+ 4、全外连接=内连接的结果+表1中有但表2没有的+表2中有但表1没有的
+ */
+ 
+#引入：查询男朋友 不在男神表的的女神名
+#左外连接
+SELECT b.*,bo.boyName
+FROM beauty b
+LEFT JOIN boys bo
+ON bo.`id` = b.`boyfriend_id`
+WHERE bo.`id` IS NULL
+
+#右外连接
+SELECT b.*,bo.boyName
+FROM boys bo
+RIGHT JOIN beauty b
+ON bo.`id` = b.`boyfriend_id`
+WHERE bo.`id` IS NULL
+
+
+ #案例1：查询哪个部门没有员工
+ #左外
+SELECT  d.*,e.employee_id
+FROM departments d
+LEFT JOIN employees e
+ON d.`department_id` = e.`department_id`
+WHERE e.`employee_id` IS NULL
+
+ #全外，mysql不支持，两张表的所有信息都会查出来，没有的用null填充
+ USE girls;
+ SELECT b.*,bo.*
+ FROM beauty b
+ FULL OUTER JOIN boys bo
+ ON b.`boyfriend_id` = bo.id;
+
+#交叉连接，即笛卡尔乘积
+SELECT b.*,bo.*
+FROM beauty b
+CROSS JOIN boys bo;
+
+
+例题：
+#一、查询编号>3的女神的男朋友信息，如果有则列出详细，如果没有，用null填充
+SELECT b.id,b.name,bo.*
+FROM beauty b
+LEFT OUTER JOIN boys bo
+ON b.`boyfriend_id` = bo.`id`
+WHERE b.`id`>3;
+
+
+#二、查询哪个城市没有部门
+SELECT city
+FROM departments d
+RIGHT OUTER JOIN locations l 
+ON d.`location_id`=l.`location_id`
+WHERE  d.`department_id` IS NULL;
+
+
+#三、查询部门名为SAL或IT的员工信息
+SELECT e.*,d.department_name,d.`department_id`
+FROM departments  d
+LEFT JOIN employees e
+ON d.`department_id` = e.`department_id`
+WHERE d.`department_name` IN('SAL','IT');
 </code></pre>
-<h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><pre class=" language-mysql"><code class="language-mysql">试问：
+<p><strong>重点关注外连接和例题</strong></p>
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><pre class=" language-mysql"><code class="language-mysql">/*
+含义：
+出现在其他语句中的select语句，称为子查询或内查询
+外部的查询语句，称为主查询或外查询
+
+分类：
+按子查询出现的位置：
+    select后面：
+        仅仅支持标量子查询
+    
+    from后面：
+        支持表子查询
+    where或having后面：★
+        标量子查询（单行） √
+        列子查询  （多行） √
+        
+        行子查询
+        
+    exists后面（相关子查询）
+        表子查询
+按结果集的行列数不同：
+    标量子查询（结果集只有一行一列）
+    列子查询（结果集只有一列多行）
+    行子查询（结果集有一行多列）
+    表子查询（结果集一般为多行多列）
+*/
+
+
+
+#一、位置在where或having后面
+/*
+1、标量子查询（单行子查询）
+2、列子查询（多行子查询）
+
+3、行子查询（多列多行）
+
+特点：
+①子查询放在小括号内
+②子查询一般放在条件的右侧
+③标量子查询，一般搭配着单行操作符使用
+> < >= <= = <>
+
+列子查询，一般搭配着多行操作符使用
+in、any/some、all
+
+子查询的执行优先于主查询执行，主查询的条件用到了子查询的结果
+*/
+
+#1.标量子查询★
+
+#案例1：谁的工资比 Abel 高?
+SELECT * FROM employees
+WHERE salary > (
+    SELECT salary
+    FROM employees
+    WHERE last_name = 'Abel'
+)
+
+#案例2：返回job_id与141号员工相同，salary比143号员工多的员工 姓名，job_id 和工资
+SELECT last_name, job_id, salary
+FROM employees
+WHERE job_id = (
+    SELECT job_id
+    FROM employees
+    WHERE employee_id = 141
+) AND salary > (
+    SELECT salary
+    FROM employees
+    WHERE employee_id = 143
+)
+
+#案例3：返回公司工资最少的员工的last_name,job_id和salary
+SELECT last_name,job_id,salary
+FROM employees
+WHERE salary = (
+    SELECT MIN(salary)
+    FROM employees
+)
+
+#案例4：查询最低工资大于50号部门最低工资的部门id和其最低工资
+SELECT department_id, MIN(salary)
+FROM employees
+GROUP BY department_id
+HAVING MIN(salary) > (
+   SELECT MIN(salary)
+   FROM employees
+   WHERE department_id = 50
+)
+
+
+#2.列子查询（多行子查询）
+#案例1：返回location_id是1400或1700的部门中的所有员工姓名
+SELECT last_name
+FROM employees
+WHERE department_id IN(
+   SELECT DISTINCT department_id
+   FROM departments
+   WHERE location_id IN (1400,1700)
+)
+
+
+#案例2：返回其它工种中比job_id为‘IT_PROG’工种任一工资低的员工的员工号、姓名、job_id 以及salary
+SELECT last_name,employee_id,job_id,salary
+FROM employees
+WHERE salary < (
+   SELECT DISTINCT MAX(salary)
+   FROM employees
+   WHERE job_id = 'IT_PROG'
+)AND job_id <> 'IT_PROG'
+
+
+
+#3、行子查询（结果集一行多列或多行多列）
+
+#案例：查询员工编号最小并且工资最高的员工信息
+SELECT * 
+FROM employees
+WHERE (employee_id,salary)=(
+    SELECT MIN(employee_id),MAX(salary)
+    FROM employees
+);
+
+
+#二、select后面
+/*
+仅仅支持标量子查询
+*/
+#案例1：查询每个部门的员工个数
+SELECT d.*,(
+    SELECT COUNT(*)
+    FROM employees e
+    WHERE e.department_id = d.department_id
+) geshu
+FROM departments d
+
+
+#三、from后面
+/*
+将子查询结果充当一张表，要求必须起别名
+*/
+#案例1：查询每个部门的平均工资的工资等级
+SELECT ag_dept.*, j.grade_level
+FROM (
+   SELECT AVG(salary) ag
+   FROM employees e
+   GROUP BY department_id
+) ag_dept
+JOIN job_grades j
+ON ag_dept.ag BETWEEN j.`lowest_sal` AND j.`highest_sal`
+
+
+#四、exists后面（相关子查询）
+/*
+语法：
+select exists(完整的查询语句)
+结果：
+1或0
+*/
+#案例1：查询有员工的部门名
+SELECT department_name
+FROM departments d
+WHERE EXISTS(
+    SELECT *
+    FROM employees e
+    WHERE d.`department_id`=e.`department_id`
+);
+
+#显示通过 FROM departments 查出 departments 表的信息，然后根据 WHERE d.`department_id`=
+# e.`department_id`的过滤条件重新生成一张虚拟表，接着在SELECT department_name得到结果
+
+#案例2：查询没有女朋友的男神信息
+SELECT bo.*
+FROM boys bo
+WHERE NOT EXISTS (
+    SELECT * 
+    FROM beauty b
+    WHERE b.`boyfriend_id` = bo.`id`
+)
+</code></pre>
+<p><strong>重点关注标量子查询的案例4、列子查询案例2、==select后面的案例1、from后面的案例1、exists后面（相关子查询）==</strong></p>
+<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><p>应用场景：当要显示的数据，一页显示不全，需要分页提交sql请求</p>
+<pre class=" language-mysql"><code class="language-mysql">/*
+语法：后面的数子为执行顺序
+    select 查询列表           ------>  7 
+    from 表                    ------>  1 
+    【join type join 表2  ------>  2
+    on 连接条件            ------>  3 
+    where 筛选条件         ------>  4
+    group by 分组字段      ------>  5
+    having 分组后的筛选    ------>  6
+    order by 排序的字段】  ------>  8
+    limit 【offset,】size;------>  9
+    
+    offset要显示条目的起始索引（起始索引从0开始）
+    size 要显示的条目个数
+    
+特点：
+    ①limit语句放在查询语句的最后 
+    ②公式
+    要显示的页数 page，每页的条目数size
+    
+    select 查询列表
+    from 表
+    limit (page-1)*size,size;
+*/
+
+#案例1：查询前五条员工信息
+SELECT * FROM  employees LIMIT 0,5;
+SELECT * FROM  employees LIMIT 5;
+
+#案例2：查询第11条——第25条
+SELECT * FROM  employees LIMIT 10,15;
+
+#案例3：有奖金的员工信息，并且工资较高的前10名显示出来
+SELECT * FROM employees 
+WHERE commission_pct IS NOT NULL
+ORDER BY salary DESC    
+LIMIT 10
+</code></pre>
+<h3 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h3><pre class=" language-mysql"><code class="language-mysql">/*
+union 联合 合并：将多条查询语句的结果合并成一个结果
+
+语法：
+查询语句1
+union
+查询语句2
+union
+...
+
+
+应用场景：
+要查询的结果来自于多个表，且多个表没有直接的连接关系，但查询的信息一致时
+
+特点：★
+1、要求多条查询语句的查询列数是一致的！
+2、要求多条查询语句的查询的每一列的类型和顺序最好一致，类型要是不一致的话会尝试自动转换，转不成就报错
+3、union关键字默认去重，如果使用union all 可以包含重复项
+*/
+
+
+#引入的案例：查询部门编号>90或邮箱包含a的员工信息
+
+SELECT * FROM employees WHERE email LIKE '%a%' OR department_id>90;;
+
+SELECT * FROM employees  WHERE email LIKE '%a%'
+UNION
+SELECT * FROM employees  WHERE department_id>90;
+</code></pre>
+<h3 id="查询总结"><a href="#查询总结" class="headerlink" title="查询总结"></a>查询总结</h3><pre class=" language-mysql"><code class="language-mysql">语法：数字为执行顺序
+    select 查询列表           7
+    from 表1 别名             1
+    连接类型join 表2           2
+    on 连接条件               3
+    where筛选                 4
+    group by                 5
+    having                      6
+    order by                   8
+    limit 起始条目索引，条目数  9
+</code></pre>
+<h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><h3 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h3><pre class=" language-mysql"><code class="language-mysql">/*
+数据操作语言：
+插入：insert
+修改：update
+删除：delete
+*/
+
+#一、插入语句
+/*
+#方式一：经典的插入
+语法：
+insert into 表名(列名,...) values(值1,...);
+*/
+
+#1.插入的值的类型要与列的类型一致或兼容
+INSERT INTO beauty(id,NAME,sex,borndate,phone,photo,boyfriend_id)
+VALUES(13,'唐艺昕','女','1990-4-23','1898888888',NULL,2);
+
+
+#2.不可以为null的列必须插入值。可以为null的列如何插入值？ 字段和值都可省略
+#方式一：
+INSERT INTO beauty(id,NAME,sex,borndate,phone,photo,boyfriend_id)
+VALUES(13,'唐艺昕','女','1990-4-23','1898888888',NULL,2);
+
+#方式二：
+INSERT INTO beauty(id,NAME,sex,phone,,boyfriend_id)
+VALUES(null,'娜扎','女','1388888888',3);
+
+
+#3.可以省略列名，默认所有列，而且列的顺序和表中列的顺序一致
+INSERT INTO beauty
+VALUES(18,'张飞','男',NULL,'119',NULL,NULL);
+
+
+#方式二：
+/*
+
+语法：
+insert into 表名
+set 列名=值,列名=值,...
+*/
+INSERT INTO beauty
+SET id=19,NAME='刘涛',phone='999';
+
+#两种方式的比较
+
+#1、方式一支持插入多行也就是批量插入,方式二不支持
+INSERT INTO beauty
+VALUES(23,'唐艺昕1','女','1990-4-23','1898888888',NULL,2)
+,(24,'唐艺昕2','女','1990-4-23','1898888888',NULL,2)
+,(25,'唐艺昕3','女','1990-4-23','1898888888',NULL,2);
+
+#2、方式一支持子查询，方式二不支持
+INSERT INTO beauty(id,NAME,phone)
+SELECT 26,'宋茜','11809866';
+
+INSERT INTO beauty(id,NAME,phone)
+SELECT id,boyname,'1234567'
+FROM boys WHERE id<3;
+</code></pre>
+<p>补充：如何改变表自增列的值<br><code>ALTER TABLE beauty AUTO_INCREMENT = 15</code></p>
+<h3 id="修改语句"><a href="#修改语句" class="headerlink" title="修改语句"></a>修改语句</h3><pre class=" language-mysql"><code class="language-mysql">/*
+1.修改单表的记录
+
+语法：
+update 表名
+set 列=新值,列=新值,...
+where 筛选条件;
+
+2.修改多表的记录【补充】
+
+语法：
+sql92语法：
+update 表1 别名,表2 别名
+set 列=值,...
+where 连接条件
+and 筛选条件;
+
+sql99语法：
+update 表1 别名
+inner|left|right join 表2 别名
+on 连接条件
+set 列=值,...
+where 筛选条件;
+*/
+
+#1.修改单表的记录
+#案例1：修改beauty表中姓唐的女神的电话为13899888899
+UPDATE beauty SET phone = '13899888899'
+WHERE NAME LIKE '唐%';
+
+#案例2：修改boys表中id好为2的名称为张飞，usercp为10
+UPDATE boys SET boyname='张飞',usercp=10
+WHERE id=2;
+
+
+
+#2.修改多表的记录
+#案例 1：修改张无忌的女朋友的手机号为114
+UPDATE boys bo 
+RIGHT JOIN beauty b 
+ON bo.`id` = b.`boyfriend_id`
+SET phone='119',bo.`userCP`=1000
+WHERE bo.id = 1
+
+#案例2：修改没有男朋友的女神的男朋友编号都为2号
+UPDATE boys bo
+RIGHT JOIN beauty b
+ON bo.`id` = b.`boyfriend_id`
+SET b.`boyfriend_id` = 2
+WHERE bo.`id` IS NULL
+</code></pre>
+<p><strong>重点是修改多表的记录</strong></p>
+<h3 id="删除语句"><a href="#删除语句" class="headerlink" title="删除语句"></a>删除语句</h3><pre class=" language-mysql"><code class="language-mysql">/*
+
+方式一：delete
+语法：
+
+1、单表的删除【★】
+delete from 表名 where 筛选条件
+
+2、多表的删除【补充】
+
+sql92语法：
+delete 表1的别名,表2的别名
+from 表1 别名,表2 别名
+where 连接条件
+and 筛选条件;
+
+sql99语法：
+
+delete 表1的别名,表2的别名
+from 表1 别名
+inner|left|right join 表2 别名 on 连接条件
+where 筛选条件;
+
+
+
+方式二：truncate：表中数据全部删除
+语法：truncate table 表名;
+
+*/
+
+
+#方式一：delete
+#1.单表的删除
+#案例：删除手机号以9结尾的女神信息
+DELETE FROM beauty
+WHERE phone LIKE '%8'
+
+
+#2.多表的删除【级联删除】
+#案例：删除张无忌的女朋友的信息
+DELETE b FROM beauty b
+RIGHT JOIN  boys bo 
+ON b.boyfriend_id = bo.id
+WHERE bo.boyName = '张无忌'
+
+#案例：删除黄晓明的信息以及他女朋友的信息
+DELETE b,bo FROM beauty b
+RIGHT JOIN  boys bo 
+ON b.boyfriend_id = bo.id
+WHERE bo.boyName = '黄晓明'
+
+
+#方式二：truncate语句
+TRUNCATE TABLE boys ;  这个是全部删除
+</code></pre>
+<p><strong>重点是多表的删除</strong></p>
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><pre class=" language-mysql"><code class="language-mysql">1.试问：
 SELECT * FROM employees
 和
-SELECT * FROM employees 
-WHERE commission_pct 
-LIKE '%%' AND last_name LIKE '%%'
+SELECT * FROM employees  WHERE commission_pct  LIKE '%%' AND last_name LIKE '%%'
 的结果是否一样？并说明原因
 
 结果：
   如果判断的字段有null，则不一样，没有null值就一样
+  
+  
+2.delete和truncate比较
+    1.delete 可以加where 条件，truncate不能加
+    2.truncate删除，效率高一丢丢
+    3.假如要删除的表中有自增长列，如果用delete删除后，再插入数据，自增长列的值从断点开始，而truncate删除后，再插入数据，自增长列的值从1开始。
+    4.truncate删除没有返回值，delete删除有返回值
+    5.truncate删除不能回滚，delete删除可以回滚.
+</code></pre>
+<h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><pre class=" language-mysql"><code class="language-mysql">/*
+数据定义语言
+
+库和表的管理
+
+一、库的管理
+创建、修改、删除
+二、表的管理
+创建、修改、删除
+
+创建： create
+修改： alter
+删除： drop
+*/
+
+#一、库的管理
+#1、库的创建
+/*
+语法：
+create database  [if not exists]库名;
+*/
+
+#案例：创建库Books
+
+CREATE DATABASE IF NOT EXISTS books ;
+
+#2、库的修改,一般不修改库
+RENAME DATABASE books TO 新库名;
+
+#更改库的字符集
+ALTER DATABASE books CHARACTER SET utf-8;
+
+#3、库的删除
+DROP DATABASE IF EXISTS books;
+
+
+#二、表的管理
+#1.表的创建 ★
+
+/*
+语法：注意是小括号，不是大括号
+create table 表名(
+    列名 列的类型【(长度) 约束】,
+    列名 列的类型【(长度) 约束】,
+    列名 列的类型【(长度) 约束】,
+    ...
+    列名 列的类型【(长度) 约束】
+)
+*/
+
+#案例：创建表Book
+CREATE TABLE book(
+    id INT,#编号
+    bName VARCHAR(20),#图书名
+    price DOUBLE,#价格
+    authorId  INT,#作者编号
+    publishDate DATETIME#出版日期
+);
+
+#案例：创建表author
+CREATE TABLE IF NOT EXISTS author(
+    id INT,
+    au_name VARCHAR(20),
+    nation VARCHAR(10)
+)
+
+#2.表的修改
+/*
+语法：【first|after 字段名】可以指定添加位置
+alter table 表名 add|drop|modify|change column 列名  列类型、约束 【first|after 字段名】;
+*/
+#①修改列名: 
+ALTER TABLE 表名 CHANGE COLUMN 旧列名 新列名 列的类型;
+
+#②修改列的类型或约束
+ALTER TABLE 表名 MODIFY COLUMN 列名  列类型、约束;
+
+#③添加新列
+ALTER TABLE 表名 ADD COLUMN 列名 列类型、约束; 
+
+#④删除列
+ALTER TABLE 表名 DROP COLUMN  列名;
+
+#⑤修改表名
+ALTER TABLE 表名 RENAME TO 新表名;
+
+
+
+#3.表的删除
+
+DROP TABLE IF EXISTS book_author;
+
+#通用的写法：
+DROP DATABASE IF EXISTS 旧库名;
+CREATE DATABASE 新库名;
+
+DROP TABLE IF EXISTS 旧表名;
+CREATE TABLE  表名();
+
+
+
+#4.表的复制
+
+#1.仅仅复制表的结构
+CREATE TABLE copy LIKE author;
+
+#2.复制表的结构+数据
+CREATE TABLE copy2 
+SELECT * FROM author;
+
+#只复制部分数据
+CREATE TABLE copy3
+SELECT id,au_name
+FROM author 
+WHERE nation='中国';
+
+#仅仅复制某些字段，不要数据
+CREATE TABLE copy4 
+SELECT id,au_name
+FROM author
+WHERE 0;
+</code></pre>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><pre class=" language-mysql"><code class="language-mysql">/*
+数值型：
+    整型
+    小数：
+        定点数
+        浮点数
+字符型：
+    较短的文本：char、varchar
+    较长的文本：text、blob（较长的二进制数据）
+
+日期型：
+*/
+
+
+#一、整型
+/*
+分类：
+tinyint、smallint、mediumint、int/integer、bigint
+1           2              3             4             8
+
+特点：
+① 如果不设置无符号还是有符号，默认是有符号，如果想设置无符号，需要在创建表的时候添加unsigned关键字
+② 如果插入的数值超出了整型的范围,会报out of range异常，并且插入临界值
+③ 如果不设置长度，会有默认的长度(要分清楚长度和范围的区别)
+   长度代表了显示的最大宽度，如果不够会用0在左边填充，但必须搭配zerofill使用，且默认为无符号的。
+*/
+
+
+#二、小数
+/*
+分类：
+1.浮点型
+float(M,D)
+double(M,D)
+2.定点型
+dec(M，D)
+decimal(M,D)
+
+特点：
+①
+M：整数部位+小数部位
+D：小数部位
+有了M、D，小数点前的为数也就确定了
+如果超过范围，则插入临界值
+
+②
+M和D都可以省略
+如果是decimal，则M默认为10，D默认为0
+如果是float和double，则会根据插入的数值的精度来决定精度
+
+③定点型的精确度较高，如果要求插入数值的精度较高如货币运算等则考虑使用
+
+原则：
+所选择的类型越简单越好，能保存数值的类型越小越好
+
+*/
+
+
+#三、字符型
+/*
+较短的文本：
+char
+varchar
+
+其他：
+binary和varbinary用于保存较短的二进制
+enum用于保存枚举
+set用于保存集合
+
+较长的文本：
+text
+blob(较大的二进制)
+
+特点：
+
+            写法             M的意思                             特点           空间的耗费        效率
+char      char(M)        最大的字符数，可以省略，默认为1     固定长度的字符          比较耗费        高
+varchar varchar(M)    最大的字符数，不可以省略           可变长度的字符        比较节省          低
+*/
+
+
+#四、日期型
+/*
+分类：
+date 只保存日期
+time 只保存时间
+year 只保存年
+
+datetime保存日期+时间
+timestamp保存日期+时间
+
+
+特点：
+             字节        范围               时区等的影响
+datetime       8        1000——9999          不受
+timestamp    4       1970-2038           受
+
+*/
 </code></pre>
 
                 
@@ -1773,19 +2557,19 @@ LIKE '%%' AND last_name LIKE '%%'
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+                <a href="/2021/06/02/%E9%94%81/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代理模式">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="锁">
                         
-                        <span class="card-title">代理模式</span>
+                        <span class="card-title">锁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            代理模式
+                            锁
                         
                     </div>
                     <div class="publish-info">
@@ -1810,19 +2594,19 @@ LIKE '%%' AND last_name LIKE '%%'
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E9%94%81/">
+                <a href="/2021/06/02/SpringBoot/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="锁">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Spring Boot">
                         
-                        <span class="card-title">锁</span>
+                        <span class="card-title">Spring Boot</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            锁
+                            Spring Boot
                         
                     </div>
                     <div class="publish-info">
@@ -1831,8 +2615,12 @@ LIKE '%%' AND last_name LIKE '%%'
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            han77
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring-Boot/" class="post-category">
+                                    Spring Boot
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -2036,7 +2824,7 @@ LIKE '%%' AND last_name LIKE '%%'
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">76.3k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             
