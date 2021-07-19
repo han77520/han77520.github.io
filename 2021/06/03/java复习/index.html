@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-08
+                    2021-07-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    27.4k
+                    28.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    118 分
+                    120 分
                 </div>
                 
 
@@ -2225,6 +2225,38 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </code></pre>
 <h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><p>NEW(新建)、RUNNABLE(就绪、运行)、 BLOCKED(阻塞) 、WAITING(一直等) 、TIMED_WAITING(等待一段时间) 、TERMINATED(死亡，终止)</p>
 <h2 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h2><h3 id="String-1"><a href="#String-1" class="headerlink" title="String"></a>String</h3><p>​        String的内存解析具体的看常用类那一章的PDF第十页</p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> <span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：返回字符串的长度： <span class="token keyword">return</span> value<span class="token punctuation">.</span>length
+ <span class="token keyword">char</span> <span class="token function">charAt</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">)</span>： 返回某索引处的字符<span class="token keyword">return</span> value<span class="token punctuation">[</span>index<span class="token punctuation">]</span>  <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：判断是否是空字符串：<span class="token keyword">return</span> value<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span>  String <span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：使用默认语言环境，将 String 中的所有字符转换为小写
+String <span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：使用默认语言环境，将 String 中的所有字符转换为大写
+String <span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：返回字符串的副本，忽略前导空白和尾部空白
+<span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span>：比较字符串的内容是否相同
+<span class="token keyword">boolean</span> <span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>String anotherString<span class="token punctuation">)</span>：与equals方法类似，忽略大小写
+String <span class="token function">concat</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span>：将指定字符串连接到此字符串的结尾。 等价于用“<span class="token operator">+</span>”  <span class="token keyword">int</span> <span class="token function">compareTo</span><span class="token punctuation">(</span>String anotherString<span class="token punctuation">)</span>：比较两个字符串的大小
+String <span class="token function">substring</span><span class="token punctuation">(</span><span class="token keyword">int</span> beginIndex<span class="token punctuation">)</span>：返回一个新的字符串，它是此字符串的从
+beginIndex开始截取到最后的一个子字符串。  String <span class="token function">substring</span><span class="token punctuation">(</span><span class="token keyword">int</span> beginIndex<span class="token punctuation">,</span> <span class="token keyword">int</span> endIndex<span class="token punctuation">)</span> ：返回一个新字符串，它是此字符串从beginIndex开始截取到<span class="token function">endIndex</span><span class="token punctuation">(</span>不包含<span class="token punctuation">)</span>的一个子字符串。
+   
+<span class="token keyword">boolean</span> <span class="token function">endsWith</span><span class="token punctuation">(</span>String suffix<span class="token punctuation">)</span>：测试此字符串是否以指定的后缀结束
+<span class="token keyword">boolean</span> <span class="token function">startsWith</span><span class="token punctuation">(</span>String prefix<span class="token punctuation">)</span>：测试此字符串是否以指定的前缀开始
+<span class="token keyword">boolean</span> <span class="token function">startsWith</span><span class="token punctuation">(</span>String prefix<span class="token punctuation">,</span> <span class="token keyword">int</span> toffset<span class="token punctuation">)</span>：测试此字符串从指定索引开始的子字符串是否以指定前缀开始
+   
+   
+<span class="token keyword">boolean</span> <span class="token function">contains</span><span class="token punctuation">(</span>CharSequence s<span class="token punctuation">)</span>：当且仅当此字符串包含指定的 <span class="token keyword">char</span> 值序列时，返回 <span class="token boolean">true</span>
+<span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span>：返回指定子字符串在此字符串中第一次出现处的索引
+<span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>String str<span class="token punctuation">,</span> <span class="token keyword">int</span> fromIndex<span class="token punctuation">)</span>：返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始
+<span class="token keyword">int</span> <span class="token function">lastIndexOf</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span>：返回指定子字符串在此字符串中最右边出现处的索引
+<span class="token keyword">int</span> <span class="token function">lastIndexOf</span><span class="token punctuation">(</span>String str<span class="token punctuation">,</span> <span class="token keyword">int</span> fromIndex<span class="token punctuation">)</span>：返回指定子字符串在此字符串中最后
+一次出现处的索引，从指定的索引开始反向搜索
+注：indexOf和lastIndexOf方法如果未找到都是返回<span class="token operator">-</span><span class="token number">1</span>
+   
+String <span class="token function">replace</span><span class="token punctuation">(</span><span class="token keyword">char</span> oldChar<span class="token punctuation">,</span> <span class="token keyword">char</span> newChar<span class="token punctuation">)</span>：返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。 
+String <span class="token function">replace</span><span class="token punctuation">(</span>CharSequence target<span class="token punctuation">,</span> CharSequence replacement<span class="token punctuation">)</span>：使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串。 
+String <span class="token function">replaceAll</span><span class="token punctuation">(</span>String regex<span class="token punctuation">,</span> String replacement<span class="token punctuation">)</span> ：使用给定的replacement 替换此字符串所有匹配给定的正则表达式的子字符串。
+String <span class="token function">replaceFirst</span><span class="token punctuation">(</span>String regex<span class="token punctuation">,</span> String replacement<span class="token punctuation">)</span> ：使用给定的replacement 替换此字符串匹配给定的正则表达式的第一个子字符串。
+   
+<span class="token keyword">boolean</span> <span class="token function">matches</span><span class="token punctuation">(</span>String regex<span class="token punctuation">)</span>：告知此字符串是否匹配给定的正则表达式。
+String<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">split</span><span class="token punctuation">(</span>String regex<span class="token punctuation">)</span>：根据给定正则表达式的匹配拆分此字符串。 
+String<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">split</span><span class="token punctuation">(</span>String regex<span class="token punctuation">,</span> <span class="token keyword">int</span> limit<span class="token punctuation">)</span>：根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，如果超过了，剩下的全部都放到最后一个元素中。
+</code></pre>
 <p>jdk8新增方法   </p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">join</span><span class="token punctuation">(</span>CharSequence delimiter<span class="token punctuation">,</span> CharSequence<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> elements<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
@@ -2925,7 +2957,7 @@ StringBuffer的常用方法：
 <p>3.开放定址</p>
 <p>4.公共溢出区</p>
 <h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><p>数组在存储多个数据方面的缺点：<br>    &gt;一旦初始化以后，其长度就不可以修改。<br>    &gt;数组中提供的方法非常有限，对于添加、删除、插入数据等操作，非常不便，效率不高。<br>    &gt;获取数组中实际元素的个数的需求，数组没有现成的属性或方法可用<br>    &gt;数组存储数据特点：有序、可重复。对于无序、不可重复的需求，不能满足。</p>
-<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+<h3 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
 size():获取添加的元素的个数;
 clear():清空集合元素;
 isEmpty():判断当前集合是否为空
@@ -3769,7 +3801,7 @@ UDP协议：
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h3><pre class=" language-java"><code class="language-java"><span class="token function">getFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>获取当前运行时类及其父类中声明为<span class="token keyword">public</span>访问权限的属性<span class="token punctuation">;</span>
+<h3 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="常用方法"></a>常用方法</h3><pre class=" language-java"><code class="language-java"><span class="token function">getFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>获取当前运行时类及其父类中声明为<span class="token keyword">public</span>访问权限的属性<span class="token punctuation">;</span>
 <span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>获取当前运行时类中声明的所有属性。（不包含父类中声明的属性）<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//1.权限修饰符,返回整数</span>
@@ -4607,19 +4639,19 @@ UDP协议：
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
+                <a href="/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代理模式">
                         
-                        <span class="card-title">Front-matter 选项详解</span>
+                        <span class="card-title">代理模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            配置
+                            代理模式
                         
                     </div>
                     <div class="publish-info">
@@ -4628,12 +4660,8 @@ UDP协议：
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
-                                    选项详解
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            han77
                             
                         </span>
                     </div>
@@ -4837,7 +4865,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">59.5k</span>&nbsp;字
+                class="white-color">64.5k</span>&nbsp;字
             
             
             
