@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    980
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    7 分
                 </div>
                 
 
@@ -564,7 +564,75 @@
 <p>1)菜单-&gt;虚拟机-&gt;设置-&gt;选项-&gt;共享文件夹-&gt;添加-&gt;在主机路径下添加windows下的文件路径即可,</p>
 <p>2)windows和centos共享目录可以读写文件了，两边会同步更新</p>
 <p>3)共享文件位置在centos的/mnt/hgfs/下</p>
-<h2 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3>
+<h2 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>linux的文件系统是采用级层式的树状目录结构，在此结构中的最上层是根目录“/”，然后在此目录下再创建其他的目录</p>
+<p>==<strong>在Linux世界里，一切皆文件</strong>==</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720054116.png"></p>
+<h3 id="目录结构的具体介绍"><a href="#目录结构的具体介绍" class="headerlink" title="目录结构的具体介绍"></a>目录结构的具体介绍</h3><ul>
+<li><p>/bin[<strong>重点</strong>]   ： 是Binary的缩写，这个目录存放这最经常使用的命令</p>
+</li>
+<li><p>/sbin  ： s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序</p>
+</li>
+<li><p>/home：存放普通用户的主目录，在Linux中内阁用户都有一个自己的目录，一般该目录名是以用户的账号命名的</p>
+</li>
+<li><p>/root[<strong>重点</strong>]：该目录为系统管理员，也称为超级权限者的用户主目录</p>
+</li>
+<li><p>/boot[<strong>重点</strong>]：存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件</p>
+</li>
+<li><p>/proc：这个目录是一个虚拟的目录，它是系统内存的映射，访问这个目录来获取系统信息，<strong>不要随意改动</strong></p>
+</li>
+<li><p>/srv：service的缩写，该目录存放一些服务启动后需要提取的数据，<strong>不要随意改动</strong></p>
+</li>
+<li><p>/sys：这是Linux2.6内核的一个很大变化，该目录下安装了2.6内核中新出现的一个文件系统，<strong>不要随意改动</strong></p>
+</li>
+<li><p>/tmp：这个目录是用来存放一些临时文件的.</p>
+</li>
+<li><p>/dev：类似于windows设备管理器，把所有的硬件用文件的形式存储</p>
+</li>
+<li><p>/media[<strong>重点</strong>]：Linux系统自动识别一些设备，例如U盘，光驱等，当识别后，Linux会把识别的设备挂载到这个目录下</p>
+</li>
+<li><p>/mnt[<strong>重点</strong>]：系统提供该目录是为了让用户临时挂载别文件系统的，我们可以将外部的存储挂载在 /mnt/ 上，然后进入该目录就可以查看里面的内容了。      例如 d:/myshare</p>
+</li>
+<li><p>/opt：这是给主机<strong>额外的安装软件</strong>所摆放的目录，如安装ORACLE数据库就可以放到该目录下</p>
+</li>
+<li><p>/user/local[<strong>重点</strong>]：这是另外一个给主机<strong>额外安装软件的安装目录</strong>。一般是通过编译源码方式安装的程序。</p>
+</li>
+<li><p>/var[**重点]**：这个目录存放这在不断扩充着的东西，习惯将经常被修改的目录放在这个目录下，包括各种日志文件。</p>
+</li>
+<li><p>/selinux[security-enhanced linux]360 ：SELinux是一种安全子系统，控制程序只能访问特定文件</p>
+</li>
+</ul>
+<h3 id="Linux目录总结"><a href="#Linux目录总结" class="headerlink" title="Linux目录总结"></a>Linux目录总结</h3><ul>
+<li>Linux的目录中有且只有一个根目录  /</li>
+<li>Linux的各个目录存放的内容是规划好的，不能乱放文件。</li>
+<li>Linux是以文件的形式管理设备，因此Linux系统，一切皆为文件</li>
+<li>Linux的各个文件目录下存放什么内容，要有一个清楚的认识。</li>
+<li>学习完后要有一颗Linux目录树</li>
+</ul>
+<h2 id="远程登录Linux系统"><a href="#远程登录Linux系统" class="headerlink" title="远程登录Linux系统"></a>远程登录Linux系统</h2><h3 id="为什么要远程登录Linux"><a href="#为什么要远程登录Linux" class="headerlink" title="为什么要远程登录Linux"></a>为什么要远程登录Linux</h3><p>公司再具体开发的时候，情况如下：</p>
+<ul>
+<li>Linux服务器是开发小组共享的</li>
+<li>正式上线的项目时运行在公网的。</li>
+<li>因此程序员需要远程登录到CentOS进行项目管理或者开发</li>
+<li>远程登录客户端有Xshell5，Xftp5</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720063313.png"></p>
+<h3 id="远程登录Linux-Xshell5"><a href="#远程登录Linux-Xshell5" class="headerlink" title="远程登录Linux-Xshell5"></a>远程登录Linux-Xshell5</h3><p>​    说明：Xshell是目前最好的远程登录到Linux操作的软件，流畅的速度并且完美解决了中文乱码的问题，是目前程序员首选的软件。</p>
+<p>​    Xshell[1]是一个强大的安全终端模拟软件，它支持SSH1,SSH2,以及MicrosoftWindows平台的TELNET协议。</p>
+<p>​    Xshell可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
+<p>​    特别说明：如果希望安装好XShell5就可以远程访问Linux系统的话，需要有一个前提，就是Linux启用了SSHD服务，<strong>该服务会监听22号端口</strong></p>
+<h3 id="安装XShell5并使用"><a href="#安装XShell5并使用" class="headerlink" title="安装XShell5并使用"></a>安装XShell5并使用</h3><h4 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h4><p>自己百度教程，傻瓜式安装</p>
+<h4 id="关键配置"><a href="#关键配置" class="headerlink" title="关键配置"></a>关键配置</h4><p>打开XShell5，按alt + o 弹出会话连接窗口，点击新建，名称和主机都选择CentOS的ip地址，协议为SSH，<strong>端口号一定要是22号</strong></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720070444.png"></p>
+<p><strong>XShel5远程登录到Linux后，就可以使用指令来操作Linux系统</strong></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720070526.png"></p>
+<h3 id="远程上传下载文件Xftp5"><a href="#远程上传下载文件Xftp5" class="headerlink" title="远程上传下载文件Xftp5"></a>远程上传下载文件Xftp5</h3><h4 id="XFtp5软件介绍"><a href="#XFtp5软件介绍" class="headerlink" title="XFtp5软件介绍"></a>XFtp5软件介绍</h4><p>​        是一个基于windows平台的功能强大的SFTP、FTP文件传输软件。使用了Xftp以后，windows用户能安全地在UNIX/Linux和WindowsPC之间传输文件</p>
+<h4 id="XFtp5软件的安装"><a href="#XFtp5软件的安装" class="headerlink" title="XFtp5软件的安装"></a>XFtp5软件的安装</h4><p>百度教程</p>
+<h4 id="Xftp5的配置和使用"><a href="#Xftp5的配置和使用" class="headerlink" title="Xftp5的配置和使用"></a>Xftp5的配置和使用</h4><p>打开XShell5，按alt + o 弹出会话连接窗口，点击新建，名称和主机都选择CentOS的ip地址，协议为SFTP，<strong>端口号一定要是22号</strong>，输入用户名密码点击连接即可</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720071725.png"></p>
+<p><img src="%5Cimages%5CQQ%E6%88%AA%E5%9B%BE20210720072142.png" alt="QQ截图20210720072142"></p>
+<h4 id="解决XFTP5中文乱码的问题"><a href="#解决XFTP5中文乱码的问题" class="headerlink" title="解决XFTP5中文乱码的问题"></a>解决XFTP5中文乱码的问题</h4><p>点击XShell5的   属性—&gt; 选项 —&gt;  编码改为utf-8</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720072517.png"></p>
+
                 
             </div>
             <hr/>
@@ -1335,7 +1403,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">64.5k</span>&nbsp;字
+                class="white-color">71.5k</span>&nbsp;字
             
             
             
