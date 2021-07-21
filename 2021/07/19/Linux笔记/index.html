@@ -30,8 +30,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-19
+                    2021-07-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    8.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    30 分
                 </div>
                 
 
@@ -517,27 +517,27 @@
 <p>5.计算机是一门”做中学”的学科,不是会了再做，而是做了才会.</p>
 <p>6.适当的囫囵吞枣</p>
 <p>7.Linux不是编程，重点是实际操作，各种常用指令要玩的溜</p>
-<h2 id="Linux入门"><a href="#Linux入门" class="headerlink" title="Linux入门"></a>Linux入门</h2><h3 id="Linux介绍"><a href="#Linux介绍" class="headerlink" title="Linux介绍"></a>Linux介绍</h3><p>Linux是一款操作系统，免费，开源，安全，高效，稳定，处理高并发非常强悍，现在很多企业级的项目都部署到Linux/Unix服务器运行</p>
+<h2 id="第一章-Linux入门"><a href="#第一章-Linux入门" class="headerlink" title="第一章 Linux入门"></a>第一章 Linux入门</h2><h3 id="1-1-Linux介绍"><a href="#1-1-Linux介绍" class="headerlink" title="1.1 Linux介绍"></a>1.1 Linux介绍</h3><p>Linux是一款操作系统，免费，开源，安全，高效，稳定，处理高并发非常强悍，现在很多企业级的项目都部署到Linux/Unix服务器运行</p>
 <p>Linux创始人 —&gt;  linux 林纳斯</p>
 <p>Linux吉祥物 —-&gt; 企鹅 Tux(晚礼服)</p>
 <p>Linux版本(就是对Linux内核进行了包装)：</p>
 <p>​      CentOSE    Redhat   Ubuntu   SUSE   红旗Linux</p>
-<h2 id="Linux基础篇"><a href="#Linux基础篇" class="headerlink" title="Linux基础篇"></a>Linux基础篇</h2><p>安装VM和CentOS</p>
-<h3 id="环境创建"><a href="#环境创建" class="headerlink" title="环境创建"></a>环境创建</h3><p>学习Linux需要一个环境，需要创建一个虚拟机，然后再虚拟机上安装一个Centos系统来学习</p>
+<h2 id="第二章-Linux基础篇"><a href="#第二章-Linux基础篇" class="headerlink" title="第二章 Linux基础篇"></a>第二章 Linux基础篇</h2><p>安装VM和CentOS</p>
+<h3 id="2-1-环境创建"><a href="#2-1-环境创建" class="headerlink" title="2.1 环境创建"></a>2.1 环境创建</h3><p>学习Linux需要一个环境，需要创建一个虚拟机，然后再虚拟机上安装一个Centos系统来学习</p>
 <ul>
 <li>安装virtual machine(百度教程)</li>
 <li>再安装Linux(CentOS)(百度)</li>
 </ul>
-<h3 id="windows、VM、CentOS的关系"><a href="#windows、VM、CentOS的关系" class="headerlink" title="windows、VM、CentOS的关系"></a>windows、VM、CentOS的关系</h3><ul>
+<h3 id="2-2-windows、VM、CentOS的关系"><a href="#2-2-windows、VM、CentOS的关系" class="headerlink" title="2.2 windows、VM、CentOS的关系"></a>2.2 windows、VM、CentOS的关系</h3><ul>
 <li>通过VM软件来创建一个虚拟机空间</li>
 <li>通过VM软件来在创建好的虚拟机空间上安装CentOS操作系统</li>
 </ul>
-<h3 id="CentOS安装中的注意点"><a href="#CentOS安装中的注意点" class="headerlink" title="CentOS安装中的注意点"></a>CentOS安装中的注意点</h3><p>==<strong>面试喜欢问</strong>==</p>
+<h3 id="2-3-CentOS安装中的注意点"><a href="#2-3-CentOS安装中的注意点" class="headerlink" title="2.3 CentOS安装中的注意点"></a>2.3 CentOS安装中的注意点</h3><p>==<strong>面试喜欢问</strong>==</p>
 <ol>
 <li><p>创建虚拟机空间</p>
 <p>这里在配置网络连接是，有三种方式要注意：</p>
 <p>①  桥连接：</p>
-<pre><code>    Linux可以和其他的系统通信，但是可能造成ip冲突
+<pre><code>Linux可以和其他的系统通信，但是可能造成ip冲突
 </code></pre>
 <p>② NAT(网络地址转换方式)：母机上会新生成一个ip地址，linux和新生成的ip地址关联，还可以访问外网，并且不会造成ip冲突</p>
 <p>③主机模式：Linux就是一个独立的主机，不能访问外网</p>
@@ -545,10 +545,10 @@
 </ol>
 <p>设置密码的时候一定要是复杂的，用密码生成器   <a target="_blank" rel="noopener" href="https://suijimimashengcheng.bmcx.com/">https://suijimimashengcheng.bmcx.com/</a></p>
 <p>swap分区，当内存不够用时可以暂时的替代内存，不能分配太多，一般是分配的物理内存的1.5 - 2 倍之间</p>
-<h3 id="CentOS的终端使用和联网"><a href="#CentOS的终端使用和联网" class="headerlink" title="CentOS的终端使用和联网"></a>CentOS的终端使用和联网</h3><p>1.终端的使用，点击鼠标右键，即可选择打开终端</p>
+<h3 id="2-4-CentOS的终端使用和联网"><a href="#2-4-CentOS的终端使用和联网" class="headerlink" title="2.4 CentOS的终端使用和联网"></a>2.4 CentOS的终端使用和联网</h3><p>1.终端的使用，点击鼠标右键，即可选择打开终端</p>
 <p>2.配置网络</p>
 <p>​       点击右上方的联网图标，选择启用eth0，即可成功连接网络</p>
-<h3 id="VMTools安装"><a href="#VMTools安装" class="headerlink" title="VMTools安装"></a>VMTools安装</h3><p>功能：Windows与CentOS实现共享文件夹的效果</p>
+<h3 id="2-5-VMTools安装"><a href="#2-5-VMTools安装" class="headerlink" title="2.5 VMTools安装"></a>2.5 VMTools安装</h3><p>功能：Windows与CentOS实现共享文件夹的效果</p>
 <p>​        可以直接粘贴命令在windows和centos系统之间</p>
 <p>​        可以设置windows和centos的共享文件夹 </p>
 <p><strong>安装步骤</strong></p>
@@ -564,10 +564,10 @@
 <p>1)菜单-&gt;虚拟机-&gt;设置-&gt;选项-&gt;共享文件夹-&gt;添加-&gt;在主机路径下添加windows下的文件路径即可,</p>
 <p>2)windows和centos共享目录可以读写文件了，两边会同步更新</p>
 <p>3)共享文件位置在centos的/mnt/hgfs/下</p>
-<h2 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>linux的文件系统是采用级层式的树状目录结构，在此结构中的最上层是根目录“/”，然后在此目录下再创建其他的目录</p>
+<h2 id="第三章-Linux目录结构"><a href="#第三章-Linux目录结构" class="headerlink" title="第三章 Linux目录结构"></a>第三章 Linux目录结构</h2><h3 id="3-1-基本介绍"><a href="#3-1-基本介绍" class="headerlink" title="3.1 基本介绍"></a>3.1 基本介绍</h3><p>linux的文件系统是采用级层式的树状目录结构，在此结构中的最上层是根目录“/”，然后在此目录下再创建其他的目录</p>
 <p>==<strong>在Linux世界里，一切皆文件</strong>==</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720054116.png"></p>
-<h3 id="目录结构的具体介绍"><a href="#目录结构的具体介绍" class="headerlink" title="目录结构的具体介绍"></a>目录结构的具体介绍</h3><ul>
+<h3 id="3-2-目录结构的具体介绍"><a href="#3-2-目录结构的具体介绍" class="headerlink" title="3.2 目录结构的具体介绍"></a>3.2 目录结构的具体介绍</h3><ul>
 <li><p>/bin[<strong>重点</strong>]   ： 是Binary的缩写，这个目录存放这最经常使用的命令</p>
 </li>
 <li><p>/sbin  ： s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序</p>
@@ -601,14 +601,14 @@
 <li><p>/selinux[security-enhanced linux]360 ：SELinux是一种安全子系统，控制程序只能访问特定文件</p>
 </li>
 </ul>
-<h3 id="Linux目录总结"><a href="#Linux目录总结" class="headerlink" title="Linux目录总结"></a>Linux目录总结</h3><ul>
+<h3 id="3-3-Linux目录总结"><a href="#3-3-Linux目录总结" class="headerlink" title="3.3 Linux目录总结"></a>3.3 Linux目录总结</h3><ul>
 <li>Linux的目录中有且只有一个根目录  /</li>
 <li>Linux的各个目录存放的内容是规划好的，不能乱放文件。</li>
 <li>Linux是以文件的形式管理设备，因此Linux系统，一切皆为文件</li>
 <li>Linux的各个文件目录下存放什么内容，要有一个清楚的认识。</li>
 <li>学习完后要有一颗Linux目录树</li>
 </ul>
-<h2 id="远程登录Linux系统"><a href="#远程登录Linux系统" class="headerlink" title="远程登录Linux系统"></a>远程登录Linux系统</h2><h3 id="为什么要远程登录Linux"><a href="#为什么要远程登录Linux" class="headerlink" title="为什么要远程登录Linux"></a>为什么要远程登录Linux</h3><p>公司再具体开发的时候，情况如下：</p>
+<h2 id="第四章-远程登录Linux系统"><a href="#第四章-远程登录Linux系统" class="headerlink" title="第四章 远程登录Linux系统"></a>第四章 远程登录Linux系统</h2><h3 id="4-1-为什么要远程登录Linux"><a href="#4-1-为什么要远程登录Linux" class="headerlink" title="4.1 为什么要远程登录Linux"></a>4.1 为什么要远程登录Linux</h3><p>公司再具体开发的时候，情况如下：</p>
 <ul>
 <li>Linux服务器是开发小组共享的</li>
 <li>正式上线的项目时运行在公网的。</li>
@@ -616,23 +616,974 @@
 <li>远程登录客户端有Xshell5，Xftp5</li>
 </ul>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720063313.png"></p>
-<h3 id="远程登录Linux-Xshell5"><a href="#远程登录Linux-Xshell5" class="headerlink" title="远程登录Linux-Xshell5"></a>远程登录Linux-Xshell5</h3><p>​    说明：Xshell是目前最好的远程登录到Linux操作的软件，流畅的速度并且完美解决了中文乱码的问题，是目前程序员首选的软件。</p>
+<h3 id="4-2-远程登录Linux-Xshell5"><a href="#4-2-远程登录Linux-Xshell5" class="headerlink" title="4.2 远程登录Linux-Xshell5"></a>4.2 远程登录Linux-Xshell5</h3><p>​    说明：Xshell是目前最好的远程登录到Linux操作的软件，流畅的速度并且完美解决了中文乱码的问题，是目前程序员首选的软件。</p>
 <p>​    Xshell[1]是一个强大的安全终端模拟软件，它支持SSH1,SSH2,以及MicrosoftWindows平台的TELNET协议。</p>
 <p>​    Xshell可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
 <p>​    特别说明：如果希望安装好XShell5就可以远程访问Linux系统的话，需要有一个前提，就是Linux启用了SSHD服务，<strong>该服务会监听22号端口</strong></p>
-<h3 id="安装XShell5并使用"><a href="#安装XShell5并使用" class="headerlink" title="安装XShell5并使用"></a>安装XShell5并使用</h3><h4 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h4><p>自己百度教程，傻瓜式安装</p>
-<h4 id="关键配置"><a href="#关键配置" class="headerlink" title="关键配置"></a>关键配置</h4><p>打开XShell5，按alt + o 弹出会话连接窗口，点击新建，名称和主机都选择CentOS的ip地址，协议为SSH，<strong>端口号一定要是22号</strong></p>
+<h3 id="4-3-安装XShell5并使用"><a href="#4-3-安装XShell5并使用" class="headerlink" title="4.3 安装XShell5并使用"></a>4.3 安装XShell5并使用</h3><h4 id="4-3-1-安装过程"><a href="#4-3-1-安装过程" class="headerlink" title="4.3.1 安装过程"></a>4.3.1 安装过程</h4><p>自己百度教程，傻瓜式安装</p>
+<h4 id="4-3-2-关键配置"><a href="#4-3-2-关键配置" class="headerlink" title="4.3.2 关键配置"></a>4.3.2 关键配置</h4><p>联网环境下，在CentOS中的终端中 输入 ifconfig 获取IP地址</p>
+<p>打开XShell5，按alt + o 弹出会话连接窗口，点击新建，名称和主机都选择CentOS的ip地址，协议为SSH，<strong>端口号一定要是22号</strong></p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720070444.png"></p>
 <p><strong>XShel5远程登录到Linux后，就可以使用指令来操作Linux系统</strong></p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720070526.png"></p>
-<h3 id="远程上传下载文件Xftp5"><a href="#远程上传下载文件Xftp5" class="headerlink" title="远程上传下载文件Xftp5"></a>远程上传下载文件Xftp5</h3><h4 id="XFtp5软件介绍"><a href="#XFtp5软件介绍" class="headerlink" title="XFtp5软件介绍"></a>XFtp5软件介绍</h4><p>​        是一个基于windows平台的功能强大的SFTP、FTP文件传输软件。使用了Xftp以后，windows用户能安全地在UNIX/Linux和WindowsPC之间传输文件</p>
-<h4 id="XFtp5软件的安装"><a href="#XFtp5软件的安装" class="headerlink" title="XFtp5软件的安装"></a>XFtp5软件的安装</h4><p>百度教程</p>
-<h4 id="Xftp5的配置和使用"><a href="#Xftp5的配置和使用" class="headerlink" title="Xftp5的配置和使用"></a>Xftp5的配置和使用</h4><p>打开XShell5，按alt + o 弹出会话连接窗口，点击新建，名称和主机都选择CentOS的ip地址，协议为SFTP，<strong>端口号一定要是22号</strong>，输入用户名密码点击连接即可</p>
+<h3 id="4-4远程上传下载文件Xftp5"><a href="#4-4远程上传下载文件Xftp5" class="headerlink" title="4.4远程上传下载文件Xftp5"></a>4.4远程上传下载文件Xftp5</h3><h4 id="4-4-1XFtp5软件介绍"><a href="#4-4-1XFtp5软件介绍" class="headerlink" title="4.4.1XFtp5软件介绍"></a>4.4.1XFtp5软件介绍</h4><p>​        是一个基于windows平台的功能强大的SFTP、FTP文件传输软件。使用了Xftp以后，windows用户能安全地在UNIX/Linux和WindowsPC之间传输文件</p>
+<h4 id="4-4-2-XFtp5软件的安装"><a href="#4-4-2-XFtp5软件的安装" class="headerlink" title="4.4.2 XFtp5软件的安装"></a>4.4.2 XFtp5软件的安装</h4><p>百度教程</p>
+<h4 id="4-4-3-Xftp5的配置和使用"><a href="#4-4-3-Xftp5的配置和使用" class="headerlink" title="4.4.3 Xftp5的配置和使用"></a>4.4.3 Xftp5的配置和使用</h4><p>打开XShell5，按alt + o 弹出会话连接窗口，点击新建，名称和主机都选择CentOS的ip地址，协议为SFTP，<strong>端口号一定要是22号</strong>，输入用户名密码点击连接即可</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720071725.png"></p>
 <p><img src="%5Cimages%5CQQ%E6%88%AA%E5%9B%BE20210720072142.png" alt="QQ截图20210720072142"></p>
-<h4 id="解决XFTP5中文乱码的问题"><a href="#解决XFTP5中文乱码的问题" class="headerlink" title="解决XFTP5中文乱码的问题"></a>解决XFTP5中文乱码的问题</h4><p>点击XShell5的   属性—&gt; 选项 —&gt;  编码改为utf-8</p>
+<h4 id="4-4-4解决XFTP5中文乱码的问题"><a href="#4-4-4解决XFTP5中文乱码的问题" class="headerlink" title="4.4.4解决XFTP5中文乱码的问题"></a>4.4.4解决XFTP5中文乱码的问题</h4><p>点击XShell5的   属性—&gt; 选项 —&gt;  编码改为utf-8</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720072517.png"></p>
-
+<h2 id="第五章-vi-和-vim-编辑器"><a href="#第五章-vi-和-vim-编辑器" class="headerlink" title="第五章 vi 和 vim 编辑器"></a>第五章 vi 和 vim 编辑器</h2><h3 id="5-1vi-和-vim-的基本介绍"><a href="#5-1vi-和-vim-的基本介绍" class="headerlink" title="5.1vi 和 vim 的基本介绍"></a>5.1vi 和 vim 的基本介绍</h3><p>​        所有的 Linux 系统都会内建 vi 文本编辑器。</p>
+<p>​        Vim 具有程序编辑的能力，可以看做是Vi 的增强版本，可以主动的以字体颜色辨别语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。</p>
+<h3 id="5-2vi-和-vim-的三种常见模式"><a href="#5-2vi-和-vim-的三种常见模式" class="headerlink" title="5.2vi 和 vim 的三种常见模式"></a>5.2vi 和 vim 的三种常见模式</h3><h4 id="5-2-1正常模式"><a href="#5-2-1正常模式" class="headerlink" title="5.2.1正常模式"></a>5.2.1正常模式</h4><p>​    在正常模式下，我们可以使用快捷键</p>
+<p> 以 vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中，你可以使用『上下左右』按键来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容， 也可以使用『复制、贴上』来处理你的文件数据。</p>
+<h4 id="5-2-2插入模式-编辑模式"><a href="#5-2-2插入模式-编辑模式" class="headerlink" title="5.2.2插入模式/编辑模式"></a>5.2.2插入模式/编辑模式</h4><p>​    在模式下，程序员可以输入内容。</p>
+<p>​    按下i, I, o, O, a, A, r, R 等任何一个字母之后才会进入编辑模式, 一般来说按i 即可</p>
+<h4 id="5-2-3命令模式"><a href="#5-2-3命令模式" class="headerlink" title="5.2.3命令模式"></a>5.2.3命令模式</h4><p>​    在这个模式当中， 可以提供你相关指令，完成读取、存盘、替换、离开 vim 、显示行号等的动作则是在此模式中达成的！</p>
+<h3 id="5-3快速入门案例"><a href="#5-3快速入门案例" class="headerlink" title="5.3快速入门案例"></a>5.3快速入门案例</h3><p>使用 vim 开发一个 Hello.java 程序, 保存.步骤说明和演示</p>
+<ul>
+<li>在Xshell5中  输入 vim hello.java 进入编辑模式</li>
+<li>在编辑模式中写内容  </li>
+<li>按ESC 退出编辑模式 到 命令模式   </li>
+<li>输入  :wq  保存并退出</li>
+</ul>
+<h3 id="5-4vi-和-vim-三种模式的相互转化"><a href="#5-4vi-和-vim-三种模式的相互转化" class="headerlink" title="5.4vi 和 vim 三种模式的相互转化"></a>5.4vi 和 vim 三种模式的相互转化</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720193838.png"></p>
+<p>步骤：  在命令行下，  输入   vim xxx  进入正常模式 ，输入 i或者a  进入编辑模式， 按ESC退出编辑模式</p>
+<p>​             又进入正常模式，输入 :  或者  /  进入命令模式，在命令行下输入 wq 表示保存并正常退出， 输入q 表示没有修改并退出     输入q!  表示 不保存并且强制退出 ， 或者按ESC退出命令模式</p>
+<h3 id="5-5快捷键的使用"><a href="#5-5快捷键的使用" class="headerlink" title="5.5快捷键的使用"></a>5.5快捷键的使用</h3><ul>
+<li><p>yy：拷贝当前行  , 数字n+yy ：拷贝光标所在行后面的n行，比如5yy，P ：在光标所在行下一行进行粘贴。</p>
+</li>
+<li><p>删除当前行 dd , 删除当前行向下的n 行 n+dd  比如  3dd   </p>
+</li>
+<li><p>在文件中查找某个单词  命 令行下输入   /关键字 ， 回车查找 , 输入 n 就是查找下一个。</p>
+</li>
+<li><p>设置文件的行号，取消文件的行号，命令行下 : set nu 和 :set nonu</p>
+</li>
+<li><p>正常模式下  输入G ，到文档最末行，输入 gg 到文档最首行</p>
+</li>
+<li><p>正常模式下，输入  u  为撤回</p>
+</li>
+<li><p>将光标移动到指定行</p>
+<ul>
+<li>显示行号   :set nu</li>
+<li>输入 指定行的 行号</li>
+<li>按快捷键 shift + g</li>
+</ul>
+</li>
+</ul>
+<p>如果需要其他快捷键自行百度</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210720201438.png"></p>
+<h2 id="第六章-开机、重启和用户操作"><a href="#第六章-开机、重启和用户操作" class="headerlink" title="第六章 开机、重启和用户操作"></a>第六章 开机、重启和用户操作</h2><h3 id="6-1关机-amp-重启命令"><a href="#6-1关机-amp-重启命令" class="headerlink" title="6.1关机&amp;重启命令"></a>6.1关机&amp;重启命令</h3><h4 id="6-1-1基本介绍"><a href="#6-1-1基本介绍" class="headerlink" title="6.1.1基本介绍"></a>6.1.1基本介绍</h4><p>shutdown:</p>
+<ul>
+<li>shutdown -h now  ： 表示立即关机</li>
+<li>shutdown -h 1：表示1分钟后关机</li>
+<li>shutdown -r now：立即重启</li>
+</ul>
+<p>halt</p>
+<p>​    直接使用，表示停机指令，等价于关机</p>
+<p>reboot：重启计算机</p>
+<p>sync：把内存的数据同步到磁盘</p>
+<p>==<strong>注意细节</strong>==： 当我们关机或者重启时，都应该先执行以下sync 指令，把内存的数据写入磁盘，防止数据丢失。</p>
+<h3 id="6-2用户登录和注销"><a href="#6-2用户登录和注销" class="headerlink" title="6.2用户登录和注销"></a>6.2用户登录和注销</h3><h4 id="6-2-1基本介绍"><a href="#6-2-1基本介绍" class="headerlink" title="6.2.1基本介绍"></a>6.2.1基本介绍</h4><ol>
+<li><p> 登录时尽量少用root 帐号登录，因为它是系统管理员，最大的权限，避免操作失误。可以利用普通用户登录，登录后再用 ”su - 用户名“ 命令来切换成系统管理员身份.</p>
+</li>
+<li><p>在Xshell5中的提示符下输入 logout 即可退出登录</p>
+</li>
+</ol>
+<h3 id="6-3用户管理"><a href="#6-3用户管理" class="headerlink" title="6.3用户管理"></a>6.3用户管理</h3><h4 id="6-3-1基本介绍"><a href="#6-3-1基本介绍" class="headerlink" title="6.3.1基本介绍"></a>6.3.1基本介绍</h4><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721032527.png"></p>
+<ul>
+<li><p>Linux 系统是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</p>
+</li>
+<li><p>Linux 的用户需要至少要属于一个组</p>
+</li>
+</ul>
+<h3 id="6-4添加用户"><a href="#6-4添加用户" class="headerlink" title="6.4添加用户"></a>6.4添加用户</h3><h4 id="6-4-1基本语法"><a href="#6-4-1基本语法" class="headerlink" title="6.4.1基本语法"></a>6.4.1基本语法</h4><p>useradd  [选项]   用户名</p>
+<p>默认创建家目录名与用户名一样的目录，把此用户放入该目录下面</p>
+<h4 id="6-4-2实例"><a href="#6-4-2实例" class="headerlink" title="6.4.2实例"></a>6.4.2实例</h4><ul>
+<li>添加用户  xm</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721033058.png"></p>
+<p>【补充: cd 表示change directory, 切换目录】</p>
+<ul>
+<li>useradd -d 指定目录 ：将用户添加到指定的目录中</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721033730.png"></p>
+<h3 id="6-5给用户指定或者修改密码"><a href="#6-5给用户指定或者修改密码" class="headerlink" title="6.5给用户指定或者修改密码"></a>6.5给用户指定或者修改密码</h3><p>基本语法</p>
+<p>passwd  用户名</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721034249.png"></p>
+<p>工作中必须用复杂的密码，要不然会被人攻击</p>
+<p>输入密码的时候界面是看不到的</p>
+<h3 id="6-6删除用户"><a href="#6-6删除用户" class="headerlink" title="6.6删除用户"></a>6.6删除用户</h3><h4 id="6-6-1基本语法"><a href="#6-6-1基本语法" class="headerlink" title="6.6.1基本语法"></a>6.6.1基本语法</h4><p>userdel  用户名</p>
+<h4 id="6-6-2应用案例"><a href="#6-6-2应用案例" class="headerlink" title="6.6.2应用案例"></a>6.6.2应用案例</h4><ul>
+<li>删除用户xm，但是要保留家目录  ：  userdel  xm</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721034831.png"></p>
+<ul>
+<li>删除用户xh 以及用户主目录： userdel -r xh</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721034723.png"></p>
+<p><strong>在删除用户时，我们一般不会将家目录删除。</strong></p>
+<h3 id="6-7查询用户信息"><a href="#6-7查询用户信息" class="headerlink" title="6.7查询用户信息"></a>6.7查询用户信息</h3><p>基本语法：id 用户名</p>
+<p>查询用户 root  和  sg </p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721035113.png"></p>
+<h3 id="6-8切换用户"><a href="#6-8切换用户" class="headerlink" title="6.8切换用户"></a>6.8切换用户</h3><p>介绍：</p>
+<p>​    在操作Linux 中，如果当前用户的权限不够，可以通过 su - 指令，切换到高权限用户，比如root</p>
+<p>语法：su – 切换用户名</p>
+<p>  从权限高的用户切换到权限低的用户，不需要输入密码，反之需要。</p>
+<p>  当需要返回到原来用户时，使用exit 指令</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721040657.png"></p>
+<p>低级用户切换到root用户需要输入密码</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721040803.png"></p>
+<p>whomi ：查看当前用户名</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721040925.png"></p>
+<h3 id="6-9用户组"><a href="#6-9用户组" class="headerlink" title="6.9用户组"></a>6.9用户组</h3><p>类似于角色，系统可以对有共性的多个用户进行统一的管理。</p>
+<h4 id="6-9-1增加组"><a href="#6-9-1增加组" class="headerlink" title="6.9.1增加组"></a>6.9.1增加组</h4><p>groupadd 组名</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721041336.png"></p>
+<h4 id="6-9-2删除组"><a href="#6-9-2删除组" class="headerlink" title="6.9.2删除组"></a>6.9.2删除组</h4><p>语法：groupdel 组名</p>
+<p><strong>案例</strong></p>
+<p>增加一个用户 zwj, 直接将他指定到 wudang</p>
+<p>#groupadd wudang</p>
+<p>#useradd -g wudang zwj</p>
+<p>#id zwj</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721041851.png"></p>
+<h4 id="6-9-3修改用户的组"><a href="#6-9-3修改用户的组" class="headerlink" title="6.9.3修改用户的组"></a>6.9.3修改用户的组</h4><p>指令：usermod -g 用户组 用户名</p>
+<p>案例：将zwj 用户修改到shaolin组</p>
+<p>#groupadd shaolin</p>
+<p>#usermod -g shaolin zwj</p>
+<p>#id zwj</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721042545.png"></p>
+<h3 id="6-10文件"><a href="#6-10文件" class="headerlink" title="6.10文件"></a>6.10文件</h3><p>这里的笔记有问题，因为版本和老师的不一样，找不到自己创建的组和用户的信息</p>
+<p><strong>/etc/passwd 文件</strong></p>
+<p>用户（user）的配置文件，记录用户的各种信息</p>
+<p>每行的含义：用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721043830.png"></p>
+<p><strong>/etc/shadow 文件</strong></p>
+<p>口令的配置文件</p>
+<p>每行的含义：登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动<br>时间:失效时间:标志</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721043750.png"></p>
+<p><strong>/etc/group 文件</strong></p>
+<p>组(group)的配置文件，记录Linux 包含的组的信息<br>每行含义：组名:口令:组标识号:组内用户列表</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721043722.png"></p>
+<h2 id="第七章-实用指令"><a href="#第七章-实用指令" class="headerlink" title="第七章 实用指令"></a>第七章 实用指令</h2><h3 id="7-1指定运行级别"><a href="#7-1指定运行级别" class="headerlink" title="7.1指定运行级别"></a>7.1指定运行级别</h3><p>运行级别说明：<br>0 ：关机<br>1 ：单用户【找回丢失密码】<br>2：多用户状态没有网络服务<br>3：多用户状态有网络服务<br>4：系统未使用保留给用户<br>5：图形界面<br>6：系统重启<br>常用运行级别是3 和5 ，要修改默认的运行级别可改文件<br>/etc/inittab 的  id:5:initdefault:这一行中的数字进入编辑模式改为对应的运行级别就行了</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721044416.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721045107.png"></p>
+<h3 id="7-2-切换到指定运行级别的指令"><a href="#7-2-切换到指定运行级别的指令" class="headerlink" title="7.2 切换到指定运行级别的指令"></a>7.2 切换到指定运行级别的指令</h3><p>基本语法：init [012356]</p>
+<p>实例：通过init 来切换不同的运行级别，比如动 5-&gt;3 ， 然后关机</p>
+<p>​          </p>
+<h4 id="7-2-1-面试题"><a href="#7-2-1-面试题" class="headerlink" title="7.2.1 面试题"></a>7.2.1 面试题</h4><p>如何找回root 密码，如果我们不小心，忘记root 密码，怎么找回。</p>
+<p>思路：进入到单用户模式，然后修改 root 密码，因为单用户模式， root不需要密码就可以登录</p>
+<p>开机 -&gt; 在引导时输入 回车键 -&gt;  看到一个界面输入 e  -&gt;  看到一个新的界面，选中第二行（编辑内核）在输入 e-&gt; 在这行最后输入空格1 ,再输入 回车键-&gt;再次输入b ,这时就会进入到单用户模式。这时，我们就进入到单用户模式，使用passwd 指令来修改root 密码。</p>
+<h3 id="7-3-帮助指令"><a href="#7-3-帮助指令" class="headerlink" title="7.3 帮助指令"></a>7.3 帮助指令</h3><p>当我们对某个指令不熟悉时，我们可以使用Linux 提供的帮助指令来了解这个指令的使用方法。</p>
+<h4 id="7-3-1-man-获得帮助信息"><a href="#7-3-1-man-获得帮助信息" class="headerlink" title="7.3.1 man 获得帮助信息"></a>7.3.1 man 获得帮助信息</h4><p>语法：man [命令或配置文件]（功能描述：获得帮助信息）比如   man  ls</p>
+<p>（有问题问男人，哈哈哈）</p>
+<h4 id="7-3-2-help指令"><a href="#7-3-2-help指令" class="headerlink" title="7.3.2 help指令"></a>7.3.2 help指令</h4><p>语法；help 命令 （功能描述：获得shell 内置命令的帮助信息）例如  help  cd</p>
+<p>有不会的百度，快捷有效</p>
+<h3 id="7-4文件目录类"><a href="#7-4文件目录类" class="headerlink" title="7.4文件目录类"></a>7.4文件目录类</h3><p>以下涉及到目录的都可以有<strong>相对路径和绝对路径</strong></p>
+<ul>
+<li><strong>pwd 指令</strong>：<ul>
+<li>语法：pwd  </li>
+<li>功能描述：显示当前工作目录的绝对路径</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>ls指令</strong><ul>
+<li>语法： ls    [选项]     [目录或者文件]</li>
+<li>功能：查看当前目录所有的内容信息，或者文件的详细信息</li>
+<li>常用选项：<ul>
+<li>-a：显示当前目录所有的文件和目录，包括隐藏的。</li>
+<li>-l：以列表的方式显示信息</li>
+<li>-h ：将文件大小转成人可以看懂的  比如  2M   3G</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>cd 指令</strong></p>
+<ul>
+<li><p>基本语法：cd[参数] </p>
+</li>
+<li><p>功能描述：切换到指定目录(必须是绝对路径)</p>
+</li>
+<li><p>常用参数</p>
+<ul>
+<li>cd~  或者 cd ：回到自己的家目录</li>
+<li>cd.. ：回到当前目录的上一级目录</li>
+<li>绝对路径：从跟目录开始定位到要去的目录</li>
+<li>相对路径：从当前目录开始定位到要去的目录</li>
+</ul>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>案例1：使用绝对路径切换到root目录</p>
+<p>cd /root</p>
+</li>
+<li><p>案例2：使用相对路径到/root 目录</p>
+<p>这里我们需要知道该用户目录在哪个目录下，才能写出这个指令，假设在 /home/whw</p>
+<p>cd ../../</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721092714.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>mkdir指令</strong></p>
+<ul>
+<li><p>作用：mkdir 指令用于创建目录(make directory)</p>
+</li>
+<li><p>语法：mkdir [选项]  要创建的目录的绝对路径或者相对路径</p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li> -p ： 创建多级目录</li>
+</ul>
+</li>
+<li><p>案例：</p>
+<ul>
+<li><p>案例1：在 home  文件夹下创建一个 whw 目录</p>
+<p>​     mkdir /home/whw</p>
+<p>​     或者 在home 目录下  mkdir whw</p>
+</li>
+<li><p>案例2 ：创建多级目录  /home/animal/tiger</p>
+<p>​    如果希望创建多级目录  带上 -p</p>
+<p>​     mkdir -p /home/animal/tiger</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>rmdir指令</strong><ul>
+<li>介绍：rmdir 指令删除==<strong>空目录</strong>==</li>
+<li>基本语法：rmdir [选项]  要删除的空目录</li>
+<li>实例<ul>
+<li>案例1：删除一个目录  /home/dog</li>
+</ul>
+</li>
+<li>使用细节<ul>
+<li>rmdir删除的是空母了，如果目录下有内容时无法删除！！！</li>
+<li>rm  -rf :  删除非空目录<ul>
+<li>用法：rm -rf  [要删除目录的绝对路径或者相对路径]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>touch 指令</strong></p>
+<ul>
+<li><p>作用：创建空文件</p>
+</li>
+<li><p>语法：touch 文件名称</p>
+</li>
+<li><p>应用实例：</p>
+<ul>
+<li><p>案例1：创建一个空文件 hi.txt</p>
+<p>touch hi.txt</p>
+</li>
+<li><p>案例2：创建多个空文件 ok.txt   ok1.txt</p>
+<p>touch  ok.txt  ok1.txt</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>==<strong>cp指令[重要]</strong>==</p>
+<ul>
+<li><p>作用：cp指令拷贝文件到指定目录</p>
+</li>
+<li><p>语法：cp [选项]   source(拷贝的东西)   dest(拷贝到的地方)</p>
+</li>
+<li><p>常用选项</p>
+<ul>
+<li>  -r  : 递归复制整个文件夹</li>
+</ul>
+</li>
+<li><p>案例</p>
+<ul>
+<li><p>案例1：将 /home/ok,txt 拷贝到  /home/whw 目录下</p>
+<p>   cp ok.txt /home/whw</p>
+</li>
+<li><p>案例2：递归复制整个文件夹</p>
+<ul>
+<li><p>举例2.1：将 /home/whw 整个whw文件夹拷贝到  /home/zwj 目录下(当前是在  /home  下)</p>
+<p> cp  -r  whw/  zwj/</p>
+<p> <strong>注意点</strong>：一定要留心当前的目录位置，然后要准确的定位源目录和目标目录</p>
+</li>
+<li><p>举例2.2：将 /home/whw 整个whw文件夹<strong>再次</strong>拷贝到  /home/zwj 目录下</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721101454.png"></p>
+<p> \cp  -r  whw/  zwj/   </p>
+<p> 该指令会强制覆盖原来的文件，不会再提示是否覆盖的信息</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>rm指令</strong></p>
+<ul>
+<li><p>作用：删除文件或目录</p>
+</li>
+<li><p>语法：rm [选项]  要删除的文件或目录</p>
+</li>
+<li><p>常用选项</p>
+<ul>
+<li>-r ：递归删除整个文件夹</li>
+<li>-f :   强制删除不提示</li>
+</ul>
+</li>
+<li><p>实案例：</p>
+<ul>
+<li><p>案例1：将 /home/ok.txt 删除</p>
+<p>在文件所在目录下输入    rm ok.txt</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721102332.png"></p>
+</li>
+<li><p>案例2：递归删除整个文件夹 /home/whw</p>
+<p>rm -r -f  whw/</p>
+<p>-r  和  -f  可以写成 -rf     —-&gt;    rm -rf whw/</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>mv指令</strong></p>
+<ul>
+<li><p>作用：移动文件与目录   或者  重命名</p>
+</li>
+<li><p>基本语法</p>
+<ul>
+<li>mv oldNameFile newNameFile   ：重命名</li>
+<li>mv /temp/moveFile /targetFolder  :  移动文件</li>
+</ul>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li>案例1：将 /home/hi.txt 文件 重新命名为 pig.txt</li>
+</ul>
+<p>​           mv hi.txt pig.txt</p>
+<ul>
+<li><p>案例2:   将 当前目录下的 pig.txt  文件 移动到 /root/ 目录下</p>
+<p>  mv pig.txt  /root/</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>cat指令</strong></p>
+<ul>
+<li><p>作用：查看文件内容，以==<strong>只读</strong>==的方式打开</p>
+</li>
+<li><p>基本语法：cat [选项] 要查看的文件</p>
+</li>
+<li><p>常用选项</p>
+<ul>
+<li>-n ： 显示符号</li>
+</ul>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>案例1:  /etc/profile 文件内容，并显示符号   </p>
+<p> cat -n /etc/profile</p>
+</li>
+</ul>
+</li>
+<li><p>使用细节：</p>
+<ul>
+<li>cat 只能浏览文件，而不能修改文件，为了浏览方便，一般会带上 管道命令 | more</li>
+<li>cat 文件名 | more     表示分页浏览  具体操作看下一个</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>more指令</strong></p>
+<ul>
+<li><p>作用：more 指令是一个基于VI 编辑器的文本过滤器，它以全屏幕的方式按页显示文本文件的内容。more<br>指令中内置了若干快捷键</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空格键(space)</td>
+<td>代表向下翻一页</td>
+</tr>
+<tr>
+<td>回车键(Enter)</td>
+<td>代表向下一行</td>
+</tr>
+<tr>
+<td>q</td>
+<td>代表立刻离开more，不再显示该文件内容</td>
+</tr>
+<tr>
+<td>Ctrl + f</td>
+<td>向下翻滚一屏</td>
+</tr>
+<tr>
+<td>Ctrl + b</td>
+<td>返回上一屏</td>
+</tr>
+<tr>
+<td>=</td>
+<td>显示当前行号</td>
+</tr>
+<tr>
+<td>f</td>
+<td>输出文件名和当前行的行号</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>基本语法：more 要查看的文件</p>
+</li>
+<li><p>操作说明：</p>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>案例1：采用more查看文件 /etc/profile</p>
+<p>more   /etc/profile</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>less指令</strong></p>
+<ul>
+<li><p>作用：</p>
+<p>​      less 指令用来分屏查看文件内容，它的功能与more 指令类似，但是比more 指令更加强大，支持<br>各种显示终端。less 指令在显示文件内容时，并不是一次将整个文件加载之后才显示，而是根据显示<br>需要加载内容，对于显示大型文件具有较高的效率。</p>
+</li>
+<li><p>语法：</p>
+<p>​    less 要查看的文件</p>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li>   实例1：采用less 查看一个大文件文件 /opt/金庸-射雕英雄传txt 精校版.txt</li>
+</ul>
+<pre><code>less  /opt/金庸-射雕英雄传txt 精校版.txt
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>&gt; 指令   和   &gt;&gt; 指令</strong></p>
+<ul>
+<li><p>作用： &gt; 指令 :   输出重定向 ，会将原来的文件的内容覆盖</p>
+<p>​          &gt;&gt; 指令 ： 追加， 不会覆盖原来文件的内容，而是追加到文件的尾部。</p>
+</li>
+<li><p>基本语法</p>
+<ul>
+<li><strong>ls -a &gt;文件</strong> <ul>
+<li><p>示例：ls -a &gt; a.txt</p>
+</li>
+<li><p>功能描述：列表的内容写入文件a.txt 中，如果没有a.txt就创建，如果有就覆盖</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721113802.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>ls -a &gt;&gt;文件</strong></li>
+<li>实例 ： ls -a &gt;&gt; b.txt</li>
+<li>功能描述：列表的内容追加到文件b.txt 的末尾，如果没有b.txt 就创建一个<img src="/images/QQ%E6%88%AA%E5%9B%BE20210721114042.png"></li>
+</ul>
+<ul>
+<li><strong>cat 文件1 &gt; 文件2</strong></li>
+<li>示例：cat /etc/profile &gt; c.txt </li>
+<li>功能描述：将文件1 的内容覆盖到文件2<img src="/images/QQ%E6%88%AA%E5%9B%BE20210721114432.png"></li>
+</ul>
+<ul>
+<li><p><strong>echo “内容”</strong></p>
+<ul>
+<li><p>示例：echo “内容” &gt;&gt; 文件名</p>
+<ul>
+<li><p>案例1：将 “hello world”  覆盖写入到  a.txt中</p>
+<p>echo “hello world” &gt; a.txt</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721115532.png"></p>
+</li>
+<li><p>案例2：将  “hello world”  追加写入到  b.txt中</p>
+<p>echo “hlllo wordl” &gt;&gt; b.txt</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721115137.png"></p>
+</li>
+</ul>
+</li>
+<li><p>功能描述：将 指定内容 添加到  指定文件中</p>
+</li>
+<li><p>案例：</p>
+<ul>
+<li><p>案例1：将 /home 目录下的文件列表 写入到 /home/info.txt 中</p>
+<p> ls  -a  /home/   &gt;   /home/info.txt</p>
+</li>
+<li><p>案例2：将当前日历信息 追加到 /home/mycal 文件中 [提示 cal ]</p>
+<p>cal &gt;&gt;  /home/mycal</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>echo 指令</strong></p>
+<ul>
+<li><p>作用：输出内容到控制台</p>
+</li>
+<li><p>语法： </p>
+<ul>
+<li>echo  [选项] [输出内容]</li>
+</ul>
+</li>
+<li><p>应用实例：</p>
+<ul>
+<li><p>案例1：使用echo 指令输出环境变量,输出当前的环境路径</p>
+<pre><code>  echo  $PATH
+</code></pre>
+<p> 结果为：/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin</p>
+</li>
+<li><p>案例2：使用echo 指令输出 hello,world!</p>
+<pre><code> echo  hello
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>head 指令</strong></p>
+<ul>
+<li><p>作用：head 用于显示文件的<strong>开头部分内容</strong>，默认情况下head 指令显示文件的前10 行内容</p>
+</li>
+<li><p>语法： head   文件 </p>
+</li>
+<li><p>功能描述：</p>
+<ul>
+<li>head  文件：查看文件头10行内容</li>
+<li>head -n  5   文件： 查看文件头5行内容，可以是任意数字</li>
+</ul>
+</li>
+<li><p>应用实例：</p>
+<ul>
+<li><p>案例1：查看   /etc/profile   的前面5行代码</p>
+<p>head -n  5   /etc/profile</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>tail 指令</strong></p>
+<ul>
+<li><p>tail 用于输出文件中<strong>尾部的内容</strong>，默认情况下tail 指令显示文件的后10 行内容。</p>
+</li>
+<li><p>基本语法:</p>
+<ul>
+<li>tail   文件   ：产查看文件尾部10行内容</li>
+<li>tail -n  5 文件： 查看文件尾部5行内容，可以是任意数字</li>
+<li>tail -f    文件  ： 实时追踪该文档的所有更新，工作经常使用</li>
+</ul>
+</li>
+<li><p>应用案例</p>
+<ul>
+<li><p>案例1：查看/etc/profile 最后5 行的代码</p>
+<p>tail -n 5 /etc/profile</p>
+</li>
+<li><p>案例2: 实时监控 mydate.txt , 当文件有变化时， 实时更新其中的内容</p>
+<p>tail  -f   mydate.txt</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>ln 指令</strong></p>
+<ul>
+<li><p>软链接也叫符号链接，类似于windows 里的快捷方式，主要存放了链接其他文件的路径</p>
+</li>
+<li><p>语法：</p>
+<p>​    ln -s [原文件或目录] [软链接名]</p>
+</li>
+<li><p>功能描述：</p>
+<pre><code> 给原文件创建一个软连接
+</code></pre>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>案例1:   在/home 目录下创建一个软连接 linkToRoot，连接到 /root 目录</p>
+<p>  in  -s  /root  LinkToRoot</p>
+<p>再输入  cd   LinkToRoot/     会<strong>映射到</strong>   /root  目录下 ，但是它本身的位置是不变的，输入pwd还是显示在 /home 下</p>
+</li>
+<li><p>案例2 :  删除软连接 LinkToRoot</p>
+<p>  rm -rf  LinkToRoot</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>history 指令</strong></p>
+<ul>
+<li><p>查看已经执行过历史命令,也可以执行历史指令</p>
+</li>
+<li><p>语法：</p>
+<p>   history </p>
+</li>
+<li><p>功能描述</p>
+<p>  查看已经执行过的历史命令</p>
+</li>
+<li><p>案例</p>
+<ul>
+<li><p>案例1：显示最近使用过的10 个指令。</p>
+<p>  history 10</p>
+</li>
+<li><p>案例2：执行历史编号为5的指令   只需要输入   !5    即可</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-5-时间日期类"><a href="#7-5-时间日期类" class="headerlink" title="7.5 时间日期类"></a>7.5 时间日期类</h3><ul>
+<li>date 指令-显示当前日期<ul>
+<li>基本语法 ：<ul>
+<li>date    显示当前时间</li>
+<li>date  “+ %Y”   显示当前年份</li>
+<li>date  “+ %m”  显示当前月份</li>
+<li>date  “+ %d”   显示当前是哪一天</li>
+<li>date  “+ %Y-%m-%d  %H : %M : %S”  显示年月日时分秒</li>
+</ul>
+</li>
+<li>案例<ul>
+<li>案例1：显示当前时间信息     date </li>
+<li>案例2 :  显示当前年月日       date  “+%Y”</li>
+<li>案例3 ：显示年月日时分秒  date  “+ %Y-%m-%d  %H : %M : %S”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>date指令— 设置日期</strong></p>
+<ul>
+<li><p>基本语法：</p>
+<p>  date   -s  子符串时间</p>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>案例1: 设置系统当前时间 ， 比如设置成 2018-10-10 11:22:22</p>
+<p>  date -s “2021-7-21 11:22:22”    ==<strong>意外发现：Ctrl + Insert 复制内容</strong>==</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>cal 指令</p>
+<ul>
+<li><p>查看日历指令</p>
+</li>
+<li><p>语法：cal [选项]   </p>
+</li>
+<li><p>功能描述：</p>
+<ul>
+<li>不加选项，就显示本月日历</li>
+<li>加选项  2020   就显示一整年的日历   也可以是2021  。。。。。</li>
+</ul>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>案例1：显示当前日历     输入     cal     即可</p>
+</li>
+<li><p>案例2：显示2020 年日历</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721150157.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-6-搜索查找类"><a href="#7-6-搜索查找类" class="headerlink" title="7.6 搜索查找类"></a>7.6 搜索查找类</h3><ul>
+<li><p><strong>find 指令</strong></p>
+<ul>
+<li><p>作用：find 指令将从指定目录向下递归地遍历其各个子目录，将满足条件的文件或者目录显示在终端。</p>
+</li>
+<li><p>语法：</p>
+<p>   find   [搜索范围]   [选项]</p>
+</li>
+<li><p>选项说明：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-name&lt;查询方式&gt;</td>
+<td>按照指定文件名的查找模式查找文件</td>
+</tr>
+<tr>
+<td>-user&lt;用户名&gt;</td>
+<td>查找属于指定用户名的所有文件</td>
+</tr>
+<tr>
+<td>-size&lt;文件大小&gt;</td>
+<td>按照指定的文件大小查找文件</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>应用实例：</p>
+<ul>
+<li><p>案例1：按文件名：根据名称查找/home 目录下的hello.txt 文件</p>
+<p>​            find  /home  -name  a.txt</p>
+</li>
+<li><p>案例2：按拥有者：查找/opt 目录下，用户名称为 root的文件</p>
+<pre><code>       find /opt -user root
+</code></pre>
+</li>
+<li><p>案例3：查找整个linux 系统下大于20m 的文件（+n 表示大于， -n表示小于 ，n表示 等于）</p>
+<p>​           find /  size  +20M</p>
+</li>
+<li><p>案例4： 查找所有目录下的所有以txt结尾的文件</p>
+<p>​            find  /   -name  *.txt</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>locate 指令</strong></p>
+<ul>
+<li><p>介绍：</p>
+<p>​    locaate 指令可以快速定位文件路径。locate 指令利用事先建立的系统中所有文件名称及路径的locate 数据库实现快速定位给定的文件。Locate 指令无需遍历整个文件系统，查询速度较快。为了保证查询结果的准确度，管理员必须定期更新locate 时刻。</p>
+</li>
+<li><p>基本语法：</p>
+<p>​    locate   搜索文件</p>
+</li>
+<li><p>特别说明:</p>
+<p>​    由于locate指令基于数据库进行查询，所以第一次运行前，必须使用 ==<strong>updatedb</strong>== 指令创建locate数据库</p>
+</li>
+<li><p>应用实例</p>
+<p>   案例1：请使用locate 指令快速定位 hello.txt 文件所在目录</p>
+<p>​            首先    updatedb    </p>
+<p>​            其次    locate a.txt</p>
+<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20210721155306.png"></p>
+<p>​    ==<strong>查找的是以   a.txt  结尾的文件</strong>==</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>grep 指令和 管道符号 |</strong></p>
+<ul>
+<li><p>作用：</p>
+<p>​    grep 过滤查找 ， ==<strong>管道符 “|”</strong>==，表示将前一个命令的处理结果输出传递给后面的命令处理。</p>
+</li>
+<li><p>语法：</p>
+<p>​    grep  [选项]  查找内容   源文件</p>
+</li>
+<li><p>常用选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-n</td>
+<td>显示匹配行及行号</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>忽略字母大小写</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>应用实例：</p>
+<ul>
+<li><p>案例1：请在 hello.txt 文件中，查找 “yes” (不区分大小写)所在行，并且显示行号</p>
+<pre><code>     cat hello.txt  |  grep   -ni  yes  或者     gerp -ni  /home/hello.txt
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>​           <strong>重点关注 管道符  |</strong></p>
+<h3 id="7-7-压缩和解压类"><a href="#7-7-压缩和解压类" class="headerlink" title="7.7 压缩和解压类"></a>7.7 压缩和解压类</h3><ul>
+<li><p><strong>gzip/gunzip 指令</strong></p>
+<ul>
+<li><p>作用：</p>
+<p>​    gzip 用于压缩文件， gunzip 用于解压文件</p>
+</li>
+<li><p>语法：</p>
+<ul>
+<li>gzip 文件  ：  压缩文件，只能将文件压缩为*.gz 文件</li>
+<li>gunzip 文件.gz  ： 解压缩文件命令</li>
+</ul>
+</li>
+<li><p>应用实例；</p>
+<ul>
+<li><p>案例1：将 /home 下的 hello.txt 文件进行压缩</p>
+<p>​        gzip  /home/hello.txt</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721163348.png"></p>
+</li>
+<li><p>案例2： 将 /home 下的 hello.txt.gz 文件进行解压缩</p>
+<p>​        gunzip /home/hello.txt.gz</p>
+</li>
+<li><p>案例3：将 /home 下的 a.txt 文件 和b.txt文件进行压缩</p>
+<p>​        gzip  a.txt  b.txt</p>
+</li>
+</ul>
+</li>
+<li><p><strong>特别说明：</strong></p>
+<p>​    <strong>使用  gzip  对文件进行压缩时，不会保留原来的文件</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>zip/unzip 指令</strong></p>
+<ul>
+<li><p>作用：</p>
+<ul>
+<li>zip 用于压缩文件， unzip 用于解压的，这个在项目打包发布中很有用的</li>
+</ul>
+</li>
+<li><p>语法：</p>
+<ul>
+<li>zip   [选项]   XXX . zip   将要压缩的内容   (XXX为压缩后的文件名 )<ul>
+<li>功能描述： 压缩文件和目录</li>
+</ul>
+</li>
+<li>unzip    [选项]  XXX . zip  <ul>
+<li>功能描述：解压文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>zip 的常用选项<ul>
+<li>-r  : 压缩目录 ，也是递归压缩</li>
+</ul>
+</li>
+<li>unzip 的常用选项<ul>
+<li>-d   解压后存放的目录   ：指定解压后文件的存放位置</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>应用实例：</p>
+<ul>
+<li><p>案例1：将 /home 下的 所有文件压缩成 mypackage.zip</p>
+<p>​        zip -r mypackage.zip /home/</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210721170029.png"></p>
+</li>
+</ul>
+<ul>
+<li><p>案例2：将 mypackge.zip 解压到 /opt/tmp 目录下</p>
+<pre><code>     unzip -d /opt/tmp mypackage.zip
+</code></pre>
+<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20210721170227.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>tar 指令</strong></p>
+<ul>
+<li><p>作用：</p>
+<p>​    tar指令是  <strong>打包指令</strong>，最后打包后的文件是  .tar.gz 的文件</p>
+</li>
+<li><p>语法：</p>
+<p>​    tar [选项]   XXX.tar.gz   打包的内容</p>
+</li>
+<li><p>功能描述：打包目录，压缩后的文件格式 .tar.gz</p>
+</li>
+<li><p>选项说明：</p>
+<ul>
+<li><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-c</td>
+<td>产生 .tar 打包文件</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示详细信息</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>指定压缩后的文件名</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>打包同时压缩</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>解压 .tar 文件</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>案例1:压缩多个文件，将 /home/a1.txt 和 /home/a2.txt 压缩成 ab.tar.gz</p>
+<pre><code>      tar -zcvf ab.tar.gz a.txt b.txt
+</code></pre>
+</li>
+<li><p>案例2: 将/home 的文件夹 压缩成 myhome.tar.gz</p>
+<p>​        tar -zcvf myhome.tar.gz /home/</p>
+</li>
+<li><p>案例3: 将 a.tar.gz 解压到当前目录</p>
+<p>​        tar -zxvf ab.tar.gz</p>
+</li>
+<li><p>案例4: 将myhome.tar.gz 解压到 /opt/ 目录下 </p>
+<p>​        tar -zxvf myhome.tar.gz -C /opt/</p>
+<p><strong>当指定解压到某个目录时，目录要存在</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第八章-组管理和权限管理"><a href="#第八章-组管理和权限管理" class="headerlink" title="第八章 组管理和权限管理"></a>第八章 组管理和权限管理</h2>
                 
             </div>
             <hr/>
@@ -1403,7 +2354,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">73.6k</span>&nbsp;字
+                class="white-color">84.4k</span>&nbsp;字
             
             
             
