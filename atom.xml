@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-07-21T23:14:42.575Z</updated>
+  <updated>2021-07-22T01:21:45.648Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTP笔记</title>
+    <link href="http://han77520.github.io/2021/07/21/HTTP/"/>
+    <id>http://han77520.github.io/2021/07/21/HTTP/</id>
+    <published>2021-07-21T23:14:59.673Z</published>
+    <updated>2021-07-22T01:21:45.648Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;HTTP笔记&quot;&gt;&lt;a href=&quot;#HTTP笔记&quot; class=&quot;headerlink&quot; title=&quot;HTTP笔记&quot;&gt;&lt;/a&gt;HTTP笔记&lt;/h1&gt;&lt;h2 id=&quot;HTTP协议&quot;&gt;&lt;a href=&quot;#HTTP协议&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="HTTP笔记" scheme="http://han77520.github.io/categories/HTTP%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>javaweb复习</title>
@@ -68,7 +91,7 @@
     <link href="http://han77520.github.io/2021/07/19/JDBC%E5%A4%8D%E4%B9%A0/"/>
     <id>http://han77520.github.io/2021/07/19/JDBC%E5%A4%8D%E4%B9%A0/</id>
     <published>2021-07-19T08:28:58.396Z</published>
-    <updated>2021-07-20T10:35:41.106Z</updated>
+    <updated>2021-07-22T01:20:06.825Z</updated>
     
     
       
@@ -82,6 +105,91 @@
     
     
     <category term="review" scheme="http://han77520.github.io/categories/review/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL复习笔记</title>
+    <link href="http://han77520.github.io/2021/07/10/MySQL%E5%A4%8D%E4%B9%A0/"/>
+    <id>http://han77520.github.io/2021/07/10/MySQL%E5%A4%8D%E4%B9%A0/</id>
+    <published>2021-07-10T14:38:11.931Z</published>
+    <updated>2021-07-22T01:19:37.217Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MySQL复习笔记&quot;&gt;&lt;a href=&quot;#MySQL复习笔记&quot; class=&quot;headerlink&quot; title=&quot;MySQL复习笔记&quot;&gt;&lt;/a&gt;MySQL复习笔记&lt;/h1&gt;&lt;h2 id=&quot;数据库&quot;&gt;&lt;a href=&quot;#数据库&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="review" scheme="http://han77520.github.io/categories/review/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构和算法</title>
+    <link href="http://han77520.github.io/2021/07/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
+    <id>http://han77520.github.io/2021/07/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</id>
+    <published>2021-07-01T16:26:49.000Z</published>
+    <updated>2021-07-22T01:20:48.030Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;学习方法&quot;&gt;&lt;a href=&quot;#学习方法&quot; class=&quot;headerlink&quot; title=&quot;学习方法&quot;&gt;&lt;/a&gt;学习方法&lt;/h1&gt;&lt;p&gt;1&amp;gt;</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://han77520.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>锁</title>
+    <link href="http://han77520.github.io/2021/06/22/%E9%94%81/"/>
+    <id>http://han77520.github.io/2021/06/22/%E9%94%81/</id>
+    <published>2021-06-22T12:31:27.038Z</published>
+    <updated>2021-07-22T01:19:14.141Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;悲观锁、乐观锁、可重入锁、自旋锁、偏向锁、轻量/重量级锁、读写锁、各种锁及其Java实现！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;网上关于Java中锁的话题可以说资料相当丰富，但相关内容总感觉是一大串术语的罗列，让人云里雾里，读完就忘。本文希望能为Java新人做一</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://han77520.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>代理模式</title>
+    <link href="http://han77520.github.io/2021/06/14/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://han77520.github.io/2021/06/14/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</id>
+    <published>2021-06-14T16:26:49.000Z</published>
+    <updated>2021-07-22T01:20:38.080Z</updated>
+    
+    
+    
+    
+    <category term="学习笔记" scheme="http://han77520.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
   </entry>
@@ -157,44 +265,6 @@
   </entry>
   
   <entry>
-    <title>代理模式</title>
-    <link href="http://han77520.github.io/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://han77520.github.io/2021/06/02/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</id>
-    <published>2021-06-02T16:26:49.000Z</published>
-    <updated>2021-07-20T06:16:59.474Z</updated>
-    
-    
-    
-    
-    <category term="学习笔记" scheme="http://han77520.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构和算法</title>
-    <link href="http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
-    <id>http://han77520.github.io/2021/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</id>
-    <published>2021-06-02T16:26:49.000Z</published>
-    <updated>2021-07-20T06:17:06.484Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;学习方法&quot;&gt;&lt;a href=&quot;#学习方法&quot; class=&quot;headerlink&quot; title=&quot;学习方法&quot;&gt;&lt;/a&gt;学习方法&lt;/h1&gt;&lt;p&gt;1&amp;gt;</summary>
-        
-      
-    
-    
-    
-    <category term="学习笔记" scheme="http://han77520.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Front-matter 选项详解</title>
     <link href="http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/"/>
     <id>http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/</id>
@@ -223,76 +293,6 @@
     
     
     <category term="选项详解" scheme="http://han77520.github.io/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP笔记</title>
-    <link href="http://han77520.github.io/2021/06/02/HTTP/"/>
-    <id>http://han77520.github.io/2021/06/02/HTTP/</id>
-    <published>2021-06-02T16:26:49.000Z</published>
-    <updated>2021-07-22T01:14:37.045Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;HTTP笔记&quot;&gt;&lt;a href=&quot;#HTTP笔记&quot; class=&quot;headerlink&quot; title=&quot;HTTP笔记&quot;&gt;&lt;/a&gt;HTTP笔记&lt;/h1&gt;&lt;h2 id=&quot;HTTP协议&quot;&gt;&lt;a href=&quot;#HTTP协议&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="HTTP笔记" scheme="http://han77520.github.io/categories/HTTP%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>锁</title>
-    <link href="http://han77520.github.io/2021/06/02/%E9%94%81/"/>
-    <id>http://han77520.github.io/2021/06/02/%E9%94%81/</id>
-    <published>2021-06-02T16:26:49.000Z</published>
-    <updated>2021-07-20T06:17:13.721Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;悲观锁、乐观锁、可重入锁、自旋锁、偏向锁、轻量/重量级锁、读写锁、各种锁及其Java实现！&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;网上关于Java中锁的话题可以说资料相当丰富，但相关内容总感觉是一大串术语的罗列，让人云里雾里，读完就忘。本文希望能为Java新人做一</summary>
-        
-      
-    
-    
-    
-    <category term="学习笔记" scheme="http://han77520.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL复习笔记</title>
-    <link href="http://han77520.github.io/2021/06/02/MySQL%E5%A4%8D%E4%B9%A0/"/>
-    <id>http://han77520.github.io/2021/06/02/MySQL%E5%A4%8D%E4%B9%A0/</id>
-    <published>2021-06-02T16:26:49.000Z</published>
-    <updated>2021-07-20T06:16:42.053Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MySQL复习笔记&quot;&gt;&lt;a href=&quot;#MySQL复习笔记&quot; class=&quot;headerlink&quot; title=&quot;MySQL复习笔记&quot;&gt;&lt;/a&gt;MySQL复习笔记&lt;/h1&gt;&lt;h2 id=&quot;数据库&quot;&gt;&lt;a href=&quot;#数据库&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="review" scheme="http://han77520.github.io/categories/review/"/>
     
     
   </entry>
