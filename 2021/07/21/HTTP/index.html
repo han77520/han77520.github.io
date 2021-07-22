@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.8k
+                    4.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    15 分
                 </div>
                 
 
@@ -504,9 +504,9 @@
             <div id="articleContent">
                 <h1 id="HTTP笔记"><a href="#HTTP笔记" class="headerlink" title="HTTP笔记"></a>HTTP笔记</h1><h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>​    HT TP协议(HyperText Transfer Protocol，超文本传输协议)  是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准</p>
 <p>​    HTTP是一个基于TCP/IP通信协议来传递数据 （HTML 文件, 图片文件, 查询结果等）。</p>
-<h2 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h2><p>​    HTTP协议工作与客户端—服务器架构上，浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求</p>
+<h2 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h2><p>​    HTTP协议工作于客户端—服务器架构上，浏览器作为HTTP客户端通过URL向HTTP服务端(WEB服务器)发送所有请求</p>
 <p>​    WEB服务器根据接收到的请求，向客户端发送响应信息</p>
-<p>​    HTTP默认端口号为80，但是你也可以改为8080或者其他端口。</p>
+<p>​    HTTP默认端口号为80，但是也可以改为8080或者其他端口。</p>
 <p><strong>注意事项</strong></p>
 <ul>
 <li>HTTP是无连接：无连接的含义是限制每次连接只处理一个请求，服务器处理完成客户的请求，并收到客户的应答后，断开连接。采用这种方式可以节省传输时间</li>
@@ -522,10 +522,9 @@
 <p>​    一个HTTP  服务器 同样也是一个应用程序，通过接收客户端的请求并向客户端发送HTTP 响应数据。</p>
 <p>​    HTTP 使用 统一资源标识符（Uniform Resource Identifiers  URI）来传输数据和建立连接</p>
 <p>​    一旦建立连接后，数据消息就通过类似Internet邮件所使用的格式[RFC5322]和多用途Internet邮件扩展（MIME）[RFC2045]来传送。</p>
-<h3 id="客户端请求消息："><a href="#客户端请求消息：" class="headerlink" title="客户端请求消息："></a><strong>客户端请求消息</strong>：</h3><p>​    客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。</p>
+<h3 id="客户端请求消息："><a href="#客户端请求消息：" class="headerlink" title="客户端请求消息："></a><strong>客户端请求消息</strong>：</h3><p>​    客户端发送一个HTTP请求到服务器的请求消息包括以下格式(请求<strong>报文</strong>的一般格式)：请求行（request line）、请求头部（header）、空行和请求体四个部分组成。</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210722081129.png"></p>
-<p><strong>服务器响应消息</strong></p>
-<p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文</p>
+<h3 id="服务器响应消息："><a href="#服务器响应消息：" class="headerlink" title="服务器响应消息："></a>服务器响应消息：</h3><p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210722081219.png"></p>
 <h3 id="报文："><a href="#报文：" class="headerlink" title="报文："></a><strong>报文</strong>：</h3><p>​    报文(message)是网络中交换与传输的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83/1415766">数据单元</a>，即站点一次性要发送的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%9D%97/107672">数据块</a>。报文包含了将要发送的完整的数据信息，其长短很不一致，长度不限且可变。</p>
 <h2 id="HTTP-请求方法"><a href="#HTTP-请求方法" class="headerlink" title="HTTP 请求方法"></a>HTTP 请求方法</h2><p>根据 HTTP 标准，HTTP 请求可以使用多种请求方法。</p>
@@ -939,6 +938,17 @@
 <li>application/octet-stream ： 二进制流数据（如常见的文件下载）</li>
 <li>application/x-www-form-urlencoded ： <form encType="">中默认的encType，form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）</li>
 </ul>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><strong>定义：</strong></p>
+<p>　　在WWW上，每一信息资源都有统一的且在网上唯一的地址，该地址就叫<strong>URL</strong>（<strong>Uniform Resource Locator,统一资源定位符</strong>），它是WWW的统一资源定位标志，就是<strong>指网络地址</strong>。</p>
+<p><strong>URL格式</strong></p>
+<p>　　URL由三部分组成：资源类型、存放资源的主机域名、资源文件名，也可认为由4部分组成：协议、主机、端口、路径。</p>
+<p>　　URL的一般语法格式为：(带方括号[]的为可选项)：</p>
+<p>　　<strong>protocol :// hostname[:port] / path / [;parameters][?query]#fragment</strong></p>
+<p>　　例如<a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com:80/</a></p>
+<h2 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h2><p>定义：</p>
+<p>​    　在电脑术语中，**统一资源标识符（Uniform Resource Identifier，URI)**是一个用于标识某一互联网资源名称的字符串。 该种标识允许用户对任何（包括本地和互联网）的资源通过特定的协议进行交互操作。URI由包括确定语法和相关协议的方案所定义。</p>
+<h3 id="URL-和-URI-的区别和联系"><a href="#URL-和-URI-的区别和联系" class="headerlink" title="URL 和 URI 的区别和联系"></a>URL 和 URI 的区别和联系</h3><p>​    URI和URL都定义了资源是什么，但URL还定义了该如何访问资源。URL是一种具体的URI，它不仅唯一标识资源，而且还提供了定位该资源的信息。URI 是一种语义上的抽象概念，可以是绝对的，也可以是相对的，而URL则必须提供足够的信息来定位，是绝对的。URI  只是一种概念，而URL是具体的实现</p>
+<p>只要能唯一标识资源的就是URI，在URI的基础上给出其资源的访问方式的就是URL，</p>
 
                 
             </div>
@@ -1710,7 +1720,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.1k</span>&nbsp;字
+                class="white-color">96.6k</span>&nbsp;字
             
             
             
