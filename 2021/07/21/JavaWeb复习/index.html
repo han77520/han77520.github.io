@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8k
+                    7.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    34 分
+                    33 分
                 </div>
                 
 
@@ -1529,37 +1529,37 @@ username <span class="token operator">=</span> <span class="token keyword">new</
 <tbody><tr>
 <td>==（或 eq）</td>
 <td>等于</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13==2%7D%E6%88%96" alt="{13==2}或">{13 eq 2}</td>
+<td>13 = 3 或 13 eq 2</td>
 <td>false</td>
 </tr>
 <tr>
 <td>!=（或 ne）</td>
 <td>不等于</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13!=2%7D%E6%88%96" alt="{13!=2}或">{13 ne 2}</td>
+<td>13 != 2或13 ne 2</td>
 <td>true</td>
 </tr>
 <tr>
 <td>&lt;（或 lt）</td>
 <td>小于</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13%3C2%7D%E6%88%96" alt="{13&lt;2}或">{13 lt 2}</td>
+<td>13 &lt; 2 或13 lt 2</td>
 <td>false</td>
 </tr>
 <tr>
 <td>&gt;（或gt）</td>
 <td>大于</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13%3E2%7D%E6%88%96" alt="{13&gt;2}或">{13 gt 2}</td>
+<td>13 &gt; 2 或13 gt 2</td>
 <td>true</td>
 </tr>
 <tr>
 <td>&lt;=（或le）</td>
 <td>小于等于</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13%3C=2%7D%E6%88%96" alt="{13&lt;=2}或">{13 le 2}</td>
+<td>13 &lt;= 2 或13 le 2</td>
 <td>false</td>
 </tr>
 <tr>
 <td>&gt;=（或ge）</td>
 <td>大于等于</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13%3E=2%7D%E6%88%96" alt="{13&gt;=2}或">{13 ge 2}</td>
+<td>13 &gt;= 2 或13 ge 2</td>
 <td>true</td>
 </tr>
 </tbody></table>
@@ -1593,13 +1593,13 @@ username <span class="token operator">=</span> <span class="token keyword">new</
 <tr>
 <td>/（或div）</td>
 <td>除</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13/2%7D%E6%88%96" alt="{13/2}或">{13 div 2}</td>
+<td>13 / 2 或13 div 2</td>
 <td>6.5</td>
 </tr>
 <tr>
 <td>%（或mod）</td>
 <td>取模（求余）</td>
-<td><img src="https://math.jianshu.com/math?formula=%7B13%252%7D%E6%88%96" alt="{13%2}或">{13 mod2}</td>
+<td>13 % 2 或13 mod 2</td>
 <td>1</td>
 </tr>
 </tbody></table>
@@ -1789,25 +1789,25 @@ username <span class="token operator">=</span> <span class="token keyword">new</
 <p>requestScope               ——&gt;           Request域</p>
 <p>sessionScope               ——&gt;           Session域</p>
 <p>applicationScope         ——&gt;          ServletContext域</p>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">%</span>@ page contentType<span class="token operator">=</span><span class="token string">"text/html;charset=UTF-8"</span> language<span class="token operator">=</span><span class="token string">"java"</span> <span class="token operator">%</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>html<span class="token operator">></span>
-<span class="token operator">&lt;</span>head<span class="token operator">></span>
-    <span class="token operator">&lt;</span>title<span class="token operator">></span>Title<span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">></span>
-<span class="token operator">&lt;</span>body<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">%</span>
-        pageContext<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">,</span> <span class="token string">"pageContext1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pageContext<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"key2"</span><span class="token punctuation">,</span> <span class="token string">"pageContext2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"key2"</span><span class="token punctuation">,</span> <span class="token string">"request"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        session<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"key2"</span><span class="token punctuation">,</span> <span class="token string">"session"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        application<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"key2"</span><span class="token punctuation">,</span> <span class="token string">"application"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">%</span><span class="token operator">></span>
-       $<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> pageScope<span class="token punctuation">.</span>key2 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-       $<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> requestScope<span class="token punctuation">.</span>key2 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-       $<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> requestScope<span class="token punctuation">.</span>key2 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-       $<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> applicationScope<span class="token punctuation">.</span>key2 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <%
+        pageContext.setAttribute("key1", "pageContext1");
+        pageContext.setAttribute("key2", "pageContext2");
+        request.setAttribute("key2", "request");
+        session.setAttribute("key2", "session");
+        application.setAttribute("key2", "application");
+    %>
+       $&#123; pageScope.key2 &#125;
+       $&#123; requestScope.key2 &#125;
+       $&#123; requestScope.key2 &#125;
+       $&#123; applicationScope.key2 &#125;
+</body>
+</html>
 </code></pre>
 <h4 id="pageContext-对象的使用"><a href="#pageContext-对象的使用" class="headerlink" title="pageContext 对象的使用"></a>pageContext 对象的使用</h4><pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -1843,21 +1843,21 @@ username <span class="token operator">=</span> <span class="token keyword">new</
 <p><a target="_blank" rel="noopener" href="http://localhost:8080/09_EL_JSTL/other_el_obj.jsp?username=wzg168&amp;password=666666&amp;hobby=java&amp;hobby=cpp">http://localhost:8080/09_EL_JSTL/other_el_obj.jsp?username=wzg168&amp;password=666666&amp;hobby=java&amp;hobby=cpp</a></p>
 <p>param                      Map&lt;String,Object&gt;          获取请求参数的值</p>
 <p>paramValues          Map&lt;String,Object&gt;          获取请求参数的值，获取多个值的时候使用</p>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">%</span>@ page contentType<span class="token operator">=</span><span class="token string">"text/html;charset=UTF-8"</span> language<span class="token operator">=</span><span class="token string">"java"</span> <span class="token operator">%</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>html<span class="token operator">></span>
-<span class="token operator">&lt;</span>head<span class="token operator">></span>
-    <span class="token operator">&lt;</span>title<span class="token operator">></span>Title<span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">></span>
-<span class="token operator">&lt;</span>body<span class="token operator">></span>
-    输出请求参数username的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> param<span class="token punctuation">.</span>username <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
-    输出请求参数password的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> param<span class="token punctuation">.</span>password <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    输出请求参数username的值：$&#123; param.username &#125; <br>
+    输出请求参数password的值：$&#123; param.password &#125; <br>
 
-    输出请求参数username的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> paramValues<span class="token punctuation">.</span>username<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
-    输出请求参数hobby的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> paramValues<span class="token punctuation">.</span>hobby<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
-    输出请求参数hobby的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> paramValues<span class="token punctuation">.</span>hobby<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
+    输出请求参数username的值：$&#123; paramValues.username[0] &#125; <br>
+    输出请求参数hobby的值：$&#123; paramValues.hobby[0] &#125; <br>
+    输出请求参数hobby的值：$&#123; paramValues.hobby[1] &#125; <br>
 
-<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span>
+</body>
+</html>
 </code></pre>
 <p>header                 Map&lt;String,String&gt;      它可以获取请求头的信息 </p>
 <p>headerValues     Map&lt;String,String[]&gt;     它可以获取请求头的信息，它可以获取多个值的情况</p>
@@ -1876,18 +1876,18 @@ username <span class="token operator">=</span> <span class="token keyword">new</
 </html>
 </code></pre>
 <p>cookie      Map&lt;String,Cookie&gt;      它可以获取当前请求的 Cookie 信息 </p>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">%</span>@ page contentType<span class="token operator">=</span><span class="token string">"text/html;charset=UTF-8"</span> language<span class="token operator">=</span><span class="token string">"java"</span> <span class="token operator">%</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>html<span class="token operator">></span>
-<span class="token operator">&lt;</span>head<span class="token operator">></span>
-    <span class="token operator">&lt;</span>title<span class="token operator">></span>Title<span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">></span>
-<span class="token operator">&lt;</span>body<span class="token operator">></span>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
 
-    获取Cookie的名称：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> cookie<span class="token punctuation">.</span>JSESSIONID<span class="token punctuation">.</span>name <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
-    获取Cookie的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> cookie<span class="token punctuation">.</span>JSESSIONID<span class="token punctuation">.</span>value <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
+    获取Cookie的名称：$&#123; cookie.JSESSIONID.name &#125; <br>
+    获取Cookie的值：$&#123; cookie.JSESSIONID.value &#125; <br>
 
-<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span>
+</body>
+</html>
 </code></pre>
 <p>initParam     Map&lt;String,String&gt;     它可以获取在 web.xml 中配置的<context-param>上下文参数</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">></span></span>
@@ -1900,18 +1900,18 @@ username <span class="token operator">=</span> <span class="token keyword">new</
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>jdbc:mysql:///test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">></span></span>
 </code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">%</span>@ page contentType<span class="token operator">=</span><span class="token string">"text/html;charset=UTF-8"</span> language<span class="token operator">=</span><span class="token string">"java"</span> <span class="token operator">%</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>html<span class="token operator">></span>
-<span class="token operator">&lt;</span>head<span class="token operator">></span>
-    <span class="token operator">&lt;</span>title<span class="token operator">></span>Title<span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">></span>
-<span class="token operator">&lt;</span>body<span class="token operator">></span>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
    
-    输出<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>Context<span class="token operator">-</span>param<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span>username的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> initParam<span class="token punctuation">.</span>username <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
-    输出<span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>Context<span class="token operator">-</span>param<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span>url的值：$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> initParam<span class="token punctuation">.</span>url <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
+    输出&lt;Context-param&gt;username的值：$&#123; initParam.username &#125; <br>
+    输出&lt;Context-param&gt;url的值：$&#123; initParam.url &#125; <br>
        
-<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span>
+</body>
+</html>
 </code></pre>
 
                 
@@ -2682,7 +2682,7 @@ username <span class="token operator">=</span> <span class="token keyword">new</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">96.6k</span>&nbsp;字
+                class="white-color">96.4k</span>&nbsp;字
             
             
             
