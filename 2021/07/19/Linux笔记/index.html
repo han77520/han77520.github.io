@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-21
+                    2021-07-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.1k
+                    15.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    30 分
+                    59 分
                 </div>
                 
 
@@ -865,7 +865,7 @@
 </ul>
 </li>
 <li>使用细节<ul>
-<li>rmdir删除的是空母了，如果目录下有内容时无法删除！！！</li>
+<li>rmdir删除的是空目录，如果目录下有内容时无法删除！！！</li>
 <li>rm  -rf :  删除非空目录<ul>
 <li>用法：rm -rf  [要删除目录的绝对路径或者相对路径]</li>
 </ul>
@@ -1583,7 +1583,966 @@
 </ul>
 </li>
 </ul>
-<h2 id="第八章-组管理和权限管理"><a href="#第八章-组管理和权限管理" class="headerlink" title="第八章 组管理和权限管理"></a>第八章 组管理和权限管理</h2>
+<h2 id="第八章-组管理和权限管理"><a href="#第八章-组管理和权限管理" class="headerlink" title="第八章 组管理和权限管理"></a>第八章 组管理和权限管理</h2><p>在linux 中的每个用户必须属于一个组，不能独立于组外。在linux 中每个文件有所有者、所在组、其它组的概念。</p>
+<ul>
+<li>所有者</li>
+<li>所在组</li>
+<li> 其它组</li>
+<li> 改变用户所在的组 </li>
+</ul>
+<h3 id="8-1-文件-目录-所有者"><a href="#8-1-文件-目录-所有者" class="headerlink" title="8.1 文件/目录 所有者"></a>8.1 文件/目录 所有者</h3><p>​    一般为文件的创建者，谁创建了该文件，就自然的成为该文件的所有者。</p>
+<h4 id="8-1-1-查看文件的所有者"><a href="#8-1-1-查看文件的所有者" class="headerlink" title="8.1.1 查看文件的所有者"></a>8.1.1 查看文件的所有者</h4><ul>
+<li><p>指令：ls -ahl</p>
+</li>
+<li><p>应用实例：</p>
+<p>​    创建一个组police,再创建一个用户tom,将tom 放在police 组 ,然后使用 tom 来创建一个文件 ok.txt</p>
+<ul>
+<li> groupadd police</li>
+<li>useradd -g plolice tom</li>
+<li>passwd</li>
+<li>使用 tom 用户登录</li>
+<li>touch ok.txt</li>
+<li>ls -ahl</li>
+<li>显示 ok.txt 文件的 所有者是 tom</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210722194349.png"></p>
+<h4 id="8-1-2-修改文件所有者"><a href="#8-1-2-修改文件所有者" class="headerlink" title="8.1.2 修改文件所有者"></a>8.1.2 修改文件所有者</h4><ul>
+<li><p>指令: chown 用户名 文件名</p>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li>使用root 创建一个文件apple.txt ，然后将其所有者修改成 tom</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210722194850.png"></p>
+</li>
+</ul>
+<h3 id="8-2-组的创建"><a href="#8-2-组的创建" class="headerlink" title="8.2 组的创建"></a>8.2 组的创建</h3><ul>
+<li>基本指令：<ul>
+<li>groupadd  组名</li>
+</ul>
+</li>
+<li>应用实例选择本地图片<ul>
+<li>创建一个组, ,monster，创建一个用户 fox ，并放入到 monster 组中</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210722195352.png"></p>
+<h3 id="8-3-文件-目录-所在组"><a href="#8-3-文件-目录-所在组" class="headerlink" title="8.3 文件/目录 所在组"></a>8.3 文件/目录 所在组</h3><p>当某个用户创建了一个文件后，默认这个文件的所在组就是该用户所在的组。</p>
+<h4 id="8-3-1-查看文件所在的组"><a href="#8-3-1-查看文件所在的组" class="headerlink" title="8.3.1 查看文件所在的组"></a>8.3.1 查看文件所在的组</h4><ul>
+<li>指令：ls -ahl</li>
+</ul>
+<h4 id="8-3-2-修改文件所在的组"><a href="#8-3-2-修改文件所在的组" class="headerlink" title="8.3.2 修改文件所在的组"></a>8.3.2 修改文件所在的组</h4><ul>
+<li><p>指令：chgrp 组名 文件名</p>
+</li>
+<li><p>应用实例：</p>
+<p>  使用root 用户创建文件 orange.txt ,看看当前这个文件属于哪个组，然后将这个文件所在组，修改到 police 组</p>
+<p>​    <img src="/images/QQ%E6%88%AA%E5%9B%BE20210722200017.png"></p>
+</li>
+</ul>
+<h3 id="8-4-其他组"><a href="#8-4-其他组" class="headerlink" title="8.4 其他组"></a>8.4 其他组</h3><p>除文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组.</p>
+<h3 id="8-5-改变用户所在组"><a href="#8-5-改变用户所在组" class="headerlink" title="8.5 改变用户所在组"></a>8.5 改变用户所在组</h3><p>在添加用户时，可以指定将该用户添加到哪个组中，同样的<strong>用root 的管理权限</strong>可以改变某个用户所在的组。</p>
+<h4 id="8-5-1-改变用户所在组"><a href="#8-5-1-改变用户所在组" class="headerlink" title="8.5.1 改变用户所在组"></a>8.5.1 改变用户所在组</h4><ul>
+<li><p>指令： usermod -g 组名 用户名</p>
+</li>
+<li><p>应用实例  ：</p>
+<p>​      创建一个土匪组（bandit）将 tom 这个用户从原来所在的police 组，修改到 bandit(土匪) 组</p>
+<p>​      <img src="/images/QQ%E6%88%AA%E5%9B%BE20210722200748.png"></p>
+</li>
+</ul>
+<h3 id="8-6-权限的介绍"><a href="#8-6-权限的介绍" class="headerlink" title="8.6 权限的介绍"></a>8.6 权限的介绍</h3><p>==<strong>很重要，记住</strong>==</p>
+<p>ls -l 中显示的内容如下：</p>
+<p>​        -  rw-  r-  -r–. 1 tom police 34 7月  22 20:32 ok.txt</p>
+<p>​    0-9位的说明</p>
+<ul>
+<li><p>第0位：确定文件的类型</p>
+<ul>
+<li>-   表示普通文件</li>
+<li>d :  表示文件所有者权限 rw</li>
+<li>l  ：软链接(相当于windows下的快捷方式，上面有笔记)</li>
+<li>c ：字符设备【鼠标，键盘等】</li>
+<li>b ：块文件，硬盘</li>
+</ul>
+</li>
+<li><p>第1-3位：确定该文件的所有者拥有该文件的权限</p>
+<ul>
+<li>rw ：表示可读可写</li>
+</ul>
+</li>
+<li><p>第4-6位：表示文件所在组的用户的权限</p>
+<ul>
+<li>r–: 表示只有读的权限</li>
+</ul>
+</li>
+<li><p>第7-9位；表示文件其他组的用户的权限</p>
+<ul>
+<li>r–: 表示只有读的权限</li>
+</ul>
+</li>
+<li><p>第十位：</p>
+<p>  如果是文件，表示硬链接的数，如果是目录，则表示该目录的子目录个数</p>
+</li>
+</ul>
+<p>​     【补充】硬链接：</p>
+<p>​            硬链接指文件名与索引节点号（即inode号）的链接，索引节点号（inode号）可以对应一个或多个文件名，并且这些文件名可以在同一或不同目录。</p>
+<ul>
+<li><p>tom：代表文件所有者</p>
+</li>
+<li><p>police：代表文件所在组</p>
+</li>
+<li><p>34 ：代表文件的大小为 34k，如果是目录，则显示4096</p>
+</li>
+<li><p>7月  22 20:32   ：代表文件最后修改时间</p>
+</li>
+<li><p>ok.txt   文件名</p>
+</li>
+</ul>
+<h3 id="8-7-rwx-权限详解"><a href="#8-7-rwx-权限详解" class="headerlink" title="8.7 rwx 权限详解"></a>8.7 rwx 权限详解</h3><h4 id="8-7-1-作用在文件上"><a href="#8-7-1-作用在文件上" class="headerlink" title="8.7.1 作用在文件上"></a>8.7.1 作用在文件上</h4><ul>
+<li>[ r ]代表可读(read): 可以读取,查看</li>
+<li>[ w ]代表可写(write): 可以修改,但是不代表可以删除该文件,删除一个文件的前提条件是对该文件所在的目录有写权限，才能删除该文件.</li>
+<li>[ x ]代表可执行(execute):可以被执行</li>
+</ul>
+<h4 id="8-7-2-rwx-作用到目录"><a href="#8-7-2-rwx-作用到目录" class="headerlink" title="8.7.2 rwx 作用到目录"></a>8.7.2 rwx 作用到目录</h4><ul>
+<li>[ r ]代表可读(read): 可以读取，ls 查看目录内容</li>
+<li>[ w ]代表可写(write): 可以修改,还可以在目录内创建+删除+重命名目录</li>
+<li>[ x ]代表可执行(execute):可以进入该目录</li>
+</ul>
+<p>【补充：】rwx也可用数字来表示： r=4,w=2,x=1 因此rwx=4+2+1=7</p>
+<h3 id="8-9-修改权限"><a href="#8-9-修改权限" class="headerlink" title="8.9 修改权限"></a>8.9 修改权限</h3><ul>
+<li><p>基本说明：</p>
+<p>​    通过chmod 指令，可以修改文件或者目录的权限</p>
+</li>
+</ul>
+<h4 id="8-9-1-、-、-变更权限"><a href="#8-9-1-、-、-变更权限" class="headerlink" title="8.9.1 + 、-、= 变更权限"></a>8.9.1 + 、-、= 变更权限</h4><p>u: 所有者    g:所有组    o:其他人    a:所有人(u、g、o 的总和)</p>
+<ul>
+<li>chmod u=rwx,g=rx,o=x 文件目录名</li>
+<li> chmod o+w 文件目录名</li>
+<li> chmod a-x 文件目录名</li>
+</ul>
+<p>示例:</p>
+<ul>
+<li><p>案例1：给abc 文件 的所有者读写执行的权限，给所在组读执行权限，给其它组读执行权限。</p>
+<p>  chmod u=rwx,g=rx,o=rx abc</p>
+</li>
+<li><p>案例2：给abc 文件的所有者除去执行的权限，增加组写的权限</p>
+<p> chmod u-x,g+w abc</p>
+</li>
+<li><p>案例3：给abc 文件的所有用户添加读的权限</p>
+<p> chmod u+r abc</p>
+</li>
+</ul>
+<h4 id="8-9-2-数字变更权限"><a href="#8-9-2-数字变更权限" class="headerlink" title="8.9.2 数字变更权限"></a>8.9.2 数字变更权限</h4><p>规则：r=4 w=2 x=1 ,rwx=4+2+1=7<br>chmod u=rwx,g=rx,o=x 文件目录名   相当于 chmod 751 文件目录名</p>
+<p>示例</p>
+<ul>
+<li><p>将 /home/abc.txt 文件的权限修改成 rwxr-xr-x, 使用给数字的方式实现</p>
+<p> chmod 755 /home/abc.txt</p>
+</li>
+</ul>
+<h4 id="8-9-3-修改文件所有者-chown"><a href="#8-9-3-修改文件所有者-chown" class="headerlink" title="8.9.3 修改文件所有者-chown"></a>8.9.3 修改文件所有者-chown</h4><ul>
+<li><p>介绍</p>
+<ul>
+<li>chown newowner file 改变文件的所有者</li>
+<li>chown newowner:newgroup file 改变用户的所有者和所有组</li>
+<li>-R 如果是目录 则使其下所有子文件或目录递归生效</li>
+</ul>
+</li>
+<li><p>案例</p>
+<ul>
+<li><p>案例1：请将 /home/abc .txt 文件的所有者修改成 tom</p>
+<p>  chown tom /home/abc.txt</p>
+</li>
+<li><p>案例2：请将 /home/kkk 目录下所有的文件和目录的所有者都修改成tom</p>
+<p>   应该使用root 操作</p>
+<p>   chown -R tom kkk/</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="8-9-4-修改文件所在组-chgrp"><a href="#8-9-4-修改文件所在组-chgrp" class="headerlink" title="8.9.4 修改文件所在组-chgrp"></a>8.9.4 修改文件所在组-chgrp</h4><ul>
+<li><p>介绍：chgrp newgroup file 改变文件的所有组</p>
+</li>
+<li><p>案例</p>
+<ul>
+<li><p>案例1：请将 /home/abc .txt 文件的所在组修改成 bandit (土匪）</p>
+<pre><code>       chgrp bandit /home/abc.txt
+</code></pre>
+</li>
+<li><p>案例2：请将 /home/kkk 目录下所有的文件和目录的所在组都修改成 bandit(土匪)</p>
+<p>​            chgrp -R bandit /home/kkk</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="案例：警察和土匪游戏-重看视频，没懂"><a href="#案例：警察和土匪游戏-重看视频，没懂" class="headerlink" title="案例：警察和土匪游戏(重看视频，没懂)"></a>案例：警察和土匪游戏(重看视频，没懂)</h3><p>police，bandit</p>
+<p>jack，jerry 是警察</p>
+<p>xh，xq是土匪</p>
+<ul>
+<li><p>创建组</p>
+<ul>
+<li>groupadd police</li>
+<li>groupadd bandit</li>
+</ul>
+</li>
+<li><p>创建用户</p>
+</li>
+<li><p>jack 创建一个文件，自己可以读写，本组人可以读，其它组没人任何权限</p>
+</li>
+<li><p>jack 修改该文件，让其它组人可以读, 本组人可以读写</p>
+</li>
+<li><p>xh 投靠 警察，看看是否可以读写.</p>
+</li>
+</ul>
+<h2 id="第九章-crond任务调度"><a href="#第九章-crond任务调度" class="headerlink" title="第九章 crond任务调度"></a>第九章 crond任务调度</h2><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723103346.png"></p>
+<h3 id="9-1-概述"><a href="#9-1-概述" class="headerlink" title="9.1 概述"></a>9.1 概述</h3><ul>
+<li>任务调度:  是指系统在某个时间执行的特定的命令或程序。</li>
+<li>任务调度分类:<ul>
+<li>系统工作：有些重要的工作必须周而复始地执行。如病毒扫描等</li>
+<li>个别用户工作：个别用户可能希望执行某些程序，比如对mysql 数据库的备份。</li>
+</ul>
+</li>
+<li>语法：<ul>
+<li>crontab [选项]</li>
+</ul>
+</li>
+<li>常用选项 <ul>
+<li>-e  :  编辑crontab定时任务</li>
+<li>-l ：查询crontab任务</li>
+<li>-r  : 删除当前用户所有的crontab任务</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-2-入门"><a href="#9-2-入门" class="headerlink" title="9.2 入门"></a>9.2 入门</h3><h4 id="9-2-1-要求"><a href="#9-2-1-要求" class="headerlink" title="9.2.1 要求"></a>9.2.1 要求</h4><ul>
+<li>设置任务调度文件：/etc/crontab</li>
+<li>设置个人任务调度。执行crontab –e 命令。crontab –e 代表直接将任务加入  crontab 中</li>
+<li>接着输入任务到调度文件，如：*/1 * * * * ls –l /etc/ &gt; /tmp/to.txt，意思说每小时的每分钟执行ls –l /etc/ &gt; /tmp/to.txt 命令</li>
+</ul>
+<h4 id="9-2-2-步骤"><a href="#9-2-2-步骤" class="headerlink" title="9.2.2 步骤"></a>9.2.2 步骤</h4><ul>
+<li>crontab -e</li>
+<li>*/1 * * * * ls -l /etc&gt;&gt; /tmp/to.txt</li>
+<li>当保存退出后就程序。</li>
+<li>在每一分钟都会自动的调用 ls -l /etc &gt;&gt; /tmp/to.txt</li>
+</ul>
+<h4 id="9-2-3-参数说明"><a href="#9-2-3-参数说明" class="headerlink" title="9.2.3 参数说明"></a>9.2.3 参数说明</h4><ul>
+<li><p>5个占位符</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>含义</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一个 *</td>
+<td>一小时中的第几分钟</td>
+<td>0-59</td>
+</tr>
+<tr>
+<td>第一个 *</td>
+<td>一天中的第几小时</td>
+<td>0-23</td>
+</tr>
+<tr>
+<td>第一个 *</td>
+<td>一月中的第几天</td>
+<td>1-31</td>
+</tr>
+<tr>
+<td>第一个 *</td>
+<td>一年中的第几月</td>
+<td>1-12</td>
+</tr>
+<tr>
+<td>第一个 *</td>
+<td>一周中的星期几</td>
+<td>0-7(0和7都代表周日)</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>特殊符号</p>
+<table>
+<thead>
+<tr>
+<th>特殊符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>代表任何时间，比如第一个 *  就代表一个小时中每分钟执行一次的意思</td>
+</tr>
+<tr>
+<td>，</td>
+<td>代表不连续的时间，比如“0 8,12,16 * * *”,代表在每天的8点，12点，16点都执行一次命令</td>
+</tr>
+<tr>
+<td>-</td>
+<td>代表连续的时间范围。比如 “ 0 5 * * 1-6”，代表在周一到周六的凌晨5点执行命令</td>
+</tr>
+<tr>
+<td>*/n</td>
+<td>代表内阁多久执行一次，比如 “ */10 * * * *” ，代表每个10分钟执行一次</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723102441.png"></p>
+<h3 id="9-3-任务调度的案例"><a href="#9-3-任务调度的案例" class="headerlink" title="9.3 任务调度的案例"></a>9.3 任务调度的案例</h3><ul>
+<li><p>案例1：每隔 1 分钟，就将当前的日期信息，追加到 /tmp/mydate 文件中</p>
+<ul>
+<li><p>先编写一个文件  /home/mytask.sh</p>
+<p>  touch /home/mytask.sh</p>
+</li>
+<li><p>mytask.sh 中添加 date &gt;&gt;  /tmp/mydate</p>
+</li>
+<li><p>给mytask1.sh 一个可执行权限，==<strong>这个是前提条件</strong>==</p>
+<p> chmod 744 /home/mytask1.sh</p>
+</li>
+<li><p>crontab -e    并输入   */1 * * * *  /home/mytask1.sh</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723103412.png"></p>
+<ul>
+<li><p>案例 2：每隔 1 分钟， 将当前日期和日历都追加到 /home/mycal 文件中</p>
+<ul>
+<li><p>先编写一个文件 /home/mytask2.sh</p>
+<p> touch mytask2.sh</p>
+</li>
+<li><p>mytask2.sh 中添加</p>
+<ul>
+<li>date &gt;&gt; /tmp/mycal</li>
+<li>cal &gt;&gt; /tmp/mycla</li>
+</ul>
+</li>
+<li><p>给mytask1.sh 一个可以执行权限</p>
+<p> chmod 744 /home/mytask2.sh</p>
+</li>
+<li><p>crontab -e</p>
+</li>
+<li><p>*/ * * * * /home/mytask2.sh</p>
+</li>
+</ul>
+</li>
+<li><p>每天凌晨 2:00 将 mysql 数据库 testdb ，备份到文件mydb.bak中</p>
+<ul>
+<li>先编写一个文件 /home/mytask3.sh</li>
+<li>给mytask3.sh 一个可以执行权限<ul>
+<li>/usr/local/mysql/bin/mysqldump -u root -proot testdb &gt; /tmp/mydb.ba</li>
+</ul>
+</li>
+<li>chmod 744 /home/mytask3.sh</li>
+<li>crontab -e</li>
+<li>0 2 * * * /home/mytask3.sh</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-4-crond-相关指令"><a href="#9-4-crond-相关指令" class="headerlink" title="9.4 crond 相关指令"></a>9.4 crond 相关指令</h3><ul>
+<li>crontab -r  ： 终止任务调度。</li>
+<li>crontab –l：列出当前有那些任务调度</li>
+<li>service crond restart [重启任务调度</li>
+</ul>
+<h2 id="第十章-Linux-磁盘分区、挂载"><a href="#第十章-Linux-磁盘分区、挂载" class="headerlink" title="第十章 Linux 磁盘分区、挂载"></a>第十章 Linux 磁盘分区、挂载</h2><h3 id="10-1-分区基础知识"><a href="#10-1-分区基础知识" class="headerlink" title="10.1 分区基础知识"></a>10.1 分区基础知识</h3><h4 id="10-1-1-分区的方式："><a href="#10-1-1-分区的方式：" class="headerlink" title="10.1.1 分区的方式："></a>10.1.1 分区的方式：</h4><ul>
+<li>mbr分区<ul>
+<li>最多支持四个主分区</li>
+<li>.系统只能安装在主分区</li>
+<li>.扩展分区要占一个主分区</li>
+<li>MBR 最大只支持2TB，但拥有最好的兼容性</li>
+</ul>
+</li>
+<li>gtp分区  （这个比mbr好）<ul>
+<li>支持无限多个主分区(但是操作系统会限制，windows下最多128个分区)</li>
+<li>最大支持18EB 的大容量（1EB=1024 PB，1PB=1024 TB ）</li>
+<li>windows7 64 位以后支持gtp</li>
+</ul>
+</li>
+</ul>
+<h4 id="10-1-2-windows下磁盘分区"><a href="#10-1-2-windows下磁盘分区" class="headerlink" title="10.1.2 windows下磁盘分区"></a>10.1.2 windows下磁盘分区</h4><p>Disk 下 有主分区 和扩展分区，扩展分区里面可以有多个逻辑分区</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723112923.png"></p>
+<h3 id="10-2-Linux-分区"><a href="#10-2-Linux-分区" class="headerlink" title="10.2 Linux 分区"></a>10.2 Linux 分区</h3><h4 id="10-2-1-原理介绍"><a href="#10-2-1-原理介绍" class="headerlink" title="10.2.1 原理介绍"></a>10.2.1 原理介绍</h4><ul>
+<li><p>​    对于Linux 来说无论有几个分区，分给哪一目录使用，它归根结底就只有一个根目录，一个独立且唯一的文件结构， Linux 中每个分区都是用来组成整个文件系统的一部分。</p>
+</li>
+<li><p>​    Linux 采用了一种叫“==<strong>载入</strong>==”的处理方法，它的整个文件系统中包含了一整套的文件和目录，且将一个分区和一个目录联系起来。这时要载入的一个分区将使它的存储空间在一个目录下获得。</p>
+</li>
+</ul>
+<p>​     <img src="/images/QQ%E6%88%AA%E5%9B%BE20210723113720.png"></p>
+<h4 id="10-2-2-硬盘说明"><a href="#10-2-2-硬盘说明" class="headerlink" title="10.2.2 硬盘说明"></a>10.2.2 硬盘说明</h4><ul>
+<li><p>IDE 硬盘：</p>
+<ul>
+<li>驱动器标识符为“hdx<del>”,其中“hd”表明分区所在设备的类型，这里是指IDE 硬盘了。“x”为盘号（a 为基本盘，b 为基本从属盘，c 为辅助主盘，d 为辅助从属盘）,“</del>”代表分区，前四个分区用数字1 到4 表示，它们是主分区或扩展分区，从5 开始就是逻辑分区。例，hda3 表示为第一个IDE 硬盘上的第三个主分区或扩展分区,hdb2 表示为第二个IDE 硬盘上的第二个主分区或扩展分区。</li>
+</ul>
+</li>
+<li><p>SCSI硬盘：</p>
+<ul>
+<li>标识为“sdx~”，SCSI 硬盘是用“sd”来表示分区所在设备的类型的，其余则和IDE 硬盘的表示方法一样。</li>
+</ul>
+</li>
+</ul>
+<h4 id="10-2-3-lsblk-指令"><a href="#10-2-3-lsblk-指令" class="headerlink" title="10.2.3 lsblk 指令"></a>10.2.3 lsblk 指令</h4><ul>
+<li>作用：查看当前系统的分区情况</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723115911.png"></p>
+<h3 id="10-3-挂载的案例"><a href="#10-3-挂载的案例" class="headerlink" title="10.3 挂载的案例"></a>10.3 挂载的案例</h3><p>   给Linux 系统增加一个2G的新硬盘sdb1，并且挂载到  /home/newdisk</p>
+<h4 id="10-3-1-增加一块硬盘"><a href="#10-3-1-增加一块硬盘" class="headerlink" title="10.3.1 增加一块硬盘"></a>10.3.1 增加一块硬盘</h4><ul>
+<li><p>虚拟机添加硬盘</p>
+</li>
+<li><p>分区     fidsk /dev/sdb</p>
+</li>
+<li><p>格式化  mkfs  -t ext4 /dev/sdb1</p>
+</li>
+<li><p>挂载   先创建一个 /home/newdisk ，挂载 mount /dev/sdb1   /home/newdisk</p>
+</li>
+<li><p>设置可以自动挂载（永久挂载，当重启系统时，任然可以挂载到 /home/newdisk）</p>
+</li>
+<li><p>编辑  /etc/fstab</p>
+<p>vim /etc/fstab</p>
+</li>
+<li><p>添加一行</p>
+<p>/dev/sdb1                      /home/newdisk                ext4        defaults        0   0</p>
+</li>
+</ul>
+<h4 id="10-3-2-步骤"><a href="#10-3-2-步骤" class="headerlink" title="10.3.2 步骤"></a>10.3.2 步骤</h4><ul>
+<li><p>步骤1：在【虚拟机】菜单中，选择【设置】，然后设备列表里【添加】硬盘，然后一路【下一步】，中间只有选择磁盘大小的地方需要修改，至到完成。然后重启系统（才能识别）！</p>
+</li>
+<li><p>步骤 2：虚拟机增加硬盘</p>
+<ul>
+<li><p>分区命令 fidisk /dev/sdb</p>
+</li>
+<li><p>开始对    /sdb分区</p>
+</li>
+<li><p>然后按提示输入下面指令</p>
+<p>•m 显示命令列表<br>•p 显示磁盘分区 同 fdisk –l<br>•n 新增分区<br>•d 删除分区<br>•w 写入并退出</p>
+</li>
+</ul>
+</li>
+<li><p>步骤 3：虚拟机增加硬盘</p>
+<ul>
+<li>格式化磁盘<ul>
+<li>分区命令  ：   mkfs -t ext4 /dev/sdb1  (其中ext4是分区类型)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>步骤4:虚拟机增加硬盘</p>
+<ul>
+<li><p>==<strong>挂载</strong>==：将一个分区与一个目录联系起来</p>
+<ul>
+<li><p>指令：mount  设备名称  挂载目录  </p>
+<p>例如：mount   /dev/sdb1   /newdisk</p>
+</li>
+</ul>
+</li>
+<li><p>取消挂载：设备名称 或者 挂载目录   (首先回到home下)</p>
+<ul>
+<li>umount   /dev/sdb1  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>步骤5 ：虚拟机增加硬盘</p>
+<ul>
+<li><p>永久挂载：通过修改/etc/fstab 实现挂载，在最后一行添加 ：</p>
+<p> /dev/sdb1                      /home/newdisk                ext4        defaults        0   0</p>
+</li>
+<li><p>添加完成后 执行     mount –a 即刻生效</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723132225.png"></p>
+<h3 id="10-4-磁盘情况查询"><a href="#10-4-磁盘情况查询" class="headerlink" title="10.4 磁盘情况查询"></a>10.4 磁盘情况查询</h3><h4 id="10-4-1-查询系统整体磁盘使用情况"><a href="#10-4-1-查询系统整体磁盘使用情况" class="headerlink" title="10.4.1 查询系统整体磁盘使用情况"></a>10.4.1 查询系统整体磁盘使用情况</h4><ul>
+<li>基本语法：<ul>
+<li>df   -h</li>
+</ul>
+</li>
+<li>实例：<ul>
+<li>查询系统整体磁盘使用情况</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723132744.png"></p>
+<h4 id="10-4-2-查询指定目录的磁-盘占用情况"><a href="#10-4-2-查询指定目录的磁-盘占用情况" class="headerlink" title="10.4.2  查询指定目录的磁 盘占用情况"></a>10.4.2  查询指定目录的磁 盘占用情况</h4><ul>
+<li><p>语法：</p>
+<ul>
+<li><p>du -h   /目录</p>
+<p> 查询指定目录的磁盘占用情况，默认为当前目录</p>
+<p>-a 含文件</p>
+<p>-c 列出明细的同时，增加汇总值</p>
+<p>-h 带计量单位</p>
+<p>-s 指定目录占用大小汇总</p>
+<p>–max-depth=1 子目录深度</p>
+</li>
+</ul>
+</li>
+<li><p>应用实例</p>
+<ul>
+<li><p>查询 /opt 目录的磁盘占用情况，深度为1</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723133420.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="10-4-3-磁盘情况-工作实用指令"><a href="#10-4-3-磁盘情况-工作实用指令" class="headerlink" title="10.4.3 磁盘情况-工作实用指令"></a>10.4.3 磁盘情况-工作实用指令</h4><p>统计/home 文件夹下文件的个数</p>
+<ul>
+<li><p>ls -l /home | grep “^-“ | wc -l        (  wc:  统计个数)</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723133856.png"></p>
+</li>
+</ul>
+<p>统计/home 文件夹下目录的个数</p>
+<ul>
+<li><p>ls -l /home | grep “^d” | wc -l  </p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723134150.png"></p>
+</li>
+</ul>
+<p>统计   /home 文件夹下文件的个数，包括子文件夹里的</p>
+<ul>
+<li>ls -lR /home | grep “^-“ | wc -l  </li>
+</ul>
+<p>​    </p>
+<p>​     <img src="/images/QQ%E6%88%AA%E5%9B%BE20210723134454.png"></p>
+<p>统计文件夹下目录的个数，包括子文件夹里的</p>
+<ul>
+<li><p>ls -lR /home | grep “^d” | wc -l  </p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723134255.png"></p>
+</li>
+</ul>
+<p> 以树状显示目录结构</p>
+<ul>
+<li>yum install tree</li>
+</ul>
+<h2 id="第十一章-网络配置"><a href="#第十一章-网络配置" class="headerlink" title="第十一章  网络配置"></a>第十一章  网络配置</h2><h3 id="11-1-Linux-网络配置原理图-含虚拟机"><a href="#11-1-Linux-网络配置原理图-含虚拟机" class="headerlink" title="11.1 Linux 网络配置原理图(含虚拟机)"></a>11.1 Linux 网络配置原理图(含虚拟机)</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723163516.png"></p>
+<h3 id="11-2-查看网络-IP-和网关"><a href="#11-2-查看网络-IP-和网关" class="headerlink" title="11.2 查看网络 IP 和网关"></a>11.2 查看网络 IP 和网关</h3><h4 id="11-2-1-查看虚拟网络编辑器"><a href="#11-2-1-查看虚拟网络编辑器" class="headerlink" title="11.2.1 查看虚拟网络编辑器"></a>11.2.1 查看虚拟网络编辑器</h4><p>【编辑】 —–&gt;  【虚拟网络编辑器】</p>
+<h4 id="11-2-2-修改-ip-地址-修改虚拟网络的-ip"><a href="#11-2-2-修改-ip-地址-修改虚拟网络的-ip" class="headerlink" title="11.2.2 修改 ip 地址(修改虚拟网络的 ip)"></a>11.2.2 修改 ip 地址(修改虚拟网络的 ip)</h4><p>【编辑】 —–&gt;  【虚拟网络编辑器】 —-&gt;【更改设置】 在里面选要改的ip地址即可</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723163918.png"></p>
+<h4 id="11-2-3-查看-windows-环境的中-VMnet8-网络配置-ipconfig-指令"><a href="#11-2-3-查看-windows-环境的中-VMnet8-网络配置-ipconfig-指令" class="headerlink" title="11.2.3 查看 windows 环境的中 VMnet8 网络配置 (ipconfig 指令)"></a>11.2.3 查看 windows 环境的中 VMnet8 网络配置 (ipconfig 指令)</h4><ul>
+<li>使用ipconfig 查看</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723164341.png"></p>
+<h3 id="11-3-ping-测试主机之间网络连通"><a href="#11-3-ping-测试主机之间网络连通" class="headerlink" title="11.3 ping 测试主机之间网络连通"></a>11.3 ping 测试主机之间网络连通</h3><h4 id="11-3-1-基本语法"><a href="#11-3-1-基本语法" class="headerlink" title="11.3.1 基本语法"></a>11.3.1 基本语法</h4><p>​        ping 目的主机 （功能描述：测试当前服务器是否可以连接目的主机）</p>
+<h4 id="11-3-2-应用实例"><a href="#11-3-2-应用实例" class="headerlink" title="11.3.2 应用实例"></a>11.3.2 应用实例</h4><p>​        测试当前服务器是否可以连接百度<br>​        [root@hadoop100 桌面]# ping <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></p>
+<h3 id="11-4-linux-网络环境配置"><a href="#11-4-linux-网络环境配置" class="headerlink" title="11.4 linux 网络环境配置"></a>11.4 linux 网络环境配置</h3><h4 id="11-4-1-第一种方法-自动获取"><a href="#11-4-1-第一种方法-自动获取" class="headerlink" title="11.4.1 第一种方法(自动获取)"></a>11.4.1 第一种方法(自动获取)</h4><p>【系统】 —- 【首选项】 —–  【网络连接】  —- 勾选自动连接</p>
+<p>​        缺点: linux 启动后会自动获取IP,缺点是每次自动获取的ip 地址可能不一样。这个不适用于做服<br>务器，因为我们的服务器的 ip 需要时固定的。</p>
+<h4 id="11-4-2-第二种方法-指定固定的-ip"><a href="#11-4-2-第二种方法-指定固定的-ip" class="headerlink" title="11.4.2 第二种方法(指定固定的 ip"></a>11.4.2 第二种方法(指定固定的 ip</h4><p>​    直 接 修 改 配 置 文 件 来 指 定 IP, 并 可 以 连 接 到 外 网 ( 程 序 员 推 荐 ) ， 编 辑 vi /etc/sysconfig/network-scripts/ifcfg-eth0</p>
+<p>​    要求：将ip 地址配置的静态的，ip 地址为192.168.184.130</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723165135.png"></p>
+<pre><code>    **修改后，一定要 重启服务    service network restart**
+</code></pre>
+<h2 id="第十二章-进程管理"><a href="#第十二章-进程管理" class="headerlink" title="第十二章 进程管理"></a>第十二章 进程管理</h2><h3 id="12-1-进程的基本介绍"><a href="#12-1-进程的基本介绍" class="headerlink" title="12.1 进程的基本介绍"></a>12.1 进程的基本介绍</h3><ul>
+<li>在LINUX 中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一个ID 号。</li>
+<li>每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例如www 服务器。</li>
+<li>每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。</li>
+<li>一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中。直到关机才才结束</li>
+</ul>
+<h3 id="12-2-显示系统执行的进程"><a href="#12-2-显示系统执行的进程" class="headerlink" title="12.2 显示系统执行的进程"></a>12.2 显示系统执行的进程</h3><h4 id="12-2-1-查看进程"><a href="#12-2-1-查看进程" class="headerlink" title="12.2.1 查看进程"></a>12.2.1 查看进程</h4><p>​    查看进程使用的指令是 ps ,一般来说使用的参数是 ps -aux</p>
+<p>​    ps  -a   显示当前终端的所有进程信息</p>
+<p>​    ps  -u 以用户的格式显示进程信息</p>
+<p>​    ps  -x 显示后台进程运行的参数</p>
+<p>   <img src="/images/QQ%E6%88%AA%E5%9B%BE20210723175838.png"></p>
+<p>​        </p>
+<ul>
+<li><p>ps显示的信息选项</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>USER</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>进程ID</td>
+</tr>
+<tr>
+<td>%CPU</td>
+<td>占用的CPU</td>
+</tr>
+<tr>
+<td>%MEM</td>
+<td>占用的内存</td>
+</tr>
+<tr>
+<td>VSZ</td>
+<td>使用的虚拟内存</td>
+</tr>
+<tr>
+<td>RSS</td>
+<td>使用物理内存情况</td>
+</tr>
+<tr>
+<td>TTY</td>
+<td>进程的状态  s:休眠    r:运行</td>
+</tr>
+<tr>
+<td>STAT</td>
+<td>启动时间</td>
+</tr>
+<tr>
+<td>START</td>
+<td>占用CPU总时间</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>启动时间</td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>进程执行时的命令行</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="12-2-2-ps-指令详解"><a href="#12-2-2-ps-指令详解" class="headerlink" title="12.2.2 ps 指令详解"></a>12.2.2 ps 指令详解</h4><ul>
+<li>指令：ps –aux|grep xxx ，比如看看有没有sshd 服务<br>指令说明<br> •System V 展示风格<br> •USER：用户名称<br> •PID：进程号<br> •%CPU：进程占用CPU 的百分比<br> •%MEM：进程占用物理内存的百分比<br> •VSZ：进程占用的虚拟内存大小（单位：KB）<br> •RSS：进程占用的物理内存大小（单位：KB）<br> •TT：终端名称,缩写 .<br> •STAT：进程状态，其中S-睡眠，s-表示该进程是会话的先导进程，N-表示进程拥有比普通优先<pre><code>          级更低的优先级，R-正在运行，D-短期等待，Z-僵死进程，T-被跟踪或者被停止等等
+</code></pre>
+ •STARTED：进程的启动时间<br> •TIME：CPU 时间，即进程使用CPU 的总时间<br> •COMMAND：启动进程所用的命令和参数，如果过长会被截断显示</li>
+</ul>
+<ul>
+<li><p>应用实例：</p>
+<p> <strong>以全格式显示当前所有的进程，查看进程的父进程。</strong></p>
+<p>ps -ef 是以全格式显示当前所有的进程</p>
+<pre><code>•-e 显示所有进程。-f 全格式。
+•ps -ef|grep xxx
+•是BSD 风格
+•UID：用户ID
+•PID：进程ID
+**•PPID：父进程ID**
+•C：CPU 用于计算执行优先级的因子。数值越大，表明进程是CPU 密集型运算，执行优先级会降低；数值越                    小，表明进程是I/O 密集型运算，执行优先级会提高
+•STIME：进程启动的时间
+•TTY：完整的终端名称
+•TIME：CPU 时间
+•CMD：启动进程所用的命令和参数
+</code></pre>
+</li>
+</ul>
+<h3 id="12-3-终止进程-kill-和-killall"><a href="#12-3-终止进程-kill-和-killall" class="headerlink" title="12.3 终止进程 kill 和 killall"></a>12.3 终止进程 kill 和 killall</h3><h4 id="12-3-1-介绍"><a href="#12-3-1-介绍" class="headerlink" title="12.3.1 介绍:"></a>12.3.1 介绍:</h4><p>​    若是某个进程执行一半需要停止时，或是已消了很大的系统资源时，此时可以考虑停止该进程。<br>使用kill 命令来完成此项任务。</p>
+<h4 id="12-3-2-基本语法："><a href="#12-3-2-基本语法：" class="headerlink" title="12.3.2 基本语法："></a>12.3.2 基本语法：</h4><ul>
+<li> kill   [选项] 进程号</li>
+<li>功能描述：通过进程号杀死进程</li>
+<li>killall   进程名称<ul>
+<li>功能描述：通过进程名称杀死进程，也支持通配符，这在系统因负载过大而变得很慢时很有用</li>
+</ul>
+</li>
+</ul>
+<h4 id="12-3-3-常用选项："><a href="#12-3-3-常用选项：" class="headerlink" title="12.3.3 常用选项："></a>12.3.3 常用选项：</h4><p>​        -9 :表示强迫进程立即停止</p>
+<h4 id="12-3-4-最佳实践："><a href="#12-3-4-最佳实践：" class="headerlink" title="12.3.4 最佳实践："></a>12.3.4 最佳实践：</h4><ul>
+<li><p>案例1：踢掉某个非法登录用户</p>
+<ul>
+<li>通过  ps -aux | grep sshd   找到非法登录用户的 PID</li>
+<li>再用   kill  PID  杀死即可</li>
+</ul>
+</li>
+<li><p>案例2: 终止多个gedit 编辑器 【killall , 通过进程名称来终止进程</p>
+<ul>
+<li>killall gedit</li>
+</ul>
+</li>
+<li><p>案例3：强制杀掉一个终端</p>
+<ul>
+<li>kill -9  要杀掉的终端的PID</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-4-查看进程树-pstree"><a href="#12-4-查看进程树-pstree" class="headerlink" title="12.4 查看进程树 pstree"></a>12.4 查看进程树 pstree</h3><h3 id="12-4-1-基本语法："><a href="#12-4-1-基本语法：" class="headerlink" title="12.4.1 基本语法："></a>12.4.1 基本语法：</h3><p>​        pstree [选项] ,可以更加直观的来看进程信息</p>
+<h4 id="12-4-2-常用选项："><a href="#12-4-2-常用选项：" class="headerlink" title="12.4.2 常用选项："></a>12.4.2 常用选项：</h4><p>​        -p :显示进程的PID<br>​        -u :显示进程的所属用户</p>
+<h4 id="12-4-3-应用实例："><a href="#12-4-3-应用实例：" class="headerlink" title="12.4.3 应用实例："></a>12.4.3 应用实例：</h4><ul>
+<li><p>案例1：请你树状的形式显示进程的pid</p>
+<ul>
+<li>pstree -p</li>
+</ul>
+</li>
+<li><p>案例2：请你树状的形式进程的用户id</p>
+<ul>
+<li>pstree -u </li>
+</ul>
+</li>
+</ul>
+<h3 id="12-5-服务-Service-管理"><a href="#12-5-服务-Service-管理" class="headerlink" title="12.5 服务(Service)管理"></a>12.5 服务(Service)管理</h3><h4 id="12-5-1-介绍"><a href="#12-5-1-介绍" class="headerlink" title="12.5.1 介绍:"></a>12.5.1 介绍:</h4><p>​        服务(service) 本质就是进程，但是是运行在后台的，通常都会监听某个端口，等待其它程序的请求，比如(mysql , sshd 防火墙等)，因此我们又称为<strong>守护进程</strong>，是Linux 中非常重要的知识点。</p>
+<h4 id="12-5-2-service-管理指令："><a href="#12-5-2-service-管理指令：" class="headerlink" title="12.5.2 service 管理指令："></a>12.5.2 service 管理指令：</h4><p>service 服务名 [start | stop | restart | reload | status]<br>    在CentOS7.0 后 不再使用service ,而是 <strong>systemctl</strong></p>
+<p><strong>12.5.3 使用案例：</strong></p>
+<ul>
+<li><p>案例1：查看当前防火墙的状况，关闭防火墙和重启防火墙</p>
+<ul>
+<li><p>service iptables states</p>
+</li>
+<li><p>service iptables stop</p>
+</li>
+<li><p>service iptables status</p>
+</li>
+<li><p>service iptables start</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723195237.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="12-5-4-细节："><a href="#12-5-4-细节：" class="headerlink" title="12.5.4 细节："></a>12.5.4 细节：</h4><ul>
+<li>关闭或者启用防火墙后，立即生效。[telnet 测试 某个端口即可]</li>
+<li>这种方式只是临时生效，当重启系统后，还是回归以前对服务的设置。</li>
+<li>如果希望设置某个服务自启动或关闭永久生效，要使用chkconfig 指令</li>
+</ul>
+<h4 id="12-5-5-查看服务"><a href="#12-5-5-查看服务" class="headerlink" title="12.5.5 查看服务:"></a>12.5.5 查看服务:</h4><ul>
+<li><p>方式1：使用setup -&gt; 系统服务 就可以看到。</p>
+<p>【补充】进入setup模式后用 tab 键可选择取消和确定</p>
+</li>
+<li><p>方式2: ls -l /etc/init.d/   </p>
+</li>
+</ul>
+<h4 id="12-5-6-服务运行级别"><a href="#12-5-6-服务运行级别" class="headerlink" title="12.5.6 服务运行级别"></a>12.5.6 服务运行级别</h4><p>服务的运行级别(runlevel):</p>
+<p>查看或者修改默认级别： vi /etc/inittab</p>
+<p>Linux 系统有7 种运行级别(runlevel)：常用的是级别3 和5<br>    •运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动<br>    •运行级别1：单用户工作状态，root 权限，用于系统维护，禁止远程登陆<br>    •运行级别2：多用户状态(没有NFS)，不支持网络<br>    •运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式<br>    •运行级别4：系统未使用，保留<br>    •运行级别5：X11 控制台，登陆后进入图形GUI 模式<br>    •运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</p>
+<h4 id="12-5-8-chkconfig-指令"><a href="#12-5-8-chkconfig-指令" class="headerlink" title="12.5.8 chkconfig 指令"></a>12.5.8 chkconfig 指令</h4><ul>
+<li><p>介绍</p>
+<ul>
+<li>通过 chkconfig 命令可以给每个服务的各个运行级别设置自启动/关闭</li>
+</ul>
+</li>
+<li><p>查看服务的基本语法：</p>
+<ul>
+<li> chkconfig   –list | grep sshd</li>
+<li>chkconfig 服务名 –list</li>
+<li>指定服务在 5 这个级别  自启动/不要自启动   chkconfig –level 5 服务名 on/off</li>
+</ul>
+</li>
+</ul>
+<h4 id="12-5-9-应用实例："><a href="#12-5-9-应用实例：" class="headerlink" title="12.5.9 应用实例："></a>12.5.9 应用实例：</h4><ul>
+<li>案例1： 请显示当前系统所有服务的各个运行级别的运行状态。<br>bash&gt; chkconfig –list</li>
+<li>案例2 ：请查看sshd 服务的运行状态。<br>bash&gt; service sshd status</li>
+<li>案例3： 将sshd 服务在运行级别5 下设置为不自动启动。<br>bash&gt; chkconfig –level 5 sshd off</li>
+<li>案例4： 当运行级别为5 时，关闭防火墙。<br>bash&gt; chkconfig –level 5 iptables off</li>
+<li>案例5： 在所有运行级别下，关闭防火墙<br>bash&gt; chkconfig iptables off</li>
+<li>案例6： 在所有运行级别下，开启防火墙<br>bash&gt; chkconfig iptables on</li>
+</ul>
+<p><strong>chkconfig 重新设置服务后自启动或关闭，需要重启机器reboot 才能生效.</strong></p>
+<h3 id="12-6-动态监控进程"><a href="#12-6-动态监控进程" class="headerlink" title="12.6 动态监控进程"></a>12.6 动态监控进程</h3><p>​    top 与ps 命令很相似。它们都用来显示正在执行的进程。Top 与ps 最大的不同之处，在于top 在执行一段时间可以更新正在运行的的进程</p>
+<p>   <strong>用途是查看负载</strong></p>
+<h4 id="12-6-2-基本语法："><a href="#12-6-2-基本语法：" class="headerlink" title="12.6.2 基本语法："></a>12.6.2 基本语法：</h4><ul>
+<li>top [选项]</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-d</td>
+<td>指定top命令每隔几秒更新，默认是在3秒，在top命令的交互模式当中可以执行此命令</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>使top不显示任何闲置或者僵尸进程</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>通过指定监控进程ID来仅仅监控某个进程的状态</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>p</td>
+<td>以CPU使用率排序，默认是此选项</td>
+</tr>
+<tr>
+<td>M</td>
+<td>以内存使用率排序</td>
+</tr>
+<tr>
+<td>N</td>
+<td>以PID降序排列</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出top</td>
+</tr>
+</tbody></table>
+<h4 id="12-6-4-应用实例："><a href="#12-6-4-应用实例：" class="headerlink" title="12.6.4 应用实例："></a>12.6.4 应用实例：</h4><ul>
+<li><p>案例 1   监视特定用户</p>
+<p>​    top：输入此命令，按回车键，查看执行的进程。<br>​    u：然后输入“u”回车，再输入用户名，即可</p>
+</li>
+</ul>
+<ul>
+<li>案例2：终止指定的进程。</li>
+</ul>
+<p>​           top：输入此命令，按回车键，查看执行的进程。<br>​           k：然后输入“k”回车，再输入要结束的进程ID 号</p>
+<ul>
+<li><p>案例3:  指定系统状态更新的时间(每隔10 秒自动更新， 默认是3 秒)：</p>
+<p>  top -d 10</p>
+</li>
+</ul>
+<h4 id="12-6-5-查看系统网络情况-netstat-重要"><a href="#12-6-5-查看系统网络情况-netstat-重要" class="headerlink" title="12.6.5 查看系统网络情况 netstat(重要)"></a>12.6.5 查看系统网络情况 netstat(重要)</h4><ul>
+<li>基本语法<pre><code>        netstat [选项]   （一般会   netstat -anp 这样写）
+</code></pre>
+</li>
+<li>选项说明<ul>
+<li>-an     按一定顺序排列输出</li>
+<li>-p       显示哪个进程在调用</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>应用实例<ul>
+<li>查看系统所有的网络服务<ul>
+<li>netstat -anp    或者 netstat -anp   |  more </li>
+</ul>
+</li>
+<li>请查看服务名为 sshd 的服务的信息。<ul>
+<li>netstat -anp | grep sshd</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第十三章-RPM-和-YUM"><a href="#第十三章-RPM-和-YUM" class="headerlink" title="第十三章 RPM 和 YUM"></a>第十三章 RPM 和 YUM</h2><h3 id="13-1-rpm-包的管理"><a href="#13-1-rpm-包的管理" class="headerlink" title="13.1 rpm 包的管理"></a>13.1 rpm 包的管理</h3><h4 id="13-1-1-介绍："><a href="#13-1-1-介绍：" class="headerlink" title="13.1.1 介绍："></a>13.1.1 介绍：</h4><p>​        RPM是一种用于互联网下载包的打包及安装工具，它包含在某些Linux 分发版中。它生成具有.RPM扩展名的文件。RPM 是RedHat Package Manager（RedHat 软件包管理工具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat 的标志，但理念是通用的。Linux 的分发版本都有采用（suse,redhat, centos 等等），可以算是公认的行业标准了</p>
+<h4 id="13-1-2-rpm-包的简单查询指令："><a href="#13-1-2-rpm-包的简单查询指令：" class="headerlink" title="13.1.2 rpm 包的简单查询指令："></a>13.1.2 rpm 包的简单查询指令：</h4><ul>
+<li><p>查询已安装的rpm 列表     rpm –qa|grep xx     (注意是q   不是g)</p>
+</li>
+<li><p>请查询看一下，当前的Linux 有没有安装 firefox .</p>
+<ul>
+<li><p>rpm -qa | grep firefox</p>
+</li>
+<li><p>查询结果为  ： firefox -45.0.1-1  el6.centos.x86_64</p>
+<p>​    名称:firefox<br>​    版本号：45.0.1-1</p>
+<p>​    适用操作系统: el6.centos.x86_64 ,表示centos6.x 的64 位系统,如果是i686、i386 表示32 位系统，noarch 表示通用。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="13-1-4-rpm-包的其它查询指令："><a href="#13-1-4-rpm-包的其它查询指令：" class="headerlink" title="13.1.4 rpm 包的其它查询指令："></a>13.1.4 rpm 包的其它查询指令：</h4><p>​           rpm -qa :查询所安装的所有rpm 软件包<br>​           rpm -qa | more     查询所安装的所有rpm 软件包并且分页显示<br>​           rpm -qa | grep Xxx   ：查看Xxx包的信息</p>
+<p>​           rpm -q 软件包名 :查询软件包是否安装</p>
+<p>​           rpm -qi 软件包名 ：查询软件包信息</p>
+<p>​            pm -ql 软件包名 :查询软件包中的文件</p>
+<p>​            rpm -qf 文件绝对路径 查询文件所属的软件包</p>
+<h4 id="13-1-5-卸载-rpm-包："><a href="#13-1-5-卸载-rpm-包：" class="headerlink" title="13.1.5 卸载 rpm 包："></a>13.1.5 卸载 rpm 包：</h4><ul>
+<li>基本语法：  rpm -e  RPM包的名称</li>
+<li>应用案例<ul>
+<li>案例1 ：删除firefox 软件包<ul>
+<li>rpm -e firefox</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用细节：<ul>
+<li>如果其它软件包依赖于您要卸载的软件包，卸载时则会产生错误信息，比如<ul>
+<li>rpm -e foo    会提示：<br>removing these packages would break dependencies:foo is needed by bar-1.0-</li>
+</ul>
+</li>
+<li>​      如果我们就是要删除 foo 这个rpm 包，可以增加参数 <strong>–nodeps</strong> ,就可以强制删除，但是一般<br>不推荐这样做，因为依赖于该软件包的程序可能无法运行<ul>
+<li>rpm -e  –nodeps foo</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="13-1-6-安装-rpm-包："><a href="#13-1-6-安装-rpm-包：" class="headerlink" title="13.1.6 安装 rpm 包："></a>13.1.6 安装 rpm 包：</h4><ul>
+<li><p>语法：    rpm -ivh  RPM包全路径名称</p>
+</li>
+<li><p>参数说明</p>
+<ul>
+<li>i=install 安装</li>
+<li>v=verbose 提示</li>
+<li>h=hash 进度条</li>
+</ul>
+</li>
+<li><p>应用实例：演示安装firefox 浏览器</p>
+<ul>
+<li><p>步骤1 ：先找到firefox 的安装rpm 包,需要挂载上我们安装centos 的iso 文件，然后到/media/下去找rpm 包</p>
+<p>【虚拟机】 —–  【设置】  —–  【CD/DVD】  —–  【使用ISO映像文件】  选择   .iso  文件即可</p>
+</li>
+<li><p>步骤2 ： 拷贝到 /opt下     cp /media/CentOS_6.8_Final/Packages/firefox-45.0.1-1.el6.centos.x86_64.rpm                            /opt</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-2-yum"><a href="#13-2-yum" class="headerlink" title="13.2 yum"></a>13.2 yum</h3><h4 id="13-2-1-介绍："><a href="#13-2-1-介绍：" class="headerlink" title="13.2.1 介绍："></a>13.2.1 介绍：</h4><p>​      Yum 是一个Shell 前端软件包管理器。基于RPM 包管理，能够从指定的服务器自动下载RPM 包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包。使用yum 的前提是可以联网。</p>
+<h4 id="13-2-2-yum-的基本指令"><a href="#13-2-2-yum-的基本指令" class="headerlink" title="13.2.2 yum 的基本指令"></a>13.2.2 yum 的基本指令</h4><ul>
+<li>查询yum 服务器是否有需要安装的软件<ul>
+<li>yum list|grep xx 软件列表</li>
+</ul>
+</li>
+<li>安装指定的yum 包<ul>
+<li>yum install xxx 下载安装</li>
+</ul>
+</li>
+</ul>
+<h4 id="13-2-3-yum-应用实例："><a href="#13-2-3-yum-应用实例：" class="headerlink" title="13.2.3 yum 应用实例："></a>13.2.3 yum 应用实例：</h4><ul>
+<li>案例：请使用yum 的方式来安装firefox<ul>
+<li> 先查看一下 firefox rpm 在yum 服务器有没有</li>
+<li>yum list | grep firefox</li>
+<li>安装<ul>
+<li>yum install firefox   <strong>会安装最新版本的软件</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第十四章-搭建-JavaEE-环境"><a href="#第十四章-搭建-JavaEE-环境" class="headerlink" title="第十四章 搭建 JavaEE 环境"></a>第十四章 搭建 JavaEE 环境</h2><p>如果需要在Linux 下进行JavaEE 的开发，我们需要安装如下软件：</p>
+<ul>
+<li>mysql</li>
+<li>jdk</li>
+<li>eclipse</li>
+<li>apache-tomcat</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724120722.png"></p>
+<h3 id="14-1-安装-JDK"><a href="#14-1-安装-JDK" class="headerlink" title="14.1 安装 JDK"></a>14.1 安装 JDK</h3><h4 id="14-1-1-安装步骤"><a href="#14-1-1-安装步骤" class="headerlink" title="14.1.1 安装步骤"></a>14.1.1 安装步骤</h4><ul>
+<li>先将软件通过xftp5 上传到 /opt 下</li>
+<li>解压缩到 /opt</li>
+<li>配置环境变量的配置文件vim /etc/profile<ul>
+<li>JAVA_HOME=/opt/jdk1.7.0_79</li>
+<li>PATH=/opt/jdk1.7.0_79/bin:$PATH</li>
+<li>export JAVA_HOME PATH</li>
+</ul>
+</li>
+<li>需要注销用户，环境变量才能生效。</li>
+<li>在任何目录下就可以使用java 和 javac</li>
+</ul>
+<h4 id="14-1-2-测试是否安装成功"><a href="#14-1-2-测试是否安装成功" class="headerlink" title="14.1.2 测试是否安装成功"></a>14.1.2 测试是否安装成功</h4><p>编写一个简单的Hello.java 输出”hello,world!</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724124314.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724124329.png"></p>
+<h3 id="14-2-安装-tomcat"><a href="#14-2-安装-tomcat" class="headerlink" title="14.2 安装 tomcat"></a>14.2 安装 tomcat</h3><h4 id="14-3-1-步骤"><a href="#14-3-1-步骤" class="headerlink" title="14.3.1 步骤 :"></a>14.3.1 步骤 :</h4><ul>
+<li><p>解压缩到   /opt</p>
+</li>
+<li><p>启动tomcat ./startup.sh    先进入到tomcat 的 bin 目录  使用Linux 本地的浏览器 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> 是可以访问到tomcat的</p>
+</li>
+<li><p>开放端口 8080 ,这样外网才能访问到tomcat</p>
+<p>firewall-cmd –permanent –zone=public –add-port=8080/tcp</p>
+</li>
+<li><p>重启防火墙</p>
+</li>
+<li><p>进入   /opt/apache-tomcat-7.0.70 /bin      输入   ./startup.sh，外网就可访问 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
+</li>
+</ul>
+<h3 id="14-3-安装-eclipse"><a href="#14-3-安装-eclipse" class="headerlink" title="14.3 安装 eclipse"></a>14.3 安装 eclipse</h3><p>步骤</p>
+<ul>
+<li>解压缩到/opt<ul>
+<li> tar -zxvf eclipse-jee-mars-2-linux-gtk-x86_64.tar.gz </li>
+</ul>
+</li>
+<li>启动eclipse，配置jre 和server<ul>
+<li>启动方式： 进入到 eclipse 解压后的文件夹，然后执行 ./eclipse 即可</li>
+</ul>
+</li>
+<li>编写jsp 页面,并测试成功!</li>
+</ul>
+<h3 id="14-5-mysql-的安装和配置"><a href="#14-5-mysql-的安装和配置" class="headerlink" title="14.5 mysql 的安装和配置"></a>14.5 mysql 的安装和配置</h3><p>自己看教程</p>
+<h2 id="第十五章-Shell编程"><a href="#第十五章-Shell编程" class="headerlink" title="第十五章 Shell编程"></a>第十五章 Shell编程</h2><h3 id="15-1-为什么要学shell编程"><a href="#15-1-为什么要学shell编程" class="headerlink" title="15.1 为什么要学shell编程"></a>15.1 为什么要学shell编程</h3><ul>
+<li>Linux 运维工程师在进行服务器集群管理时，需要编写Shell 程序来进行服务器管理。</li>
+<li>对于JavaEE 和Python 程序员来说，工作的需要，你的老大会要求你编写一些Shell 脚本进行程<br>序或者是服务器的维护，比如编写一个定时备份数据库的脚本。</li>
+<li>对于大数据程序员来说，需要编写Shell 程序来管理集群。</li>
+</ul>
+<h3 id="15-2-什么是Shell"><a href="#15-2-什么是Shell" class="headerlink" title="15.2 什么是Shell"></a>15.2 什么是Shell</h3><p>​    Shell 是一个命令行解释器，它为用户提供了一个向Linux 内核发送请求以便运行程序的界面系统级程序，用户可以用Shell 来启动、挂起、停止甚至是编写一些程序.</p>
+
                 
             </div>
             <hr/>
@@ -2104,8 +3063,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/javaweb%E5%A4%8D%E4%B9%A0/" class="post-category">
-                                    javaweb复习
+                            <a href="/categories/review/" class="post-category">
+                                    review
                                 </a>
                             
                             
@@ -2352,7 +3311,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">96.5k</span>&nbsp;字
+                class="white-color">109.1k</span>&nbsp;字
             
             
             
