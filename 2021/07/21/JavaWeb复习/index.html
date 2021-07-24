@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.9k
+                    12k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    51 分
+                    52 分
                 </div>
                 
 
@@ -629,7 +629,8 @@
 <p>xml中的配置</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span> 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.jcp.org/xml/ns/javaee<span class="token punctuation">"</span></span> 
-         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>               <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd<span class="token punctuation">"</span></span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>4.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>              
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd<span class="token punctuation">"</span></span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>4.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
    <span class="token comment" spellcheck="true">&lt;!-- servlet 标签给 Tomcat 配置 Servlet 程序 --></span>
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--servlet-name 标签 Servlet 程序起一个别名（一般是类名） --></span> 
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>HelloServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
@@ -1956,40 +1957,40 @@ username <span class="token operator">=</span> <span class="token keyword">new</
 <ul>
 <li>作用：多路判断</li>
 </ul>
-<pre class=" language-jsp"><code class="language-jsp"><% 
-   request.setAttribute("height", 180);
-%>
-<c:choose> 
-      <c:when test="$&#123; requestScope.height > 190 &#125;">
-         <h2>小巨人</h2>
-      </c:when> 
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">%</span> 
+   request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"height"</span><span class="token punctuation">,</span> <span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>c<span class="token punctuation">:</span>choose<span class="token operator">></span> 
+      <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>when test<span class="token operator">=</span><span class="token string">"$&amp;#123; requestScope.height > 190 &amp;#125;"</span><span class="token operator">></span>
+              <span class="token operator">&lt;</span>h2<span class="token operator">></span> 小巨人<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>when<span class="token operator">></span> 
    
-      <c:when test="$&#123; requestScope.height > 180 &#125;">
-         <h2>很高</h2> 
-      </c:when> 
+      <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>when test<span class="token operator">=</span><span class="token string">"$&amp;#123; requestScope.height > 180 &amp;#125;"</span><span class="token operator">></span>
+           <span class="token operator">&lt;</span>h2<span class="token operator">></span> 很高<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>when<span class="token operator">></span> 
    
-      <c:when test="$&#123; requestScope.height > 170 &#125;"> 
-         <h2>还可以</h2> 
-      </c:when>
+      <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>when test<span class="token operator">=</span><span class="token string">"$&amp;#123; requestScope.height > 170 &amp;#125;"</span><span class="token operator">></span> 
+             <span class="token operator">&lt;</span>h2<span class="token operator">></span> 还可以<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>when<span class="token operator">></span>
  
-      <c:otherwise> 
-         <c:choose> 
-            <c:when test="$&#123;requestScope.height > 160&#125;">
-               <h3>大于 160</h3> 
-            </c:when>
+      <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>otherwise<span class="token operator">></span> 
+         <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>choose<span class="token operator">></span> 
+            <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>when test<span class="token operator">=</span><span class="token string">"$&amp;#123;requestScope.height > 160&amp;#125;"</span><span class="token operator">></span>
+                <span class="token operator">&lt;</span>h3<span class="token operator">></span>大于 <span class="token number">160</span><span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>when<span class="token operator">></span>
             
-            <c:when test="$&#123;requestScope.height > 150&#125;">
-               <h3>大于 150</h3>
-            </c:when>
+            <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>when test<span class="token operator">=</span><span class="token string">"$&amp;#123;requestScope.height > 150&amp;#125;"</span><span class="token operator">></span>
+               <span class="token operator">&lt;</span>h3<span class="token operator">></span>大于 <span class="token number">150</span><span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>when<span class="token operator">></span>
             
-            <c:when test="$&#123;requestScope.height > 140&#125;">
-               <h3>大于 140</h3>
-            </c:when>
+            <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>when test<span class="token operator">=</span><span class="token string">"$&amp;#123;requestScope.height > 140&amp;#125;"</span><span class="token operator">></span>
+               <span class="token operator">&lt;</span>h3<span class="token operator">></span>大于 <span class="token number">140</span><span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>when<span class="token operator">></span>
             
-            <c:otherwise> 其他小于 140 </c:otherwise> 
-         </c:choose>
-      </c:otherwise> 
-</c:choose>
+            <span class="token operator">&lt;</span>c<span class="token punctuation">:</span>otherwise<span class="token operator">></span> 其他小于 <span class="token number">140</span> <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>otherwise<span class="token operator">></span> 
+         <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>choose<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>otherwise<span class="token operator">></span> 
+<span class="token operator">&lt;</span><span class="token operator">/</span>c<span class="token punctuation">:</span>choose<span class="token operator">></span>
 </code></pre>
 </li>
 <li><p>&lt;c:foreach&gt; :  遍历输出使用。</p>
@@ -2774,7 +2775,7 @@ resp<span class="token punctuation">.</span><span class="token function">addCook
 </li>
 <li><p>​       苹果公司这种方案并不适合全部公司，而我们希望相同的一个网站，而不同人访问的时候可以根据用户所在的区域显示 不同的语言文字，而网站的布局样式等不发生改变。</p>
 </li>
-<li><p>​       于是就有了我们说的国际化，国际化总的来说就是同一个网站不同国家的人来访问可以显示出不同的语言。但实际上这 种需求并不强烈，一般真的有国际化需求的公司，主流采用的依然是苹果公司的那种方案，为不同的国家创建不同的页 面。</p>
+<li><p>​       于是就有了我们说的国际化，国际化总的来说就是同一个网站不同国家的人来访问可以显示出不同的语言。但实际上这 种需求并不强烈，一般真的有国际化需求的公司，主流采用的依然是苹果公司的那种方案，为不同的国家创建不同的页面。</p>
 </li>
 </ul>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724234135.png"></p>
@@ -3547,7 +3548,7 @@ resp<span class="token punctuation">.</span><span class="token function">addCook
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">112.4k</span>&nbsp;字
+                class="white-color">112.6k</span>&nbsp;字
             
             
             
