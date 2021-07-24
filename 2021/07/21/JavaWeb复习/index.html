@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-23
+                    2021-07-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9k
+                    11.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    38 分
+                    51 分
                 </div>
                 
 
@@ -2315,6 +2315,469 @@ resp<span class="token punctuation">.</span><span class="token function">addCook
 </code></pre>
 <p>【注意】  <strong>session的超时指的是，客户端两次请求的最大间隔时长</strong>，要是一直刷新一直刷新，永远也不会超时</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723231848.png"></p>
+<h2 id="Filter过滤器"><a href="#Filter过滤器" class="headerlink" title="Filter过滤器"></a>Filter过滤器</h2><h3 id="什么是过滤器"><a href="#什么是过滤器" class="headerlink" title="什么是过滤器"></a>什么是过滤器</h3><ul>
+<li>Filter 过滤器它是 JavaWeb 的三大组件之一。</li>
+<li>Filter 过滤器它是 JavaEE 的规范。也就是接口。</li>
+<li>Filter 过滤器它的作用是：<strong>拦截请求</strong>，过滤响应。</li>
+</ul>
+<p>拦截请求常见的应用场景有： </p>
+<ul>
+<li><p>权限检查 </p>
+</li>
+<li><p>日记操作 </p>
+</li>
+<li><p>事务管理    ……等等</p>
+</li>
+</ul>
+<h3 id="Filter的用途"><a href="#Filter的用途" class="headerlink" title="Filter的用途"></a>Filter的用途</h3><p>​    要求：在你的 web 工程下，有一个 admin 目录。这个 admin 目录下的所有资源（html 页面、jpg 图片、jsp 文件、等等）都必 须是用户登录之后才允许访问。</p>
+<p>​     </p>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<form action="http://localhost:8080/11_filter/loginServlet" method="get">
+    用户名：<input type="text" name="name">
+    密  码：<input type="password" name="password">
+    <input type="submit">
+</form>
+</body>
+</html>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//过滤器</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AdminFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span>FilterConfig filterConfig<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * doFile()方法，专门用来拦截请求，可以做权限检查
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest request<span class="token punctuation">,</span> ServletResponse response<span class="token punctuation">,</span> FilterChain chain<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        HttpServletRequest httpServletRequest <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletRequest<span class="token punctuation">)</span>request<span class="token punctuation">;</span>
+
+        HttpSession session <span class="token operator">=</span> httpServletRequest<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Object user <span class="token operator">=</span> session<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>user <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            request<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">"/login.jsp"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            chain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//servlet代码</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span>HttpServletRequest req<span class="token punctuation">,</span> HttpServletResponse resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException<span class="token punctuation">,</span> IOException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+        resp<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"text/html;charset=utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        String name <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String password <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"whw"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token string">"123"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            req<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">,</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            resp<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"登录成功！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            req<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">"/login.jsp"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span>resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-xml"><code class="language-xml"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>AdminFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">></span></span>com.whw.filter.AdminFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-mapping</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>AdminFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/admin/*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-mapping</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>LoginServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">></span></span>com.whw.servlet.LoginServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>LoginServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/loginServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="Filter的声明周期"><a href="#Filter的声明周期" class="headerlink" title="Filter的声明周期"></a>Filter的声明周期</h3><p>Filter的声明周期包含的几个方法：</p>
+<ul>
+<li>构造方法</li>
+<li>init初始化方法</li>
+</ul>
+<p>第一二步在web工程启动的时候执行</p>
+<ul>
+<li>doFilter过滤方法</li>
+<li>destory：停止web工程的时候，就会执行</li>
+</ul>
+<h3 id="FilterConfig类"><a href="#FilterConfig类" class="headerlink" title="FilterConfig类"></a>FilterConfig类</h3><p>Filter 过滤器的配置文件类</p>
+<p><strong>Tomcat 每次创建 Filter 的时候</strong>，也会同时创建一个 FilterConfig 类，这里包含了 Filter 配置文件的配置信息</p>
+<p>作用：</p>
+<ul>
+<li>获取 Filter 的名称 ，也就是filter-name 的内容</li>
+<li>获取在 Filter 中配置的 init-param 初始化参数</li>
+<li>获取 ServletContext 对象</li>
+</ul>
+<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span>FilterConfig filterConfig<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token comment" spellcheck="true">//1、获取 Filter 的名称 filter-name 的内容</span>
+   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"filter-name 的值是："</span> <span class="token operator">+</span> filterConfig<span class="token punctuation">.</span><span class="token function">getFilterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">//2、获取在 web.xml 中配置的 init-param 初始化参数</span>
+   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"初始化参数 name 的值是："</span> <span class="token operator">+</span> filterConfig<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"初始化参数 url 的值是："</span> <span class="token operator">+</span> filterConfig<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"url"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+   <span class="token comment" spellcheck="true">//获取 ServletContext 对象</span>
+   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>filterConfig<span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>AdminFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">></span></span>com.whw.filter.AdminFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">></span></span>
+
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>whw<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>password<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>123<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-mapping</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>AdminFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/admin/*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-mapping</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="FilterChain-过滤器链"><a href="#FilterChain-过滤器链" class="headerlink" title="FilterChain 过滤器链"></a>FilterChain 过滤器链</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724212351.png"></p>
+<h3 id="Filter的拦截路径"><a href="#Filter的拦截路径" class="headerlink" title="Filter的拦截路径"></a>Filter的拦截路径</h3><ul>
+<li>精确匹配<ul>
+<li> &lt;**url-pattern**&gt;/target.jsp&lt;/**url-pattern**&gt; </li>
+<li>以上配置的路径，表示请求地址必须为：<a href="http://ip:port/工程路径/target.jsp">http://ip:port/工程路径/target.jsp</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>目标匹配<ul>
+<li>&lt;*<em>url-pattern**&gt;/admin/</em>&lt;/**url-pattern**&gt;<ul>
+<li>以上配置的路径，表示请求地址必须为：<a href="http://ip:port/工程路径/admin/">http://ip:port/工程路径/admin/</a>*</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>后缀名匹配<ul>
+<li>&lt;*<em>url-pattern**&gt;</em>.html&lt;/**url-pattern**&gt;<ul>
+<li>以上配置的路径，表示请求地址必须以.html 结尾才会拦截到</li>
+</ul>
+</li>
+<li>&lt;*<em>url-pattern**&gt;</em>.jsp&lt;/**url-pattern**&gt;<ul>
+<li>以上配置的路径，表示请求地址必须以.jsp结尾才会拦截到</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><h3 id="什么是JSON"><a href="#什么是JSON" class="headerlink" title="什么是JSON"></a>什么是JSON</h3><p>​        <strong>JSON</strong> (JavaScript Object Notation) 是一种轻量级的数据交换格式。易于人阅读和编写。同时也易于机器解析和生成。JSON 采用完全独立于语言的文本格式，而且很多语言都提供了对 json 的支持（包括 C, C++, C#, Java, JavaScript, Perl, Python 等）。 这样就使得 JSON 成为理想的数据交换格式。</p>
+<pre><code> json 相较于XML是一种轻量级的数据交换格式。
+</code></pre>
+<p>​    数据交换是指客户端和服务器之间业务数据的传递格式</p>
+<h3 id="JSON的定义"><a href="#JSON的定义" class="headerlink" title="JSON的定义"></a>JSON的定义</h3><p>​        json 是由键值对组成，并且由花括号包围。每个键由引号引起来，键和值之间使用冒号进行分隔， 多组键值对之间进行逗号进行分隔。</p>
+<h3 id="JSON在JavaScript中的使用"><a href="#JSON在JavaScript中的使用" class="headerlink" title="JSON在JavaScript中的使用"></a>JSON在JavaScript中的使用</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>json的声明<span class="token operator">--</span><span class="token operator">></span>
+<span class="token keyword">var</span> jsonObj <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token string">"key1"</span><span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">,</span>
+   <span class="token string">"key2"</span><span class="token punctuation">:</span><span class="token string">"abc"</span><span class="token punctuation">,</span>
+   <span class="token string">"key3"</span><span class="token punctuation">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
+   <span class="token string">"key4"</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token string">"arr"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+   <span class="token string">"key5"</span><span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token string">"key5_1"</span> <span class="token punctuation">:</span> <span class="token number">551</span><span class="token punctuation">,</span>
+   <span class="token string">"key5_2"</span> <span class="token punctuation">:</span> <span class="token string">"key5_2_value"</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+   <span class="token string">"key6"</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token string">"key6_1_1"</span><span class="token punctuation">:</span><span class="token number">6611</span><span class="token punctuation">,</span>
+   <span class="token string">"key6_1_2"</span><span class="token punctuation">:</span><span class="token string">"key6_1_2_value"</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token string">"key6_2_1"</span><span class="token punctuation">:</span><span class="token number">6621</span><span class="token punctuation">,</span>
+   <span class="token string">"key6_2_2"</span><span class="token punctuation">:</span><span class="token string">"key6_2_2_value"</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">]</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>json的访问<span class="token operator">--</span><span class="token operator">></span>
+   <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// object  json就是一个对象</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">.</span>key1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//12</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">.</span>key2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// abc</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">.</span>key3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">.</span>key4<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 得到数组[11,"arr",false]</span>
+   <span class="token comment" spellcheck="true">// json 中 数组值的遍历</span>
+   <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> jasonObj<span class="token punctuation">.</span>key4<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span>jasonObj<span class="token punctuation">.</span>key4<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+   <span class="token function">alert</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">.</span>key5<span class="token punctuation">.</span>key5_1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//551</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">.</span>key5<span class="token punctuation">.</span>key5_2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//key5_2_value</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span> jsonObj<span class="token punctuation">.</span>key6 <span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 得到json数组</span>
+
+   <span class="token comment" spellcheck="true">// 取出来每一个元素都是json对象</span>
+   <span class="token keyword">var</span> jsonItem <span class="token operator">=</span> jsonObj<span class="token punctuation">.</span>key6<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span> jsonItem<span class="token punctuation">.</span>key6_1_1 <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//6611</span>
+   <span class="token function">alert</span><span class="token punctuation">(</span> jsonItem<span class="token punctuation">.</span>key6_1_2 <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//key6_1_2_value</span>
+</code></pre>
+<h3 id="json对象和字符串之间的转换"><a href="#json对象和字符串之间的转换" class="headerlink" title="json对象和字符串之间的转换"></a>json对象和字符串之间的转换</h3><p>json 的存在有两种形式。 </p>
+<ul>
+<li><p>对象的形式存在，我们叫它 json 对象。 </p>
+</li>
+<li><p>字符串的形式存在，我们叫它 json 字符串。 </p>
+</li>
+</ul>
+<p>一般我们要操作 json 中的数据的时候，需要 json 对象的格式。 </p>
+<p>一般我们要在客户端和服务器之间进行数据交换的时候，使用 json 字符串。</p>
+<ul>
+<li>JSON.stringify()<ul>
+<li>把json对象转换为json字符串</li>
+</ul>
+</li>
+<li>JSON.parse()<ul>
+<li>把json字符串转换成为json对象</li>
+</ul>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 把json对象转换成为 json字符串</span>
+<span class="token keyword">var</span> jsonObjString <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>jsonObj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 特别像 Java中对象的toString</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>jsonObjString<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 把json字符串。转换成为json对象</span>
+<span class="token keyword">var</span> jsonObj2 <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>jsonObjString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>jsonObj2<span class="token punctuation">.</span>key1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 12</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>jsonObj2<span class="token punctuation">.</span>key2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// abc</span>
+</code></pre>
+<h3 id="JSON在Java中的使用"><a href="#JSON在Java中的使用" class="headerlink" title="JSON在Java中的使用"></a>JSON在Java中的使用</h3><p>​    需要导入GSON.jar</p>
+<p>javaBean类</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+   
+   <span class="token comment" spellcheck="true">//省略无参，有参构造器，get、set方法，toString方法</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>javaBean和json的互转</li>
+</ul>
+<pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"HH好帅!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 创建Gson对象实例</span>
+        Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// toJson方法可以把java对象转换成为json字符串</span>
+        String personJsonString <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>personJsonString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// fromJson把json字符串转换回Java对象</span>
+        <span class="token comment" spellcheck="true">// 第一个参数是json字符串</span>
+        <span class="token comment" spellcheck="true">// 第二个参数是转换回去的Java对象类型</span>
+        Person person1 <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>personJsonString<span class="token punctuation">,</span> Person<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>List 和json的互转</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   List<span class="token operator">&lt;</span>Person<span class="token operator">></span> personList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   personList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"国哥"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   personList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"康师傅"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">// 把List转换为json字符串</span>
+   String personListJsonString <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>personList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>personListJsonString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   List<span class="token operator">&lt;</span>Person<span class="token operator">></span> list <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>personListJsonString<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Person<span class="token operator">>></span>
+<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   Person person <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//重点注意TypeToken类，它内部用反射就可以把json字符串转换为集合</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonListType</span> <span class="token keyword">extends</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Person<span class="token operator">>></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>map 和json的互转</li>
+</ul>
+<pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span>Person<span class="token operator">></span> personMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        personMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"国哥好帅"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        personMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"康师傅也好帅"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 把 map 集合转换成为 json字符串</span>
+        String personMapJsonString <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>personMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>personMapJsonString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Map<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span>Person<span class="token operator">></span> personMap2 <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>personMapJsonString<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TypeToken</span><span class="token operator">&lt;</span>HashMap<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span>Person<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>personMap2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Person p <span class="token operator">=</span> personMap2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="AJAX请求"><a href="#AJAX请求" class="headerlink" title="AJAX请求"></a>AJAX请求</h2><h3 id="什么是-AJAX请求"><a href="#什么是-AJAX请求" class="headerlink" title="什么是 AJAX请求"></a><strong>什么是</strong> AJAX请求</h3><p>​    AJAX 即“Asynchronous Javascript  And  XML”（异步 JavaScript 和 XML），是指一种创建交互式网页应用的网页开发 技术</p>
+<p>​    AJAX 是一种浏览器<strong>通过 js 异步发起请求，局部更新页面</strong>的技术。Ajax 请求的局部更新，浏览器地址栏不会发生变化而且局部更新<strong>不会舍弃原来页面的内容</strong> </p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>AjaxServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">></span></span>com.whw.servlet.AjaxServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>AjaxServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/ajaxServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"> <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">javaScriptAjax</span><span class="token punctuation">(</span>HttpServletRequest req<span class="token punctuation">,</span> HttpServletResponse resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException<span class="token punctuation">,</span> IOException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Ajax请求过来了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"HH"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+       Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+       e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// json格式的字符串</span>
+    Gson gson <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String personJsonString <span class="token operator">=</span> gson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    resp<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>personJsonString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="原生JavaScript实现AJAX"><a href="#原生JavaScript实现AJAX" class="headerlink" title="原生JavaScript实现AJAX"></a>原生JavaScript实现AJAX</h3><ul>
+<li>原生JavaScript实现AJAX</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
+   <span class="token comment" spellcheck="true">// 在这里使用javaScript语言发起Ajax请求，访问服务器AjaxServlet中javaScriptAjax</span>
+   <span class="token keyword">function</span> <span class="token function">ajaxRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token comment" spellcheck="true">//1、我们首先要创建XMLHttpRequest </span>
+   <span class="token keyword">var</span> xmlhttprequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token comment" spellcheck="true">//2、调用open方法设置请求参数</span>
+   xmlhttprequest<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span><span class="token string">"http://localhost:8080/12_json_ajax_i18n/ajaxServlet?action=javaScriptAjax"</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token comment" spellcheck="true">//4、在send方法前绑定onreadystatechange事件，处理请求完成后的操作。</span>
+   xmlhttprequest<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>xmlhttprequest<span class="token punctuation">.</span>readyState <span class="token operator">==</span> <span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xmlhttprequest<span class="token punctuation">.</span>status <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+         <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"收到服务器返回的数据："</span> <span class="token operator">+</span> xmlhttprequest<span class="token punctuation">.</span>responseText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token keyword">var</span> jsonObj <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>xmlhttprequest<span class="token punctuation">.</span>responseText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token comment" spellcheck="true">// 把响应的数据显示在页面上</span>
+         document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"div01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"编号："</span> <span class="token operator">+</span> jsonObj<span class="token punctuation">.</span>id <span class="token operator">+</span> <span class="token string">" , 姓名："</span> <span class="token operator">+</span> jsonObj<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   <span class="token comment" spellcheck="true">//3、调用send方法发送请求</span>
+   xmlhttprequest<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</code></pre>
+<h3 id="JQuery的AJAX请求"><a href="#JQuery的AJAX请求" class="headerlink" title="JQuery的AJAX请求"></a>JQuery的AJAX请求</h3><p> $.ajax方法</p>
+<ul>
+<li>url        请求的地址</li>
+<li>type     请求的类型，GET  或者  POST</li>
+<li>data     表示发送给服务器的数据<ul>
+<li>格式一：name=value&amp;name=value</li>
+<li>格式二：{key:value}</li>
+</ul>
+</li>
+<li>success 请求成功，响应的回调函数</li>
+<li>dataType   响应的数据类型<ul>
+<li>常用的数据类型；<ul>
+<li>text  表示纯文本</li>
+<li>xml  表示xml数据</li>
+<li>json  表示json对象   （常用！！）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Jquery实现AJAX</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   url<span class="token punctuation">:</span><span class="token string">"http://localhost:8080/12_json_ajax_i18n/ajaxServlet"</span><span class="token punctuation">,</span>
+   data<span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token string">"action"</span><span class="token punctuation">:</span><span class="token string">"jQueryAjax"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+   type<span class="token punctuation">:</span><span class="token string">"GET"</span><span class="token punctuation">,</span>
+   success<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#msg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">" ajax 编号："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>id <span class="token operator">+</span> <span class="token string">" , 姓名："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+   dataType <span class="token punctuation">:</span> <span class="token string">"json"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>$.get 方法和$.post 方法</p>
+<p>​        url             请求的 url 地址 </p>
+<p>​        data          发送的数据 </p>
+<p>​        callback    成功的回调函数 </p>
+<p>​        type           返回的数据类型</p>
+<ul>
+<li>Jquery-ajax–get请求</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"http://localhost:8080/12_json_ajax_i18n/ajaxServlet"</span><span class="token punctuation">,</span><span class="token string">"action=jQueryGet"</span><span class="token punctuation">,</span><span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#msg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">" get 编号："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>id <span class="token operator">+</span> <span class="token string">" , 姓名："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token string">"json"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>​        </p>
+<ul>
+<li>Jquery-ajax–post请求</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"http://localhost:8080/12_json_ajax_i18n/ajaxServlet"</span><span class="token punctuation">,</span><span class="token string">"action=jQueryPost"</span><span class="token punctuation">,</span><span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#msg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">" post 编号："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>id <span class="token operator">+</span> <span class="token string">" , 姓名："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token string">"json"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>$.getJSON 方法</p>
+<p>​    url                   请求的 url 地址 </p>
+<p>​    data               发送给服务器的数</p>
+<p>​    callback         成功的回调函数</p>
+<ul>
+<li> jQuery-ajax–getJson  请求</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">getJSON</span><span class="token punctuation">(</span><span class="token string">"http://localhost:8080/12_json_ajax_i18n/ajaxServlet"</span><span class="token punctuation">,</span><span class="token string">"action=jQueryGetJSON"</span><span class="token punctuation">,</span><span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#msg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">" getJSON 编号："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>id <span class="token operator">+</span> <span class="token string">" , 姓名："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li><p>表单序列化 serialize()</p>
+<p>serialize()可以把表单中所有表单项的内容都获取到，并以 name=value&amp;name=value 的形式进行拼接。</p>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">getJSON</span><span class="token punctuation">(</span><span class="token string">"http://localhost:8080/12_json_ajax_i18n/ajaxServlet"</span><span class="token punctuation">,</span><span class="token string">"action=jQuerySerialize&amp;"</span> <span class="token operator">+</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#form01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">serialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                        <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#msg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">" Serialize 编号："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>id <span class="token operator">+</span> <span class="token string">" , 姓名："</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="i18n国际化"><a href="#i18n国际化" class="headerlink" title="i18n国际化"></a>i18n国际化</h2><h3 id="什么是i18n国际化"><a href="#什么是i18n国际化" class="headerlink" title="什么是i18n国际化"></a>什么是i18n国际化</h3><ul>
+<li><p>​      国际化（Internationalization）指的是同一个网站可以支持多种不同的语言，以方便不同国家，不同语种的用户访问。</p>
+</li>
+<li><p>​      关于国际化我们想到的最简单的方案就是为不同的国家创建不同的网站，比如苹果公司，他的英文官网是： <a target="_blank" rel="noopener" href="http://www.apple.com/">http://www.apple.com</a> 而中国官网是 <a target="_blank" rel="noopener" href="http://www.apple.com/cn">http://www.apple.com/cn</a></p>
+</li>
+<li><p>​       苹果公司这种方案并不适合全部公司，而我们希望相同的一个网站，而不同人访问的时候可以根据用户所在的区域显示 不同的语言文字，而网站的布局样式等不发生改变。</p>
+</li>
+<li><p>​       于是就有了我们说的国际化，国际化总的来说就是同一个网站不同国家的人来访问可以显示出不同的语言。但实际上这 种需求并不强烈，一般真的有国际化需求的公司，主流采用的依然是苹果公司的那种方案，为不同的国家创建不同的页 面。</p>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724234135.png"></p>
 
                 
             </div>
@@ -3084,7 +3547,7 @@ resp<span class="token punctuation">.</span><span class="token function">addCook
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">109.1k</span>&nbsp;字
+                class="white-color">112.4k</span>&nbsp;字
             
             
             
