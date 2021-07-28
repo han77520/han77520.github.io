@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-21
+                    2021-07-25
                 </div>
                 
 
@@ -2690,10 +2690,6 @@ DROP PROCEDURE p1;
 2、简化操作
 3、减少了编译次数并且减少了和数据库服务器的连接次数，提高了效率
 </code></pre>
-<h3 id="存储过程和函数的区别"><a href="#存储过程和函数的区别" class="headerlink" title="存储过程和函数的区别"></a>存储过程和函数的区别</h3><pre class=" language-my"><code class="language-my">区别：
-存储过程：可以有0个返回，也可以有多个返回，适合做批量插入、批量更新
-函数：有且仅有1个返回，适合做处理数据后返回一个结果
-</code></pre>
 <h3 id="创建语法-1"><a href="#创建语法-1" class="headerlink" title="创建语法"></a>创建语法</h3><pre class=" language-mysql"><code class="language-mysql">CREATE FUNCTION 函数名(参数列表) RETURNS 返回类型
 BEGIN
     函数体
@@ -2772,6 +2768,10 @@ BEGIN
 END $
 
 SELECT test_fun1(1,2)$
+</code></pre>
+<h3 id="存储过程和函数的区别"><a href="#存储过程和函数的区别" class="headerlink" title="存储过程和函数的区别"></a>存储过程和函数的区别</h3><pre class=" language-mysql"><code class="language-mysql">区别：
+存储过程：可以有0个返回，也可以有多个返回，适合做批量插入、批量更新
+函数：有且仅有1个返回，适合做处理数据后返回一个结果
 </code></pre>
 <h2 id="流程控制结构"><a href="#流程控制结构" class="headerlink" title="流程控制结构"></a>流程控制结构</h2><h3 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h3><p>程序从上到下一次执行</p>
 <h3 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h3><p>程序从两条或多条路径中选择一条去执行</p>
@@ -3738,7 +3738,7 @@ CALL test_randstr_insert(10)$
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">112.6k</span>&nbsp;字
+                class="white-color">130.9k</span>&nbsp;字
             
             
             
