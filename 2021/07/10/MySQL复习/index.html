@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-25
+                    2021-07-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.9k
+                    8.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    33 分
+                    34 分
                 </div>
                 
 
@@ -1566,6 +1566,20 @@ WHERE NOT EXISTS (
     FROM beauty b
     WHERE b.`boyfriend_id` = bo.`id`
 )
+
+
+【in 和 exist的区别】
+1、适用表的类型不同。
+in是子查询为驱动表，外面的表为被驱动表，故适用于子查询结果集小而外面的表结果集大的情况。
+exists是外面的表位驱动表，子查询里面的表为被驱动表，故适用于外面的表结果集小而子查询结果集大的情况。
+
+2、子查询关联不同。
+exists一般都是关联子查询。对于关联子查询，必须先执行外层查询，接着对所有通过过滤条件的记录，执行内层查询。外层查询和内层查询相互依赖，因为外层查询会把数据传递给内层查询。
+in则一般都是非关联子查询，非关联子查询则必须先完成内层查询之后，外层查询才能介入。
+
+3、执行次数不同。
+IN 语句：只执行一次，确定给定的值是否与子查询或列表中的值相匹配。in在查询的时候，首先查询子查询的表，然后将内表和外表做一个笛卡尔积，然后按照条件进行筛选。所以相对内表比较小的时候，in的速度较快。
+EXISTS语句：执行次数根据表的长度而定。指定一个子查询，检测行的存在。遍历循环外表，然后看外表中的记录有没有和内表的数据一样的。匹配上就将结果放入结果集中。
 </code></pre>
 <p><strong>重点关注标量子查询的案例4、列子查询案例2、==select后面的案例1、from后面的案例1、exists后面（相关子查询）==</strong></p>
 <h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><p>应用场景：当要显示的数据，一页显示不全，需要分页提交sql请求</p>
@@ -2301,7 +2315,8 @@ savepoint 节点名;设置保存点
     2.并发问题有哪些？
        脏读：读到了别的事务回滚前的脏数据(读的是未提交的)
        不可重复读：当前事务先进行了一次数据读取，然后再次读取到的数据是别的事务修改并提交的数据，导致两次读取到的数据不匹配(读的是已提交的)。
-        幻读：当前事务读第一次取到的数据比后来读取到数据条目少
+        幻读：当前事务读第一次取到的数据比后来读取到数据条目少。
+        更新丢失:当两个或多个事务选择同一行，然后基于最初选定的值更新该行时，由于每个事务都不知道其他事务的存在，就会发生丢失更新问题，也就是最后的更新覆盖了由其他事务所做的更新
 
 事务的隔离级别：用来解决并发问题
                      脏读     不可重复读      幻读
@@ -2601,6 +2616,7 @@ delimiter $
 SELECT * FROM admin;
 
 DELIMITER $
+
 CREATE PROCEDURE myp1()
 BEGIN
     INSERT INTO admin(username,`password`) 
@@ -3738,7 +3754,7 @@ CALL test_randstr_insert(10)$
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137k</span>&nbsp;字
+                class="white-color">146.9k</span>&nbsp;字
             
             
             

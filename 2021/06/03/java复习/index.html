@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-21
+                    2021-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    28.1k
+                    28.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    120 分
+                    121 分
                 </div>
                 
 
@@ -1745,7 +1745,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         Bank bank1 <span class="token operator">=</span> Bank<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Bank bank2 <span class="token operator">=</span> Bank<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>bank1 <span class="token operator">==</span> bank2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>bank1 <span class="token operator">==</span> bank2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
@@ -1796,15 +1796,17 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     <span class="token keyword">private</span> <span class="token keyword">static</span> Order instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
     
     <span class="token comment" spellcheck="true">//3.声明public、static的返回当前类对象的方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Order <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        
-        <span class="token keyword">if</span><span class="token punctuation">(</span>instance <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            
-            instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   <span class="token comment" spellcheck="true">//双检锁</span>
+   <span class="token keyword">public</span> <span class="token keyword">static</span> Order <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>instance <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+         <span class="token keyword">synchronized</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>instance <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+               instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>     
 </code></pre>
@@ -3688,10 +3690,7 @@ UDP协议：
   发送数据结束时无需释放资源，开销小，速度快
 </code></pre>
 <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>反射机制与面向对象中的封装性是不是矛盾的？如何看待两个技术？<br>        不矛盾。封装性是指建不建议你调用这个类或者方法，而反射是能不能，或者说需不需要调私有的方法和属性，比如一个单例模式，当初设计的时候就是为了只有一个对象，你在用反射创建一个对象有什么意义呢。</p>
-<h3 id="类的加载过程："><a href="#类的加载过程：" class="headerlink" title="类的加载过程："></a>类的加载过程：</h3><pre class=" language-java"><code class="language-java">    程序经过javac<span class="token punctuation">.</span>exe命令以后，会生成一个或多个字节码文件<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token keyword">class</span>结尾<span class="token punctuation">)</span>。
-接着我们使用java<span class="token punctuation">.</span>exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件
-加载到内存中。此过程就称为类的加载。加载到内存中的类，我们就称为运行时类，此
-运行时类，就作为Class的一个实例。
+<h3 id="类的加载过程："><a href="#类的加载过程：" class="headerlink" title="类的加载过程："></a>类的加载过程：</h3><pre class=" language-java"><code class="language-java">    程序经过javac<span class="token punctuation">.</span>exe命令以后，会生成一个或多个字节码文件<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token keyword">class</span>结尾<span class="token punctuation">)</span>。接着我们使用java<span class="token punctuation">.</span>exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中。此过程就称为类的加载。加载到内存中的类，我们就称为运行时类，此运行时类，就作为Class的一个实例。
 </code></pre>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//获取Class的实例的方式 </span>
 <span class="token annotation punctuation">@Test</span>
@@ -3928,9 +3927,9 @@ UDP协议：
 <span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-     Class <span class="token class-name">clazz</span> <span class="token operator">=</span> Person<span class="token punctuation">.</span>    
+     Class <span class="token class-name">clazz</span> <span class="token operator">=</span> Person<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
      <span class="token comment" spellcheck="true">//创建运行时类的对象</span>
-     Person p <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> clazz<span class="token punctuation">.</span>newInsta    
+     Person p <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> clazz<span class="token punctuation">.</span>newInstance<span class="token punctuation">;</span>
      <span class="token comment" spellcheck="true">/*
      1.获取指定的某个方法
      getDeclaredMethod():参数1 ：指明获取的方法的名称  参数2：指明获取的方法的形参列表
@@ -4014,7 +4013,7 @@ UDP协议：
 
     <span class="token keyword">public</span> <span class="token function">MyInvocationHandler</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>obj <span class="token operator">=</span> obj<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
 
     <span class="token comment" spellcheck="true">//当我们通过代理类的对象，调用方法a时，就会自动的调用如下的方法：invoke()</span>
     <span class="token comment" spellcheck="true">//将被代理类要执行的方法a的功能就声明在invoke()中</span>
@@ -4031,6 +4030,8 @@ UDP协议：
 
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProxyTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         SuperMan superMan <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SuperMan</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -4874,7 +4875,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137k</span>&nbsp;字
+                class="white-color">146.9k</span>&nbsp;字
             
             
             

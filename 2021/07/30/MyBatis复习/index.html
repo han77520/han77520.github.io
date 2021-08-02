@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="瀚77的博客">
+    <meta name="keywords" content="MyBatis复习, 瀚77的博客">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>瀚77的博客</title>
+    <title>MyBatis复习 | 瀚77的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://www.w3cschool.cn/attachments/image/20170807/1502093784622523.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">MyBatis复习</h1>
                 </div>
             </div>
         </div>
@@ -445,6 +445,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MyBatis/" class="post-category">
+                                MyBatis
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -452,14 +461,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-25
+                    2021-07-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-29
+                    2021-07-30
                 </div>
                 
 
@@ -473,7 +482,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    63 分
+                    62 分
                 </div>
                 
 
@@ -493,8 +502,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>   title: MyBatis复习<br>top: false<br>cover: false<br>toc: true<br>mathjax: false<br>date: 2021-06-02 08:26:49<br>author: han77<br>img:<br>coverImg:<br>password:<br>summary: MyBatis<br>keywords:<br>tags:<br>categories: MyBatis</p>
-<h2 id="初识MyBatis"><a href="#初识MyBatis" class="headerlink" title="初识MyBatis"></a>初识MyBatis</h2><ul>
+                <h2 id="初识MyBatis"><a href="#初识MyBatis" class="headerlink" title="初识MyBatis"></a>初识MyBatis</h2><ul>
 <li>先创建全局配置文件 mybatis-config.xml</li>
 </ul>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
@@ -1592,17 +1600,14 @@ Map<span class="token operator">&lt;</span>Integer<span class="token punctuation
 <h3 id="二级缓存（全局缓存）"><a href="#二级缓存（全局缓存）" class="headerlink" title="二级缓存（全局缓存）"></a>二级缓存（全局缓存）</h3><ul>
 <li><p>基于namespace级别的缓存；一个namespace对应一个二级缓存</p>
 </li>
-<li><p> 工作机制：</p>
-</li>
-<li><p>一个会话，查询一条数据，这个数据就会被放在当前会话的一级缓存中</p>
-</li>
-<li><p>查出的数据会默认放在一级缓存中</p>
-</li>
-<li><p>如果关闭会话，一级缓存的数据会被保存到二级缓存中。新的会话查询信息，就可以参照二级缓存中的数据</p>
-</li>
-<li><p>如果会话没关闭，其他会话查询相同数据时还是会再次发sql语句</p>
-</li>
-<li><p>同一个会话查出的不同namespace中的数据会放在自己对应的二级缓存中</p>
+<li><p>工作机制：</p>
+<ul>
+<li>一个会话，查询一条数据，这个数据就会被放在当前会话的一级缓存中</li>
+<li>查出的数据会默认放在一级缓存中</li>
+<li>如果关闭会话，一级缓存的数据会被保存到二级缓存中。新的会话查询信息，就可以参照二级缓存中的数据</li>
+<li>如果会话没关闭，其他会话查询相同数据时还是会再次发sql语句</li>
+<li>同一个会话查出的不同namespace中的数据会放在自己对应的二级缓存中</li>
+</ul>
 </li>
 <li><p>使用</p>
 <ul>
@@ -1648,7 +1653,7 @@ Map<span class="token operator">&lt;</span>Integer<span class="token punctuation
 <li><p>全局配置文件中的 &lt;setting&gt; 标签 中cacheEnabled属性，为true一级、二级都可用；为false二级关闭，一级一直可用</p>
 </li>
 <li><p>每个select标签都有useCache=”true”的属性：一级、二级都可用</p>
-<pre><code>     false：一级缓存依然使用，二级缓存不使用
+<pre><code>   false：一级缓存依然使用，二级缓存不使用
 </code></pre>
 </li>
 <li><p>每个增删改标签的：flushCache=”true”属性：增删改执行完成后就会清除缓存（一级二级都会清除）</p>
@@ -1657,8 +1662,8 @@ Map<span class="token operator">&lt;</span>Integer<span class="token punctuation
 <p>​        每个查询标签也有：flushCache=”false”属性</p>
 <ul>
 <li>sqlSession.clearCache();只是清除当前session的一级缓存；</li>
-<li>&lt;setting&gt;标签中有localCacheScope本地缓存作用域：<pre><code>                                  SESSION ；当前会话的所有数据保存在会话缓存中；
-                                  STATEMENT：可以禁用一级缓存；
+<li>&lt;setting&gt;标签中有localCacheScope本地缓存作用域：<pre><code>                                    SESSION ；当前会话的所有数据保存在会话缓存中；
+                                                STATEMENT：可以禁用一级缓存；
 </code></pre>
 </li>
 </ul>
@@ -2452,7 +2457,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">瀚77</a>
+                    <a href="/about" rel="external nofollow noreferrer">han77</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -2462,7 +2467,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://han77520.github.io/2021/07/25/MyBatis%E5%A4%8D%E4%B9%A0/">http://han77520.github.io/2021/07/25/MyBatis%E5%A4%8D%E4%B9%A0/</a>
+                    <a href="http://han77520.github.io/2021/07/30/MyBatis%E5%A4%8D%E4%B9%A0/">http://han77520.github.io/2021/07/30/MyBatis%E5%A4%8D%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -2475,7 +2480,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">瀚77</a>
+                    <a href="/about" target="_blank">han77</a>
                     !
                 </span>
             </div>
@@ -2930,39 +2935,41 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/07/25/MyBatis%E5%A4%8D%E4%B9%A0/">
+                <a href="/2021/07/31/Redis/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Redis">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">Redis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Redis
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            瀚77
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Redis/" class="post-category">
+                                    Redis
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -3203,7 +3210,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137k</span>&nbsp;字
+                class="white-color">146.9k</span>&nbsp;字
             
             
             
