@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-08-02T09:11:19.856Z</updated>
+  <updated>2021-08-03T16:07:49.310Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring</title>
+    <link href="http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/"/>
+    <id>http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/</id>
+    <published>2021-08-03T08:41:24.954Z</published>
+    <updated>2021-08-03T16:07:49.310Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;spring&quot;&gt;&lt;a href=&quot;#spring&quot; class=&quot;headerlink&quot; title=&quot;spring&quot;&gt;&lt;/a&gt;spring&lt;/h1&gt;&lt;p&gt;框架概述 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Spring 是轻量级的开源的 JavaEE 框架</summary>
+        
+      
+    
+    
+    
+    <category term="spring" scheme="http://han77520.github.io/categories/spring/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>MyBatis</title>
@@ -45,7 +70,7 @@
     <link href="http://han77520.github.io/2021/07/31/Redis/"/>
     <id>http://han77520.github.io/2021/07/31/Redis/</id>
     <published>2021-07-31T14:30:49.517Z</published>
-    <updated>2021-08-02T09:08:49.089Z</updated>
+    <updated>2021-08-03T16:08:58.280Z</updated>
     
     
       
