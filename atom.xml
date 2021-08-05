@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-08-03T16:10:04.191Z</updated>
+  <updated>2021-08-05T11:01:40.811Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/"/>
     <id>http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/</id>
     <published>2021-08-03T08:41:24.954Z</published>
-    <updated>2021-08-03T16:10:04.191Z</updated>
+    <updated>2021-08-05T11:01:40.811Z</updated>
     
     
       
@@ -356,6 +356,39 @@
     
     
     <category term="review" scheme="http://han77520.github.io/categories/review/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Front-matter 选项详解</title>
+    <link href="http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF%20-%20%E5%89%AF%E6%9C%AC/"/>
+    <id>http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF%20-%20%E5%89%AF%E6%9C%AC/</id>
+    <published>2021-06-02T16:26:49.000Z</published>
+    <updated>2021-07-05T13:44:22.784Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;配置选项&lt;/th&gt;
+&lt;th&gt;默认值&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;title&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Markdown&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="选项详解" scheme="http://han77520.github.io/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/"/>
     
     
   </entry>
