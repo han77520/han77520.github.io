@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-08-05T11:01:40.811Z</updated>
+  <updated>2021-08-06T08:06:10.429Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -17,11 +17,59 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SpringMVC</title>
+    <link href="http://han77520.github.io/2021/08/05/SpringMVC/"/>
+    <id>http://han77520.github.io/2021/08/05/SpringMVC/</id>
+    <published>2021-08-06T05:07:37.445Z</published>
+    <updated>2021-08-06T08:06:10.429Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;一、SpringMVC简介&quot;&gt;&lt;a href=&quot;#一、SpringMVC简介&quot; class=&quot;headerlink&quot; title=&quot;一、SpringMVC简介&quot;&gt;&lt;/a&gt;一、SpringMVC简介&lt;/h2&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="SpringMVC" scheme="http://han77520.github.io/categories/SpringMVC/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Spring注解版</title>
+    <link href="http://han77520.github.io/2021/08/05/Spring%E6%B3%A8%E8%A7%A3%E7%89%88/"/>
+    <id>http://han77520.github.io/2021/08/05/Spring%E6%B3%A8%E8%A7%A3%E7%89%88/</id>
+    <published>2021-08-05T11:02:00.613Z</published>
+    <updated>2021-08-06T05:05:30.855Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Spring注解版&quot;&gt;&lt;a href=&quot;#Spring注解版&quot; class=&quot;headerlink&quot; title=&quot;Spring注解版&quot;&gt;&lt;/a&gt;Spring注解版&lt;/h1&gt;&lt;p&gt;@Configuration：表明这是一个配置类&lt;/p&gt;
+&lt;p&gt;@Bean</summary>
+        
+      
+    
+    
+    
+    <category term="Spring注解版" scheme="http://han77520.github.io/categories/Spring%E6%B3%A8%E8%A7%A3%E7%89%88/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>spring</title>
     <link href="http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/"/>
     <id>http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/</id>
     <published>2021-08-03T08:41:24.954Z</published>
-    <updated>2021-08-05T11:01:40.811Z</updated>
+    <updated>2021-08-05T11:32:43.678Z</updated>
     
     
       
@@ -362,39 +410,6 @@
   
   <entry>
     <title>Front-matter 选项详解</title>
-    <link href="http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF%20-%20%E5%89%AF%E6%9C%AC/"/>
-    <id>http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF%20-%20%E5%89%AF%E6%9C%AC/</id>
-    <published>2021-06-02T16:26:49.000Z</published>
-    <updated>2021-07-05T13:44:22.784Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;配置选项&lt;/th&gt;
-&lt;th&gt;默认值&lt;/th&gt;
-&lt;th&gt;描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;title&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;Markdown&lt;/code&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="选项详解" scheme="http://han77520.github.io/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Front-matter 选项详解</title>
     <link href="http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/"/>
     <id>http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/</id>
     <published>2021-06-02T16:26:49.000Z</published>
@@ -431,14 +446,15 @@
     <link href="http://han77520.github.io/2021/06/02/Docker/"/>
     <id>http://han77520.github.io/2021/06/02/Docker/</id>
     <published>2021-06-02T16:26:49.000Z</published>
-    <updated>2021-07-31T11:36:27.394Z</updated>
+    <updated>2021-08-06T08:32:50.179Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Docker&quot;&gt;&lt;a href=&quot;#Docker&quot; class=&quot;headerlink&quot; title=&quot;Docker&quot;&gt;&lt;/a&gt;Docker&lt;/h1&gt;&lt;h2 id=&quot;产生背景&quot;&gt;&lt;a href=&quot;#产生背景&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;Docker&quot;&gt;&lt;a href=&quot;#Docker&quot; class=&quot;headerlink&quot; title=&quot;Docker&quot;&gt;&lt;/a&gt;Docker&lt;/h1&gt;&lt;h2 id=&quot;产生背景&quot;&gt;&lt;a href=&quot;#产生背景&quot;</summary>
         
       
     
