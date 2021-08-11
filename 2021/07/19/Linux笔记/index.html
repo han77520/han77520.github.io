@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-09
+                    2021-08-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    16.1k
+                    18.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    61 分
+                    73 分
                 </div>
                 
 
@@ -504,7 +504,7 @@
             <div id="articleContent">
                 <p>[TOC]</p>
 <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>==Linux学习阶段：==</p>
-<p>​    第1阶段：linux环境下的基本操作命令，包括文件操作命令(rmmkdirchmod,chown)编辑工具使用（vivim）linux用户管理(useradduserdelusermod)等</p>
+<p>​    第1阶段：linux环境下的基本操作命令，包括文件操作命令(rm、mkdir、chmod、chown)编辑工具使用（vi、vim）linux用户管理(useradd、userdel、usermod)等</p>
 <p>​    第2阶段：linux的各种配置（环境变量配置，网络配置，服务配置）</p>
 <p>​    第3阶段：linux下如何搭建对应语言的开发环境（大数据，JavaEE,Python等）</p>
 <p>​    第4阶段：能编写shell脚本，对Linux服务器进行维护。</p>
@@ -1618,6 +1618,8 @@
 <ul>
 <li>使用root 创建一个文件apple.txt ，然后将其所有者修改成 tom</li>
 </ul>
+</li>
+<li><p>chown tom apple.txt</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210722194850.png"></p>
 </li>
 </ul>
@@ -1950,8 +1952,8 @@
 <h2 id="第十章-Linux-磁盘分区、挂载"><a href="#第十章-Linux-磁盘分区、挂载" class="headerlink" title="第十章 Linux 磁盘分区、挂载"></a>第十章 Linux 磁盘分区、挂载</h2><h3 id="10-1-分区基础知识"><a href="#10-1-分区基础知识" class="headerlink" title="10.1 分区基础知识"></a>10.1 分区基础知识</h3><h4 id="10-1-1-分区的方式："><a href="#10-1-1-分区的方式：" class="headerlink" title="10.1.1 分区的方式："></a>10.1.1 分区的方式：</h4><ul>
 <li>mbr分区<ul>
 <li>最多支持四个主分区</li>
-<li>.系统只能安装在主分区</li>
-<li>.扩展分区要占一个主分区</li>
+<li>系统只能安装在主分区</li>
+<li>扩展分区要占一个主分区</li>
 <li>MBR 最大只支持2TB，但拥有最好的兼容性</li>
 </ul>
 </li>
@@ -2007,7 +2009,7 @@
 </li>
 </ul>
 <h4 id="10-3-2-步骤"><a href="#10-3-2-步骤" class="headerlink" title="10.3.2 步骤"></a>10.3.2 步骤</h4><ul>
-<li><p>步骤1：在【虚拟机】菜单中，选择【设置】，然后设备列表里【添加】硬盘，然后一路【下一步】，中间只有选择磁盘大小的地方需要修改，至到完成。然后重启系统（才能识别）！</p>
+<li><p>步骤1：在【虚拟机】菜单中，选择【设置】，然后设备列表里【添加】硬盘，然后一路【下一步】，中间只有选择磁盘大小的地方需要修改，直到完成。然后重启系统（才能识别）！</p>
 </li>
 <li><p>步骤 2：虚拟机增加硬盘</p>
 <ul>
@@ -2033,7 +2035,7 @@
 <li><p>==<strong>挂载</strong>==：将一个分区与一个目录联系起来</p>
 <ul>
 <li><p>指令：mount  设备名称  挂载目录  </p>
-<p>例如：mount   /dev/sdb1   /newdisk</p>
+<p>例如：mount   /dev/sdb1  /home /newdisk</p>
 </li>
 </ul>
 </li>
@@ -2066,10 +2068,10 @@
 </li>
 </ul>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723132744.png"></p>
-<h4 id="10-4-2-查询指定目录的磁-盘占用情况"><a href="#10-4-2-查询指定目录的磁-盘占用情况" class="headerlink" title="10.4.2  查询指定目录的磁 盘占用情况"></a>10.4.2  查询指定目录的磁 盘占用情况</h4><ul>
+<h4 id="10-4-2-查询指定目录的磁盘占用情况"><a href="#10-4-2-查询指定目录的磁盘占用情况" class="headerlink" title="10.4.2  查询指定目录的磁盘占用情况"></a>10.4.2  查询指定目录的磁盘占用情况</h4><ul>
 <li><p>语法：</p>
 <ul>
-<li><p>du -h   /目录</p>
+<li><p>du [选项]   /目录</p>
 <p> 查询指定目录的磁盘占用情况，默认为当前目录</p>
 <p>-a 含文件</p>
 <p>-c 列出明细的同时，增加汇总值</p>
@@ -2113,7 +2115,10 @@
 </ul>
 <p> 以树状显示目录结构</p>
 <ul>
-<li>yum install tree</li>
+<li><p>直接输入 tree 就可以</p>
+</li>
+<li><p>没有的话要下载  yum install tree</p>
+</li>
 </ul>
 <h2 id="第十一章-网络配置"><a href="#第十一章-网络配置" class="headerlink" title="第十一章  网络配置"></a>第十一章  网络配置</h2><h3 id="11-1-Linux-网络配置原理图-含虚拟机"><a href="#11-1-Linux-网络配置原理图-含虚拟机" class="headerlink" title="11.1 Linux 网络配置原理图(含虚拟机)"></a>11.1 Linux 网络配置原理图(含虚拟机)</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723163516.png"></p>
 <h3 id="11-2-查看网络-IP-和网关"><a href="#11-2-查看网络-IP-和网关" class="headerlink" title="11.2 查看网络 IP 和网关"></a>11.2 查看网络 IP 和网关</h3><h4 id="11-2-1-查看虚拟网络编辑器"><a href="#11-2-1-查看虚拟网络编辑器" class="headerlink" title="11.2.1 查看虚拟网络编辑器"></a>11.2.1 查看虚拟网络编辑器</h4><p>【编辑】 —–&gt;  【虚拟网络编辑器】</p>
@@ -2130,8 +2135,7 @@
 <h4 id="11-4-2-第二种方法-指定固定的-ip"><a href="#11-4-2-第二种方法-指定固定的-ip" class="headerlink" title="11.4.2 第二种方法(指定固定的 ip"></a>11.4.2 第二种方法(指定固定的 ip</h4><p>​    直 接 修 改 配 置 文 件 来 指 定 IP, 并 可 以 连 接 到 外 网 ( 程 序 员 推 荐 ) ， 编 辑 vi /etc/sysconfig/network-scripts/ifcfg-eth0</p>
 <p>​    要求：将ip 地址配置的静态的，ip 地址为192.168.184.130</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723165135.png"></p>
-<pre><code>    **修改后，一定要 重启服务    service network restart**
-</code></pre>
+<p><strong>修改后，一定要 重启服务    service network restart</strong></p>
 <h2 id="第十二章-进程管理"><a href="#第十二章-进程管理" class="headerlink" title="第十二章 进程管理"></a>第十二章 进程管理</h2><h3 id="12-1-进程的基本介绍"><a href="#12-1-进程的基本介绍" class="headerlink" title="12.1 进程的基本介绍"></a>12.1 进程的基本介绍</h3><ul>
 <li>在LINUX 中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一个ID 号。</li>
 <li>每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例如www 服务器。</li>
@@ -2179,19 +2183,19 @@
 </tr>
 <tr>
 <td>TTY</td>
-<td>进程的状态  s:休眠    r:运行</td>
+<td>使用的终端</td>
 </tr>
 <tr>
 <td>STAT</td>
-<td>启动时间</td>
+<td>进程状态， s：休眠  r：运行</td>
 </tr>
 <tr>
 <td>START</td>
-<td>占用CPU总时间</td>
+<td>启动时间</td>
 </tr>
 <tr>
 <td>TIME</td>
-<td>启动时间</td>
+<td>占用CPU的总时间</td>
 </tr>
 <tr>
 <td>COMMAND</td>
@@ -2201,29 +2205,45 @@
 </li>
 </ul>
 <h4 id="12-2-2-ps-指令详解"><a href="#12-2-2-ps-指令详解" class="headerlink" title="12.2.2 ps 指令详解"></a>12.2.2 ps 指令详解</h4><ul>
-<li>指令：ps –aux|grep xxx ，比如看看有没有sshd 服务<br>指令说明<br> •System V 展示风格<br> •USER：用户名称<br> •PID：进程号<br> •%CPU：进程占用CPU 的百分比<br> •%MEM：进程占用物理内存的百分比<br> •VSZ：进程占用的虚拟内存大小（单位：KB）<br> •RSS：进程占用的物理内存大小（单位：KB）<br> •TT：终端名称,缩写 .<br> •STAT：进程状态，其中S-睡眠，s-表示该进程是会话的先导进程，N-表示进程拥有比普通优先<pre><code>          级更低的优先级，R-正在运行，D-短期等待，Z-僵死进程，T-被跟踪或者被停止等等
+<li>指令：ps –aux|grep xxx ，比如看看有没有sshd 服务</li>
+<li>ps -aus 使用的是BSD 风格</li>
+<li>指令说明<ul>
+<li>USER：用户名称</li>
+<li>PID：进程号</li>
+<li>%CPU：进程占用CPU 的百分比</li>
+<li>%MEM：进程占用物理内存的百分比</li>
+<li>VSZ：进程占用的虚拟内存大小（单位：KB）</li>
+<li>RSS：进程占用的物理内存大小（单位：KB）</li>
+<li> TT：终端名称,缩写 .</li>
+<li>STAT：进程状态，其中S-睡眠，s-表示该进程是会话的先导进程，N-表示进程拥有比普通优先<pre><code>          级更低的优先级，R-正在运行，D-短期等待，Z-僵尸进程，T-被跟踪或者被停止等等
 </code></pre>
- •STARTED：进程的启动时间<br> •TIME：CPU 时间，即进程使用CPU 的总时间<br> •COMMAND：启动进程所用的命令和参数，如果过长会被截断显示</li>
+</li>
+<li>STARTED：进程的启动时间</li>
+<li>TIME：CPU 时间，即进程使用CPU 的总时间</li>
+<li>COMMAND：启动进程所用的命令和参数，如果过长会被截断显示</li>
+</ul>
+</li>
 </ul>
 <ul>
 <li><p>应用实例：</p>
-<p> <strong>以全格式显示当前所有的进程，查看进程的父进程。</strong></p>
+<p> <strong>以标准格式显示当前所有的进程，查看进程的父进程。</strong></p>
 <p>ps -ef 是以全格式显示当前所有的进程</p>
-<pre><code>•-e 显示所有进程。-f 全格式。
-•ps -ef|grep xxx
-•是BSD 风格
-•UID：用户ID
-•PID：进程ID
-**•PPID：父进程ID**
-•C：CPU 用于计算执行优先级的因子。数值越大，表明进程是CPU 密集型运算，执行优先级会降低；数值越                    小，表明进程是I/O 密集型运算，执行优先级会提高
-•STIME：进程启动的时间
-•TTY：完整的终端名称
-•TIME：CPU 时间
-•CMD：启动进程所用的命令和参数
-</code></pre>
+<p>ps -ef 是System Ｖ风格的</p>
+<ul>
+<li>-e 显示所有进程。-f 全格式。</li>
+<li>ps -ef|grep xxx</li>
+<li>UID：用户ID</li>
+<li>PID：进程ID</li>
+<li><strong>PPID：父进程ID</strong></li>
+<li>C：CPU 用于计算执行优先级的因子。数值越大，表明进程是CPU 密集型运算，执行优先级会降低；数值越                  小，表明进程是I/O 密集型运算，执行优先级会提高</li>
+<li>STIME：进程启动的时间</li>
+<li>TTY：完整的终端名称</li>
+<li>TIME：CPU 时间</li>
+<li>CMD：启动进程所用的命令和参数</li>
+</ul>
 </li>
 </ul>
-<h3 id="12-3-终止进程-kill-和-killall"><a href="#12-3-终止进程-kill-和-killall" class="headerlink" title="12.3 终止进程 kill 和 killall"></a>12.3 终止进程 kill 和 killall</h3><h4 id="12-3-1-介绍"><a href="#12-3-1-介绍" class="headerlink" title="12.3.1 介绍:"></a>12.3.1 介绍:</h4><p>​    若是某个进程执行一半需要停止时，或是已消了很大的系统资源时，此时可以考虑停止该进程。<br>使用kill 命令来完成此项任务。</p>
+<h3 id="12-3-终止进程-kill-和-killall"><a href="#12-3-终止进程-kill-和-killall" class="headerlink" title="12.3 终止进程 kill 和 killall"></a>12.3 终止进程 kill 和 killall</h3><h4 id="12-3-1-介绍"><a href="#12-3-1-介绍" class="headerlink" title="12.3.1 介绍:"></a>12.3.1 介绍:</h4><p>​    若是某个进程执行一半需要停止时，或是已消耗了很大的系统资源时，此时可以考虑停止该进程。使用kill 命令来完成此项任务。</p>
 <h4 id="12-3-2-基本语法："><a href="#12-3-2-基本语法：" class="headerlink" title="12.3.2 基本语法："></a>12.3.2 基本语法：</h4><ul>
 <li> kill   [选项] 进程号</li>
 <li>功能描述：通过进程号杀死进程</li>
@@ -2237,7 +2257,7 @@
 <li><p>案例1：踢掉某个非法登录用户</p>
 <ul>
 <li>通过  ps -aux | grep sshd   找到非法登录用户的 PID</li>
-<li>再用   kill  PID  杀死即可</li>
+<li>再用   kill   -9  PID  杀死即可</li>
 </ul>
 </li>
 <li><p>案例2: 终止多个gedit 编辑器 【killall , 通过进程名称来终止进程</p>
@@ -2247,7 +2267,7 @@
 </li>
 <li><p>案例3：强制杀掉一个终端</p>
 <ul>
-<li>kill -9  要杀掉的终端的PID</li>
+<li>kill -9  要杀掉终端的PID</li>
 </ul>
 </li>
 </ul>
@@ -2271,20 +2291,19 @@
 <ul>
 <li><p>案例1：查看当前防火墙的状况，关闭防火墙和重启防火墙</p>
 <ul>
-<li><p>service iptables states</p>
-</li>
-<li><p>service iptables stop</p>
+<li><p>service iptables stop    </p>
 </li>
 <li><p>service iptables status</p>
 </li>
 <li><p>service iptables start</p>
+<p>  centos7以后就成了  systemctl status firewalld  systemctl stop  firewalld   systemctl start  firewalld</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210723195237.png"></p>
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="12-5-4-细节："><a href="#12-5-4-细节：" class="headerlink" title="12.5.4 细节："></a>12.5.4 细节：</h4><ul>
-<li>关闭或者启用防火墙后，立即生效。[telnet 测试 某个端口即可]</li>
+<li>关闭或者启用防火墙后，立即生效。[在windows的cmd下用  <strong>telnet ip 端口</strong>  这条指令测试 某个端口即可]</li>
 <li>这种方式只是临时生效，当重启系统后，还是回归以前对服务的设置。</li>
 <li>如果希望设置某个服务自启动或关闭永久生效，要使用chkconfig 指令</li>
 </ul>
@@ -2292,23 +2311,27 @@
 <li><p>方式1：使用setup -&gt; 系统服务 就可以看到。</p>
 <p>【补充】进入setup模式后用 tab 键可选择取消和确定</p>
 </li>
-<li><p>方式2: ls -l /etc/init.d/   </p>
+<li><p>方式2: <strong>ls -l /etc/init.d/</strong>   </p>
 </li>
 </ul>
 <h4 id="12-5-6-服务运行级别"><a href="#12-5-6-服务运行级别" class="headerlink" title="12.5.6 服务运行级别"></a>12.5.6 服务运行级别</h4><p>服务的运行级别(runlevel):</p>
 <p>查看或者修改默认级别： vi /etc/inittab</p>
 <p>Linux 系统有7 种运行级别(runlevel)：常用的是级别3 和5<br>    •运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动<br>    •运行级别1：单用户工作状态，root 权限，用于系统维护，禁止远程登陆<br>    •运行级别2：多用户状态(没有NFS)，不支持网络<br>    •运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式<br>    •运行级别4：系统未使用，保留<br>    •运行级别5：X11 控制台，登陆后进入图形GUI 模式<br>    •运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</p>
+<p>开机流程：</p>
+<p>开机 —– BIOS —- /boot  —- init进程1 —- 运行级别 —-运行级别对应的服务</p>
 <h4 id="12-5-8-chkconfig-指令"><a href="#12-5-8-chkconfig-指令" class="headerlink" title="12.5.8 chkconfig 指令"></a>12.5.8 chkconfig 指令</h4><ul>
 <li><p>介绍</p>
-<ul>
-<li>通过 chkconfig 命令可以给每个服务的各个运行级别设置自启动/关闭</li>
-</ul>
+</li>
+<li><p>通过 chkconfig 命令可以给每个服务的各个运行级别设置自启动/关闭</p>
 </li>
 <li><p>查看服务的基本语法：</p>
 <ul>
-<li> chkconfig   –list | grep sshd</li>
-<li>chkconfig 服务名 –list</li>
-<li>指定服务在 5 这个级别  自启动/不要自启动   chkconfig –level 5 服务名 on/off</li>
+<li><p>chkconfig –list  可以查看服务状态</p>
+</li>
+<li><p>chkconfig –list | grep sshd  </p>
+</li>
+<li><p>chkconfig –level 5 服务名 on/off   指定服务在 5 这个级别  自启动/不要自启动   </p>
+</li>
 </ul>
 </li>
 </ul>
@@ -2321,7 +2344,7 @@
 <li>案例6： 在所有运行级别下，开启防火墙<br>bash&gt; chkconfig iptables on</li>
 </ul>
 <p><strong>chkconfig 重新设置服务后自启动或关闭，需要重启机器reboot 才能生效.</strong></p>
-<h3 id="12-6-动态监控进程"><a href="#12-6-动态监控进程" class="headerlink" title="12.6 动态监控进程"></a>12.6 动态监控进程</h3><p>​    top 与ps 命令很相似。它们都用来显示正在执行的进程。Top 与ps 最大的不同之处，在于top 在执行一段时间可以更新正在运行的的进程</p>
+<h3 id="12-6-动态监控进程"><a href="#12-6-动态监控进程" class="headerlink" title="12.6 动态监控进程"></a>12.6 动态监控进程</h3><p>​    top 与ps 命令很相似。它们都用来显示正在执行的进程。top 与ps 最大的不同之处在于top 在执行一段时间可以更新正在运行的的进程</p>
 <p>   <strong>用途是查看负载</strong></p>
 <h4 id="12-6-2-基本语法："><a href="#12-6-2-基本语法：" class="headerlink" title="12.6.2 基本语法："></a>12.6.2 基本语法：</h4><ul>
 <li>top [选项]</li>
@@ -2375,6 +2398,7 @@
 <p>​    top：输入此命令，按回车键，查看执行的进程。<br>​    u：然后输入“u”回车，再输入用户名，即可</p>
 </li>
 </ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210810215951.png"></p>
 <ul>
 <li>案例2：终止指定的进程。</li>
 </ul>
@@ -2415,9 +2439,9 @@
 <ul>
 <li><p>rpm -qa | grep firefox</p>
 </li>
-<li><p>查询结果为  ： firefox -45.0.1-1  el6.centos.x86_64</p>
-<p>​    名称:firefox<br>​    版本号：45.0.1-1</p>
-<p>​    适用操作系统: el6.centos.x86_64 ,表示centos6.x 的64 位系统,如果是i686、i386 表示32 位系统，noarch 表示通用。</p>
+<li><p>查询结果为  ： firefox-52.2.0-2.el7.centos.x86_64</p>
+<p>​    名称:firefox<br>​    版本号：52.2.0-2 </p>
+<p>​    适用操作系统: el7.centos.x86_64 ,表示centos6.x 的64 位系统,如果是i686、i386 表示32 位系统，noarch 表示通用。</p>
 </li>
 </ul>
 </li>
@@ -2426,7 +2450,7 @@
 <p>​           rpm -q 软件包名 :查询软件包是否安装</p>
 <p>​           rpm -qi 软件包名 ：查询软件包信息</p>
 <p>​            pm -ql 软件包名 :查询软件包中的文件</p>
-<p>​            rpm -qf 文件绝对路径 查询文件所属的软件包</p>
+<p>​            rpm -qf 文件绝对路径 ：查询文件所属的软件包</p>
 <h4 id="13-1-5-卸载-rpm-包："><a href="#13-1-5-卸载-rpm-包：" class="headerlink" title="13.1.5 卸载 rpm 包："></a>13.1.5 卸载 rpm 包：</h4><ul>
 <li>基本语法：  rpm -e  RPM包的名称</li>
 <li>应用案例<ul>
@@ -2540,11 +2564,12 @@
 </ul>
 <h3 id="14-5-mysql-的安装和配置"><a href="#14-5-mysql-的安装和配置" class="headerlink" title="14.5 mysql 的安装和配置"></a>14.5 mysql 的安装和配置</h3><p>自己看教程</p>
 <h2 id="第十五章-Linux之大数据之Shell编程"><a href="#第十五章-Linux之大数据之Shell编程" class="headerlink" title="第十五章 Linux之大数据之Shell编程"></a>第十五章 Linux之大数据之Shell编程</h2><h3 id="15-1-为什么要学shell编程"><a href="#15-1-为什么要学shell编程" class="headerlink" title="15.1 为什么要学shell编程"></a>15.1 为什么要学shell编程</h3><ul>
-<li>Linux 运维工程师在进行服务器集群管理时，需要编写Shell 程序来进行服务器管理。</li>
+<li>Linux运维工程师在进行服务器集群管理时，需要编写Shell 程序来进行服务器管理。</li>
 <li>对于JavaEE 和Python 程序员来说，工作的需要，你的老大会要求你编写一些Shell 脚本进行程<br>序或者是服务器的维护，比如编写一个定时备份数据库的脚本。</li>
 <li>对于大数据程序员来说，需要编写Shell 程序来管理集群。</li>
 </ul>
 <h3 id="15-2-什么是Shell"><a href="#15-2-什么是Shell" class="headerlink" title="15.2 什么是Shell"></a>15.2 什么是Shell</h3><p>​    Shell 是一个命令行解释器，它为用户提供了一个向Linux 内核发送请求以便运行程序的界面系统级程序，用户可以用Shell 来启动、挂起、停止甚至是编写一些程序.</p>
+<p>​    Shell脚本与Windows/Dos下的批处理相似，也就是用各类命令预先放入到一个文件中，方便一次性执行的一个文件.</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724161856.png"></p>
 <h3 id="15-3-Shell-脚本的执行方式"><a href="#15-3-Shell-脚本的执行方式" class="headerlink" title="15.3 Shell 脚本的执行方式"></a>15.3 Shell 脚本的执行方式</h3><h4 id="15-3-1-脚本格式"><a href="#15-3-1-脚本格式" class="headerlink" title="15.3.1 脚本格式"></a>15.3.1 脚本格式</h4><ul>
 <li> 脚本以#!/bin/bash 开头</li>
@@ -2581,7 +2606,7 @@ echo "USER=$USER"
 <ul>
 <li>定义变量： 变量 = 值</li>
 <li>撤销变量：unset 变量</li>
-<li>声明静态变量：readonly 变量，==<strong>注意不能unset</strong>==</li>
+<li>声明静态变量：readonly 变量，==<strong>注意静态变量不能unset</strong>==</li>
 </ul>
 </li>
 <li><p>案例</p>
@@ -2596,29 +2621,27 @@ echo "A=$A"
 </li>
 </ul>
 </li>
-<li><p>案例2 ：声明静态的变量B=2，不能unset</p>
+<li><p>案例2 ：声明静态的变量B=2</p>
 <ul>
-<li><pre class=" language-shell"><code class="language-shell">12- readonly A=99
-13- echo "A=$A"
-14- unset A
-15- echo "A=$A"
+<li><pre class=" language-shell"><code class="language-shell">readonly A=99
+echo "A=$A"
+unset A
+echo "A=$A"
 
 
 结果为：
 A=99
-./myShell.sh: 第 14 行:unset: A: 无法反设定: 只读 variable
+./myShell.sh: 第 3 行:unset: A: 无法反设定: 只读 variable
 A=99
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p>案例3：可把变量提升为全局环境变量，可供其他shell 程序使用</p>
-</li>
 </ul>
 </li>
 </ul>
 <h4 id="15-4-3-定义变量的规则"><a href="#15-4-3-定义变量的规则" class="headerlink" title="15.4.3 定义变量的规则"></a>15.4.3 定义变量的规则</h4><ul>
-<li>变量名可由字母、数组、下划线组成，但是不能由数组开头</li>
+<li>变量名可由字母、数字、下划线组成，但是不能由数字开头</li>
 <li>==<strong>等号两侧不能有空格</strong>==</li>
 <li>变量名称一般<strong>习惯为大写</strong></li>
 </ul>
@@ -2626,21 +2649,28 @@ A=99
 <li>A=`ls -la` 反引号，运行里面的命令，并把结果返回给变量A</li>
 <li>A=$(ls -la) 等价于反引号  <strong>推荐使用</strong></li>
 </ul>
-<h3 id="15-5-设置环境变量"><a href="#15-5-设置环境变量" class="headerlink" title="15.5 设置环境变量"></a>15.5 设置环境变量</h3><h4 id="15-5-1-基本语法"><a href="#15-5-1-基本语法" class="headerlink" title="15.5.1 基本语法"></a>15.5.1 基本语法</h4><ul>
-<li>export 变量名=变量值<ul>
+<h3 id="15-5-设置环境变量"><a href="#15-5-设置环境变量" class="headerlink" title="15.5 设置环境变量"></a>15.5 设置环境变量</h3><p>在  /etc/profile  里面可以设置环境变量</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724170120.png"></p>
+<h4 id="15-5-1-基本语法"><a href="#15-5-1-基本语法" class="headerlink" title="15.5.1 基本语法"></a>15.5.1 基本语法</h4><ul>
+<li>第一步：变量名=变量值     第二步  export  变量名<ul>
 <li>功能描述：将shell变量输出为环境变量</li>
 </ul>
 </li>
-<li>source 匹配文件<ul>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210811083322.png"></p>
+<ul>
+<li>source 文件路径<ul>
 <li>功能描述：让修改后的配置信息立即生效</li>
 </ul>
 </li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210811083405.png"></p>
+<ul>
 <li>echo $变量名<ul>
 <li>功能描述：查询环境变量的值</li>
 </ul>
 </li>
 </ul>
-<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210724170120.png"></p>
 <h4 id="15-5-2-快速入门"><a href="#15-5-2-快速入门" class="headerlink" title="15.5.2 快速入门"></a>15.5.2 快速入门</h4><ul>
 <li><p>在/etc/profile 文件中定义TOMCAT_HOME 环境变量</p>
 <ul>
@@ -2664,18 +2694,17 @@ export TOMCAT_HOME=/opt/tomcat
 <li><p>查看环境变量TOMCAT_HOME 的值</p>
 <ul>
 <li><pre class=" language-shell"><code class="language-shell">echo "TOMCAT_HOME=$TOMCAT_HOME"
- :<<!  !   #多行注释的写法
 </code></pre>
 </li>
 </ul>
-<p>【补充：多行注释     :&lt;&lt;!      !】</p>
 </li>
 </ul>
+<p>【补充：多行注释     :&lt;&lt;!      !】两个感叹号必须不在一行写</p>
 <h3 id="15-6-位置参数变量"><a href="#15-6-位置参数变量" class="headerlink" title="15.6 位置参数变量"></a>15.6 位置参数变量</h3><h4 id="15-6-1-介绍"><a href="#15-6-1-介绍" class="headerlink" title="15.6.1 介绍"></a>15.6.1 介绍</h4><p>​        当我们执行一个shell 脚本时，如果希望获取到命令行的参数信息，就可以使用到位置参数变量，比如 ： ./myshell.sh 100 200 , 这个就是一个执行shell 的命令行，可以在myshell 脚本中获取到参数信息。</p>
 <h4 id="15-6-2-基本语法"><a href="#15-6-2-基本语法" class="headerlink" title="15.6.2 基本语法"></a>15.6.2 基本语法</h4><ul>
 <li>$n <ul>
 <li>功能描述：<ul>
-<li>n 为数字，$0 代表命令本身，$1-$9 代表第一到第九个参数，十以上的参数需要用大括号包含，如${10}</li>
+<li>n 为数字，$0 代表命令本身，$1-$9 代表第一到第九个参数，十以上的需要用大括号包含，如${10}</li>
 </ul>
 </li>
 </ul>
@@ -2713,7 +2742,10 @@ echo "参数个数=$#"
 </code></pre>
 </li>
 </ul>
-<p>#结果为：<br>./positionParam.sh 36 45  #  ./positionParam.sh  就是 $0<br>36 45<br>36 45<br>参数个数=2<br>     ```</p>
+<p>#结果为：</p>
+<p>./positionParam.sh( 就是 $0)  36($1) 45($2)</p>
+<p>36 45 (这两个是一个整体)</p>
+<p>36 45<br>参数个数=2</p>
 <h3 id="15-7-预定义变量"><a href="#15-7-预定义变量" class="headerlink" title="15.7 预定义变量"></a>15.7 预定义变量</h3><h4 id="15-7-1-基本介绍"><a href="#15-7-1-基本介绍" class="headerlink" title="15.7.1 基本介绍"></a>15.7.1 基本介绍</h4><p>​           预定义变量是shell 设计者事先已经定义好的变量，可以直接在shell 脚本中使用</p>
 <h4 id="15-7-2-基本语法"><a href="#15-7-2-基本语法" class="headerlink" title="15.7.2 基本语法"></a>15.7.2 基本语法</h4><ul>
 <li><p>$$</p>
@@ -2732,9 +2764,8 @@ echo "参数个数=$#"
 </li>
 </ul>
 </li>
-</ul>
+<li><p>$? </p>
 <ul>
-<li>$? <ul>
 <li>功能描述<ul>
 <li>最后一次执行的命令的返回状态。如果这个变量的值为0，则证明上一个命令执行不正确</li>
 </ul>
@@ -2749,23 +2780,23 @@ echo "参数个数=$#"
 echo "当前的进程号为：$$"
 
 #以后台的方式运行myShell.sh
-./myShell.sh &
+./myShell.sh && #表示后台运行myShell.sh
 echo "最后的进程号为：$!"
 echo "执行的值=$?" 
 </code></pre>
 <h3 id="15-8-运算符"><a href="#15-8-运算符" class="headerlink" title="15.8 运算符"></a>15.8 运算符</h3><h4 id="15-8-1-基本介绍"><a href="#15-8-1-基本介绍" class="headerlink" title="15.8.1 基本介绍"></a>15.8.1 基本介绍</h4><p>​    学习如何在shell 中进行各种运算操作。</p>
 <h4 id="15-8-2-基本语法"><a href="#15-8-2-基本语法" class="headerlink" title="15.8.2 基本语法"></a>15.8.2 基本语法</h4><ul>
-<li><p>“$((运算式))”或“$[运算式]”</p>
+<li><p>“$((运算式))”或“$[运算式]”  ==<strong>表达式之间不能有空格</strong>==</p>
 </li>
-<li><p>expr m + n    注意==<strong>expr 运算符间要有空格</strong>==</p>
+<li><p>`expr m + n`   注意==<strong>expr 运算符间要有空格，并且 expr 表达式的两边需要有反单引号包住</strong>==</p>
 </li>
-<li><p>expr m - n</p>
+<li><p>`expr m - n`</p>
 </li>
-<li><p>expr *, /, % 乘，除，取余</p>
+<li><p>expr \*, /, % 乘，除，取余  (乘法前面有一个反斜杠)</p>
 </li>
 </ul>
 <h4 id="15-8-3-应用实例"><a href="#15-8-3-应用实例" class="headerlink" title="15.8.3 应用实例"></a>15.8.3 应用实例</h4><ul>
-<li><p>案例1：计算（2+3）X4 的值</p>
+<li><p>案例1：计算（2+3）X4 的值，有三种方法，</p>
 <ul>
 <li>$((运算式))</li>
 </ul>
@@ -2802,13 +2833,20 @@ echo "RESULT4=$RESULT4"
 结果为  RESULT4=90"
 </code></pre>
 <h3 id="15-9-条件判断"><a href="#15-9-条件判断" class="headerlink" title="15.9 条件判断"></a>15.9 条件判断</h3><h4 id="15-9-1-语法"><a href="#15-9-1-语法" class="headerlink" title="15.9.1 语法"></a>15.9.1 语法</h4><ul>
-<li>[ condition ] (注意condition前后要有空格)</li>
+<li>[ condition ] (注意condition和中括号之间要有空格)</li>
 <li>非空返回true，可以和  $!  搭配使用</li>
+</ul>
+<p>格式</p>
+<ul>
+<li><p>if  [  条件判断式  ];    then</p>
+<p>​            程序</p>
+<p>fi</p>
+</li>
 </ul>
 <h4 id="15-9-2-常用判断条件"><a href="#15-9-2-常用判断条件" class="headerlink" title="15.9.2 常用判断条件"></a>15.9.2 常用判断条件</h4><ul>
 <li><p>两个整数的比较</p>
 <ul>
-<li>= 字符串比较</li>
+<li>=  字符串比较</li>
 <li>-lt  小于</li>
 <li>-le 小于等于</li>
 <li>-gt  大于</li>
@@ -2826,16 +2864,16 @@ echo "RESULT4=$RESULT4"
 </li>
 <li><p>按照文件类型进行判断</p>
 <ul>
-<li>-f 文件存在并且是一个常规的文件</li>
-<li>-e 文件存在</li>
-<li>-d 文件存在并且是一个目录</li>
+<li>-f 判断文件存在并且是一个常规的文件</li>
+<li>-e 判断文件存在</li>
+<li>-d 判断文件存在并且是一个目录</li>
 </ul>
 </li>
 </ul>
 <h4 id="15-9-3-应用实例"><a href="#15-9-3-应用实例" class="headerlink" title="15.9.3 应用实例"></a>15.9.3 应用实例</h4><ul>
 <li><p>案例1：”ok”是否等于”ok</p>
 <ul>
-<li><pre class=" language-shell"><code class="language-shell">if [ "ok" == "ok" ]
+<li><pre class=" language-shell"><code class="language-shell">if [ "ok" = "ok" ]
 then
         echo "equal"
 fi
@@ -2887,6 +2925,7 @@ fi
 <li>注意事项：<ul>
 <li>[ 条件判断式 ]，中括号和条件判断式之间必须有空格</li>
 <li>推荐使用第二种方式，第一种还得加分号</li>
+<li>是 <strong>elif</strong>   不是 elseif</li>
 </ul>
 </li>
 </ul>
@@ -2924,7 +2963,7 @@ fi
 </li>
 </ul>
 <ul>
-<li>案例1：当命令行参数是 1 时，输出 “周一”, 是2 时，就输出”周二”， 其它情况输出 “other”</li>
+<li>案例1：当命令行参数是 1 ，输出 “周一”, 是2 ，就输出”周二”， 其它情况输出 “other”</li>
 </ul>
 <pre class=" language-shell"><code class="language-shell">case $1 in
 "1")
@@ -2958,7 +2997,6 @@ esac
 do
         echo "the num is $i"
 done
-echo "=============="
 
 ./ judge.sh 4 6 2执行
 
@@ -2971,7 +3009,6 @@ for i in "$@"
 do
         echo "the num is $i"
 done
-echo "=============="
 
 ./ judge.sh 4 6 2执行
 
@@ -3025,7 +3062,7 @@ do
 done
 echo "SUM= $SUM"
 </code></pre>
-<h3 id="15-11read-读取控制台输入"><a href="#15-11read-读取控制台输入" class="headerlink" title="15.11read 读取控制台输入"></a>15.11read 读取控制台输入</h3><ul>
+<h3 id="15-11-read-读取控制台输入"><a href="#15-11-read-读取控制台输入" class="headerlink" title="15.11 read 读取控制台输入"></a>15.11 read 读取控制台输入</h3><ul>
 <li>基本语法</li>
 </ul>
 <p>​             read(选项)(参数)</p>
@@ -3062,10 +3099,6 @@ echo "你输入的值是num1=$NUM2"
 <li>功能：返回完整路径最后 / 的部分，常用于获取文件名</li>
 </ul>
 </li>
-<li>basename [string] [suffix] <ul>
-<li>功能：basename 命令会删掉所有的前缀包括最后一个（‘/’）字符，然后将字符串显示出来。</li>
-</ul>
-</li>
 <li>suffix 为后缀，如果suffix 被指定了，basename 会将pathname 或string 中的suffix 去掉。</li>
 </ul>
 </li>
@@ -3096,11 +3129,12 @@ echo "你输入的值是num1=$NUM2"
 <h4 id="15-12-4-自定义函数"><a href="#15-12-4-自定义函数" class="headerlink" title="15.12.4 自定义函数"></a>15.12.4 自定义函数</h4><ul>
 <li><p>语法</p>
 <ul>
-<li><p>[ function ] funname[()]<br>{</p>
-<p>​    Action;<br>​    [return int;]<br>}</p>
-</li>
+<li>function 方法名 (){</li>
 </ul>
 </li>
+</ul>
+<p>​    Action;<br>    ​    [return int;]<br>    }</p>
+<ul>
 <li><p>调用：直接写函数名：funname [值]</p>
 </li>
 <li><p>应用实例</p>
@@ -3150,7 +3184,7 @@ DB_USER=root
 DB_PWD=172161
               
 #要备份的数据库名 
-DATABASE=whwDB
+DATABASE=whw1
 
 #创建备份的路径
 #如果备份的文件夹存在，就直接使用，否则就创建
@@ -3180,7 +3214,7 @@ Warning: Using a password on the command line interface can be insecure.
 2021_07_25_101333/2021_07_25_101333.sql.gz
 =========备份文件成功========
 </code></pre>
-<pre class=" language-shell"><code class="language-shell">#最后加到crontab中
+<pre class=" language-shell"><code class="language-shell">#最后 crontab -e 添加以下内容
 10 2 * * * /usr/sbin/mysql_db_backup.sh
 </code></pre>
 <h2 id="第十六章-Linux之Python"><a href="#第十六章-Linux之Python" class="headerlink" title="第十六章 Linux之Python"></a>第十六章 Linux之Python</h2><h3 id="16-1-Ubuntu-的介绍"><a href="#16-1-Ubuntu-的介绍" class="headerlink" title="16.1 Ubuntu 的介绍"></a>16.1 Ubuntu 的介绍</h3><p>​        Ubuntu（乌班图）是一个以桌面应用为主的开源GNU/Linux 操作系统，Ubuntu是基于GNU/Linux，支持x86、amd64（即x64）和ppc 架构，由全球化的专业开发团队（Canonical Ltd）打造的。</p>
@@ -3249,7 +3283,7 @@ Warning: Using a password on the command line interface can be insecure.
 <li><p>基本语法</p>
 <ul>
 <li>ssh  用户名 @IP<ul>
-<li>例如：ssh <a href="mailto:&#x77;&#x68;&#x77;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#56;&#46;&#x31;&#51;&#48;&#x2e;&#x31;&#x33;&#x30;">&#x77;&#x68;&#x77;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#56;&#46;&#x31;&#51;&#48;&#x2e;&#x31;&#x33;&#x30;</a>，使用ssh 访问，如访问出现错误。可查看是否有该文件～/.ssh/known_ssh 尝试删除该文件解决</li>
+<li>例如：ssh <a href="mailto:&#x77;&#104;&#x77;&#x40;&#49;&#57;&#x32;&#46;&#49;&#54;&#56;&#46;&#x31;&#x33;&#x30;&#x2e;&#x31;&#x33;&#48;">&#x77;&#104;&#x77;&#x40;&#49;&#57;&#x32;&#46;&#49;&#54;&#56;&#46;&#x31;&#x33;&#x30;&#x2e;&#x31;&#x33;&#48;</a>，使用ssh 访问，如访问出现错误。可查看是否有该文件～/.ssh/known_ssh 尝试删除该文件解决</li>
 </ul>
 </li>
 </ul>
@@ -4029,7 +4063,7 @@ Warning: Using a password on the command line interface can be insecure.
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">201.2k</span>&nbsp;字
+                class="white-color">211.4k</span>&nbsp;字
             
             
             

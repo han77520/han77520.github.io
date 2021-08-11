@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-09
+                    2021-08-11
                 </div>
                 
 
@@ -954,7 +954,7 @@ TERMINATED<span class="token punctuation">;</span>
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="ConcurrentHashMap实现原理"><a href="#ConcurrentHashMap实现原理" class="headerlink" title="ConcurrentHashMap实现原理"></a>ConcurrentHashMap实现原理</h3><h3 id="写时复制技术"><a href="#写时复制技术" class="headerlink" title="写时复制技术"></a>写时复制技术</h3><p>​     CopyOnWrite容器即写时复制的容器，往一个容器中添加元素的时候，不直接往当前容器Object[]添加，而是先将当前容器Object[]进行Copy,复制出一个新的容器Object[] newElements，然后新的容器 Object[] newElements里面添加一个元素，添加完元素之后，再将原容器的引用指向新的容器 setArray(newElement)；<br>​    这样做的好处是可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素，所以CopyOnWrite容器也是一种读写分离的思想，读和写使用不同的容器</p>
+<h3 id="写时复制技术"><a href="#写时复制技术" class="headerlink" title="写时复制技术"></a>写时复制技术</h3><p>​     CopyOnWrite容器即写时复制的容器，往一个容器中添加元素的时候，不直接往当前容器Object[]添加，而是先将当前容器Object[]进行Copy,复制出一个新的容器Object[] newElements，然后新的容器 Object[] newElements里面添加一个元素，添加完元素之后，再将原容器的引用指向新的容器 setArray(newElement)；<br>​    这样做的好处是可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素，所以CopyOnWrite容器也是一种读写分离的思想，读和写使用不同的容器</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
    <span class="token keyword">final</span> ReentrantLock lock <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">;</span>
    lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2237,43 +2237,41 @@ TERMINATED<span class="token punctuation">;</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/08/08/JUC%E7%AC%94%E8%AE%B0/">
+                <a href="/2021/08/10/ConcurrentHashMap/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="JUC">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="ConcurrentHashMap">
                         
-                        <span class="card-title">JUC</span>
+                        <span class="card-title">ConcurrentHashMap</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JUC
+                            ConcurrentHashMap
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JUC/" class="post-category">
-                                    JUC
+                            <a href="/categories/ConcurrentHashMap/" class="post-category">
+                                    ConcurrentHashMap
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -2514,7 +2512,7 @@ TERMINATED<span class="token punctuation">;</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">201.2k</span>&nbsp;字
+                class="white-color">211.4k</span>&nbsp;字
             
             
             
