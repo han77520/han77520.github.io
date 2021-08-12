@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-11
+                    2021-08-12
                 </div>
                 
 
@@ -482,7 +482,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    70 分
+                    69 分
                 </div>
                 
 
@@ -513,7 +513,6 @@
 <p>特点：</p>
 <ul>
 <li>不遵循SQL标准</li>
-<li>不支持ACID，注意不是不支持事务</li>
 <li>远超于SQL性能，因为不依赖业务逻辑，只是单纯的key–value</li>
 </ul>
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
@@ -644,7 +643,7 @@
 </code></pre>
 <p>【补充：LRU算法】</p>
 <p>​    LRU(Least Recently Used)，即最近最少使用，是一种缓存置换算法。在使用内存作为缓存的时候，缓存的大小一般是固定的。当缓存被占满，这个时候继续往缓存里面添加数据，就需要淘汰一部分老的数据，释放内存空间用来存储新的数据。这个时候就可以使用LRU算法了。其核心思想是：如果一个数据在最近一段时间没有被用到，那么将来被使用到的可能性也很小，所以就可以被淘汰掉。</p>
-<p>​     Redis 中的 LRU 不是严格意义上的LRU算法实现，是一种近似的 LRU 实现，主要是为了节约内存占用以及提升性能。Redis 配置文件有这样一个配置 —— <code>maxmemory-samples</code>，Redis 的 LRU 是取出配置的数目的key，然后从中选择一个最近最不经常使用的 key 进行置换，默认的是5。可以通过调整样本数量来取得 LRU 置换算法的速度或是精确性方面的优势。Redis 不采用真正的 LRU 实现的原因是为了节约内存使用</p>
+<p>​     Redis 中的 LRU 不是严格意义上的LRU算法实现，是一种近似的 LRU 实现，主要是为了节约内存占用以及提升性能。Redis 配置文件有这样一个配置 —— <code>maxmemory-samples</code>，Redis 的 LRU 是取出配置的数目(默认的是5)的key，然后从中选择一个最近最久未使用的 key 进行置换。可以通过调整样本数量来取得 LRU 置换算法的速度或是精确性方面的优势。Redis 不采用真正的 LRU 实现的原因是为了节约内存使用</p>
 <h3 id="Redis介绍相关知识"><a href="#Redis介绍相关知识" class="headerlink" title="Redis介绍相关知识"></a>Redis介绍相关知识</h3><p>端口 6379 的由来，它是根据 Merz  这个名字来的，九键输入法的  M  e  r  z  四个字母对应着  6  3  7  9 四个数字</p>
 <ul>
 <li>Redis默认有16个数据库 0 - 15，默认是 0 号库</li>
@@ -1934,7 +1933,7 @@ dbfilename dump6381<span class="token punctuation">.</span>rdb
 <p>（1）单个redis存在不稳定性。当redis服务宕机了，就没有可用的服务了。</p>
 <p>（2）单个redis的读写能力是有限的。</p>
 <p><strong>总结：redis集群是为了强化redis的读写能力</strong></p>
-<h4 id="什么是集群"><a href="#什么是集群" class="headerlink" title="什么是集群"></a>什么是集群</h4><p>Redis集群实现了对Redis的水平扩容，即启动N个redis节点(节点只能是Master)，将整个数据库分布存储在这N个节点中，每个节点存储总数据1/N。<br>Redis集群通过分区( partition )来提供一定程度的可用性 ( availability ) ：即使集群中有一部分节点失效或者无法进行通讯，集群也可以继续处理命令请求。</p>
+<h4 id="什么是集群"><a href="#什么是集群" class="headerlink" title="什么是集群"></a>什么是集群</h4><p>​    Redis集群实现了对Redis的水平扩容，即启动N个redis节点(节点只能是Master)，将整个数据库分布存储在这N个节点中，每个节点存储总数据1/N。<br>​    Redis集群通过分区( partition )来提供一定程度的可用性 ( availability ) ：即使集群中有一部分节点失效或者无法进行通讯，集群也可以继续处理命令请求。</p>
 <p>任何一个节点都可以作为集群的入口</p>
 <h4 id="搭建reids集群"><a href="#搭建reids集群" class="headerlink" title="搭建reids集群"></a>搭建reids集群</h4><ul>
 <li><p>删除  .rdb 和  .aof 文件</p>
@@ -3017,7 +3016,7 @@ cluster<span class="token operator">-</span>node<span class="token operator">-</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">211.4k</span>&nbsp;字
+                class="white-color">222.4k</span>&nbsp;字
             
             
             

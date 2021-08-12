@@ -542,7 +542,7 @@
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h5 id="3-1、图解说明"><a href="#3-1、图解说明" class="headerlink" title="3.1、图解说明"></a>3.1、图解说明</h5><p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417093442.png"></p>
+<h5 id="3-1、图解说明"><a href="#3-1、图解说明" class="headerlink" title="3.1、图解说明"></a>3.1、图解说明</h5><p><img src="/images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417093442.png"></p>
 <h3 id="二、jdk1-7容器初始化"><a href="#二、jdk1-7容器初始化" class="headerlink" title="二、jdk1.7容器初始化"></a>二、jdk1.7容器初始化</h3><h4 id="1、源码解析"><a href="#1、源码解析" class="headerlink" title="1、源码解析"></a>1、源码解析</h4><blockquote>
 <p>无参构造</p>
 </blockquote>
@@ -596,7 +596,7 @@
 <blockquote>
 <p>综上：ConcurrentHashMap中保存了一个**默认长度为16的Segment[]<strong>，每个Segment元素中保存了一个</strong>默认长度为2的HashEntry[]**，我们添加的元素，是存入对应的Segment中的HashEntry[]中。所以ConcurrentHashMap中默认元素的长度是32个，而不是16个</p>
 </blockquote>
-<h4 id="2、图解"><a href="#2、图解" class="headerlink" title="2、图解"></a>2、图解</h4><p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417101208.png"></p>
+<h4 id="2、图解"><a href="#2、图解" class="headerlink" title="2、图解"></a>2、图解</h4><p><img src="images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417101208.png"></p>
 <h4 id="3、Segment是什么？"><a href="#3、Segment是什么？" class="headerlink" title="3、Segment是什么？"></a>3、Segment是什么？</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Segment</span><span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> <span class="token keyword">extends</span> <span class="token class-name">ReentrantLock</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -794,13 +794,13 @@ private Segment<K,V> ensureSegment(int k) &#123;
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h5 id="2-1、多线程环境下的条件断点设置"><a href="#2-1、多线程环境下的条件断点设置" class="headerlink" title="2.1、多线程环境下的条件断点设置"></a>2.1、多线程环境下的条件断点设置</h5><p><img src="%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200417111509.png"></p>
-<p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417111424.png"></p>
+<h5 id="2-1、多线程环境下的条件断点设置"><a href="#2-1、多线程环境下的条件断点设置" class="headerlink" title="2.1、多线程环境下的条件断点设置"></a>2.1、多线程环境下的条件断点设置</h5><p><img src="images/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200417111509.png"></p>
+<p><img src="images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417111424.png"></p>
 <h5 id="2-2、运行结果"><a href="#2-2、运行结果" class="headerlink" title="2.2、运行结果"></a>2.2、运行结果</h5><blockquote>
 <p>会发现两个线程，分别停在不同的断点位置，这就是多线程锁互斥产生的结果</p>
 <p>然后就可以分别让不同的线程向下执行，查看代码走向了。</p>
 </blockquote>
-<p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417111834.png"></p>
+<p><img src="/images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417111834.png"></p>
 <h3 id="四、jdk1-7扩容安全"><a href="#四、jdk1-7扩容安全" class="headerlink" title="四、jdk1.7扩容安全"></a>四、jdk1.7扩容安全</h3><h4 id="1、源码分析-1"><a href="#1、源码分析-1" class="headerlink" title="1、源码分析"></a>1、源码分析</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">rehash</span><span class="token punctuation">(</span>HashEntry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> node<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     HashEntry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> oldTable <span class="token operator">=</span> table<span class="token punctuation">;</span>
     <span class="token keyword">int</span> oldCapacity <span class="token operator">=</span> oldTable<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
@@ -863,15 +863,15 @@ private Segment<K,V> ensureSegment(int k) &#123;
 <h4 id="2、图解-1"><a href="#2、图解-1" class="headerlink" title="2、图解"></a>2、图解</h4><blockquote>
 <p>图一</p>
 </blockquote>
-<p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417113823.png"></p>
+<p><img src="/images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417113823.png"></p>
 <blockquote>
 <p>图二</p>
 </blockquote>
-<p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417114240.png"></p>
+<p><img src="images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417114240.png"></p>
 <blockquote>
 <p>图三</p>
 </blockquote>
-<p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417114954.png"></p>
+<p><img src="/images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200417114954.png"></p>
 <h3 id="五、jdk1-7集合长度获取"><a href="#五、jdk1-7集合长度获取" class="headerlink" title="五、jdk1.7集合长度获取"></a>五、jdk1.7集合长度获取</h3><h4 id="1、源码分析-2"><a href="#1、源码分析-2" class="headerlink" title="1、源码分析"></a>1、源码分析</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// Try a few times to get accurate count. On failure due to</span>
     <span class="token comment" spellcheck="true">// continuous async changes in table, resort to locking.</span>
@@ -920,9 +920,6 @@ private Segment<K,V> ensureSegment(int k) &#123;
     <span class="token keyword">return</span> overflow <span class="token operator">?</span> Integer<span class="token punctuation">.</span>MAX_VALUE <span class="token operator">:</span> size<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<blockquote>
-<p>说明：市面上很多讲ConcurrentHashMap的源码分析课程，大多都是以营销为目的，并没有完整讲解添加安全和扩容安全，就目前我所知，所有公开课程中，没有任何课程讲解jdk1.8多线程扩容效率的改进方案。</p>
-</blockquote>
 <h2 id="ConcurrentHashMap源码分析-二"><a href="#ConcurrentHashMap源码分析-二" class="headerlink" title="ConcurrentHashMap源码分析(二)"></a>ConcurrentHashMap源码分析(二)</h2><h3 id="一、jdk1-8容器初始化"><a href="#一、jdk1-8容器初始化" class="headerlink" title="一、jdk1.8容器初始化"></a>一、jdk1.8容器初始化</h3><h4 id="1、源码分析-3"><a href="#1、源码分析-3" class="headerlink" title="1、源码分析"></a>1、源码分析</h4><blockquote>
 <p>在jdk8的ConcurrentHashMap中一共有5个构造方法，这四个构造方法中都没有对内部的数组做初始化， 只是对一些变量的初始值做了处理</p>
 <p>jdk8的ConcurrentHashMap的数组初始化是在第一次添加元素时完成</p>
@@ -1091,7 +1088,7 @@ private Segment<K,V> ensureSegment(int k) &#123;
     <span class="token keyword">return</span> tab<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="2、图解-2"><a href="#2、图解-2" class="headerlink" title="2、图解"></a>2、图解</h4><h5 id="2-1、put加锁图解"><a href="#2-1、put加锁图解" class="headerlink" title="2.1、put加锁图解"></a>2.1、put加锁图解</h5><p><img src="Snipaste_2020-05-16_12-04-08.jpg"></p>
+<h4 id="2、图解-2"><a href="#2、图解-2" class="headerlink" title="2、图解"></a>2、图解</h4><h5 id="2-1、put加锁图解"><a href="#2-1、put加锁图解" class="headerlink" title="2.1、put加锁图解"></a>2.1、put加锁图解</h5><p><img src="/images/Snipaste_2020-05-16_12-04-08.jpg"></p>
 <h3 id="三、jdk1-8扩容安全"><a href="#三、jdk1-8扩容安全" class="headerlink" title="三、jdk1.8扩容安全"></a>三、jdk1.8扩容安全</h3><h4 id="1、源码分析-5"><a href="#1、源码分析-5" class="headerlink" title="1、源码分析"></a>1、源码分析</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">transfer</span><span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> tab<span class="token punctuation">,</span> Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> nextTab<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> n <span class="token operator">=</span> tab<span class="token punctuation">.</span>length<span class="token punctuation">,</span> stride<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">//如果是多cpu，那么每个线程划分任务，最小任务量是16个桶位的迁移</span>
@@ -1246,7 +1243,7 @@ private Segment<K,V> ensureSegment(int k) &#123;
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="2、图解-3"><a href="#2、图解-3" class="headerlink" title="2、图解"></a>2、图解</h4><p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200516213316.png"></p>
+<h4 id="2、图解-3"><a href="#2、图解-3" class="headerlink" title="2、图解"></a>2、图解</h4><p><img src="/images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200516213316.png"></p>
 <h3 id="四、jdk1-8多线程扩容效率改进"><a href="#四、jdk1-8多线程扩容效率改进" class="headerlink" title="四、jdk1.8多线程扩容效率改进"></a>四、jdk1.8多线程扩容效率改进</h3><blockquote>
 <p>多线程协助扩容的操作会在两个地方被触发：</p>
 <p>① 当添加元素时，发现添加的元素对用的桶位为fwd节点，就会先去协助扩容，然后再添加元素</p>
@@ -1321,7 +1318,7 @@ private Segment<K,V> ensureSegment(int k) &#123;
 <blockquote>
 <p>注意：扩容的代码都在transfer方法中，这里不再赘述</p>
 </blockquote>
-<h4 id="2、图解-4"><a href="#2、图解-4" class="headerlink" title="2、图解"></a>2、图解</h4><p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200516215323.png"></p>
+<h4 id="2、图解-4"><a href="#2、图解-4" class="headerlink" title="2、图解"></a>2、图解</h4><p><img src="/images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200516215323.png"></p>
 <h3 id="五、集合长度的累计方式"><a href="#五、集合长度的累计方式" class="headerlink" title="五、集合长度的累计方式"></a>五、集合长度的累计方式</h3><h4 id="1、源码分析-7"><a href="#1、源码分析-7" class="headerlink" title="1、源码分析"></a>1、源码分析</h4><h5 id="1-1、addCount方法"><a href="#1-1、addCount方法" class="headerlink" title="1.1、addCount方法"></a>1.1、addCount方法</h5><blockquote>
 <p><strong>① CounterCell数组不为空，优先利用数组中的CounterCell记录数量</strong></p>
 <p><strong>② 如果数组为空，尝试对baseCount进行累加，失败后，会执行fullAddCount逻辑</strong></p>
@@ -1496,7 +1493,7 @@ private Segment<K,V> ensureSegment(int k) &#123;
 <h4 id="2、图解-5"><a href="#2、图解-5" class="headerlink" title="2、图解"></a>2、图解</h4><blockquote>
 <p>fullAddCount方法中，当as数组不为空的逻辑图解</p>
 </blockquote>
-<p><img src="%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200516185407.png"></p>
+<p><img src="images/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200516185407.png"></p>
 <h3 id="六、jdk1-8集合长度获取"><a href="#六、jdk1-8集合长度获取" class="headerlink" title="六、jdk1.8集合长度获取"></a>六、jdk1.8集合长度获取</h3><h4 id="1、源码分析-8"><a href="#1、源码分析-8" class="headerlink" title="1、源码分析"></a>1、源码分析</h4><h5 id="1-1、size方法"><a href="#1-1、size方法" class="headerlink" title="1.1、size方法"></a>1.1、size方法</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">long</span> n <span class="token operator">=</span> <span class="token function">sumCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>n <span class="token operator">&lt;</span> 0L<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span>
@@ -2015,43 +2012,41 @@ private Segment<K,V> ensureSegment(int k) &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/08/10/ConcurrentHashMap/">
+                <a href="/2021/08/11/Zookeeper/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="ConcurrentHashMap">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Zookeeper">
                         
-                        <span class="card-title">ConcurrentHashMap</span>
+                        <span class="card-title">Zookeeper</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ConcurrentHashMap
+                            Zookeeper
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-10
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-11
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ConcurrentHashMap/" class="post-category">
-                                    ConcurrentHashMap
+                            <a href="/categories/Zookeeper/" class="post-category">
+                                    Zookeeper
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -2292,7 +2287,7 @@ private Segment<K,V> ensureSegment(int k) &#123;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">211.4k</span>&nbsp;字
+                class="white-color">222.4k</span>&nbsp;字
             
             
             
