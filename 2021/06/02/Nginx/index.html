@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Front-matter 选项详解, 瀚77的博客">
+    <meta name="keywords" content="Nginx, 瀚77的博客">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Front-matter 选项详解 | 瀚77的博客</title>
+    <title>Nginx | 瀚77的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Front-matter 选项详解</h1>
+                    <h1 class="description center-align post-title">Nginx</h1>
                 </div>
             </div>
         </div>
@@ -448,8 +448,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
-                                选项详解
+                            <a href="/categories/Nginx/" class="post-category">
+                                Nginx
                             </a>
                         
                     </div>
@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-05
+                    2021-08-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    506
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    8 分
                 </div>
                 
 
@@ -502,90 +502,244 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <table>
-<thead>
-<tr>
-<th>配置选项</th>
-<th>默认值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>title</td>
-<td><code>Markdown</code> 的文件标题</td>
-<td>文章标题，强烈建议填写此选项</td>
-</tr>
-<tr>
-<td>date</td>
-<td>文件创建时的日期时间</td>
-<td>发布时间，强烈建议填写此选项，且最好保证全局唯一</td>
-</tr>
-<tr>
-<td>author</td>
-<td>根 <code>_config.yml</code> 中的 <code>author</code></td>
-<td>文章作者</td>
-</tr>
-<tr>
-<td>mg</td>
-<td><code>featureImages</code> 中的某个值</td>
-<td>文章特征图，推荐使用图床(腾讯云、七牛云、又拍云等)来做图片的路径.如: <code>http://xxx.com/xxx.jpg</code></td>
-</tr>
-<tr>
-<td>top</td>
-<td><code>true</code></td>
-<td>推荐文章（文章是否置顶），如果 <code>top</code> 值为 <code>true</code>，则会作为首页推荐文章</td>
-</tr>
-<tr>
-<td>cover</td>
-<td><code>false</code></td>
-<td><code>v1.0.2</code>版本新增，表示该文章是否需要加入到首页轮播封面中</td>
-</tr>
-<tr>
-<td>coverImg</td>
-<td>无</td>
-<td><code>v1.0.2</code>版本新增，表示该文章在首页轮播封面需要显示的图片路径，如果没有，则默认使用文章的特色图片</td>
-</tr>
-<tr>
-<td>password</td>
-<td>无</td>
-<td>文章阅读密码，如果要对文章设置阅读验证密码的话，就可以设置 <code>password</code> 的值，该值必须是用 <code>SHA256</code> 加密后的密码，防止被他人识破。前提是在主题的 <code>config.yml</code> 中激活了 <code>verifyPassword</code> 选项</td>
-</tr>
-<tr>
-<td>toc</td>
-<td><code>true</code></td>
-<td>是否开启 TOC，可以针对某篇文章单独关闭 TOC 的功能。前提是在主题的 <code>config.yml</code> 中激活了 <code>toc</code> 选项</td>
-</tr>
-<tr>
-<td>mathjax</td>
-<td><code>false</code></td>
-<td>是否开启数学公式支持 ，本文章是否开启 <code>mathjax</code>，且需要在主题的 <code>_config.yml</code> 文件中也需要开启才行</td>
-</tr>
-<tr>
-<td>summary</td>
-<td>无</td>
-<td>文章摘要，自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要</td>
-</tr>
-<tr>
-<td>categories</td>
-<td>无</td>
-<td>文章分类，本主题的分类表示宏观上大的分类，只建议一篇文章一个分类</td>
-</tr>
-<tr>
-<td>tags</td>
-<td>无</td>
-<td>文章标签，一篇文章可以多个标签</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>文章标题</td>
-<td>文章关键字，SEO 时需要</td>
-</tr>
-<tr>
-<td>reprintPolicy</td>
-<td>cc_by</td>
-<td>文章转载规则， 可以是 cc_by, cc_by_nd, cc_by_sa, cc_by_nc, cc_by_nc_nd, cc_by_nc_sa, cc0, noreprint 或 pay 中的一个</td>
-</tr>
-</tbody></table>
+                <p>[TOC]</p>
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="第一章-Nginx入门"><a href="#第一章-Nginx入门" class="headerlink" title="第一章 Nginx入门"></a>第一章 Nginx入门</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>​    Nginx是高性能的HTTP和反向代理的服务器，处理高并发能力十分强悍，能经受高负载的考验，有报告表明能支持高达 50,000 个并发连接数。</p>
+<h3 id="1-2-正向代理"><a href="#1-2-正向代理" class="headerlink" title="1.2 正向代理"></a>1.2 正向代理</h3><p>在客户端（浏览器）配置代理服务器，通过代理服务器进行互联网访问</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814212031.png"></p>
+<h3 id="1-3-反向代理"><a href="#1-3-反向代理" class="headerlink" title="1.3 反向代理"></a>1.3 反向代理</h3><p>​    只需要将请求发送到反向代理服务器，由反向代理服务器去选择目标服务器获取数据，接着返回给客户端，此时反向代理服务器和目标对外就是一个服务，暴露的是代理服务器地址，隐藏了真实服务器的ip地址</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814212413.png"></p>
+<h3 id="1-4-负载均衡"><a href="#1-4-负载均衡" class="headerlink" title="1.4 负载均衡"></a>1.4 负载均衡</h3><p>​    单个服务器解决不了，就增加服务器的数量，然后将请求分发到各个服务器上，==<strong>将原先请求集中到单个服务器上的情况改为将请求分发到多个服务器上，将负载分发到不同的服务器</strong>==，这就是所谓的负载均衡</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814213734.png"></p>
+<h3 id="1-5-动静分离"><a href="#1-5-动静分离" class="headerlink" title="1.5 动静分离"></a>1.5 动静分离</h3><p>为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814213551.png"></p>
+<h2 id="第二章-Nginx安装"><a href="#第二章-Nginx安装" class="headerlink" title="第二章 Nginx安装"></a>第二章 Nginx安装</h2><h3 id="2-1-步骤"><a href="#2-1-步骤" class="headerlink" title="2.1 步骤"></a>2.1 步骤</h3><ul>
+<li>安装pcre 依赖<ul>
+<li>将 pcre-8.37.tar.gz 移动到 linux的  /usr/src 目录下</li>
+<li>tar -zxvf  pcre-8.37.tar.gz</li>
+<li>cd  pcre-8.37</li>
+<li>./configure</li>
+<li>make &amp;&amp; make install</li>
+</ul>
+</li>
+<li>安装 openssl、 zlib、gcc依赖<ul>
+<li>yum -y install make zlib zlib-devel gcc-c++ libtool openssl openssl-devel</li>
+</ul>
+</li>
+<li>安装 Nginx <ul>
+<li>tar -zxvf  nginx-1.12.2.tar.gz</li>
+<li>cd nginx-1.12.2</li>
+<li>./configure</li>
+<li>make &amp;&amp; make install</li>
+</ul>
+</li>
+</ul>
+<p>安装成功后进入  /usr/local/nginx/sbin 目录下   用 ./nginx  命令来启动服务</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814220243.png"></p>
+<h3 id="2-2-nginx-的常用命令"><a href="#2-2-nginx-的常用命令" class="headerlink" title="2.2 nginx 的常用命令"></a>2.2 nginx 的常用命令</h3><p>==<strong>使用 nginx命令必须进入到   /usr/local/nginx/sbin</strong>==</p>
+<ul>
+<li><p>查看当前版本号</p>
+<ul>
+<li> ./nginx -v</li>
+</ul>
+</li>
+<li><p>开启Nginx服务</p>
+<ul>
+<li>./nginx</li>
+</ul>
+</li>
+<li><p>关闭 Nginx服务</p>
+<ul>
+<li>./nginx -s stop</li>
+</ul>
+</li>
+<li><p>重新加载 nginx</p>
+<ul>
+<li>./nginx -s reload</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-nginx的配置文件"><a href="#2-3-nginx的配置文件" class="headerlink" title="2.3 nginx的配置文件"></a>2.3 nginx的配置文件</h3><p>/usr/local/nginx/conf   下有一个 nginx.conf</p>
+<p>包含三部分</p>
+<ul>
+<li>全局块：配置服务器整体运行的配置指令，比如 worker_processes  1;   处理并发数的配置</li>
+<li>events块：影响nginx 服务器与用户的网络连接，比如worker_connections 1024; 支持最大连接数为1024</li>
+<li>http块：包含两部分<ul>
+<li>http全局块</li>
+<li>server块</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三章-Nginx-反向代理"><a href="#第三章-Nginx-反向代理" class="headerlink" title="第三章 Nginx - 反向代理"></a>第三章 Nginx - 反向代理</h2><h3 id="3-1-反向代理-实例一"><a href="#3-1-反向代理-实例一" class="headerlink" title="3.1 反向代理 实例一"></a>3.1 反向代理 实例一</h3><p>实现：打开浏览器，在浏览器地址栏输入地址 <a target="_blank" rel="noopener" href="http://www.123.com,跳转到/">www.123.com，跳转到</a> liunx 系统 tomcat 主页</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814232045.png"></p>
+<p>步骤</p>
+<ul>
+<li>在windows系统的host文件进行域名和ip对应关系的配置，host路径为 C:\Windows\System32\drivers\etc<ul>
+<li>添加：  192.168.130.172   <a target="_blank" rel="noopener" href="http://www.han.com/">www.han.com</a></li>
+</ul>
+</li>
+<li>在nginx中进行反向代理配置，也就是请求转发</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814234248.png"></p>
+<p>【注意：要把proxy_pass 放在第一位】</p>
+<ul>
+<li><p>启动 tomcat 镜像</p>
+<ul>
+<li>docker run -it -p 8080:8080 tomcat1</li>
+</ul>
+</li>
+<li><p>在windows下的浏览器中输入  <a target="_blank" rel="noopener" href="http://www.han.com/">www.han.com</a> 即可访问到tomcat页面</p>
+</li>
+</ul>
+<h3 id="3-2-反向代理-实例二"><a href="#3-2-反向代理-实例二" class="headerlink" title="3.2 反向代理 实例二"></a>3.2 反向代理 实例二</h3><p>实现：使用nginx反向代理，根据访问的路径跳转到不同端口的服务中</p>
+<p>访问：<a target="_blank" rel="noopener" href="http://192.168.130.172/edu/">http://192.168.130.172/edu/</a>  直接跳转到 127.0.0.1:8080</p>
+<p>​           <a target="_blank" rel="noopener" href="http://192.168.130.172/vdu/">http://192.168.130.172/vdu/</a>   直接跳转到 127.0.0.1:8080</p>
+<p>步骤：</p>
+<ul>
+<li>启动两个tomcat，一个8080端口，一个8081端口</li>
+<li>在一台tomcat的webapps目录中，创建名称是edu文件夹，在edu文件夹中创建测试页面 a.html ，另一台创建 vod文件夹，里面创建 b.html页面</li>
+<li>找到nginx配置文件，进行反向代理配置</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210815003903.png"></p>
+<ul>
+<li>测试结果<ul>
+<li>输入 <a target="_blank" rel="noopener" href="http://192.168.130.172/edu/a.html">http://192.168.130.172/edu/a.html</a> 出现  8080！！！</li>
+<li>输入 <a target="_blank" rel="noopener" href="http://192.168.130.172/vod/a.html">http://192.168.130.172/vod/a.html</a> 出现  8081！！！</li>
+</ul>
+</li>
+</ul>
+<p>配置文件中 ~ 的说明</p>
+<p>location指令：</p>
+<ul>
+<li>语法：<ul>
+<li>location [= | ~ | <del>* | ^</del>]  url {  }</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210815002340.png"></p>
+<h2 id="第四章-Nginx-负载均衡"><a href="#第四章-Nginx-负载均衡" class="headerlink" title="第四章 Nginx - 负载均衡"></a>第四章 Nginx - 负载均衡</h2><h3 id="4-1-实现效果"><a href="#4-1-实现效果" class="headerlink" title="4.1 实现效果"></a>4.1 实现效果</h3><p>在地址栏输入地址 http:192.168.130.172/edu/a.html，负载均衡效果，平均8080和8081端口中</p>
+<h3 id="4-2-步骤"><a href="#4-2-步骤" class="headerlink" title="4.2 步骤"></a>4.2 步骤</h3><ul>
+<li>启动两个tomcat，一个8080端口，一个8081端口</li>
+<li>在两台tomcat的webapps目录中，创建名称是edu文件夹，在edu文件夹中创建测试页面 a.html </li>
+<li>找到nginx配置文件，进行负载均衡配置</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210815004128.png"></p>
+<ul>
+<li>浏览器访问 <a target="_blank" rel="noopener" href="http://192.168.130.172/edu/a.html">http://192.168.130.172/edu/a.html</a>  刷新页面就可以实现请求的负载均衡</li>
+</ul>
+<h3 id="4-2-nginx-分配服务器策略"><a href="#4-2-nginx-分配服务器策略" class="headerlink" title="4.2 nginx 分配服务器策略"></a>4.2 nginx 分配服务器策略</h3><ul>
+<li>轮询（默认）<ul>
+<li>每个请求按时间顺序逐一分配到不同的后端服务，如果后端服务器down掉，能自动删除</li>
+</ul>
+</li>
+<li>weight<ul>
+<li>weight权重默认为1，权重越高被分配的用户越多</li>
+</ul>
+</li>
+<li>ip_hash<ul>
+<li>每个请求按访问的ip的hash结果分配，这样每一个访客固定一个后端服务器，这种方法可以解决session共享问题</li>
+</ul>
+</li>
+<li>fair<ul>
+<li>按后端服务器的响应时间来分配请求，响应时间短的优先分配</li>
+</ul>
+</li>
+</ul>
+<h2 id="第五章-Nginx-动静分离"><a href="#第五章-Nginx-动静分离" class="headerlink" title="第五章 Nginx - 动静分离"></a>第五章 Nginx - 动静分离</h2><p>​        Nginx 动静分离简单来说就是把动态跟静态请求分开，不能理解成只是单纯的把动态页面和静态页面物理分离。严格意义上说应该是动态请求跟静态请求分开，可以理解成使用 Nginx 处理静态页面，Tomcat 处理动态页面。动静分离从目前实现角度来讲大致分为两种，一种是<strong>纯粹把静态文件独立成单独的域名，放在独立的服务器上，访问静态资源的请求通过nginx转发到静态资源服务器</strong>，也是目前主流推崇的方案；另外一种方法就是<strong>动态跟静态文件混合在一起发布，通过 nginx 来分开</strong>。</p>
+<p>​    <img src="/images/QQ%E6%88%AA%E5%9B%BE20210815010741.png"></p>
+<p>​    通过 location 指定不同的后缀名实现不同的请求转发。通过 expires 参数设置，可以使浏览器缓存过期时间，减少与服务器之前的请求和流量。具体 Expires 定义：是给一个资源设定一个过期时间，也就是说无需去服务端验证，直接通过浏览器自身确认是否过期即可，所以不会产生额外的流量。此种方法非常适合不经常变动的资源。（如果经常更新的文件，不建议使用 Expires 来缓存），我这里设置 3d，表示在这 3 天之内访问这个 URL，发送一个请求，比对服务器该文件最后更新时间没有变化，则不会从服务器抓取，返回状态码304，如果有修改，则直接从服务器重新下载，返回状态码 200。</p>
+<ul>
+<li>在tomcat中准备静态资源，进行访问</li>
+<li>配置文件中添加红框内的内容</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210815013259.png"></p>
+<ul>
+<li>在浏览器中输入 <ul>
+<li><a target="_blank" rel="noopener" href="http://192.168.130.172/www/a.html">http://192.168.130.172/www/a.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://192.168.130.172/images/a.html">http://192.168.130.172/images/a.html</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="第六章-Nginx配置高可用的集群"><a href="#第六章-Nginx配置高可用的集群" class="headerlink" title="第六章 Nginx配置高可用的集群"></a>第六章 Nginx配置高可用的集群</h2><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210815020213.png"></p>
+<p>准备工作</p>
+<ul>
+<li>需要两台niginx服务器，192.168.130.172 和 192.168.130.173</li>
+<li>需要安装nginx 和 keepalived</li>
+</ul>
+<p>keepalived的安装步骤</p>
+<ul>
+<li>yum install keepalived -y</li>
+<li>安装之后，在etc里面生成目录keepalived，有文件keepalived.conf</li>
+</ul>
+<p>完成高可用配置（主从配置）</p>
+<ul>
+<li>修改 /etc/keepalived/keepalived.conf 配置文件</li>
+</ul>
+<pre class=" language-java"><code class="language-java">global_defs <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   notification_email <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      acassen<span class="token annotation punctuation">@firewall</span><span class="token punctuation">.</span>loc
+         failover<span class="token annotation punctuation">@firewall</span><span class="token punctuation">.</span>loc
+         sysadmin<span class="token annotation punctuation">@firewall</span><span class="token punctuation">.</span>loc
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   notification_email_from Alexandre<span class="token punctuation">.</span>Cassen<span class="token annotation punctuation">@firewall</span><span class="token punctuation">.</span>loc
+      smtp_server <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">17.129</span>
+      smtp_connect_timeout <span class="token number">30</span>
+      router_id LVS_DEVEL
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+vrrp_script chk_http_port <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   script <span class="token string">"/usr/local/src/nginx_check.sh"</span>
+      interval <span class="token number">2</span> #（检测脚本执行的间隔）
+      weight <span class="token number">2</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+vrrp_instance VI_1 <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   state BACKUP # 备份服务器上将 MASTER 改为 BACKUP 
+      <span class="token keyword">interface</span> <span class="token class-name">ens33</span> <span class="token comment" spellcheck="true">//网卡</span>
+      virtual_router_id <span class="token number">51</span> # 主、备机的 virtual_router_id 必须相同
+      priority <span class="token number">90</span> # 主、备机取不同的优先级，主机值较大，备份机值较小
+      advert_int <span class="token number">1</span>
+      authentication <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      auth_type PASS
+         auth_pass <span class="token number">1111</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   virtual_ipaddress <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">17.50</span> <span class="token comment" spellcheck="true">// VRRP H 虚拟地址</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>在 /usr/local/src 添加检测脚本</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">#!/bin/bash
+A=`ps -C nginx –no-header |wc -l`
+if [ $A -eq 0 ];then
+    /usr/local/nginx/sbin/nginx
+    sleep 2
+    if [ `ps -C nginx --no-header |wc -l` -eq 0 ];then
+    killall keepalived
+    fi
+fi
+</code></pre>
+<ul>
+<li>启动两台服务器的  nginx  和 keepalived</li>
+</ul>
+<p>当其中一台 nginx 挂掉后，另外一台可以继续工作</p>
+<h2 id="第七章-Nginx工作原理"><a href="#第七章-Nginx工作原理" class="headerlink" title="第七章 Nginx工作原理"></a>第七章 Nginx工作原理</h2><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210815024634.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210815024710.png"></p>
+<p>3、一个 master 和多个 woker 的好处<br>（1）可以使用 nginx –s reload 热部署，利用 nginx 进行热部署操作<br>（2）每个 woker 是独立的进程，如果有其中的一个 woker 出现问题，其他 woker 独立的，继续进行争抢，实现请求过程，不会造成服务中断</p>
+<p>4、设置多少个 woker 合适</p>
+<p>worker 数和服务器的 cpu 数相等是最为适宜的</p>
+<p>5、连接数 worker_connection</p>
+<ul>
+<li><p>发送请求，占用了 woker 的几个连接数？</p>
+<ul>
+<li>2 或者 4 个，worker和客户端连接来回两个，要是还有数据库或者tomcat的话连接来回又是两个</li>
+</ul>
+</li>
+<li><p>nginx 有一个 master，有四个 woker，每个 woker 支持最大的连接数 1024，支持的最大并发数是多少？</p>
+<ul>
+<li>普通的静态访问最大并发数是： worker_connections * worker_processes /2， 而如果是 HTTP 作 为反向代理来说，最大并发数量应该是 worker_connections * worker_processes/4。</li>
+</ul>
+</li>
+</ul>
 
                 
             </div>
@@ -612,7 +766,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/">http://han77520.github.io/2021/06/02/%E6%A8%A1%E6%9D%BF/</a>
+                    <a href="http://han77520.github.io/2021/06/02/Nginx/">http://han77520.github.io/2021/06/02/Nginx/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1084,31 +1238,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/02/Nginx/">
+                <a href="/2021/06/03/java%E5%A4%8D%E4%B9%A0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Nginx">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="java复习">
                         
-                        <span class="card-title">Nginx</span>
+                        <span class="card-title">java复习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Nginx
+                            模糊知识点
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-03
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Nginx/" class="post-category">
-                                    Nginx
+                            <a href="/categories/review/" class="post-category">
+                                    review
                                 </a>
                             
                             
@@ -1125,18 +1279,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/02/Docker/">
+                <a href="/2021/06/02/%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=2199151480,2296888106&fm=26&fmt=auto&gp=0.jpg" class="responsive-img" alt="Docker">
                         
-                        <span class="card-title">Docker</span>
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Front-matter 选项详解">
+                        
+                        <span class="card-title">Front-matter 选项详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Docker
+                            配置
                         
                     </div>
                     <div class="publish-info">
@@ -1147,8 +1302,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Docker/" class="post-category">
-                                    Docker
+                            <a href="/categories/%E9%80%89%E9%A1%B9%E8%AF%A6%E8%A7%A3/" class="post-category">
+                                    选项详解
                                 </a>
                             
                             
