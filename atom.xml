@@ -6,7 +6,7 @@
   <link href="http://han77520.github.io/atom.xml" rel="self"/>
   
   <link href="http://han77520.github.io/"/>
-  <updated>2021-08-14T12:01:28.441Z</updated>
+  <updated>2021-08-14T19:06:15.737Z</updated>
   <id>http://han77520.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx</title>
+    <link href="http://han77520.github.io/2021/08/14/Nginx/"/>
+    <id>http://han77520.github.io/2021/08/14/Nginx/</id>
+    <published>2021-08-14T12:02:27.165Z</published>
+    <updated>2021-08-14T19:06:15.737Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;Nginx&quot;&gt;&lt;a href=&quot;#Nginx&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h1&gt;&lt;h2 id=&quot;第一章-Nginx入门&quot;&gt;&lt;a href=&quot;#第一章-Nginx入门&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Nginx" scheme="http://han77520.github.io/categories/Nginx/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>RabbitMQ</title>
@@ -454,29 +478,6 @@
     
     
     <category term="学习笔记" scheme="http://han77520.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>java面试题</title>
-    <link href="http://han77520.github.io/2021/06/11/java%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    <id>http://han77520.github.io/2021/06/11/java%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
-    <published>2021-06-12T03:30:38.000Z</published>
-    <updated>2021-08-11T03:07:37.580Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;如果你参加过一些大厂面试，肯定会遇到一些这样的问题：&lt;/strong&gt;&lt;br&gt;1、看你项目都用的框架，熟悉Spring、mybatis等框架实现原理吗？&lt;br&gt;2、</summary>
-        
-      
-    
-    
-    
-    <category term="面试题" scheme="http://han77520.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
   </entry>
