@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-06
+                    2021-08-21
                 </div>
                 
 
@@ -708,6 +708,16 @@
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li><p>删除未成功启动的容器</p>
+<ul>
+<li>docker rm $(docker ps -qf status=created)</li>
+</ul>
+</li>
+<li><p>删除退出状态的容器</p>
+<ul>
+<li>docker rm $(docker ps -qf status=exited)</li>
 </ul>
 </li>
 </ul>
@@ -1851,7 +1861,7 @@ docker push registry.cn-hangzhou.aliyuncs.com/[仓库名]/[镜像名]:[镜像版
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">272.5k</span>&nbsp;字
+                class="white-color">274.1k</span>&nbsp;字
             
             
             
