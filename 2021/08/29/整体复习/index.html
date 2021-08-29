@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    2.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    11 分
                 </div>
                 
 
@@ -510,10 +510,10 @@
 <p>为什么string是不可变的？</p>
 <p>·    在string常量池中，可能有很多的引用指向同一个字符串，如果string类是可变的，那么一个引用修改此值，其他的引用也都跟着变化，存在一个客户的操作影响到其他客户情况。所以将他设置成不可变的，所谓不可变，就是如果一个客户修改此字符串，那么将会在重新创建一个string对象，不会对原来的值产生影响。</p>
 <p>​    还有就是我认为不可变的另一个原因可能是由于  hashmap，因为开发的时候很多时候都使用字符串来作为hashmap 的key，然而对于hashmap的键值来说，不可变性是非常的重要，以便用它们检索存储在 HashMap 中的值对象。如果在插入后修改了 String 的内容，可变的 String 将在插入和检索时生成两个不同的哈希码，可能会丢失 Map 中的值对象。</p>
-<p>为什么string类是finall的？</p>
-<p>​    将string类设置成finally的，就没有人可以通过扩展和覆盖行为来破坏 String 类的不变性、缓存、散列值的计算等。</p>
+<p>为什么string类是final的？</p>
+<p>​    将string类设置成final的，就没有人可以通过扩展和覆盖行为来破坏 String 类的不变性、缓存、散列值的计算等。</p>
 <h2 id="接口和类在设计层面的区别"><a href="#接口和类在设计层面的区别" class="headerlink" title="接口和类在设计层面的区别"></a>接口和类在设计层面的区别</h2><p>​    ①<strong>抽象类是对一种事物的抽象，即对类抽象，而接口是对行为的抽象。抽象类是对整个类整体进行抽象，包括属性、行为，但是接口却是对类局部（行为）进行抽象。</strong>举个简单的例子，飞机和鸟是不同类的事物，但是它们都有一个共性，就是都会飞。那么在设计的时候，可以将飞机设计为一个类Airplane，将鸟设计为一个类Bird，但是不能将 飞行这个特性也设计为类，因此它只是一个行为特性，并不是对一类事物的抽象描述。此时可以将飞行设计为一个接口Fly，包含方法fly( )，然后Airplane和Bird分别根据自己的需要实现Fly这个接口。然后至于有不同种类的飞机，比如战斗机、民用飞机等直接继承Airplane即可，对于鸟也是类似的，不同种类的鸟直接继承Bird类即可。从这里可以看出，继承是一个 “是不是”的关系，而 接口 实现则是 “有没有”的关系。如果一个类继承了某个抽象类，则子类必定是抽象类的种类，而接口实现则是有没有、具备不具备的关系，比如鸟是否能飞（或者是否具备飞行这个特点），能飞行则可以实现这个接口，不能飞行就不实现这个接口。</p>
-<p>​    ② 设计层面不同，抽象类作为很多子类的父类，它是一种模板式设计。而接口是一种行为规范，它是一种辐射式设计。什么是模板式设计？最简单例子，大家都用过ppt里面的模板，如果用模板A设计了ppt B和ppt C，ppt B和ppt C公共的部分就是模板A了，如果它们的公共部分需要改动，则只需要改动模板A就可以了，不需要重新对ppt B和ppt C进行改动。而辐射式设计，比如某个电梯都装了某种报警器，一旦要更新报警器，就必须全部更新。也就是说对于抽象类，如果需要添加新的方法，可以直接在抽象类中添加具体的实现，子类可以不进行变更；而对于接口则不行，如果接口进行了变更，则所有实现这个接口的类都必须进行相应的改动。</p>
+<p>​    ② <strong>设计层面不同，抽象类作为很多子类的父类，它是一种模板式设计。而接口是一种行为规范，它是一种辐射式设计</strong>。什么是模板式设计？最简单例子，大家都用过ppt里面的模板，如果用模板A设计了ppt B和ppt C，ppt B和ppt C公共的部分就是模板A了，如果它们的公共部分需要改动，则只需要改动模板A就可以了，不需要重新对ppt B和ppt C进行改动。而辐射式设计，比如某个电梯都装了某种报警器，一旦要更新报警器，就必须全部更新。也就是说对于抽象类，如果需要添加新的方法，可以直接在抽象类中添加具体的实现，子类可以不进行变更；而对于接口则不行，如果接口进行了变更，则所有实现这个接口的类都必须进行相应的改动。</p>
 <h2 id="BIO、NIO、AIO有什么区别"><a href="#BIO、NIO、AIO有什么区别" class="headerlink" title="BIO、NIO、AIO有什么区别"></a>BIO、NIO、AIO有什么区别</h2><p> BIO：Bolck IO ，同步阻塞式IO，就是传统的IO，特点是模式简单，使用方便，并发处理能力低</p>
 <p> NIO：New IO，同步非阻塞式IO，是传统IO的升级，客户端和服务器通过Channel通讯，实现了多了复用</p>
 <p> AIO：Asynchronous IO，是NIO的升级，也叫NIO2，实现了异步非阻塞IO，异步IO的操作基于事件和回调机制</p>
@@ -526,6 +526,165 @@
 <p>Files.size()：查看文件个数</p>
 <p>Files.read()：读取文件</p>
 <p>Files.write()：写入文件</p>
+<h2 id="Array与ArrayList有什么不一样"><a href="#Array与ArrayList有什么不一样" class="headerlink" title="Array与ArrayList有什么不一样"></a>Array与ArrayList有什么不一样</h2><p>​    Array和ArrayList都是用来存储数据的集合。ArrayList底层是使用数组实现的，但是ArrayList对数组进行了封装和功能的扩展</p>
+<h2 id="JDBC操作的步骤"><a href="#JDBC操作的步骤" class="headerlink" title="JDBC操作的步骤"></a>JDBC操作的步骤</h2><ul>
+<li>加载数据库驱动类</li>
+<li>打开数据库连接</li>
+<li>执行sql语句</li>
+<li>处理返回结果</li>
+<li>关闭资源</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**将数据库连接需要的4个基本信息声明在配置文件中，通过读取配置文件的方式，获取连接
+ * 好处
+ * 1.实现数据与代码的分离。实现了解耦
+ * 2.如果需要修改配置文件信息，可以避免程序重新打包。
+ *
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testConnection5</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ClassNotFoundException<span class="token punctuation">,</span> SQLException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token comment" spellcheck="true">//读取配置文件中的信息</span>
+   InputStream is <span class="token operator">=</span>ClassLoader<span class="token punctuation">.</span><span class="token function">getSystemClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span><span class="token string">"jdbc.properties"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Properties properties <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    properties<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>is<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    String user <span class="token operator">=</span> properties<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String password <span class="token operator">=</span> properties<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String url <span class="token operator">=</span> properties<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"url"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String driverClass <span class="token operator">=</span> properties<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"driverClass"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//2.加载驱动</span>
+    Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>driverClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//3.获取连接</span>
+    Connection conn <span class="token operator">=</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> user<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true">#键值对中间不要加空格</span>
+<span class="token attr-name">user</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
+<span class="token attr-name">password</span><span class="token punctuation">=</span><span class="token attr-value">172161</span>
+<span class="token attr-name">url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test</span>
+<span class="token attr-name">driverClass</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.jdbc.Driver</span>
+</code></pre>
+<h2 id="怎么在JDBC内调用一个存储过程"><a href="#怎么在JDBC内调用一个存储过程" class="headerlink" title="怎么在JDBC内调用一个存储过程"></a>怎么在JDBC内调用一个存储过程</h2><p>​    使用 callableStatement 类</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> CREATE DATABASE EMP $$
+
+mysql> DROP PROCEDURE IF EXISTS `EMP`.`getEmpName` $$
+
+mysql> CREATE PROCEDURE `EMP`.`getEmpName`
+    ->    (IN EMP_ID INT, OUT EMP_FIRST VARCHAR(255))
+    -> BEGIN
+    ->    SELECT first INTO EMP_FIRST
+    ->    FROM Employees
+    ->    WHERE ID = EMP_ID;
+    -> END $$
+mysql> DELIMITER ;
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> ProcedureTest<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>CallableStatement<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>Connection<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>SQLException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>Types<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>dbcp<span class="token punctuation">.</span>BasicDataSource<span class="token punctuation">;</span>
+
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JdbcConnectedPro</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> Connection connection<span class="token operator">=</span>null<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> CallableStatement callableStatement <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//private static ResultSet resultSet = null;//结果集</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> String sql <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 创建connection对象
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Connection <span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//创建dataSource</span>
+        BasicDataSource dataSource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BasicDataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//加载数据库驱动</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setDriverClassName</span><span class="token punctuation">(</span><span class="token string">"com.mysql.jdbc.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//设置用户名和密码</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setUrl</span><span class="token punctuation">(</span><span class="token string">"jdbc:mysql://localhost:3306/test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            connection<span class="token operator">=</span>dataSource<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> connection<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 基于存储过程实例化CallableStatement对象
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> CallableStatement <span class="token function">getStatement</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//String sql = "";//&amp;#123;call getEmpName (?, ?)&amp;#125;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            callableStatement <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">prepareCall</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> callableStatement<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//关闭资源</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>null <span class="token operator">!=</span> callableStatement<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                callableStatement<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>null <span class="token operator">!=</span> connection<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    connection<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">// TODO Auto-generated catch block</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        sql <span class="token operator">=</span> <span class="token string">"&amp;#123;call getEmpName (?, ?)&amp;#125;"</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">getStatement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            callableStatement<span class="token punctuation">.</span><span class="token function">setInt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            callableStatement<span class="token punctuation">.</span><span class="token function">registerOutParameter</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> Types<span class="token punctuation">.</span>VARCHAR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            callableStatement<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//执行</span>
+            <span class="token keyword">int</span> result <span class="token operator">=</span> callableStatement<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"返回结果为"</span><span class="token operator">+</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="使用数据库连接池有有什么好处"><a href="#使用数据库连接池有有什么好处" class="headerlink" title="使用数据库连接池有有什么好处"></a>使用数据库连接池有有什么好处</h2><p>​    数据库连接是非常消耗资源的，影响到程序的性能指标。连接池是用来分配、管理、释放数据库连接的，可以使应用程序重复使用同一个数据库连接，而不是每次都创建一个新的数据库连接。通过释放空闲时间较长的数据库连接避免数据库因为创建太多的连接而造成的连接遗漏问题，提高了程序性能。</p>
+<h2 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h2><ul>
+<li>以字节为单位输入输出数据，字节流按照8位传输</li>
+<li>以字符为单位输入输出数据，字符流按照16位传输</li>
+</ul>
+<h2 id="GC是什么-为什么要有GC"><a href="#GC是什么-为什么要有GC" class="headerlink" title="GC是什么? 为什么要有GC"></a>GC是什么? 为什么要有GC</h2><p>​        答：GC是垃圾收集的意思（Garbage Collection）,内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java提供的GC功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的，Java语言没有提供释放已分配内存的显示操作方法</p>
+<p>​    垃圾回收机制回收任何对象之前，总会先调用它的finalize方法（如果覆盖该方法，让一个新的引用变量重新引用该对象，则会重新激活对象）。</p>
+<p>​    永远不要主动调用某个对象的finalize方法，应该交给垃圾回收机制调用。</p>
+<h2 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h2><p><strong>进程</strong>是系统进行资源分配的独立单位，<strong>线程</strong>是CPU调度和分派的基本单位。</p>
+<p><strong>进程和线程的关系</strong></p>
+<ul>
+<li>一个线程只能属于一个进程，而一个进程可以有多个线程，并且至少有一个线程。</li>
+<li>资源分配给进程，同一进程的所有线程共享该进程的所有资源。</li>
+<li>线程在执行过程中，需要协作同步，不同进程的线程间要利用消息通信的办法实现同步。</li>
+<li>线程是指进程内的一个执行单元，也是进程内的可调度实体</li>
+</ul>
+<p><strong>线程和进程的区别</strong></p>
+<ul>
+<li>调度：线程作为调度和分配的基本单位，进程作为拥有资源的基本单位</li>
+<li>并发性：不仅进程之间可以并发执行，同一个进程的多个线程之间也可以并发执行</li>
+<li>拥有资源：进程是拥有资源的一个独立单位，线程不拥有系统资源，但可以访问隶属于进程的资源</li>
+<li>系统开销：在创建或撤销进程的时候，由于系统都要为之分配和回收资源，导致系统的开销明显大于创建或撤销线程时的开销，但进程有独立的地址空间，进程崩溃后，在保护模式下不会对其他的进程产生影响，而线程只是一个进程中的不同的执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，所以多进程的程序要比多线程的程序健壮性高，但是在进程切换时，耗费的资源较大，效率要差些。</li>
+</ul>
+<h2 id="重载和重写的"><a href="#重载和重写的" class="headerlink" title="重载和重写的"></a>重载和重写的</h2><p>​        OverLoad为重载，Override为重写，方法的重写和重载就是java多态性的不同表现，并且重写是父类和子类中的多态性的一种表现。</p>
+<p>​        如果在子类中定义某方法与其父类有相同的名称和参数，就说该方法被重写了，子类的对象使用这个方法时，调用子类中的定义，对它而言，父类中的定义如同被“屏蔽”了。</p>
+<p>​       如果在一个类中定义了多个同名的方法，它们或有不同的参数个数或者有不用的参数类型，则称为方法重载</p>
+<h2 id="如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？"><a href="#如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？" class="headerlink" title="如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？"></a>如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？</h2><p>不会立即被回收，但是在下一个垃圾回收周期中这个对象将是可被回收的。</p>
 
                 
             </div>
@@ -1297,7 +1456,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">274.1k</span>&nbsp;字
+                class="white-color">275.8k</span>&nbsp;字
             
             
             
