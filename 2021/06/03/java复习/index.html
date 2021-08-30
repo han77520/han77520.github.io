@@ -1365,7 +1365,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>②： 便于功能扩展</p>
 <p>③： 为之后的多态性提供了前提</p>
 <h4 id="继承的体现"><a href="#继承的体现" class="headerlink" title="继承的体现"></a>继承的体现</h4><p> 继承发生以后，子类就获取了父类中<strong>所有</strong>的方法和属性，构造器是不能被继承的。</p>
-<p>特别的:父类中声明为private的属性或方法，子类继承父类以后，任然认为获取到了父类中私有的结构，只不过是因为封装性的影响，使得子类不能直接调用父类的结构而已</p>
+<p>特别的:父类中声明为private的属性或方法，子类继承父类以后，任然认为获取到了父类中私有的结构，只不过是因为封装性的影响，使得子类不能直接调用父类的结构而已；静态方法不是不可以被继承，同样的，静态方法也可以被继承，但是子类对于静态方法的“重写”是通过隐藏父类的静态方法来实现的，所以静态方法可以被继承，但是不能被重写，因此不能实现多态。</p>
 <h4 id="方法重写的规定"><a href="#方法重写的规定" class="headerlink" title="方法重写的规定"></a>方法重写的规定</h4><h5 id="方法签名"><a href="#方法签名" class="headerlink" title="方法签名"></a>方法签名</h5><p>​              方法的   <strong>方法名 +  形参列表</strong></p>
 <h5 id="权限修饰符-1"><a href="#权限修饰符-1" class="headerlink" title="权限修饰符"></a>权限修饰符</h5><p>子类重写的方法的权限修饰符不小于父类被重写的方法的权限修饰符</p>
 <p>​        子类<strong>不能重写</strong>父类中声明为private的方法，如果有一个和父类中的同名方法，则此方法是子类中的一个新的方法，和父类中的同名方法没有任何关系</p>
@@ -4880,7 +4880,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">275.8k</span>&nbsp;字
+                class="white-color">279.4k</span>&nbsp;字
             
             
             
