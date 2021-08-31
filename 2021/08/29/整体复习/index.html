@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.3k
+                    12.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    44 分
+                    47 分
                 </div>
                 
 
@@ -1151,13 +1151,19 @@ E <span class="token function">elementData</span><span class="token punctuation"
 <li>如果桶上没有冲突，直接插入</li>
 <li>如果发生冲突了，需要处理冲突<ul>
 <li>如果该桶使用红黑树处理冲突，则调用红黑树的方式插入</li>
-<li>否则采用传统的链式方法插入。如果链的长度达到临界值(桶内的元素达到8并且桶的长度大于64)，则链表转换为红黑树</li>
+<li>否则采用传统的链式方法插入。如果插入之后链的长度达到临界值(桶内的元素达到8并且桶的长度大于64)，则链表转换为红黑树</li>
 </ul>
 </li>
 <li>如果同种存在重复的键，则为该键替换新值。</li>
 <li>如果size大于阈值，则进行扩容</li>
 </ul>
-<p>【处理冲突的方法：rehash 再哈希、链地址法 ，hashMap中用的就是这个、开放定址、公共溢出区】</p>
+<p>【处理冲突的方法：rehash 再哈希、链地址法 ，hashMap中用的就是这个、开放定址法、公共溢出区】</p>
+<ul>
+<li><p>开放定址法：通过一个探测算法，当某个槽位已经被占据的情况下继续查找下一个可以使用的槽位</p>
+</li>
+<li><p>公共溢出区：为所有冲突的关键字记录建立一个公共的溢出区来存放</p>
+</li>
+</ul>
 <ul>
 <li>hash方法</li>
 </ul>
@@ -1350,7 +1356,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <p>list —-&gt; 数组：List.toArray()</p>
 <h2 id="Hash算法"><a href="#Hash算法" class="headerlink" title="Hash算法"></a>Hash算法</h2><p>​        哈希算法是指把任意长度的二进制映射为固定长度的较小的二进制值，这个较小的二进制叫做哈希值</p>
 <h2 id="HashMap的实现原理"><a href="#HashMap的实现原理" class="headerlink" title="HashMap的实现原理"></a>HashMap的实现原理</h2><p>​    HashMap 是基于哈希表的 Map 接口的非同步实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。</p>
-<p>   在 java 编程语言中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap 也不例外。HashMap实际上是一个“链表散列”的数据结构，即数组和链表的结合体</p>
+<p>   在 java 编程语言中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap 也不例外。HashMap实际上是一个“链表散列”的数据结构，即<strong>数组和链表的结合体</strong></p>
 <table>
 <thead>
 <tr>
@@ -1397,6 +1403,28 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <td>安全</td>
 </tr>
 </tbody></table>
+<h2 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h2><p>Hashtable 默认的初始化容量为 11，负载因子0.75，扩容是原来的2n+1</p>
+<p>HashTable 是直接在操作方法上加 synchronized 关键字，锁住整个数组，粒度比较大，</p>
+<h2 id="如果使用Object作为HashMap的key，应该怎么办"><a href="#如果使用Object作为HashMap的key，应该怎么办" class="headerlink" title="如果使用Object作为HashMap的key，应该怎么办"></a>如果使用Object作为HashMap的key，应该怎么办</h2><p>​    重写hashCode()是因为需要计算存储数据的存储位置，需要注意不要试图从散列码计算中排除掉一个对象的关键部分来提高性能，这样虽然能更快但可能导致更多的Hash碰撞</p>
+<p>​    重写equals()，需要遵守自反性，对称性，传递性，一致性以及对于任何非null的引用值x，x.equals(null)必须返回false的这几个特性，目的是为了baozhengkey在哈希表中的唯一性</p>
+<h2 id="HashMap为什么不直接使用hashCode-处理后的哈希值直接作为table的下标"><a href="#HashMap为什么不直接使用hashCode-处理后的哈希值直接作为table的下标" class="headerlink" title="HashMap为什么不直接使用hashCode()处理后的哈希值直接作为table的下标?"></a>HashMap为什么不直接使用hashCode()处理后的哈希值直接作为table的下标?</h2><p>​     hashCode()方法返回的是int整数类型，其范围为(2个31)<del>(2 ^ 31 - 1),约有40亿个映射空间,而HashMap的容量范围是在16(初始化默认值)</del>2^30;HashMap通常情况下是取不到最大值的,并且设备上也难以提供这么多的存储空间，从而导致通过hashCode()计算出的哈希值可能不在数组大小范围内，进而无法匹配存储位置；</p>
+<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><ul>
+<li>TreeMap 是一个有序的key-value集合，它是通过红黑树实现的。</li>
+<li>TreeMap基于红黑树(Red-Black tree)实现。该映射根据其键的自然顺序进行排序，或者根据创建映射时提供的Comparator 进行排序，具体取决于使用的构造方法。</li>
+<li>TreeMap 是线程非同步的。</li>
+</ul>
+<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p>看笔记</p>
+<h2 id="comparable和comparator的区别"><a href="#comparable和comparator的区别" class="headerlink" title="comparable和comparator的区别?"></a>comparable和comparator的区别?</h2><ul>
+<li>Comparable 接口实际上是出自java.lang包，它有一个CompareTo(Object obj)方法用来排序</li>
+<li>Comparator 接口实际上是出自java.util 包, 它有一个Compare(Object obj1,Object obj2)方法用来排序</li>
+<li>“一般我们需要对一个集合使用自定义排序时，我们就要重写CompareTo方法或Compare方法,当我们需要对某一个集合实现两种排序方式,比如一个song对象中的歌名和歌手名分别采用一种排序方法的话，我们可以重写CompareTo方法和使用自制的Compara方法或者以两个Comparator来实现歌名排序和歌星名排序，第二种代表我们只能使用两个参数版的Collections,sort()。</li>
+</ul>
+<h2 id="Collection和Collections-有什么区别"><a href="#Collection和Collections-有什么区别" class="headerlink" title="Collection和Collections 有什么区别?"></a>Collection和Collections 有什么区别?</h2><ul>
+<li><p>java.util,Collection 是一个集合接口(集合类的一-个顶级接口) 。它提供了对集合对象进行基本操作的通用接口方法.    Collection接口在Java类库中有很多具体的实现。Collection 接口的意义是为各种具体的集合提供了最大化的统一操<br>作方式，其直接继承接口有List与Set。</p>
+</li>
+<li><p>Collections 则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。</p>
+</li>
+</ul>
 
                 
             </div>
@@ -2168,7 +2196,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">289k</span>&nbsp;字
+                class="white-color">289.9k</span>&nbsp;字
             
             
             
