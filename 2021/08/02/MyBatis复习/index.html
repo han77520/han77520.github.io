@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-02
+                    2021-08-30
                 </div>
                 
 
@@ -502,7 +502,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="初识MyBatis"><a href="#初识MyBatis" class="headerlink" title="初识MyBatis"></a>初识MyBatis</h2><ul>
+                <p>[TOC]</p>
+<h2 id="初识MyBatis"><a href="#初识MyBatis" class="headerlink" title="初识MyBatis"></a>初识MyBatis</h2><ul>
 <li>先创建全局配置文件 mybatis-config.xml</li>
 </ul>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
@@ -1584,7 +1585,7 @@ Map<span class="token operator">&lt;</span>Integer<span class="token punctuation
 </code></pre>
 <h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><p>使用的是PerpetualCache（永久缓存）类，存储原理就是==<strong>map集合</strong>==</p>
 <h3 id="一级缓存（本地缓存）"><a href="#一级缓存（本地缓存）" class="headerlink" title="一级缓存（本地缓存）"></a>一级缓存（本地缓存）</h3><ul>
-<li>qlSession级别的缓存，<strong>一级缓存是一直开启的</strong>，查出的数据都会放在map中<ul>
+<li>sqlSession级别的缓存，<strong>一级缓存是一直开启的</strong>，查出的数据都会放在map中<ul>
 <li>​       与数据库同一次会话期间查询到的数据会放在本地缓存中，以后如果需要获取获取相同的数据，直接从缓存中拿，没必要再去查询数据库</li>
 <li>一级缓存失效的情况 (没有使用到当前一级缓存的情况下，就还需要在向数据库发出查询)<ul>
 <li>sqlSession不相同</li>
@@ -1663,11 +1664,11 @@ Map<span class="token operator">&lt;</span>Integer<span class="token punctuation
 <ul>
 <li>sqlSession.clearCache();只是清除当前session的一级缓存；</li>
 <li>&lt;setting&gt;标签中有localCacheScope本地缓存作用域：<pre><code>SESSION ；当前会话的所有数据保存在会话缓存中；
-                                                  STATEMENT：可以禁用一级缓存；
+STATEMENT：可以禁用一级缓存；
 </code></pre>
 </li>
 </ul>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210729104529.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210729104529.png"></p>
 <h3 id="第三方缓存"><a href="#第三方缓存" class="headerlink" title="第三方缓存"></a>第三方缓存</h3><p>导入第三方缓存包  ehcache-core-2.6.8.jar<br>导入与第三方缓存整合的适配包,官方有： mybatis-ehcache-1.0.3.jar</p>
 <p>编写eache.xml</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
@@ -1909,7 +1910,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="底层原理-（不是很懂，得再看）"><a href="#底层原理-（不是很懂，得再看）" class="headerlink" title="底层原理  （不是很懂，得再看）"></a>底层原理  （不是很懂，得再看）</h2><p><img src="image-20210729141426006.png"></p>
+<h2 id="底层原理-（不是很懂，得再看）"><a href="#底层原理-（不是很懂，得再看）" class="headerlink" title="底层原理  （不是很懂，得再看）"></a>底层原理  （不是很懂，得再看）</h2><p><img src="/images/image-20210729141426006.png"></p>
 <h3 id="获取sqlSessionFactory对象"><a href="#获取sqlSessionFactory对象" class="headerlink" title="获取sqlSessionFactory对象"></a>获取sqlSessionFactory对象</h3><ul>
 <li>创建SqlSessionFactoryBuilder 对象</li>
 <li>调用build方法，用new XMLConfigBuilder   创建 Xpath 解析器parser 用来解析全局配置文件</li>
@@ -1935,7 +1936,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
    <span class="token keyword">return</span> var5<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210729142610.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210729142610.png"></p>
 <ul>
 <li>获取根节点后调用以下方法，挨个解析每一个个标签的子标签</li>
 </ul>
@@ -2092,10 +2093,10 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210729151017.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210729151017.png"></p>
 <p>==<strong>最后所有的配置信息都封装到了  configuration  对象中</strong>==</p>
 <p>这里只截取了一部分</p>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210729151826.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210729151826.png"></p>
 <p>最后返回了包含  所有信息的  DefaultSqlSessionFactory对象。</p>
 <pre><code>public SqlSessionFactory build(Configuration config) &#123;
     return new DefaultSqlSessionFactory(config);
@@ -2196,7 +2197,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>代理对象中又包含了  DefaultSqlSeession</p>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210729161338.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210729161338.png"></p>
 <h3 id="执行增删改查方法"><a href="#执行增删改查方法" class="headerlink" title="执行增删改查方法"></a>执行增删改查方法</h3><p>Employee employee = mapper.getEmpById(1);</p>
 <ul>
 <li>先调用 invoke 获取当前方法</li>
@@ -2338,10 +2339,10 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
       注意：【MappedStatement】：代表一个增删改查的详细信息
 
 2、获取sqlSession对象
-      返回一个DefaultSQlSession对象，包含Executor和Configuration;
-      这一步会创建Executor对象；
+      返回一个DefaultSqlSession对象，包含Executor和Configuration;
+      这一步会创建Executor对象；用于增删改查的执行
 
-3、获取接口的代理对象（MapperProxy）
+3、获取接口的代理对象（MapperProxy），一个接口就对应这一个MapperProxyFactory
       getMapper，使用MapperProxyFactory创建一个MapperProxy的代理对象
       代理对象里面包含了，DefaultSqlSession（Executor）
 4、执行增删改查方法
@@ -3210,7 +3211,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">279.4k</span>&nbsp;字
+                class="white-color">287.8k</span>&nbsp;字
             
             
             

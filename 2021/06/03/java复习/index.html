@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-29
+                    2021-08-31
                 </div>
                 
 
@@ -3555,18 +3555,10 @@ Object <span class="token function">min</span><span class="token punctuation">(<
 删除磁盘中的文件或文件目录
 <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> 删除文件或文件夹
 </code></pre>
-<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>​        <strong>对象序列化机制</strong>允许把内存中的Java对象转换成平台无关的二进制流，从</p>
-<p>而允许把这种二进制流持久地保存在磁盘上，或通过网络将这种二进制流传</p>
-<p>输到另一个网络节点。//当其它程序获取了这种二进制流，就可以恢复成原</p>
-<p>来的Java对象</p>
-<p>​        序列化的好处在于可将任何实现了Serializable接口的对象转化为<strong>字节数据</strong>，</p>
-<p>使其在保存和传输时可被还原</p>
-<p>​        序列化是 RMI（Remote Method Invoke – 远程方法调用）过程的参数和返</p>
-<p>回值都必须实现的机制，而 RMI 是 JavaEE 的基础。因此序列化机制是</p>
-<p>JavaEE 平台的基础</p>
-<p>​        如果需要让某个对象支持序列化机制，则必须让对象所属的类及其属性是可</p>
-<p>序列化的，为了让某个类是可序列化的，该类必须实现如下两个接口之一。</p>
-<p>否则，会抛出NotSerializableException异常</p>
+<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>​        <strong>对象序列化机制</strong>允许把内存中的Java对象转换成平台无关的二进制流，从而允许把这种二进制流持久地保存在磁盘上，或通过网络将这种二进制流传输到另一个网络节点。当其它程序获取了这种二进制流，就可以恢复成原来的Java对象</p>
+<p>​        序列化的好处在于可将任何实现了Serializable接口的对象转化为<strong>字节数据</strong>，使其在保存和传输时可被还原</p>
+<p>​        序列化是 RMI（Remote Method Invoke – 远程方法调用）过程的参数和返回值都必须实现的机制，而 RMI 是 JavaEE 的基础。因此序列化机制是JavaEE 平台的基础</p>
+<p>​        如果需要让某个对象支持序列化机制，则必须让对象所属的类及其属性是可序列化的，为了让某个类是可序列化的，该类必须实现如下两个接口之一。否则，会抛出NotSerializableException异常</p>
 <p>​        Serializable</p>
 <p>​        Externalizable</p>
 <h4 id="类序列化前提"><a href="#类序列化前提" class="headerlink" title="类序列化前提"></a>类序列化前提</h4><pre class=" language-java"><code class="language-java">Person需要满足如下的要求，方可序列化
@@ -4880,7 +4872,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">279.4k</span>&nbsp;字
+                class="white-color">287.8k</span>&nbsp;字
             
             
             
