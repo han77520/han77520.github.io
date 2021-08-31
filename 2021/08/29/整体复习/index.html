@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.1k
+                    11.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    39 分
+                    44 分
                 </div>
                 
 
@@ -1020,9 +1020,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
 <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">float</span> DEFAULT_LOAD_FACTOR <span class="token operator">=</span> <span class="token number">0.75f</span><span class="token punctuation">;</span>
 
 
-选择<span class="token number">6</span>和<span class="token number">8</span>，中间有个差值<span class="token number">7</span>可以有效防止链表和树频繁转换。假设一下，如果设计成链表个数超过<span class="token number">8</span>则链表转换成树结构，链表个数小于<span class="token number">8</span>则树结构转换成链表，如果一个HashMap不停的插入、删除元素，链表个数在<span class="token number">8</span>左右徘徊，就会频繁的发生树转链表、链表转树，效率会很低。如果一个桶上的冲突很严重的话，是会导致哈希表的效率降低至 O（n），而通过红黑树的方式，可以把效率改进至 O（logn）。相比链式结构的节点，树型结构的节点会占用比较多的空间，所以这是一种以空间换时间的改进方式
-
-
+经过计算，在 hash 函数设计合理的情况下，发生 hash 碰撞 <span class="token number">8</span> 次的几率为百万分之 <span class="token number">6</span>，概率说话。因为 <span class="token number">8</span> 够用了，至于为什么转回来是 <span class="token number">6</span>，如果一个HashMap不停的插入、删除元素，链表个数在<span class="token number">8</span>左右徘徊，就会频繁的发生树转链表、链表转树，效率会很低。如果一个桶上的冲突很严重的话，是会导致哈希表的效率降低至 O（n），而通过红黑树的方式，可以把效率改进至 O（logn）。相比链式结构的节点，树型结构的节点会占用比较多的空间，所以这是一种以空间换时间的改进方式
 <span class="token comment" spellcheck="true">//变成树型结构的临界值为 8</span>
 <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> TREEIFY_THRESHOLD <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
 
@@ -1163,7 +1161,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
 <ul>
 <li>hash方法</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> hash
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> hash<span class="token comment" spellcheck="true">//计算存放位置的公式</span>
 </code></pre>
 <p>n 指的是哈希表的大小，hash 指的是 key 的哈希值，hash是通过下面这个方法计算出来的，采用了二次哈希的方式。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> <span class="token function">hash</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -1173,7 +1171,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
 </code></pre>
 <p>​    这个 hash 方法先通过 key 的 hashCode 方法获取一个哈希值，再拿这个哈希值与它的高 16 位的哈希值做一个异或操作来得到最后的哈希值，计算过程可以参考下图。为啥要这样做呢？注释中是这样解释的：如果当 n 很小，假设为 64 的话，那么 n-1即为 63（0x111111），这样的值跟 hashCode()直接做与操作，实际上只使用了哈希值的后 6 位。如果当哈希值的高位变化很大，低位变化很小，这样就很容易造成冲突了，所以这里把高低位都利用起来，从而解决了这个问题。</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210831154924.png"></p>
-<p>​    正是因为与的这个操作，决定了 HashMap 的大小只能是 2 的幂次方，因为(n - 1)的二进制值的位数都是1，在和hash进行与操作的话冲突会变的很小，如果不是 2 的幂次方，(n - 1)的二进制值大部分的位数都是0，在和hash进行与操作，结果也大部分是0，产生冲突的概率会很大。</p>
+<p>​      正是因为与的这个操作，决定了 HashMap 的大小只能是 2 的幂次方，因为这样（数组长度-1）正好相当于一个“低位掩码”。“与”操作的结果就是散列值的高位全部归零，只保留低位值，用来做数组下标访问。以初始长度 16 为例，16-1=15。2 进制表示是 00000000 00000000 00001111。和某散列值做“与”操作，结果就是截取了最低的四位值。</p>
 <p>​    即使你在创建 HashMap 的时候指定了初始大小，HashMap 在构建的时候也会调用下面这个方法来调整大小：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> <span class="token function">tableSizeFor</span><span class="token punctuation">(</span><span class="token keyword">int</span> cap<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
    <span class="token keyword">int</span> n <span class="token operator">=</span> cap <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -1189,8 +1187,15 @@ E <span class="token function">elementData</span><span class="token punctuation"
 <p>​    实际作用就是把 cap 变成第一个大于等于 2 的幂次方的数。例如，16 还是 16，13 就会调整为 16，17 就会调整为 32。</p>
 <ul>
 <li><p>resize方法</p>
-<p>==<strong>当哈希表中的键值对的个数超过 容量*0.75 时进行扩容，不是桶的占用量超过 容量*0.75 进行扩容</strong>==</p>
-<p>​    当哈希表中的条目数超出了加载因子与当前容量的乘积时，并且要存放的位置已经有元素了（hash碰撞），必须满足这两个条件，才要对该哈希表进行 rehash 操作，会将容量扩大为原来两倍。通常，默认加载因子是 0.75, 这是在时间和空间成本上寻求一种折衷。加载因子过高虽然减少了空间开销，但同时也增加了查询成本。</p>
+<ul>
+<li><p>==<strong>当哈希表中的键值对的个数超过 容量*0.75 时进行扩容，不是桶的占用量超过 容量*0.75 进行扩容</strong>==</p>
+</li>
+<li><p>当哈希表中的条目数超出了加载因子与当前容量的乘积时，并且要存放的位置已经有元素了（hash碰撞），必须满足这两个条件，才要对该哈希表进行 rehash 操作，会将容量扩大为原来两倍。通常，默认加载因子是 0.75, 这是在时间和空间成本上寻求一种折衷。加载因子过高虽然减少了空间开销，但同时也增加了查询成本。</p>
+</li>
+<li><p>(e.hash &amp; oldCap)，计算扩容后的存放位置，只有两种可能：位置不变或索引+旧容量大小</p>
+<p>因为由于扩容是扩大为原数组大小的 2 倍，用于计算数组位置的掩码仅仅只是高位多了一个 1，扩容前长度为 16，用于计算(n-1) &amp; hash 的二进制 n-1 为 0000 1111，扩容为 32 后的二进制就高位多了 1，为 0001 1111。<br>因为是&amp; 运算，1 和任何数 &amp; 都是它本身，那就分二种情况，如下图：原数据 hashcode 高位第 4 位为 0 和高位为 1 的情况；第四位高位为 0，重新 hash 数值不变，第四位为 1，重新 hash 数值比原来大 16（旧数组的容量）<br><img src="/images/QQ%E6%88%AA%E5%9B%BE20210831201940.png"></p>
+</li>
+</ul>
 </li>
 </ul>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">final</span> Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">resize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -1205,7 +1210,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
             threshold <span class="token operator">=</span> Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">;</span>
             <span class="token keyword">return</span> oldTab<span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-       <span class="token comment" spellcheck="true">//没超过则扩容为原来的两倍</span>
+       <span class="token comment" spellcheck="true">//没超过最大容量并且oldCap大于默认值16则扩容为原来的两倍</span>
         <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>newCap <span class="token operator">=</span> oldCap <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> MAXIMUM_CAPACITY <span class="token operator">&amp;&amp;</span>
                  oldCap <span class="token operator">>=</span> DEFAULT_INITIAL_CAPACITY<span class="token punctuation">)</span>
             newThr <span class="token operator">=</span> oldThr <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// double threshold</span>
@@ -1277,6 +1282,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
     <span class="token keyword">return</span> newTab<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<h2 id="头插法和尾插法的比较"><a href="#头插法和尾插法的比较" class="headerlink" title="头插法和尾插法的比较"></a>头插法和尾插法的比较</h2><p>​    因为 1.7 头插法扩容时，头插法会使链表发生反转，多线程环境下会产生环；<br>​    A 线程在插入节点 B，B 线程也在插入，遇到容量不够开始扩容，重新 hash，放置元素，采用头插法，后遍历到的 B 节点放入了头部，这样形成了环</p>
 <h3 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode()"></a>hashCode()</h3><pre><code>1、hashCode的存在主要是用于查找的快捷性，如Hashtable，HashMap等，hashCode是用来在散列存储结构中确定对象的存储地址的；
 
 2、如果两个对象相同，就是适用于equals(java.lang.Object) 方法，那么这两个对象的hashCode一定要相同；
@@ -1286,10 +1292,10 @@ E <span class="token function">elementData</span><span class="token punctuation"
 4、两个对象的hashCode相同，并不一定表示两个对象就相同，也就是不一定适用于equals(java.lang.Object) 方法，只能够说明这两个对象在散列存储结构中，如Hashtable，他们“存放在同一个篮子里”。
 
 hashCode()的作用
-Java中的hashCode方法就是根据一定的规则将与对象相关的信息（比如对象的存储地址，对象的字段等）映射成一个数值，这个数值称作为散列值。主要是针对HashSet和Map集合类型，比如我们在向HashSet集合里边添加新元素的时候，由于set集合里边不允许元素重复，所以我们在插入新元素之前需要先判断插入元素是否存在，首先根据hashCode()方法得到该对象的hashCode值，如果集合里边不存在该值，可以直接插入进去。如果已经存在，则需要再次通过equals()来比较，这样的话可以提升效率。
+    Java中的hashCode方法就是根据一定的规则将与对象相关的信息（比如对象的存储地址，对象的字段等）映射成一个数值，这个数值称作为散列值。主要是针对HashSet和Map集合类型，比如我们在向HashSet集合里边添加新元素的时候，由于set集合里边不允许元素重复，所以我们在插入新元素之前需要先判断插入元素是否存在，首先根据hashCode()方法得到该对象的hashCode值，如果集合里边不存在该值，可以直接插入进去。如果已经存在，则需要再次通过equals()来比较，这样的话可以提升效率。
 
 重写equals()方法为什么要同时重写hashcode()方法？
-重写equals()方法同时重写hashcode()方法，就是为了保证当两个对象通过equals()方法比较相等时，那么他们的hashCode值也一定要保证相等。
+    重写equals()方法同时重写hashcode()方法，就是为了保证当两个对象通过equals()方法比较相等时，那么他们的hashCode值也一定要保证相等。
 </code></pre>
 <h2 id="java集合的快速失败机制-“fail-fast”"><a href="#java集合的快速失败机制-“fail-fast”" class="headerlink" title="java集合的快速失败机制 “fail-fast”"></a>java集合的快速失败机制 “fail-fast”</h2><ul>
 <li><p> fail-fast” 是java集合的一种错误检测机制，如果在使用迭代器的过程中有其他线程修改了 map，那么将抛出 ConcurrentModificationException，这就是所谓 fail-fast 策略</p>
@@ -1310,6 +1316,87 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </code></pre>
 <p>抛出  java.lang.UnsupportedOperationException 异常</p>
 <h2 id="什么是-Iterator迭代器"><a href="#什么是-Iterator迭代器" class="headerlink" title="什么是 Iterator迭代器"></a>什么是 Iterator迭代器</h2><p>​    Iterator接口提供了很多对集合元素进行迭代的方法。每一个集合类都包括了可以返回迭代器实例的迭代方法。迭代器可以在迭代过程中删除底层集合的元素，但是不可以直接调用集合的remove(Object obj)删除，可以通过迭代器的remove()方法删除</p>
+<pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Iterator<span class="token operator">&lt;</span>String<span class="token operator">></span> iterator <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        iterator<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="遍历一个List的三种方式"><a href="#遍历一个List的三种方式" class="headerlink" title="遍历一个List的三种方式"></a>遍历一个List的三种方式</h2><ul>
+<li>for循环，基于计数器，在集合外部维护一个计数器，然后依次读取每一个位置的元素，当读取到最后一个元素后停止</li>
+<li>迭代器遍历，Iterator是面向对象的一个设计模式，目的是屏蔽不同数据集合的特点，统一遍历集合的接口，java在Collection中支持了Iterator</li>
+<li>foreach循环遍历，内部也是采用了Iterator的方式实现，使用时不需要显示声明Iterator或计数器，优点是代码简洁，不易出错；缺点是只能简单的遍历，不能在遍历中查找数据集合，例如删除等。</li>
+</ul>
+<h2 id="ArrayList的优缺点"><a href="#ArrayList的优缺点" class="headerlink" title="ArrayList的优缺点"></a>ArrayList的优缺点</h2><p><strong>优</strong>：</p>
+<ul>
+<li><p>ArrayList底层以数组实现，是一个种随机访问模式。ArrayList实现了RandomAccess接口，因此查找的时候很快</p>
+</li>
+<li><p>ArrayList在顺序添加一个元素的时候非常方便</p>
+</li>
+</ul>
+<p>【RandomAccess接口】RandomAccess 是一个标志接口，表明实现这个这个接口的 List 集合是支持快速随机访问的。也就是说，实现了这个接口的集合是支持 <strong>快速随机访问</strong> 策略的。官网还特意说明了，如果是实现了这个接口的 List，那么使用for循环的方式获取数据会优于用迭代器获取数据。</p>
+<p>​        ArrayList底层的数据结构是Object[]存储，数组在内存分配里，是一段连续的内存空间，譬如分配的内存地址是002，003，004，005四个地址，那么我们如果要随机访问角标为3的数据，只需要访问002+3=005的数据就行了，这就是快速随机访问。</p>
+<p>​      LinkedList是链表结构，在内存里是不连续的，相邻的数据之间用指针指向即可。如001&lt;-&gt;003&lt;-&gt;004&lt;-&gt;005.那么此时，我们要访问角标为3的数据，就只能从第一个数据开始依次迭代，找到第4个数据，这就是顺序访问</p>
+<p><strong>缺：</strong></p>
+<ul>
+<li>删除元素的时候需要做一次元素复制，如果复制的元素很多，那么就会耗费性能</li>
+<li>插入元素的时候，需要做一次元素复制操作。</li>
+<li>ArrayList 比较适合顺序添加，随机访问的场景</li>
+</ul>
+<h2 id="数组和List之间的转换"><a href="#数组和List之间的转换" class="headerlink" title="数组和List之间的转换"></a>数组和List之间的转换</h2><p>数组  —&gt;  list : Arrays.asList(array)</p>
+<p>list —-&gt; 数组：List.toArray()</p>
+<h2 id="Hash算法"><a href="#Hash算法" class="headerlink" title="Hash算法"></a>Hash算法</h2><p>​        哈希算法是指把任意长度的二进制映射为固定长度的较小的二进制值，这个较小的二进制叫做哈希值</p>
+<h2 id="HashMap的实现原理"><a href="#HashMap的实现原理" class="headerlink" title="HashMap的实现原理"></a>HashMap的实现原理</h2><p>​    HashMap 是基于哈希表的 Map 接口的非同步实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。</p>
+<p>   在 java 编程语言中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap 也不例外。HashMap实际上是一个“链表散列”的数据结构，即数组和链表的结合体</p>
+<table>
+<thead>
+<tr>
+<th>集合类</th>
+<th>Key</th>
+<th>Value</th>
+<th>Super</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hashtable</td>
+<td>不允许为null</td>
+<td>不允许为null</td>
+<td>Dictionary</td>
+<td>线程安全</td>
+</tr>
+<tr>
+<td>ConcurrentHashMap</td>
+<td>不允许为null</td>
+<td>不允许为null</td>
+<td>AbstractMap</td>
+<td>锁分段技术(JDK8:CAS)</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>不允许为null</td>
+<td>允许为null</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>允许为null</td>
+<td>允许为null</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+<tr>
+<td>LinkedHashMap</td>
+<td>允许为null</td>
+<td>允许为null</td>
+<td>HashMap</td>
+<td>安全</td>
+</tr>
+</tbody></table>
 
                 
             </div>
@@ -2081,7 +2168,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">287.8k</span>&nbsp;字
+                class="white-color">289k</span>&nbsp;字
             
             
             
