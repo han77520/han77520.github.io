@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    16.6k
+                    17.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    65 分
+                    69 分
                 </div>
                 
 
@@ -513,6 +513,7 @@
 <p>为什么string类是final的？</p>
 <p>​    将string类设置成final的，就没有人可以通过扩展和覆盖行为来破坏 String 类的不变性、缓存、散列值的计算等。</p>
 <h2 id="接口和类在设计层面的区别"><a href="#接口和类在设计层面的区别" class="headerlink" title="接口和类在设计层面的区别"></a>接口和类在设计层面的区别</h2><p>​    ①<strong>抽象类是对一种事物的抽象，即对类抽象，而接口是对行为的抽象。抽象类是对整个类整体进行抽象，包括属性、行为，但是接口却是对类局部（行为）进行抽象。</strong>举个简单的例子，飞机和鸟是不同类的事物，但是它们都有一个共性，就是都会飞。那么在设计的时候，可以将飞机设计为一个类Airplane，将鸟设计为一个类Bird，但是不能将 飞行这个特性也设计为类，因此它只是一个行为特性，并不是对一类事物的抽象描述。此时可以将飞行设计为一个接口Fly，包含方法fly( )，然后Airplane和Bird分别根据自己的需要实现Fly这个接口。然后至于有不同种类的飞机，比如战斗机、民用飞机等直接继承Airplane即可，对于鸟也是类似的，不同种类的鸟直接继承Bird类即可。从这里可以看出，继承是一个 “是不是”的关系，而 接口 实现则是 “有没有”的关系。如果一个类继承了某个抽象类，则子类必定是抽象类的种类，而接口实现则是有没有、具备不具备的关系，比如鸟是否能飞（或者是否具备飞行这个特点），能飞行则可以实现这个接口，不能飞行就不实现这个接口。</p>
+<p>【补充：抽象类可以也继承具体的类】</p>
 <p>​    ② <strong>设计层面不同，抽象类作为很多子类的父类，它是一种模板式设计。而接口是一种行为规范，它是一种辐射式设计</strong>。什么是模板式设计？最简单例子，大家都用过ppt里面的模板，如果用模板A设计了ppt B和ppt C，ppt B和ppt C公共的部分就是模板A了，如果它们的公共部分需要改动，则只需要改动模板A就可以了，不需要重新对ppt B和ppt C进行改动。而辐射式设计，比如某个电梯都装了某种报警器，一旦要更新报警器，就必须全部更新。也就是说对于抽象类，如果需要添加新的方法，可以直接在抽象类中添加具体的实现，子类可以不进行变更；而对于接口则不行，如果接口进行了变更，则所有实现这个接口的类都必须进行相应的改动。</p>
 <h2 id="BIO、NIO、AIO有什么区别"><a href="#BIO、NIO、AIO有什么区别" class="headerlink" title="BIO、NIO、AIO有什么区别"></a>BIO、NIO、AIO有什么区别</h2><p> BIO：Bolck IO ，同步阻塞式IO，就是传统的IO，特点是模式简单，使用方便，并发处理能力低</p>
 <p> NIO：New IO，同步非阻塞式IO，是传统IO的升级，客户端和服务器通过Channel通讯，实现了多了复用</p>
@@ -662,10 +663,11 @@ mysql> DELIMITER ;
 <h2 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h2><ul>
 <li>以字节为单位输入输出数据，字节流按照8位传输</li>
 <li>以字符为单位输入输出数据，字符流按照16位传输</li>
+<li>字节流继承inputStream和OutputStream</li>
+<li>字符流继承自InputSteamReader和OutputStreamWriter</li>
 </ul>
 <h2 id="GC是什么-为什么要有GC"><a href="#GC是什么-为什么要有GC" class="headerlink" title="GC是什么? 为什么要有GC"></a>GC是什么? 为什么要有GC</h2><p>​        答：GC是垃圾收集的意思（Garbage Collection）,内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java提供的GC功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的，Java语言没有提供释放已分配内存的显示操作方法</p>
 <p>​    垃圾回收机制回收任何对象之前，总会先调用它的finalize方法（如果覆盖该方法，让一个新的引用变量重新引用该对象，则会重新激活对象）。</p>
-<p>​    永远不要主动调用某个对象的finalize方法，应该交给垃圾回收机制调用。</p>
 <h2 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h2><p><strong>进程</strong>是系统进行资源分配的独立单位，<strong>线程</strong>是CPU调度和分派的基本单位。</p>
 <p><strong>进程和线程的关系</strong></p>
 <ul>
@@ -690,8 +692,8 @@ mysql> DELIMITER ;
 <h2 id="Java中有没有指针？"><a href="#Java中有没有指针？" class="headerlink" title="Java中有没有指针？"></a>Java中有没有指针？</h2><p>有，但是被隐藏了，开发人员无法直接操作指针，有jvm来操作指针</p>
 <h2 id="Java中是值传递还是引用传递"><a href="#Java中是值传递还是引用传递" class="headerlink" title="Java中是值传递还是引用传递"></a>Java中是值传递还是引用传递</h2><p><strong>是值传递。</strong>Java 语言的参数传递只有值传递。对于基本数据类型，传递的是值的副本，而不是值本身；对于对象类型作为参数被传递到方法中时，参数的值就是该对象的引用的一个副本。指向同一个对象，对象的内容可以在被调用的方法内改变，但对象的引用(不是引用的副本) 是永远不会改变的。</p>
 <h2 id="内部类与静态内部类的区别"><a href="#内部类与静态内部类的区别" class="headerlink" title="内部类与静态内部类的区别"></a>内部类与静态内部类的区别</h2><p>​    静态内部类是独立于外部类的存在，在静态内部类中无法直接访问外部类中的非静态变量和方法，如果要访问的话，必须new一个外部类的对象，使用new出来的对象进行访问。但是可以直接访问静态的变量，调用静态的方法。</p>
-<p>​    普通内部类作为外部类的一个成员，在普通内部类中可以直接访问外部类属性，调用外部类的方法(静态和非静态都可以)。</p>
-<p>​    如果外部类要调用内部类的普通属性和方法，无论是不是静态的，必须创建一个内部类的对象，使用该对象访问属性或者调用方法。如果是静态属性和方法，则可以直接通过类调用。</p>
+<p>​    普通内部类作为外部类的一个成员，在普通内部类中可以直接访问外部类属性，调用外部类的方法(静态和非静态都可以)。普通类里面不能有静态属性和方法</p>
+<p>​    如果外部类要调用内部类的普通属性和方法，无论是不是静态的，必须创建一个内部类的对象，使用该对象访问属性或者调用方法。如果是静态内部类的静态属性和方法，则可以直接通过类调用。</p>
 <p>​    如果其他类要访问普通内部类的属性和方法，必须要在外部类中创建一个普通内部类的对象作为一个属性，其他类可以通过该属性调用普通内部类的方法或者访问普通内部类的属性</p>
 <p>​    如果其他的类要访问静态内部类的属性或者调用静态内部类的方法，直接创建一个静态内部类即可。</p>
 <h2 id="Static关键字"><a href="#Static关键字" class="headerlink" title="Static关键字"></a>Static关键字</h2><p>​    static修饰方法是静态方法，表示该方法是当前类的，静态方法不能被重写，<strong>子类可以直接调用父类的静态方法</strong>，在static中不能使用this和super关键字。</p>
@@ -705,9 +707,10 @@ mysql> DELIMITER ;
 <p>​    NoSuchMethodException：反射找方法时找不到会报此异常。</p>
 <p>​     FileNotFoundException：加载配置文件找不到，属于IO异常的子类</p>
 <p>​    IOException</p>
-<p>   SQLException</p>
-<p>   InterruptedException：线程中调用Thread.sleep()是会捕获这个异常</p>
-<p>   InstantiationException：clazz.newInstance();时抛出的</p>
+<p>​    SQLException</p>
+<p>​    InterruptedException：线程中调用Thread.sleep()是会捕获这个异常</p>
+<p>​    InstantiationException：clazz.newInstance();时抛出的</p>
+<p>​    ClassNotFoundException：类为发现异常</p>
 <p>常见的运行时异常：</p>
 <p>​    NoSuchElementException： iterator.next()的时候如果没有下一个元素时报此异常</p>
 <p>​    ArrayIndexOutOfBoundsException</p>
@@ -999,7 +1002,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
     elementData <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p>​        newCapacity 默认情况下是两倍的 oldCapacity，而当指定了 capacityIncrement 的值之后，newCapacity 变成了</p>
+<p>​        newCapacity 默认情况下是<strong>两倍</strong>的 oldCapacity，而当指定了 capacityIncrement 的值之后，newCapacity 变成了</p>
 <p>oldCapacity+capacityIncrement。</p>
 <h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>​    LinkedList 是通过一个双向链表来实现的，它允许插入所有类型的元素，包括 null，同时它是线程不同步的。</p>
 <p>​    双向链表每个结点除了数据域之外，还有一个前指针和后指针，分别指向前驱结点和后继结点（如果有前驱/后继的话）。另外，双向链表还有一个 first 指针，指向头节点，和 last 指针，指向尾节点。</p>
@@ -1308,6 +1311,12 @@ hashCode()的作用
 
 重写equals()方法为什么要同时重写hashcode()方法？
     重写equals()方法同时重写hashcode()方法，就是为了保证当两个对象通过equals()方法比较相等时，那么他们的hashCode值也一定要保证相等。
+    
+hashCode()里面为什么要乘以31？
+目的是为了减少冲突，因为如果计算出来的hash地址越大，所谓的“冲突”就越少，查找起来效率也会提高
+31只占用5bits，相乘造成数据溢出的概率较小
+31可以由 i*31 == (i&lt;&lt;5)-1来表示，可以提高算法效率
+31是一个素数，和一个数相乘之后的结果只能被1,素数本身和被乘数整除，也是为了减少冲突
 </code></pre>
 <h2 id="java集合的快速失败机制-“fail-fast”"><a href="#java集合的快速失败机制-“fail-fast”" class="headerlink" title="java集合的快速失败机制 “fail-fast”"></a>java集合的快速失败机制 “fail-fast”</h2><ul>
 <li><p> fail-fast” 是java集合的一种错误检测机制，如果在使用迭代器的过程中有其他线程修改了 map，那么将抛出 ConcurrentModificationException，这就是所谓 fail-fast 策略</p>
@@ -1412,7 +1421,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h2><p>Hashtable 默认的初始化容量为 11，负载因子0.75，扩容是原来的2n+1</p>
 <p>HashTable 是直接在操作方法上加 synchronized 关键字，锁住整个数组，粒度比较大，多线程访问时候，只要有一个线程访问或操作该对象，那其他线程只能阻塞等待需要的锁被释放，在竞争激烈的多线程场景中性能就会非常差！</p>
 <h2 id="如果使用Object作为HashMap的key，应该怎么办"><a href="#如果使用Object作为HashMap的key，应该怎么办" class="headerlink" title="如果使用Object作为HashMap的key，应该怎么办"></a>如果使用Object作为HashMap的key，应该怎么办</h2><p>​    重写hashCode()是因为需要计算存储数据的存储位置，需要注意不要试图从散列码计算中排除掉一个对象的关键部分来提高性能，这样虽然能更快但可能导致更多的Hash碰撞</p>
-<p>​    重写equals()，需要遵守自反性，对称性，传递性，一致性以及对于任何非null的引用值x，x.equals(null)必须返回false的这几个特性，目的是为了baozhengkey在哈希表中的唯一性</p>
+<p>​    重写equals()，需要遵守自反性(x.equals(x)必须返回 true)，对称性( x.equals(y)返回true时，y.equals(x)也必须返回true)，传递性(xequals(y)和y.equals(z)都返回true时，x.equals(Z)也必须返回true)，一致性(当x和y引用的对象信息没有被修改时，多次调用x.equals (y)应该得到同样的返回值)以及对于任何非null的引用值x，x.equals(null)必须返回false的这几个特性，目的是为了保证key在哈希表中的唯一性</p>
 <h2 id="HashMap为什么不直接使用hashCode-处理后的哈希值直接作为table的下标"><a href="#HashMap为什么不直接使用hashCode-处理后的哈希值直接作为table的下标" class="headerlink" title="HashMap为什么不直接使用hashCode()处理后的哈希值直接作为table的下标?"></a>HashMap为什么不直接使用hashCode()处理后的哈希值直接作为table的下标?</h2><p>​     hashCode()方法返回的是int整数类型，其范围为(2个31)<del>(2 ^ 31 - 1),约有40亿个映射空间,而HashMap的容量范围是在16(初始化默认值)</del>2^30;HashMap通常情况下是取不到最大值的,并且设备上也难以提供这么多的存储空间，从而导致通过hashCode()计算出的哈希值可能不在数组大小范围内，进而无法匹配存储位置；</p>
 <h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><ul>
 <li>TreeMap 是一个有序的key-value集合，它是通过红黑树实现的。</li>
@@ -1693,7 +1702,10 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="java中wait和sleep的区别"><a href="#java中wait和sleep的区别" class="headerlink" title="java中wait和sleep的区别"></a>java中wait和sleep的区别</h2><p>​    虽然两者都是用来暂停当前运行的线程，但是sleep()实际上只是短暂停顿，因为它不会释放锁，而wait()意味着条件等待，这就是为什么该方法要释放锁，因为只有这样，其他等待的线程才能在满足条件时获取到该锁</p>
+<h2 id="java中wait和sleep的区别"><a href="#java中wait和sleep的区别" class="headerlink" title="java中wait和sleep的区别"></a>java中wait和sleep的区别</h2><p>sleep()方法(休眠)是线程类(Thread)的静态方法，调用此方法会让当前线程暂停执行指定的时间，将执行机会(CPU) 让给其他线程，但是对象的锁依然保持，因此休眠时间结束后会自动恢复就绪状态 。wait()是Object类的方法，调用对象的wait()方法导致当前线程放弃对象的锁(线程暂停执行) ，进入对象的等待池(wait pool) ，只有调用对象的notify()方法(或notifyAlI()方法)时才能唤醒等待池中的线程进入等锁池(lock pool)， 如果线程重新获得对象的锁就可以进入就绪状态。</p>
+<h2 id="Java-的sleep-方法和yield-方法有什么区别"><a href="#Java-的sleep-方法和yield-方法有什么区别" class="headerlink" title="Java 的sleep()方法和yield()方法有什么区别?"></a>Java 的sleep()方法和yield()方法有什么区别?</h2><p>​    sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会; yield()方法只会给相同优先级或更高优先级的线程以运行的机会。</p>
+<p>​    线程执行 sleep0方法后转入阻塞( blocked)状态，而执行yield()方法后转入就绪(ready) 状态</p>
+<p>​    sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常。</p>
 <h2 id="怎么将byte转换为String"><a href="#怎么将byte转换为String" class="headerlink" title="怎么将byte转换为String?"></a>怎么将byte转换为String?</h2><p>使用String的构造器，不过使用时要显示的标明编码规则</p>
 <h2 id="Java中-操作符是线程安全的吗"><a href="#Java中-操作符是线程安全的吗" class="headerlink" title="Java中++操作符是线程安全的吗?"></a>Java中++操作符是线程安全的吗?</h2><p>​    不是线程安全的操作，它涉及到多个指令，读取变量值，增加，然后存储回内存，这个过程可能会出现多个线程交差</p>
 <p>java中的 i++ 是否是原子操作？ 答案：不是</p>
@@ -1848,15 +1860,95 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h2><p>就是在不改变源代码的情况下，在主干功能里面添加新功能，通过CGLIB或者JDK的动态代理来实现</p>
 <h2 id="SpringMVC的原理"><a href="#SpringMVC的原理" class="headerlink" title="SpringMVC的原理"></a>SpringMVC的原理</h2><ul>
 <li>客户端的所有请求都交给前端控制器DispatcherServlet来处理，它会负责调用系统的其他模块来真正处理用户的请求</li>
-<li>DispatcherServlet收到请求后，将根据请求的信息和HandlerMpping的配置找到处理该请求的Handler</li>
+<li>DispatcherServlet收到请求后，将根据请求的信息和HandlerMpping找到处理该请求的Handler</li>
 <li>接着通过HandlerAdapter对该处理器进行封装</li>
 <li>HandlerAdapter用同一的接口对各种Handler中的方法进行调用</li>
 <li>Handler完成对用户请求的处理之后会返回一个ModelAndView对象给DispatcherServlet，ModelAndView包含了数据模型以及相应的视图的信息</li>
 <li>ModelAndView的视图是逻辑视图，DispatcherServlet借助于视图解析器ViewResolver完成从逻辑视图到真实视图对象的解析工作。</li>
 <li>得到真正的视图对象后，DispatcherServlet利用视图对象对模型数据进行渲染</li>
-<li>客户端最终得到相应</li>
+<li>客户端最终得到响应</li>
 </ul>
-
+<p>‘</p>
+<h2 id="阐述Spring框架中Bean的生命周期"><a href="#阐述Spring框架中Bean的生命周期" class="headerlink" title="阐述Spring框架中Bean的生命周期?"></a>阐述Spring框架中Bean的生命周期?</h2><ul>
+<li>通过构造器创建 bean 实例（无参数构造） </li>
+<li>为 bean 的属性设置值或者对其他 bean 的引用（调用 set 方法）</li>
+<li>把 bean 实例传递 bean 后置处理器的方法 postProcessBeforeInitialization </li>
+<li>调用 bean 的初始化的方法（需要进行配置初始化的方法）</li>
+<li>把 bean 实例传递 bean 后置处理器的方法 postProcessAfterInitialization </li>
+<li>获取创建好的bean实例对象</li>
+<li>当容器关闭时候，调用 bean 的销毁的方法（需要进行配置销毁的方法）</li>
+</ul>
+<h2 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h2><p>​    简单来说就是用同样的对象调用同样的方法但是做了不同的事情。多态性又分为编译时多态性和运行时多态性，方法重载就是编译时多态性，而方法重写就是运行时多态性，运行时多态性就是面向对象的核心，要求必须有方法重写和父类的引用指向子类的对象。</p>
+<h2 id="包装类的缓存"><a href="#包装类的缓存" class="headerlink" title="包装类的缓存"></a>包装类的缓存</h2><p>​    如果整型字面量的值在-128到127之间,那么不会new新的Integer对象，而是直接引用常量池中的Integer对象，所以上面的面试题中f1f2的结果是true,而f3f4的结果是false。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    Integer f1 <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span>f2 <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span>f3 <span class="token operator">=</span> <span class="token number">150</span><span class="token punctuation">,</span>f4 <span class="token operator">=</span> <span class="token number">150</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>f1 <span class="token operator">==</span> f2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>f3 <span class="token operator">==</span> f4<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>包装类型</th>
+<th>基本数据类型</th>
+<th>缓存范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boole</td>
+<td>boolean</td>
+<td>true,false</td>
+</tr>
+<tr>
+<td>Byte</td>
+<td>byte</td>
+<td>-128~127</td>
+</tr>
+<tr>
+<td>Short</td>
+<td>short</td>
+<td>-128~127</td>
+</tr>
+<tr>
+<td>Integer</td>
+<td>int</td>
+<td>-128~127</td>
+</tr>
+<tr>
+<td>Character</td>
+<td>char</td>
+<td>0~127</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>long</td>
+<td>-128~127</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>float</td>
+<td>无</td>
+</tr>
+<tr>
+<td>Double</td>
+<td>double</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<h2 id="数据类型之间的转换"><a href="#数据类型之间的转换" class="headerlink" title="数据类型之间的转换"></a>数据类型之间的转换</h2><p>基本数据类型转字符串：调用String类的ValueOf()方法返回相应的字符串或者用 加上一个空字符串</p>
+<h2 id="怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符"><a href="#怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符" class="headerlink" title="怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符"></a>怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    String s1 <span class="token operator">=</span> <span class="token string">"你好"</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        String s2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>s1<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token string">"GB2312"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"ISO-8859-1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">UnsupportedEncodingException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后"><a href="#try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后" class="headerlink" title="try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?"></a>try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?</h2><p>​    会执行，在方法返回调用者之前执行，</p>
+<p>​    在finally中改变返回值的做法不好，因为如果存在finally代码块，try中的return语句不会立马返回调用者，而是记录下返回值等待finally代码块执行完之后再向调用者返回其值，如果在finally中修改了返回值，就会返回修改后的值，显然，在fina中返回或者修改会对程序造成很大的困扰。</p>
+<h2 id="IO流面试题-—-还没有看"><a href="#IO流面试题-—-还没有看" class="headerlink" title="IO流面试题  — 还没有看"></a>IO流面试题  — 还没有看</h2>
                 
             </div>
             <hr/>
@@ -2627,7 +2719,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">294.4k</span>&nbsp;字
+                class="white-color">295.5k</span>&nbsp;字
             
             
             
