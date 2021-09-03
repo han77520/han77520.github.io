@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-01
+                    2021-09-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    17.7k
+                    21.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    69 分
+                    83 分
                 </div>
                 
 
@@ -512,6 +512,21 @@
 <p>​    还有就是我认为不可变的另一个原因可能是由于  hashmap，因为开发的时候很多时候都使用字符串来作为hashmap 的key，然而对于hashmap的键值来说，不可变性是非常的重要，以便用它们检索存储在 HashMap 中的值对象。如果在插入后修改了 String 的内容，可变的 String 将在插入和检索时生成两个不同的哈希码，可能会丢失 Map 中的值对象。</p>
 <p>为什么string类是final的？</p>
 <p>​    将string类设置成final的，就没有人可以通过扩展和覆盖行为来破坏 String 类的不变性、缓存、散列值的计算等。</p>
+<h2 id="关于char的三元运算符"><a href="#关于char的三元运算符" class="headerlink" title="关于char的三元运算符"></a>关于char的三元运算符</h2><pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">char</span> x <span class="token operator">=</span> <span class="token string">'x'</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token operator">?</span> x <span class="token operator">:</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//120</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token operator">?</span> <span class="token string">'x'</span> <span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//x</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token operator">?</span> <span class="token string">'x'</span> <span class="token operator">:</span> <span class="token number">65</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//A</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token operator">?</span> <span class="token string">'x'</span> <span class="token operator">:</span> <span class="token number">65536</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//120</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/*
+ * 如果其中有一个是变量，按照自动类型转换规则处理成一致的类型；
+ * 如果都是常量:
+ *      如果一个是char，如果另一个是[0~65535]之间的整数按char处理；
+ *         如果一个是char，另一个是其他，按照自动类型转换规则处理成一致的类型；
+ */</span>
+</code></pre>
 <h2 id="接口和类在设计层面的区别"><a href="#接口和类在设计层面的区别" class="headerlink" title="接口和类在设计层面的区别"></a>接口和类在设计层面的区别</h2><p>​    ①<strong>抽象类是对一种事物的抽象，即对类抽象，而接口是对行为的抽象。抽象类是对整个类整体进行抽象，包括属性、行为，但是接口却是对类局部（行为）进行抽象。</strong>举个简单的例子，飞机和鸟是不同类的事物，但是它们都有一个共性，就是都会飞。那么在设计的时候，可以将飞机设计为一个类Airplane，将鸟设计为一个类Bird，但是不能将 飞行这个特性也设计为类，因此它只是一个行为特性，并不是对一类事物的抽象描述。此时可以将飞行设计为一个接口Fly，包含方法fly( )，然后Airplane和Bird分别根据自己的需要实现Fly这个接口。然后至于有不同种类的飞机，比如战斗机、民用飞机等直接继承Airplane即可，对于鸟也是类似的，不同种类的鸟直接继承Bird类即可。从这里可以看出，继承是一个 “是不是”的关系，而 接口 实现则是 “有没有”的关系。如果一个类继承了某个抽象类，则子类必定是抽象类的种类，而接口实现则是有没有、具备不具备的关系，比如鸟是否能飞（或者是否具备飞行这个特点），能飞行则可以实现这个接口，不能飞行就不实现这个接口。</p>
 <p>【补充：抽象类可以也继承具体的类】</p>
 <p>​    ② <strong>设计层面不同，抽象类作为很多子类的父类，它是一种模板式设计。而接口是一种行为规范，它是一种辐射式设计</strong>。什么是模板式设计？最简单例子，大家都用过ppt里面的模板，如果用模板A设计了ppt B和ppt C，ppt B和ppt C公共的部分就是模板A了，如果它们的公共部分需要改动，则只需要改动模板A就可以了，不需要重新对ppt B和ppt C进行改动。而辐射式设计，比如某个电梯都装了某种报警器，一旦要更新报警器，就必须全部更新。也就是说对于抽象类，如果需要添加新的方法，可以直接在抽象类中添加具体的实现，子类可以不进行变更；而对于接口则不行，如果接口进行了变更，则所有实现这个接口的类都必须进行相应的改动。</p>
@@ -660,12 +675,6 @@ mysql> DELIMITER ;
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="使用数据库连接池有有什么好处"><a href="#使用数据库连接池有有什么好处" class="headerlink" title="使用数据库连接池有有什么好处"></a>使用数据库连接池有有什么好处</h2><p>​    数据库连接是非常消耗资源的，影响到程序的性能指标。连接池是用来分配、管理、释放数据库连接的，可以使应用程序重复使用同一个数据库连接，而不是每次都创建一个新的数据库连接。通过释放空闲时间较长的数据库连接避免数据库因为创建太多的连接而造成的连接遗漏问题，提高了程序性能。</p>
-<h2 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h2><ul>
-<li>以字节为单位输入输出数据，字节流按照8位传输</li>
-<li>以字符为单位输入输出数据，字符流按照16位传输</li>
-<li>字节流继承inputStream和OutputStream</li>
-<li>字符流继承自InputSteamReader和OutputStreamWriter</li>
-</ul>
 <h2 id="GC是什么-为什么要有GC"><a href="#GC是什么-为什么要有GC" class="headerlink" title="GC是什么? 为什么要有GC"></a>GC是什么? 为什么要有GC</h2><p>​        答：GC是垃圾收集的意思（Garbage Collection）,内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java提供的GC功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的，Java语言没有提供释放已分配内存的显示操作方法</p>
 <p>​    垃圾回收机制回收任何对象之前，总会先调用它的finalize方法（如果覆盖该方法，让一个新的引用变量重新引用该对象，则会重新激活对象）。</p>
 <h2 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h2><p><strong>进程</strong>是系统进行资源分配的独立单位，<strong>线程</strong>是CPU调度和分派的基本单位。</p>
@@ -701,6 +710,11 @@ mysql> DELIMITER ;
 <h2 id="java中的继承是单继承还是多继承"><a href="#java中的继承是单继承还是多继承" class="headerlink" title="java中的继承是单继承还是多继承"></a>java中的继承是单继承还是多继承</h2><p>java中既有单继承，又有多继承，对于java类来说是单继承，对于接口来说是多继承</p>
 <h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><p>​    如果父类中没有无参构造器，子类中的构造器又没有显式调用父类中的有参构造器，则会报错，因为子类默认调用父类的无参构造器</p>
 <h2 id="什么是接口"><a href="#什么是接口" class="headerlink" title="什么是接口"></a>什么是接口</h2><p>​    <strong>接口就是某个事物对外提供的一些功能的声明</strong>，是一种特殊的java类</p>
+<p>​       1) 接口和接口内方法都是隐式抽象的，<strong>不需要加</strong>abstract关键字</p>
+<p>　　2) 接口可以是<strong>public</strong>修饰<strong>或者默认缺省(default)</strong></p>
+<p>　　3) 接口中的方法默认并且只能是<strong>public</strong></p>
+<p>　　4)接口中定义的变量默认并且只能是<strong>public static final</strong> 型，且必须给其初值，所以实现类中不能重新定义，也不能改变其值</p>
+<p>　　5) 有用<strong>private</strong>修饰的接口，属于类的内嵌接口，但是私有接口的方法和变量也必须是<strong>public</strong>修饰的</p>
 <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>程序在执行过程中，一旦出现异常，就会在异常出生成一个对应异常类的对象，并将此对象抛出，由try-catch-finally或者throws捕获。</p>
 <p>如果父类的方法没有抛异常，则子类重写的方法是不能抛异常的，只能是try-catch。</p>
 <p><strong>常见的编译时异常：</strong></p>
@@ -729,7 +743,7 @@ mysql> DELIMITER ;
 <h2 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h2><p>1&gt;  transient的作用及使用方法：<br>     java 的transient关键字为我们提供了便利，你只需要实现Serilizable接口，将不需要序列化的属性前添加    关键字transient，序列化对象的时候，这个属性就不会序列化到指定的目的地中；<br>2&gt; transient 使用小结<br>     1）一旦变量被transient修饰，变量将不再是对象持久化的一部分，该变量内容在序列化后无法获得访问。</p>
 <p>​     2）transient关键字只能修饰变量，而不能修饰方法和类。注意，本地变量是不能被transient关键字修饰的。       变量如果是用户自定义类变量，则该类需要实现Serializable接口。</p>
 <p>​     3）被transient关键字修饰的变量不再能被序列化，一个静态变量不管是否被transient修饰，均不能被序列        化。</p>
-<p>3&gt; 被transient关键字修饰的变量也是能被序列化<br>     若实现的是Externalizable接口，则没有任何东西可以自动序列化，需要在writeExternal方法中进行手工指    定所要序列化的变量，这与是否被transient修饰无关。</p>
+<p>3&gt; 被transient关键字修饰的变量也是能被序列化<br>     若实现的是Externalizable接口，则没有任何东西可以自动序列化，需要在writeExternal方法中进行手动指定所要序列化的变量，这与是否被transient修饰无关。</p>
 <h2 id="什么是集合"><a href="#什么是集合" class="headerlink" title="什么是集合"></a>什么是集合</h2><ul>
 <li><p>集合就是一个放数据的容器，准确的说是放数据对象引用的容器</p>
 </li>
@@ -1946,9 +1960,259 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后"><a href="#try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后" class="headerlink" title="try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?"></a>try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?</h2><p>​    会执行，在方法返回调用者之前执行，</p>
+<h2 id="try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后"><a href="#try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后" class="headerlink" title="try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?"></a>try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?</h2><p>​    会执行，在方法返回调用者之前执行。</p>
 <p>​    在finally中改变返回值的做法不好，因为如果存在finally代码块，try中的return语句不会立马返回调用者，而是记录下返回值等待finally代码块执行完之后再向调用者返回其值，如果在finally中修改了返回值，就会返回修改后的值，显然，在fina中返回或者修改会对程序造成很大的困扰。</p>
-<h2 id="IO流面试题-—-还没有看"><a href="#IO流面试题-—-还没有看" class="headerlink" title="IO流面试题  — 还没有看"></a>IO流面试题  — 还没有看</h2>
+<h2 id="什么是DAO模式"><a href="#什么是DAO模式" class="headerlink" title="什么是DAO模式"></a>什么是DAO模式</h2><p>​    DAO就是一个为持久化机制提供了接口的对象，在不暴露底层持久化方案实现细节的前提下提供了各种对数据的操作，在实际开发中，应该将所有对数据源的访问操作进行抽象化后封装在一个公共的API中。DAO模式包含了两个模式，一个是Data Accessor(数据访问器)，Data Object(数据对象)，前者要解决如何访问数据的问题，而后者要解决的是如何用对象封装数据</p>
+<h2 id="事务的ACID"><a href="#事务的ACID" class="headerlink" title="事务的ACID"></a>事务的ACID</h2><p>这里只说明隔离性：并发执行的事务彼此无法看到对方的中间状态</p>
+<p>【只有在并发数据访问时才需要事务】</p>
+<p>并发下存在的问题，脏读，幻读，不可重复读，更新丢失(第一类、第二类)</p>
+<p>解决这些问题直接用锁是很麻烦的，所以数据库为用户提供了事务隔离级别，使用指定会话的事务隔离级别，数据库就会通过分析SQL语句然后为事务访问的资源加上合适的锁</p>
+<h2 id="JDBC如何处理事务"><a href="#JDBC如何处理事务" class="headerlink" title="JDBC如何处理事务"></a>JDBC如何处理事务</h2><p>​    在Connection提供了事务处理的方法，通过调用setAutoCommit(false)可以设置手动提交事务，当事务完成后用commit()显示提交事务，如果在事务处理过程中发生异常则通过rollback()进行事务回滚，还可以通过Savepoint来设置保存点，用于让事务回滚到指定的保存点</p>
+<h2 id="正则表达式的用途"><a href="#正则表达式的用途" class="headerlink" title="正则表达式的用途"></a>正则表达式的用途</h2><p>​    正则表达式就是记录文本规则的代码。用来查找符合规则的字符串，string类提供了支持正则表达式的方法，例如 </p>
+<ul>
+<li>matches()</li>
+<li>replaceAll()</li>
+<li>split()</li>
+</ul>
+<h2 id="如何通过反射创建对象"><a href="#如何通过反射创建对象" class="headerlink" title="如何通过反射创建对象"></a>如何通过反射创建对象</h2><p>方法1：通过类对象调用  newInstance()方法</p>
+<p>方法2：通过类对象的  getDeclaredConstructor() 获取构造器对象并调用  newInstance() 方法创建对象，例如</p>
+<p>​            String.class.getConstructor(String.class).newInstance(“hello”);</p>
+<h2 id="如何通过反射获取和设置对象私有字段的值"><a href="#如何通过反射获取和设置对象私有字段的值" class="headerlink" title="如何通过反射获取和设置对象私有字段的值"></a>如何通过反射获取和设置对象私有字段的值</h2><p>通过类对象的 getDeclaredFiled() 方法获取字段对象，然后再通过字段对象的 setAccessible(true) 将其设置为可以访问，接下来就可以通过  get/set 方法来获取/设置字段的值了。</p>
+<h2 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h2><ul>
+<li>以字节为单位输入输出数据，字节流按照8位传输，继承inputStream和OutputStream</li>
+<li>以字符为单位输入输出数据，字符流按照16位传输，继承自Reader和Writer</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20190418184716728.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3ODc1NTg1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="字节流和字符流哪个好？怎么选择？"><a href="#字节流和字符流哪个好？怎么选择？" class="headerlink" title="字节流和字符流哪个好？怎么选择？"></a>字节流和字符流哪个好？怎么选择？</h2><ol>
+<li>大多数情况下使用字节流会更好，因为大多数时候 IO 操作都是直接操作磁盘文件，所以这些流在传输时都是以字节的方式进行的（图片等都是按字节存储的）</li>
+<li>如果对于操作需要通过 IO 在内存中频繁处理字符串的情况使用字符流会好些，因为字符流具备缓冲区，提高了性能</li>
+</ol>
+<h2 id="什么是缓冲区？有什么作用？"><a href="#什么是缓冲区？有什么作用？" class="headerlink" title="什么是缓冲区？有什么作用？"></a>什么是缓冲区？有什么作用？</h2><ol>
+<li>缓冲区就是一段特殊的内存区域，很多情况下当程序需要频繁地操作一个资源（如文件或数据库）则性能会很低，所以为了提升性能就可以将一部分数据暂时读写到缓存区，以后直接从此区域中读写数据即可，这样就显著提升了性。</li>
+<li>对于 Java 字符流的操作都是在缓冲区操作的，所以如果我们想在字符流操作中主动将缓冲区刷新到文件则可以使用 flush() 方法操作。</li>
+</ol>
+<h2 id="字符流和字节流有什么区别？"><a href="#字符流和字节流有什么区别？" class="headerlink" title="字符流和字节流有什么区别？"></a>字符流和字节流有什么区别？</h2><p>​    字节流的操作不会经过缓冲区（内存）而是直接操作文本本身的，而字符流的操作会先经过缓冲区（内存）然后通过缓冲区再操作文件</p>
+<h2 id="InputStream里的read-返回的是什么-read-byte-data-是什么意思-返回的是什么值？"><a href="#InputStream里的read-返回的是什么-read-byte-data-是什么意思-返回的是什么值？" class="headerlink" title="InputStream里的read()返回的是什么,read(byte[] data)是什么意思,返回的是什么值？"></a>InputStream里的read()返回的是什么,read(byte[] data)是什么意思,返回的是什么值？</h2><ul>
+<li>返回的是所读取的字节的int型（范围0-255），如果返回-1，则表明读取结束</li>
+</ul>
+<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testFileReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        FileReader fr <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//1.实例化File类的过程，指明要操作的文件</span>
+            File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"hello.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//相较于当前Module</span>
+            <span class="token comment" spellcheck="true">//2. 提供具体的流</span>
+            fr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">//3.数据的读入</span>
+            <span class="token comment" spellcheck="true">//read():返回读入的一个字符。如果达到文件末尾，返回 -1</span>
+            <span class="token keyword">int</span> data<span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data <span class="token operator">=</span> fr<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">finally</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//4.流的关闭操作</span>
+            <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fr <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    fr<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>read（byte [ ] data）将读取的字节储存在这个数组。返回的就是传入数组参数个数</li>
+</ul>
+<pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testFileReader1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        FileReader fr <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//1.File类的实例化</span>
+            File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"hello.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">//2.FileReader流的实例化</span>
+            fr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">//3.读入的操作</span>
+            <span class="token comment" spellcheck="true">//read(cahr[] cbuf):返回每次读入cbuf数组中的字符个数。如果达到文件末尾，返回-1</span>
+            <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cbuf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">char</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len<span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>len <span class="token operator">=</span> fr<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>cbuf<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//方式一：</span>
+                <span class="token comment" spellcheck="true">//错误的写法</span>
+<span class="token comment" spellcheck="true">//                for (int i = 0; i &lt;cbuf.length ; i++) &amp;#123;</span>
+<span class="token comment" spellcheck="true">//                    System.out.println(cbuf[i]);</span>
+<span class="token comment" spellcheck="true">//                &amp;#125;</span>
+
+                <span class="token comment" spellcheck="true">//正确的</span>
+<span class="token comment" spellcheck="true">//                for (int i = 0; i &lt;len; i++) &amp;#123;</span>
+<span class="token comment" spellcheck="true">//                    System.out.print(cbuf[i]);</span>
+<span class="token comment" spellcheck="true">//                &amp;#125;</span>
+
+                <span class="token comment" spellcheck="true">//方式二：</span>
+                <span class="token comment" spellcheck="true">//对应方式一的错误写法</span>
+<span class="token comment" spellcheck="true">//                String str = new String(cbuf);</span>
+<span class="token comment" spellcheck="true">//                System.out.println(str);</span>
+                <span class="token comment" spellcheck="true">//正确的写法</span>
+                String str <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>cbuf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">finally</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//4.资源的关闭</span>
+            <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                fr<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="OutputStream里面的write-是什么意思-write-byte-b-int-off-int-len-这个方法里面的三个参数分别是什么意思？"><a href="#OutputStream里面的write-是什么意思-write-byte-b-int-off-int-len-这个方法里面的三个参数分别是什么意思？" class="headerlink" title="OutputStream里面的write()是什么意思,write(byte b[], int off, int len)这个方法里面的三个参数分别是什么意思？"></a>OutputStream里面的write()是什么意思,write(byte b[], int off, int len)这个方法里面的三个参数分别是什么意思？</h2><ol>
+<li>write将指定字节传入数据源</li>
+<li>byte b[ ]是byte数组</li>
+<li>off是传入的第一个字符、len-1是传入的最后的一个字符 、len是实际长度</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * 从内存中写出数据到硬盘的文件里
+ * &lt;p>
+ * 说明：
+ * 1.输出操作，对应的File是可以不存在的,并不会报异常
+ * 2.File对应硬盘中的文件
+ * 如果不存在，在输出过程中，会自动创建此文件。
+ * 如果存在，
+ * 使用的构造器是：FileWriter(file,false) / FileWriter(file):对原有文件覆盖
+ * 使用的构造器是：FileWriter(file,true):不会对原有文件覆盖而是在原有文件基础上追加内容
+ */</span>
+<span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testFileWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    FileWriter fw <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//1.提供File类的对象，指明写出到的文件</span>
+        File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"hello1.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//2.提供FileWriter的对象，用于数据的写出</span>
+        fw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileWriter</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//3.写出的操作</span>
+        fw<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"I have a dream！\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fw<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"You need to have a dream!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">finally</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//4.流资源的关闭</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>fw <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                fw<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//使用FileReader和FileWriter实现文本文件复制</span>
+<span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testFileReaderFileWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    FileReader fr <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    FileWriter fw <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//1.创建File类的对象，指明读入和写出的文件</span>
+        File srcFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"hello.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        File destFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"hello2.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//不能使用字符流来处理图片等字节数据</span>
+
+        <span class="token comment" spellcheck="true">//2.创建输入流和输出流的对象</span>
+        fr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span>srcFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileWriter</span><span class="token punctuation">(</span>destFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//3.数据的读入和写出操作</span>
+        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cbuf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">char</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> len<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//记录每次读入到cbuf数组中的字符的个数</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>len <span class="token operator">=</span> fr<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>cbuf<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//每次写出len个字符</span>
+            fw<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>cbuf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">finally</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//4.关闭流资源</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>fw <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                fw<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>fr <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                fr<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="什么是Linux"><a href="#什么是Linux" class="headerlink" title="什么是Linux"></a>什么是Linux</h2><p>​     Linux 是一套类似Unix的操作系统，一般的web项目和其他的一些项目所需要的东西都是部署在Linux上的，Linux是一个多用户，多线程和多CPU的操作系统。它继承了Unix以时网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
+<h2 id="Windows-和-Linux-的区别"><a href="#Windows-和-Linux-的区别" class="headerlink" title="Windows 和 Linux 的区别"></a>Windows 和 Linux 的区别</h2><ul>
+<li>Windows 适合于普通用户使用，Linux 适合软件开发部署</li>
+<li>Linux 可以针对机器的配置有针对性的优化</li>
+<li>Linux 是免费的，Windows 是收费的</li>
+</ul>
+<h2 id="Unix-和-Linux-有什么区别"><a href="#Unix-和-Linux-有什么区别" class="headerlink" title="Unix 和 Linux 有什么区别"></a>Unix 和 Linux 有什么区别</h2><p>​    开源性：Linux是一款开源操作系统，不需要付费，即可使用; Unix是一款对源码实行知识产权保护的传统商业软件,使用需要付费授权使用。</p>
+<p>​    跨平台性：Linux 操作系统具有良好的跨平台性，而Unix操作系统的跨平台性能较弱</p>
+<p>​    可视化界面：Linux 有，Unix没有</p>
+<p>​    硬件环境：Linux 对硬件要求较低，Unix较高</p>
+<p>​    </p>
+<h2 id="什么是Linux内核"><a href="#什么是Linux内核" class="headerlink" title="什么是Linux内核"></a>什么是Linux内核</h2><p>​    linux系统的核心是内核，内核控制着计算机系统上的所有硬件和软件，在必要的时候分配硬件，还可以根据需要执行软件</p>
+<h2 id="什么是root账户"><a href="#什么是root账户" class="headerlink" title="什么是root账户"></a>什么是root账户</h2><p>​    root帐户就像十个系统管理员帐户，允许你完全控制系统。你可以在此处创建和维护用户帐户，为每个帐户分配不同的权限。每次安装Linux时都是默认帐户。</p>
+<h2 id="什么是硬链接-和-软链接"><a href="#什么是硬链接-和-软链接" class="headerlink" title="什么是硬链接 和 软链接"></a>什么是硬链接 和 软链接</h2><p>​    硬链接可以认为是一个指向文件索引节点的指针。</p>
+<p>​    软链接也叫符号链接，类似于windows 里的快捷方式，主要存放了链接其他文件的路径，当原文件移动到其他目录中，在访问链接文件系统就找不到了，实际场景下使用软连接比较多</p>
+<p>​    </p>
+<h2 id="Shell脚本"><a href="#Shell脚本" class="headerlink" title="Shell脚本"></a>Shell脚本</h2><p>一个Shell脚本就是一个文件，包含一个或多个命令，将这些命令在配合一定的逻辑来完成一些日常的工作</p>
+<h2 id="Linux运行级别"><a href="#Linux运行级别" class="headerlink" title="Linux运行级别"></a>Linux运行级别</h2><p>0 ：关机<br>1 ：单用户【可以找回丢失的密码】<br>2：多用户状态没有网络服务<br>3：多用户状态有网络服务<br>4：保留<br>5：图形界面<br>6：系统重启</p>
+<h2 id="Tomcat的8005、8009、8080三个端口的含义"><a href="#Tomcat的8005、8009、8080三个端口的含义" class="headerlink" title="Tomcat的8005、8009、8080三个端口的含义"></a>Tomcat的8005、8009、8080三个端口的含义</h2><p>8005：关闭时使用</p>
+<p>8009：容器使用</p>
+<p>8080：一般应用使用</p>
+<h2 id="网站的灰度发布"><a href="#网站的灰度发布" class="headerlink" title="网站的灰度发布"></a>网站的灰度发布</h2><p>​    灰度发布是指在黑与白之间，能够平滑过渡的一种发布方式，ABtest就是一种灰度发布方式，让一部分用户继续使用A，一部分用户开始使用B，如果用户对B没有什么反对意见，就逐步扩大范围，把所有的用户都迁移到B上面来。</p>
+<p>​    灰度发布可以保证整体系统的稳定，在初始灰度的时候就可以发现，调整问题，以保证其影响度</p>
+<h2 id="Linux有几种状态"><a href="#Linux有几种状态" class="headerlink" title="Linux有几种状态"></a>Linux有几种状态</h2><ul>
+<li>不可中断状态：进程处于睡眠状态，此刻的进程不响应异步信号  D</li>
+<li>暂停状态/跟踪状态：向进程发送一个SIGSTOP信号，他就会因响应信号而进入TASK_STOPPED状态；当前进程正在被跟踪时，它处于TASK_TRACED状态。【正被跟踪：指的是进程暂停下来，等待跟踪它的进程对它进行操作】 T</li>
+<li>就绪状态：在run_queue队列里的状态   </li>
+<li>运行状态   R </li>
+<li>可中断睡眠状态：处于这个状态的进程因为等待某个事件的发生而被挂起。  S</li>
+<li>僵尸状态：进程运行结束，父进程尚未使用wait来收尸，也就是在等待父进程销毁它   Z</li>
+<li>退出状态 </li>
+</ul>
+<h2 id="查看后台任务的命令"><a href="#查看后台任务的命令" class="headerlink" title="查看后台任务的命令"></a>查看后台任务的命令</h2><p>jobs  -l</p>
+<h2 id="把后台任务调到前台-把停下的后台任务在后台执行起来"><a href="#把后台任务调到前台-把停下的后台任务在后台执行起来" class="headerlink" title="把后台任务调到前台;把停下的后台任务在后台执行起来"></a>把后台任务调到前台;把停下的后台任务在后台执行起来</h2><p>​    把后台任务调到前台  fg , 如果后台中有多个命令，可以用fg %jobnumber（是命令编号，不是进程号）将选中的命令调出</p>
+<p>​    把停下的后台任务在后台执行起来  bg，将一个在后台暂停的命令，变成在<strong>后台</strong>继续执行。如果后台中有多个命令，可以用bg %jobnumber将选中的命令调出</p>
+<h2 id="查看系统支持的所有信号"><a href="#查看系统支持的所有信号" class="headerlink" title="查看系统支持的所有信号"></a>查看系统支持的所有信号</h2><p>kill  -l</p>
+<h2 id="查看磁盘使用空间和空闲空间"><a href="#查看磁盘使用空间和空闲空间" class="headerlink" title="查看磁盘使用空间和空闲空间"></a>查看磁盘使用空间和空闲空间</h2><p>df -hl</p>
+<h2 id="查看环境变量"><a href="#查看环境变量" class="headerlink" title="查看环境变量"></a>查看环境变量</h2><p>env :查看所有</p>
+<p>home：env $HOME</p>
+<h2 id="查看整个文件，显示行号，有文本的显示行号"><a href="#查看整个文件，显示行号，有文本的显示行号" class="headerlink" title="查看整个文件，显示行号，有文本的显示行号"></a>查看整个文件，显示行号，有文本的显示行号</h2><p>cat -n a.txt</p>
+<p>cat -b a.txt</p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210903214035.png"></p>
+<h2 id="进程放到后台运行"><a href="#进程放到后台运行" class="headerlink" title="进程放到后台运行"></a>进程放到后台运行</h2><p>./aa.sh &amp;</p>
+<p>把 aa.sh 放到后台运行</p>
+<h2 id="验证网络可连接命令以及原理"><a href="#验证网络可连接命令以及原理" class="headerlink" title="验证网络可连接命令以及原理"></a>验证网络可连接命令以及原理</h2><p>​    使用ping命令。这个ping命令发送一个特殊的网络数据包到一台指定的主机。大多数接收这个包的网络设备将会恢复它来允许网络连接验证，一旦启动，会持续在特定时间发送数据包</p>
+<h2 id="查看端口是否被占用"><a href="#查看端口是否被占用" class="headerlink" title="查看端口是否被占用"></a>查看端口是否被占用</h2><p> netstat -ntulp | grep  端口号</p>
+<p>f: 仅显示tcp相关选项</p>
+<p>u:仅显示udp相关选项</p>
+<p>n：拒绝显示别名，能显示数字的都转换为数组</p>
+<p>l : 仅列出在 Listen的服务状态</p>
+<p>p : 显示建立相关连接的程序名</p>
+
                 
             </div>
             <hr/>
@@ -2719,7 +2983,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">295.5k</span>&nbsp;字
+                class="white-color">299k</span>&nbsp;字
             
             
             
