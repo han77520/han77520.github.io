@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-04
+                    2021-09-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    25.7k
+                    27.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    101 分
+                    107 分
                 </div>
                 
 
@@ -2233,7 +2233,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <li>使用别名</li>
 <li>使用resultype属性，值为要封装的类名</li>
 </ul>
-<h2 id="MyBatis编程步骤"><a href="#MyBatis编程步骤" class="headerlink" title="MyBatis编程步骤"></a>MyBatis编程步骤</h2><p>​    创建 SqlSessionFactory 对象 ，通过 SqlSessionFactory 得到 SqlSession 对象，通过 SqlSession 获取接口的代理对象mapper，代理对象执行接口中的方法，最后关闭会话</p>
+<h2 id="MyBatis编程步骤"><a href="#MyBatis编程步骤" class="headerlink" title="MyBatis编程步骤"></a>MyBatis编程步骤</h2><p>​    创建 SqlSessionFactory 对象 ，通过 SqlSessionFactory 得到 SqlSession 对象，通过 SqlSession 获取接口的代理对象mapper，代理对象执行接口中的方法，提交增删改(默认是不提交的)，最后关闭会话</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
    
    <span class="token comment" spellcheck="true">//1.根据全局配置文件得到SqlSessionFactory对象</span>
@@ -2241,7 +2241,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
    InputStream inputStream <span class="token operator">=</span> Resources<span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
     SqlSessionFactory sqlSessionFactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionFactoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
    
-   <span class="token comment" spellcheck="true">//2.获取sqlSession对象</span>
+   <span class="token comment" spellcheck="true">//2.获取sqlSession对象，可以指定参数，默认为false，意为不自动提交，可以改为true</span>
    SqlSession sqlSession <span class="token operator">=</span> sqlSessionFactory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
    
    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -2251,6 +2251,8 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
       Employee empployee <span class="token operator">=</span> mapper<span class="token punctuation">.</span><span class="token function">getEmpById</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mapper<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//class com.sun.proxy.$Proxy4</span>
       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>employee<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token comment" spellcheck="true">//sqlSession.commit();</span>
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">finally</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
       <span class="token comment" spellcheck="true">//4.关闭sqlSession</span>
       sqlSession<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2369,6 +2371,7 @@ STATEMENT：可以禁用一级缓存；
 <p>原理：使用OGNL从sql参数对象中计算表达式的值，根据表达式的值动态拼接sql，以此来完成动态sql的功能</p>
 <h2 id="和-的区别是什么"><a href="#和-的区别是什么" class="headerlink" title="#{} 和  ${} 的区别是什么"></a>#{} 和  ${} 的区别是什么</h2><p>​    #{}是预编译处理，${}是字符串替换</p>
 <p>#{}在处理时会将sql中的#{}替换为 ? ，调用preparedstatement的set方法来赋值</p>
+<p>预编译指的就是数据库驱动在发送SQL语句和参数给DBMS之前对SQL语句进行编译，相当于一个模板，往进传参数就行了</p>
 <p>${}在处理时将变量替换为参数</p>
 <h2 id="如何获取自动生成主键值"><a href="#如何获取自动生成主键值" class="headerlink" title="如何获取自动生成主键值"></a>如何获取自动生成主键值</h2><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 获取自增主键的值
    mybatis支持获取自增主键，通过statement.getGenreatedKeys()
@@ -2619,6 +2622,67 @@ STATEMENT：可以禁用一级缓存；
 <span class="token comment" spellcheck="true">//当有多个插件时，是按照插件配置的顺序一层一层的代理代理对象，执行目标的方法之后，按照逆向顺序执行</span>
 </code></pre>
 <h2 id="mybatis和xml映射文件和内部数据结构之间的映射关系"><a href="#mybatis和xml映射文件和内部数据结构之间的映射关系" class="headerlink" title="mybatis和xml映射文件和内部数据结构之间的映射关系"></a>mybatis和xml映射文件和内部数据结构之间的映射关系</h2><p>​    MyBatis将所有的全局配置信息都封装到Configuration内部。在Xml映射文件中，标签会被解析为ParamaterMap对象，其每个子元素会解析为ParamaterMapping对象。标签会被解析为ResultMap对象，标签会被解析为ResultMap对象，其每个子元素会被解析为ResultMapping对象，每一个增删改查标签均会被解析为MappedStatement对象，标签内的sql会被解析为BoundSql对象。</p>
+<h2 id="通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗"><a href="#通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗" class="headerlink" title="通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗"></a>通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗</h2><p>不能重载，因为通过Dao寻找xml对应的方法的时候全类名+方法名的方式寻找，如果方法名一样的话会有冲突。</p>
+<h2 id="mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗"><a href="#mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗" class="headerlink" title="mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗"></a>mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗</h2><p>​    虽然Mybatis解析xml映射文件是按照顺序解析的。但是被引用B标签依然可以定义在任何地方，都可以被正确识别的，Mybatis解析A标签，发现A标签用了B标签，但是B标签尚未被解析到，此时Mybatis会将A标签标记为未解析状态，然后继续解析剩余的标签，待所有标签解析完成后，MyBatis会重新解析那些被标记为未解析的标签，此时在解析A标签时，B标签已经存在，A标签也就可以正常解析完成了。</p>
+<h2 id="Mybatis的几个Executor执行器以及区别"><a href="#Mybatis的几个Executor执行器以及区别" class="headerlink" title="Mybatis的几个Executor执行器以及区别"></a>Mybatis的几个Executor执行器以及区别</h2><p>共有三个执行器 </p>
+<ul>
+<li>SimpleExecutor：每一次执行update或select，就开启一个statement对象，<strong>用完立刻关闭</strong></li>
+<li>RruseExecutor：定义了一个Map&lt;String, Statement&gt;，将执行的sql作为key，将执行的Statement作为value保存，执行相同的sql时就可以使用已经存在的Statement，就不需要新创建，并且<strong>用完之后不关闭</strong>，如果不存在，放置于map内，供下次使用</li>
+<li>BatchExecutor：批处理</li>
+</ul>
+<p>可以通过DefaultSqlSessionFactory创建SqlSession的方法传递ExecutorType类型参数</p>
+<h2 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h2><p>Nginx是高性能的HTTP和反省代理的服务器，处理并发能力十分强悍，可以实现</p>
+<ul>
+<li><p>反向代理：</p>
+<ul>
+<li>只需要将请求发送到反向代理服务器，由反向代理服务器去选择目标服务器获取数据，接着返回给客户端，此时反向代理服务器和目标对外就是一个服务，暴露的是代理服务器地址隐藏了真实的服务器地址</li>
+<li>优点：反向代理服务器可以隐藏服务器的存在和特征，它充当服务器之间的中间层，这对于安全来说是很好的</li>
+</ul>
+</li>
+<li><p>负载均衡</p>
+<ul>
+<li>将原先请求集中到单个服务器上的情况改为将请求分发到多个服务器上，将负载分发到不同的服务器</li>
+</ul>
+</li>
+<li><p>动静分离</p>
+<ul>
+<li>为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Nignx如何处理HTTP请求"><a href="#Nignx如何处理HTTP请求" class="headerlink" title="Nignx如何处理HTTP请求"></a>Nignx如何处理HTTP请求</h2><p>​    Nignx 使用反应器模式，主事件循环等待操作系统发出准备事件的信号，这样数据就可以从套接字读取，在该实例中读取到缓冲区并进行处理，单个线程可以提供数万个并发连接。</p>
+<h2 id="在Nignx中，如何使用未定义的服务器名称来阻止处理请求"><a href="#在Nignx中，如何使用未定义的服务器名称来阻止处理请求" class="headerlink" title="在Nignx中，如何使用未定义的服务器名称来阻止处理请求"></a>在Nignx中，如何使用未定义的服务器名称来阻止处理请求</h2><p>只需要将请求删除的服务器定义为：</p>
+<pre class=" language-pr"><code class="language-pr">Server&#123;
+    listen 80;
+    server_name " ";
+    return 444;
+&#125;
+</code></pre>
+<p>服务器名被保留位一个空字符串，它将没有主机头字段的情况下匹配请求，而一个特殊的Nignx的非标准代码返回，从而终止连接。</p>
+<h2 id="Nignx的Master-和-Worker进程"><a href="#Nignx的Master-和-Worker进程" class="headerlink" title="Nignx的Master 和 Worker进程"></a>Nignx的Master 和 Worker进程</h2><p>Master 进程：读取及评估配置和维持</p>
+<p>Worker进程：处理请求</p>
+<h2 id="Nignx是如何实现高并发"><a href="#Nignx是如何实现高并发" class="headerlink" title="Nignx是如何实现高并发"></a>Nignx是如何实现高并发</h2><p>​    一个主进程，多个工作进程，每个工作进程可以处理多个请求，每进来一个request，会有一个worker进程去处理，但不是全程的处理，处理到可能发生阻塞的地方，比如后端服务器转发request，并等待请求返回，那么，这个处理的worker继续处理其他请求，而一旦上游服务器返回了，就会触发这个事件，worker才会来接手，这个request才会接着往下走，由于web服务器的工作性质决定了每个request的大部分生命都是在网络传输中，实际上花费在server机器上的时间片并不多，这就是几个进程就可以解决高并发的秘密所在。</p>
+<h2 id="为什么不使用多线程"><a href="#为什么不使用多线程" class="headerlink" title="为什么不使用多线程"></a>为什么不使用多线程</h2><p>​    nginx使用单线程来处理异步非阻塞请求，不会为每个请求配置cpu和内存，节省了大量资源，同时也减少了大量的cpu上下文切换。</p>
+<h2 id="为什么要做动静分离"><a href="#为什么要做动静分离" class="headerlink" title="为什么要做动静分离"></a>为什么要做动静分离</h2><p>​    在软件开发中，有些请求是需要后台处理的(如: .jsp等) ，有些请求是不需要经过后台处理的(如:cSS、html、jpg、 js 等等)，这些不需要经过后台处理的文件称为静态文件，否则动态文件。因此我们后台处理忽略静态文件，但是如果直接忽略静态文件的话，后台的请求次数就明显增多了。在我们对资源的响应速度有要求的时候，应该使用这种动静分离的策略去解决动、静分<br>离将网站静态资源(HTML, JavaScript;CSS等)与后台应用分开部署，提高用户访问静态代码的速度，降低对后台应用访问。这里将静态资源放到nginx中，动态资源转发到tomcat服务器中，毕竟Tomcat的优势是处理动态请求。</p>
+<h2 id="fastcgi和cgi的区别"><a href="#fastcgi和cgi的区别" class="headerlink" title="fastcgi和cgi的区别"></a>fastcgi和cgi的区别</h2><ul>
+<li>cgi<ul>
+<li>web服务器会根据请求的内容，然后会fork一个新进程来运行外部c程序，这个进程会把处理完的数据返回给web服务器，最后web服务器把内容发送给用户，刚才fork的进程也随之退出</li>
+<li>如果下次还请求，那么web服务器又再一次fork一个新进程，周而复始</li>
+</ul>
+</li>
+<li>fastcgi<ul>
+<li>web服务器收到一个请求时，不会重新fork一个进程，因为进程在web服务器启动时就开启了，而且不会退出，web服务器直接把内容传递给这个进程(tcp通信)，这个进程收到请求后进行处理，把结果返回给web服务器，最后自己接着等待下一个请求的到来，而不是退出</li>
+</ul>
+</li>
+</ul>
+<h2 id="nginx有哪些有优点"><a href="#nginx有哪些有优点" class="headerlink" title="nginx有哪些有优点"></a>nginx有哪些有优点</h2><ul>
+<li>跨平台</li>
+<li>非阻塞，高并发连接</li>
+<li>可处理 2 - 3 万并发连接数</li>
+<li>内存消耗小</li>
+<li>成本低且开源</li>
+<li>稳定性高，宕机的概率小</li>
+</ul>
 
                 
             </div>
@@ -3390,7 +3454,7 @@ STATEMENT：可以禁用一级缓存；
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">303.5k</span>&nbsp;字
+                class="white-color">305.2k</span>&nbsp;字
             
             
             
