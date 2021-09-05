@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-03
+                    2021-09-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    21.3k
+                    25.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    83 分
+                    101 分
                 </div>
                 
 
@@ -2209,9 +2209,416 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="查看端口是否被占用"><a href="#查看端口是否被占用" class="headerlink" title="查看端口是否被占用"></a>查看端口是否被占用</h2><p> netstat -ntulp | grep  端口号</p>
 <p>f: 仅显示tcp相关选项</p>
 <p>u:仅显示udp相关选项</p>
-<p>n：拒绝显示别名，能显示数字的都转换为数组</p>
+<p>n：拒绝显示别名，能显示数字的都转换为数字</p>
 <p>l : 仅列出在 Listen的服务状态</p>
 <p>p : 显示建立相关连接的程序名</p>
+<h2 id="什么是MyBatis"><a href="#什么是MyBatis" class="headerlink" title="什么是MyBatis"></a>什么是MyBatis</h2><ul>
+<li><p>mybatis是一个半ORM框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去加载驱动，创建连接、创建statement等过程</p>
+</li>
+<li><p>mybatis可以使用 xml或注解来配置和映射原生信息，将pojo映射成数据库中的记录，避免了几乎所有的JDBC代码和手动设置参数以及获取结果集</p>
+</li>
+<li><p>通过xml文件和注解的方式将要执行的各种statement配置起来，并通过java对象和参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回</p>
+</li>
+</ul>
+<h2 id="MyBatis的优点"><a href="#MyBatis的优点" class="headerlink" title="MyBatis的优点"></a>MyBatis的优点</h2><p>​    MyBatis不会对应用程序或者数据库现有的设计造成任何影响，SQL写在xml里，解除sql与程序代码的耦合，便于统一管理；还支持编写动态SQL语句</p>
+<p>​    与JDBC相比，消除了JDBC大量冗余的代码</p>
+<p>​    提供映射标签，支持对象与数据库的ORM字段关系映射</p>
+<h2 id="MyBatis框架的缺点有什么"><a href="#MyBatis框架的缺点有什么" class="headerlink" title="MyBatis框架的缺点有什么"></a>MyBatis框架的缺点有什么</h2><p>SQL语句的编写工作量较大</p>
+<p>SQL语句依赖于数据库，导致数据库一致性差，不能随意更换数据库</p>
+<h2 id="MyBatis是如何分页的、分页插件原理是什么"><a href="#MyBatis是如何分页的、分页插件原理是什么" class="headerlink" title="MyBatis是如何分页的、分页插件原理是什么"></a>MyBatis是如何分页的、分页插件原理是什么</h2><p>​    MyBatis自带的分页查询是内存分页。</p>
+<p>​    物理分页可以在SQL内直接书写分页的参数来完成分页功能，或者使用分页插件来实现</p>
+<p>​    分页插件的原理：使用MyBatis提供的插件接口，实现自定义插件，在插件的拦截方法内拦截等待执行的sql，然后重写sql，添加对应的物理分页语句和物理分页参数实现分页</p>
+<h2 id="MyBatis如何封装结果并返回的"><a href="#MyBatis如何封装结果并返回的" class="headerlink" title="MyBatis如何封装结果并返回的"></a>MyBatis如何封装结果并返回的</h2><ul>
+<li>使用resultmap标签，逐一定义数据库列名和对象属性名之间的映射关系</li>
+<li>使用别名</li>
+<li>使用resultype属性，值为要封装的类名</li>
+</ul>
+<h2 id="MyBatis编程步骤"><a href="#MyBatis编程步骤" class="headerlink" title="MyBatis编程步骤"></a>MyBatis编程步骤</h2><p>​    创建 SqlSessionFactory 对象 ，通过 SqlSessionFactory 得到 SqlSession 对象，通过 SqlSession 获取接口的代理对象mapper，代理对象执行接口中的方法，最后关闭会话</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   
+   <span class="token comment" spellcheck="true">//1.根据全局配置文件得到SqlSessionFactory对象</span>
+   String resource <span class="token operator">=</span> <span class="token string">"mybatis-config.xml"</span><span class="token punctuation">;</span>
+   InputStream inputStream <span class="token operator">=</span> Resources<span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    SqlSessionFactory sqlSessionFactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionFactoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+   <span class="token comment" spellcheck="true">//2.获取sqlSession对象</span>
+   SqlSession sqlSession <span class="token operator">=</span> sqlSessionFactory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+   <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//3.获取接口实现类的对象</span>
+      <span class="token comment" spellcheck="true">//会为接口自动创建一个代理对象，代理对象去执行增删改查方法</span>
+      EmployeeMapper mapper <span class="token operator">=</span> sqlSession<span class="token punctuation">.</span><span class="token function">getMapper</span><span class="token punctuation">(</span>EmployeeMapper<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Employee empployee <span class="token operator">=</span> mapper<span class="token punctuation">.</span><span class="token function">getEmpById</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mapper<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//class com.sun.proxy.$Proxy4</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>employee<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">finally</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//4.关闭sqlSession</span>
+      sqlSession<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="JDBC-和-MyBatis-相比有哪些不足之处，MyBatis-是怎么解决的"><a href="#JDBC-和-MyBatis-相比有哪些不足之处，MyBatis-是怎么解决的" class="headerlink" title="JDBC 和 MyBatis 相比有哪些不足之处，MyBatis 是怎么解决的"></a>JDBC 和 MyBatis 相比有哪些不足之处，MyBatis 是怎么解决的</h2><ul>
+<li>SQL语句写在代码中，维护代价高，MyBatis 写在配置文件中，实现了代码和sql语句的分离，提高了代码的维护性</li>
+<li>jdbc在组合SQL语句的时候需要拼接，MyBatis 有动态sql，更加方便和灵活</li>
+<li>jdbc对结果集的封装麻烦，MyBatis 自动将SQL执行结果集映射到java对象中</li>
+</ul>
+<h2 id="使用MyBatis-的mapper接口调用时候有哪些要求"><a href="#使用MyBatis-的mapper接口调用时候有哪些要求" class="headerlink" title="使用MyBatis 的mapper接口调用时候有哪些要求"></a>使用MyBatis 的mapper接口调用时候有哪些要求</h2><ul>
+<li><p>mapper.xml的namespace就是接口的全类名</p>
+</li>
+<li><p>mapper 接口方法名和 mapper.xml中定义的每个SQL的id相同</p>
+</li>
+<li><p>如果接口中方法的参数有多个的话，需要@Param注解来标明这个map参数集合的key是什么，因为MyBatis 底层会把参数都封装成map集合</p>
+</li>
+</ul>
+<h2 id="MyBatis-配置文件中有哪些标签"><a href="#MyBatis-配置文件中有哪些标签" class="headerlink" title="MyBatis 配置文件中有哪些标签"></a>MyBatis 配置文件中有哪些标签</h2><p>properties、setting、typeAliases、plugins、environments、transactionManager、dataSource、mappers等</p>
+<h2 id="MyBatis-缓存机制"><a href="#MyBatis-缓存机制" class="headerlink" title="MyBatis 缓存机制"></a>MyBatis 缓存机制</h2><p>使用的是PerpetualCache（永久缓存）类，存储原理就是==<strong>map集合</strong>==</p>
+<h3 id="一级缓存（本地缓存）"><a href="#一级缓存（本地缓存）" class="headerlink" title="一级缓存（本地缓存）"></a>一级缓存（本地缓存）</h3><ul>
+<li>sqlSession级别的缓存，<strong>一级缓存是一直开启的</strong>，查出的数据都会放在map中<ul>
+<li>​       与数据库同一次会话期间查询到的数据会放在本地缓存中，以后如果需要获取获取相同的数据，直接从缓存中拿，没必要再去查询数据库</li>
+<li>一级缓存失效的情况 (没有使用到当前一级缓存的情况下，就还需要在向数据库发出查询)<ul>
+<li>sqlSession不相同</li>
+<li>sqlSession相同，查询条件不同</li>
+<li>SQLSession相同，两次查询之间执行了增删改(这次增删改可能对当前数据有影响)</li>
+<li>SQLSession相同，手动清除了一级缓存（缓存清空）   <strong>sqlSession1.clearCache();</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>​      </p>
+<h3 id="二级缓存（全局缓存）"><a href="#二级缓存（全局缓存）" class="headerlink" title="二级缓存（全局缓存）"></a>二级缓存（全局缓存）</h3><ul>
+<li><p>基于namespace级别的缓存；一个namespace对应一个二级缓存</p>
+</li>
+<li><p>工作机制：</p>
+<ul>
+<li>一个会话，查询一条数据，这个数据就会被放在当前会话的一级缓存中</li>
+<li>查出的数据会默认放在一级缓存中</li>
+<li>如果关闭会话，一级缓存的数据会被保存到二级缓存中。新的会话查询信息，就可以参照二级缓存中的数据</li>
+<li>如果会话没关闭，其他会话查询相同数据时还是会再次发sql语句</li>
+<li>同一个会话查出的不同namespace中的数据会放在自己对应的二级缓存中</li>
+</ul>
+</li>
+<li><p>使用</p>
+<ul>
+<li><p>在全局配置文件中 开启二级缓存配置：&lt;setting name=”cacheEnabled” value=”true”/&gt;</p>
+</li>
+<li><p>mapper.xml中配置使用二级缓存：</p>
+<ul>
+<li><p>&lt;cache&gt;&lt;/cache&gt;</p>
+</li>
+<li><pre><code>cache的一些属性介绍：
+
+   eviction:缓存的回收策略：
+      • LRU  – 最近最少使用的：移除最长时间不被使用的对象。
+      • FIFO – 先进先出：按对象进入缓存的顺序来移除它们。
+      • SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。
+      • WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。
+      • 默认的是 LRU。
+   flushInterval：缓存刷新间隔
+      缓存多长时间清空一次，默认不清空，设置一个毫秒值
+
+   readOnly:是否只读：
+      true：只读；mybatis认为所有从缓存中获取数据的操作都是只读操作，不会修改数据。
+            mybatis为了加快获取速度，直接就会将数据在缓存中的引用交给用户。不安全，速度快
+      false：非只读：mybatis觉得获取的数据可能会被修改。
+            mybatis会利用序列化&amp;反序列的技术克隆一份新的数据给你。安全，速度慢
+
+   size：缓存存放多少元素；
+
+   type=&quot;&quot;：指定自定义缓存的全类名；实现Cache接口即可；
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>POJO需要实现序列化接口</strong></p>
+<ul>
+<li>序列化：把一个Java对象写入到硬盘或者传输到网路上面的其它计算机，需要把相应的对象写成转换成字节流。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="和缓存有关的设置-属性"><a href="#和缓存有关的设置-属性" class="headerlink" title="和缓存有关的设置/属性"></a>和缓存有关的设置/属性</h3><ul>
+<li><p>全局配置文件中的 &lt;setting&gt; 标签 中cacheEnabled属性，为true一级、二级都可用；为false二级关闭，一级一直可用</p>
+</li>
+<li><p>每个select标签都有useCache=”true”的属性：一级、二级都可用</p>
+<pre><code>   false：一级缓存依然使用，二级缓存不使用
+</code></pre>
+</li>
+<li><p>每个增删改标签的：flushCache=”true”属性：增删改执行完成后就会清除缓存（一级二级都会清除）</p>
+</li>
+</ul>
+<p>​        每个查询标签也有：flushCache=”false”属性</p>
+<ul>
+<li>sqlSession.clearCache();只是清除当前session的一级缓存；</li>
+<li>&lt;setting&gt;标签中有localCacheScope本地缓存作用域：<pre><code>SESSION ；当前会话的所有数据保存在会话缓存中；
+STATEMENT：可以禁用一级缓存；
+</code></pre>
+</li>
+</ul>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210729104529.png"></p>
+<h2 id="Mybatis的映射文件"><a href="#Mybatis的映射文件" class="headerlink" title="Mybatis的映射文件"></a>Mybatis的映射文件</h2><p>Mybatis的映射文件是mybatis 的核心之一，里面包含了cache、resultMap、insert、update、delete、select等</p>
+<h2 id="MyBatis的动态SQL"><a href="#MyBatis的动态SQL" class="headerlink" title="MyBatis的动态SQL"></a>MyBatis的动态SQL</h2><ul>
+<li>if：简单的条件判断</li>
+<li>Choose(when/otherwies)，相当于switch</li>
+<li>Trim：对包含的内容加上prefix，或者suffix</li>
+<li>where：条件判断，可以去掉多余的一个and/or</li>
+<li>Set：更新的时候使用</li>
+<li>Foreach：查询的时候特别有用</li>
+</ul>
+<p>原理：使用OGNL从sql参数对象中计算表达式的值，根据表达式的值动态拼接sql，以此来完成动态sql的功能</p>
+<h2 id="和-的区别是什么"><a href="#和-的区别是什么" class="headerlink" title="#{} 和  ${} 的区别是什么"></a>#{} 和  ${} 的区别是什么</h2><p>​    #{}是预编译处理，${}是字符串替换</p>
+<p>#{}在处理时会将sql中的#{}替换为 ? ，调用preparedstatement的set方法来赋值</p>
+<p>${}在处理时将变量替换为参数</p>
+<h2 id="如何获取自动生成主键值"><a href="#如何获取自动生成主键值" class="headerlink" title="如何获取自动生成主键值"></a>如何获取自动生成主键值</h2><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 获取自增主键的值
+   mybatis支持获取自增主键，通过statement.getGenreatedKeys()
+   useGeneratedKeys="true":使用自增主键获取主键值策略
+   keyProperty:指定对应的主键属性，mybatis获取主键值后将这个值封装给JavaBean的这个属性
+--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insert</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>addEmp<span class="token punctuation">"</span></span> <span class="token attr-name">useGeneratedKeys</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">keyProperty</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    insert  into tbl_employee(last_name, email, gender)
+    values (#<span class="token entity" title="&#123;">&amp;#123;</span>lastName<span class="token entity" title="&#125;">&amp;#125;</span>, #<span class="token entity" title="&#123;">&amp;#123;</span>email<span class="token entity" title="&#125;">&amp;#125;</span>, #<span class="token entity" title="&#123;">&amp;#123;</span>gender<span class="token entity" title="&#125;">&amp;#125;</span>)
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>insert</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="MyBatis中不同的xml映射文件，id是否可以重复"><a href="#MyBatis中不同的xml映射文件，id是否可以重复" class="headerlink" title="MyBatis中不同的xml映射文件，id是否可以重复"></a>MyBatis中不同的xml映射文件，id是否可以重复</h2><p>不同的xml映射文件，如果配置了namespace，那么id可以重复；如果没有配置，则不能重复</p>
+<p>​    原因就是namespace + id 是作为map&lt;String,MapperStatement&gt;的key使用的，如果没有namespace，就剩下id，id重复就会导致数据互相覆盖，有了namespace，id就可以重复了，namespace不同，namespace + id自然也就不同</p>
+<p>【Mapper接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符串作为key值，可唯一定位一个MapperStatement。在Mybatis中，每一个&lt;select&gt;、&lt;insert&gt;、&lt;update&gt;、&lt;delete&gt; 标签，都会被解析为一个MapperStatement对象。】</p>
+<h2 id="一对一，一对多的关联查询"><a href="#一对一，一对多的关联查询" class="headerlink" title="一对一，一对多的关联查询"></a>一对一，一对多的关联查询</h2><p>一对一，一对多的关联查询都有两种方法：联合查询和嵌套查询</p>
+<p>在 &lt;resultMap&gt;标签中，使用&lt;association&gt;实现一对一关联查询，使用&lt;collection&gt;实现一对多关联查询</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--自定义某个javaBean的封装规则
+    type：自定义规则的java类型
+    id：唯一id方便引用
+--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyEmp<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Employee<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token comment" spellcheck="true">&lt;!--指定主键的封装规则
+     id定义主键底层有优化
+     column：指定哪一列
+     property:指定对应的JavaBean属性
+   --></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token comment" spellcheck="true">&lt;!--定义普通列封装规则--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>last_name<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token comment" spellcheck="true">&lt;!--其他不指定的列会自动封装，但是只要写resultMap最好把全部的映射规则都写上--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!--resultMap:自定义结果集映射规则--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getEmpById<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyEmp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   select * from  tbl_employee where id= #<span class="token entity" title="&#123;">&amp;#123;</span>id<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+
+<span class="token comment" spellcheck="true">&lt;!-- 
+   场景一：查询Employee的同时查询员工对应的部门 Employee===Department 一个员工有与之对应的部门信息； id last_name gender d_id did dept_name (private Department dept;) 
+--></span>
+<span class="token comment" spellcheck="true">&lt;!-- 方式一：联合查询，级联属性封装结果集 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyDifEmp<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Employee<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>last_name<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+
+   <span class="token comment" spellcheck="true">&lt;!--需要Employee类的dept属性的get方法--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept.id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept.departmentName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept_name<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!--方式二：使用association定义关联的单个对象的封装规则：--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyDifEmp2<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Employee<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>last_name<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+
+   <span class="token comment" spellcheck="true">&lt;!--
+     association可以指定联合的javaBean对象
+     property="dept";指定哪个属性是联合的对象
+     javaType:指定这个属性对象的类型[不能省略]
+    --></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>association</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept<span class="token punctuation">"</span></span> <span class="token attr-name">javaType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Department<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept_name<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>departmentName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>association</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getEmpAndDept<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyDifEmp2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   SELECT e.id id,e.last_name last_name,e.gender gender,e.d_id d_id, d.id did,d.dept_name dept_name
+   FROM tbl_employee e, tbl_dept d
+   WHERE e.d_id = d.id AND e.id = #<span class="token entity" title="&#123;">&amp;#123;</span>id<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+
+<span class="token comment" spellcheck="true">&lt;!-- 使用association进行分步查询：
+     1、先按照员工id查询员工信息
+     2、根据查询员工信息中的d_id值去部门表查出部门信息
+     3、部门设置到员工中；
+ --></span>
+<span class="token comment" spellcheck="true">&lt;!--  id  last_name  email   gender    d_id   --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Employee<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyEmpByStep<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>last_name<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token comment" spellcheck="true">&lt;!-- association定义关联对象的封装规则
+            select:表明当前属性是调用select指定的方法查出的结果
+            column:指定将哪一列的值传给这个方法
+
+            流程：使用select指定的方法（传入column指定的这列参数的值）查出对象，并封装给property指定的属性
+         --></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>association</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept<span class="token punctuation">"</span></span>
+                <span class="token attr-name">select</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.dao.DepartmentMapper.getDeptById<span class="token punctuation">"</span></span>
+                <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>d_id<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>association</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!--  public Employee getEmpByIdStep(Integer id);--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getEmpByIdStep<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyEmpByStep<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   select * from tbl_employee where id=#<span class="token entity" title="&#123;">&amp;#123;</span>id<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!--可以使用延迟查询(按需加载|懒加载)
+    Employee ==> Dept
+       每次查询Employee对象的是时候，都得一起查询出来
+       部门信息在使用的时候再去查询
+       分段查询的基础上加两个配置
+
+    全局配置
+    懒加载必须搭配aggressiveLazyLoading使用，光开启懒加载没用
+    &lt;setting name="lazyLoadingEnabled" value="true"/>
+    &lt;setting name="aggressiveLazyLoading" value="false"/>
+--></span>
+
+
+<span class="token comment" spellcheck="true">&lt;!--
+场景二：
+   查询部门的时候将部门对应的所有员工信息也查询出来
+   嵌套结果集的方式，使用collection标签定义关联的集合类型的属性封装规则
+--></span>
+<span class="token comment" spellcheck="true">&lt;!--
+   private Integer id;
+   private String departmentName;
+   private List&lt;Employee> emps;
+--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyDept<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Department<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept_name<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>departmentName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token comment" spellcheck="true">&lt;!--
+            collection定义关联集合类型的属性的封装规则
+            ofType:指定集合里面元素的类型
+        --></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>emps<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>emp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token comment" spellcheck="true">&lt;!--定义这个集合元素的封装规则--></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eid<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>last_name<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getDeptByIdPlus<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyDept<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   SELECT d.id did, d.dept_name dept_name ,
+   e.id eid, e.last_name last_name, e.email email, e.gender gender
+   FROM tbl_dept d
+   LEFT JOIN tbl_employee e
+   ON d.id = e.d_id
+   WHERE d.id  = #<span class="token entity" title="&#123;">&amp;#123;</span>id<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 分步查询 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyDeptStep<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Department<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept_name<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>departmentName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>emps<span class="token punctuation">"</span></span>
+               <span class="token attr-name">select</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.dao.EmployeeMapperPlus.getEmpsByDeptId<span class="token punctuation">"</span></span>
+               <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">fetchType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lazy<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token comment" spellcheck="true">&lt;!--或者 column="&amp;#123;deptId = id&amp;#125;"--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getDeptByIdStep<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyDeptStep<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+   select id, dept_name departmentName  from tbl_dept where d_id=#<span class="token entity" title="&#123;">&amp;#123;</span>id<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="mybatis的延迟加载"><a href="#mybatis的延迟加载" class="headerlink" title="mybatis的延迟加载"></a>mybatis的延迟加载</h2><pre class=" language-xml"><code class="language-xml">懒加载必须搭配aggressiveLazyLoading使用，光开启懒加载没用
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>setting</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lazyLoadingEnabled<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>setting</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>aggressiveLazyLoading<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+【补充：mapUnderscoreToCamelCase 驼峰命名法】
+</code></pre>
+<p>​    原理：使用CGLIB创建目标对象的代理对象，当调用目标方法时，进入拦截器方法，比如调用 a.getB().getName()，拦截器invoke()方法发现 a.getB()是null值，那么就会单独发送实现保存好的查询关联B对象的sql，把B查询上来，然后调用a.setB(b)，于是对象a的b属性就有值了，接着完成a.getB().getName()方法的调用。这就是延迟加载的基本原理。</p>
+<h2 id="mybatis-的接口绑定"><a href="#mybatis-的接口绑定" class="headerlink" title="mybatis 的接口绑定"></a>mybatis 的接口绑定</h2><p>接口绑定，就是在Mybatis中任意定义接口，再把接口里面的方法和SQL语句绑定，直接调用接口方法就可以了</p>
+<p>一种是通过注解绑定，就是在接口的方法上面加上@select、@update等注解，里面包含sql语句来绑定，</p>
+<p>一种是通过xml文件来写sql。</p>
+<p>当sql语句比较简单就可以用注解绑定，sql语句比较复杂的时候用xml绑定，一般用xml绑定的比较多</p>
+<h2 id="Mybatis是如何进行分页，以及插件原理"><a href="#Mybatis是如何进行分页，以及插件原理" class="headerlink" title="Mybatis是如何进行分页，以及插件原理"></a>Mybatis是如何进行分页，以及插件原理</h2><p>使用RowBounds对象进行分页，或者直接编写sql，或者使用mybatis的分页插件</p>
+<p>插件原理：</p>
+<ol>
+<li><p>mybatis仅可以编写ParameterHandler、ResultSetHandler、StatementHandler、Executor这4个接口的插件，mybatis通过动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这4个接口对象的方法时，就会进入拦截方法，具体的逻辑就是在invocationHandler的invoke()方法。</p>
+<ol start="2">
+<li>实现mybatis的interceptor接口并复写 intercept()方法，然后再给插件编写注解，指定要拦截哪个接口的方法即可<ol start="3">
+<li>在配置文件中配置插件</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * 完成插件签名：
+ *        告诉MyBatis当前插件用来拦截哪个对象的哪个方法
+ */</span>
+<span class="token annotation punctuation">@Intercepts</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token annotation punctuation">@Signature</span><span class="token punctuation">(</span>type<span class="token operator">=</span>StatementHandler<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>method<span class="token operator">=</span><span class="token string">"parameterize"</span><span class="token punctuation">,</span>args<span class="token operator">=</span>java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>Statement<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FirstPlugin</span> <span class="token keyword">implements</span> <span class="token class-name">Interceptor</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * intercept：拦截：
+     *         拦截目标对象的目标方法的执行；
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Object <span class="token function">intercept</span><span class="token punctuation">(</span>Invocation invocation<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO Auto-generated method stub</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"MyFirstPlugin...intercept:"</span><span class="token operator">+</span>invocation<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//动态的改变一下sql运行的参数：以前1号员工，实际从数据库查询3号员工</span>
+        Object target <span class="token operator">=</span> invocation<span class="token punctuation">.</span><span class="token function">getTarget</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前拦截到的对象："</span><span class="token operator">+</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//拿到：StatementHandler==>ParameterHandler===>parameterObject</span>
+        <span class="token comment" spellcheck="true">//拿到target的元数据</span>
+        MetaObject metaObject <span class="token operator">=</span> SystemMetaObject<span class="token punctuation">.</span><span class="token function">forObject</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Object value <span class="token operator">=</span> metaObject<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token string">"parameterHandler.parameterObject"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"sql语句用的参数是："</span><span class="token operator">+</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//修改完sql语句要用的参数</span>
+        metaObject<span class="token punctuation">.</span><span class="token function">setValue</span><span class="token punctuation">(</span><span class="token string">"parameterHandler.parameterObject"</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//执行目标方法</span>
+        Object proceed <span class="token operator">=</span> invocation<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//返回执行后的返回值</span>
+        <span class="token keyword">return</span> proceed<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * plugin：
+     *         包装目标对象的：包装：为目标对象创建一个代理对象
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Object <span class="token function">plugin</span><span class="token punctuation">(</span>Object target<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//我们可以借助Plugin的wrap方法来使用当前Interceptor包装我们目标对象</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"MyFirstPlugin...plugin:mybatis将要包装的对象"</span><span class="token operator">+</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Object wrap <span class="token operator">=</span> Plugin<span class="token punctuation">.</span><span class="token function">wrap</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//返回为当前target创建的动态代理</span>
+        <span class="token keyword">return</span> wrap<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * setProperties：
+     *         将插件注册时的property属性设置进来
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setProperties</span><span class="token punctuation">(</span>Properties properties<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO Auto-generated method stub</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"插件配置的信息："</span><span class="token operator">+</span>properties<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//当有多个插件时，是按照插件配置的顺序一层一层的代理代理对象，执行目标的方法之后，按照逆向顺序执行</span>
+</code></pre>
+<h2 id="mybatis和xml映射文件和内部数据结构之间的映射关系"><a href="#mybatis和xml映射文件和内部数据结构之间的映射关系" class="headerlink" title="mybatis和xml映射文件和内部数据结构之间的映射关系"></a>mybatis和xml映射文件和内部数据结构之间的映射关系</h2><p>​    MyBatis将所有的全局配置信息都封装到Configuration内部。在Xml映射文件中，标签会被解析为ParamaterMap对象，其每个子元素会解析为ParamaterMapping对象。标签会被解析为ResultMap对象，标签会被解析为ResultMap对象，其每个子元素会被解析为ResultMapping对象，每一个增删改查标签均会被解析为MappedStatement对象，标签内的sql会被解析为BoundSql对象。</p>
 
                 
             </div>
@@ -2983,7 +3390,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">299k</span>&nbsp;字
+                class="white-color">303.5k</span>&nbsp;字
             
             
             
