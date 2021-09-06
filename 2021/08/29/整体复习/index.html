@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    27.4k
+                    29.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    107 分
+                    114 分
                 </div>
                 
 
@@ -2631,6 +2631,11 @@ STATEMENT：可以禁用一级缓存；
 <li>BatchExecutor：批处理</li>
 </ul>
 <p>可以通过DefaultSqlSessionFactory创建SqlSession的方法传递ExecutorType类型参数</p>
+<h2 id="mybatis原理"><a href="#mybatis原理" class="headerlink" title="mybatis原理"></a>mybatis原理</h2><p>1、获取sqlSessionFactory对象:<br>      解析文件的每一个信息保存在Configuration中，返回包含Configuration的DefaultSqlSession；<br>      注意：【MappedStatement】：代表一个增删改查的详细信息</p>
+<p>2、获取sqlSession对象<br>      返回一个DefaultSqlSession对象，包含Executor和Configuration;<br>      这一步会创建Executor对象；用于增删改查的执行</p>
+<p>3、获取接口的代理对象（MapperProxy），一个接口就对应这一个MapperProxyFactory<br>      getMapper，使用MapperProxyFactory创建一个MapperProxy的代理对象<br>      代理对象里面包含了，DefaultSqlSession（Executor）</p>
+<p>4、执行增删改查方法</p>
+<p>总结：<br>   1、根据配置文件（全局，sql映射）初始化出Configuration对象<br>   2、创建一个DefaultSqlSession对象，<br>      他里面包含Configuration以及<br>      Executor（根据全局配置文件中的defaultExecutorType创建出对应的Executor）<br> 3、DefaultSqlSession.getMapper（）：拿到Mapper接口对应的MapperProxy；<br> 4、MapperProxy里面有（DefaultSqlSession）；<br> 5、执行增删改查方法：<br>      1）调用DefaultSqlSession的增删改查（Executor）；<br>      2）会创建一个StatementHandler对象。<br>         （同时也会创建出ParameterHandler和ResultSetHandler）<br>      3）调用StatementHandler预编译参数以及设置参数值;<br>         使用ParameterHandler来给sql设置参数<br>      4）调用StatementHandler的增删改查方法；<br>      5）ResultSetHandler封装结果<br> 注意：<br>   四大对象每个创建的时候都有一个interceptorChain.pluginAll(parameterHandler);</p>
 <h2 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h2><p>Nginx是高性能的HTTP和反省代理的服务器，处理并发能力十分强悍，可以实现</p>
 <ul>
 <li><p>反向代理：</p>
@@ -2650,7 +2655,12 @@ STATEMENT：可以禁用一级缓存；
 </ul>
 </li>
 </ul>
-<h2 id="Nignx如何处理HTTP请求"><a href="#Nignx如何处理HTTP请求" class="headerlink" title="Nignx如何处理HTTP请求"></a>Nignx如何处理HTTP请求</h2><p>​    Nignx 使用反应器模式，主事件循环等待操作系统发出准备事件的信号，这样数据就可以从套接字读取，在该实例中读取到缓冲区并进行处理，单个线程可以提供数万个并发连接。</p>
+<h2 id="Nignx如何处理HTTP请求"><a href="#Nignx如何处理HTTP请求" class="headerlink" title="Nignx如何处理HTTP请求"></a>Nignx如何处理HTTP请求</h2><ol>
+<li>Nginx在启动时，会解析配置文件，得到需要监听的端口和ip地址，然后再Nginx的master进程里面先初始化好监控的sokcet</li>
+<li>然后再fork(一个现有进程可以调用fork函数创建一个新进程)出多个子进程</li>
+<li>此时，客户端就可以向nginx发起连接了，当客户端与nginx进行三次握手，与nginx建立好一个连接后，子进程竞争accept新的连接，某一个进程会accept成功，得到这个建立好的连接socker，然后创建nginx对连接的封装。ngx_connection_t</li>
+<li>接着设置读写事件处理函数，并添加读写事件来与客户端进行数据的交换</li>
+</ol>
 <h2 id="在Nignx中，如何使用未定义的服务器名称来阻止处理请求"><a href="#在Nignx中，如何使用未定义的服务器名称来阻止处理请求" class="headerlink" title="在Nignx中，如何使用未定义的服务器名称来阻止处理请求"></a>在Nignx中，如何使用未定义的服务器名称来阻止处理请求</h2><p>只需要将请求删除的服务器定义为：</p>
 <pre class=" language-pr"><code class="language-pr">Server&#123;
     listen 80;
@@ -2662,7 +2672,7 @@ STATEMENT：可以禁用一级缓存；
 <h2 id="Nignx的Master-和-Worker进程"><a href="#Nignx的Master-和-Worker进程" class="headerlink" title="Nignx的Master 和 Worker进程"></a>Nignx的Master 和 Worker进程</h2><p>Master 进程：读取及评估配置和维持</p>
 <p>Worker进程：处理请求</p>
 <h2 id="Nignx是如何实现高并发"><a href="#Nignx是如何实现高并发" class="headerlink" title="Nignx是如何实现高并发"></a>Nignx是如何实现高并发</h2><p>​    一个主进程，多个工作进程，每个工作进程可以处理多个请求，每进来一个request，会有一个worker进程去处理，但不是全程的处理，处理到可能发生阻塞的地方，比如后端服务器转发request，并等待请求返回，那么，这个处理的worker继续处理其他请求，而一旦上游服务器返回了，就会触发这个事件，worker才会来接手，这个request才会接着往下走，由于web服务器的工作性质决定了每个request的大部分生命都是在网络传输中，实际上花费在server机器上的时间片并不多，这就是几个进程就可以解决高并发的秘密所在。</p>
-<h2 id="为什么不使用多线程"><a href="#为什么不使用多线程" class="headerlink" title="为什么不使用多线程"></a>为什么不使用多线程</h2><p>​    nginx使用单线程来处理异步非阻塞请求，不会为每个请求配置cpu和内存，节省了大量资源，同时也减少了大量的cpu上下文切换。</p>
+<h2 id="Nignx为什么不使用多线程"><a href="#Nignx为什么不使用多线程" class="headerlink" title="Nignx为什么不使用多线程"></a>Nignx为什么不使用多线程</h2><p>​    nginx使用单线程来处理异步非阻塞请求，不会为每个请求配置cpu和内存，节省了大量资源，同时也减少了大量的cpu上下文切换。</p>
 <h2 id="为什么要做动静分离"><a href="#为什么要做动静分离" class="headerlink" title="为什么要做动静分离"></a>为什么要做动静分离</h2><p>​    在软件开发中，有些请求是需要后台处理的(如: .jsp等) ，有些请求是不需要经过后台处理的(如:cSS、html、jpg、 js 等等)，这些不需要经过后台处理的文件称为静态文件，否则动态文件。因此我们后台处理忽略静态文件，但是如果直接忽略静态文件的话，后台的请求次数就明显增多了。在我们对资源的响应速度有要求的时候，应该使用这种动静分离的策略去解决动、静分<br>离将网站静态资源(HTML, JavaScript;CSS等)与后台应用分开部署，提高用户访问静态代码的速度，降低对后台应用访问。这里将静态资源放到nginx中，动态资源转发到tomcat服务器中，毕竟Tomcat的优势是处理动态请求。</p>
 <h2 id="fastcgi和cgi的区别"><a href="#fastcgi和cgi的区别" class="headerlink" title="fastcgi和cgi的区别"></a>fastcgi和cgi的区别</h2><ul>
 <li>cgi<ul>
@@ -2682,6 +2692,181 @@ STATEMENT：可以禁用一级缓存；
 <li>内存消耗小</li>
 <li>成本低且开源</li>
 <li>稳定性高，宕机的概率小</li>
+</ul>
+<h2 id="Nignx负载均衡的策略"><a href="#Nignx负载均衡的策略" class="headerlink" title="Nignx负载均衡的策略"></a>Nignx负载均衡的策略</h2><p>负载均衡就是代理服务器将接收到的请求均衡的分发到各服务器中</p>
+<p>nginx默认提供了3种</p>
+<ul>
+<li>轮询(默认)<ul>
+<li>每个请求按照时间顺序逐一分配到不同的后端服务器，如果服务端down掉，能自动剔除。</li>
+</ul>
+</li>
+<li>ip哈希<ul>
+<li>每个请求访问ip的hash结果分配，这样每个访客固定一个后端服务器，可以解决session共享问题</li>
+</ul>
+</li>
+<li>权重<ul>
+<li>权重值越大分配到了概率越高，主要用于后端每台服务器性能不均衡的情况下，其次是为在主从的情况下设置不同的权值，达到合理有效的利用主机资源</li>
+</ul>
+</li>
+</ul>
+<h2 id="location的作用是什么"><a href="#location的作用是什么" class="headerlink" title="location的作用是什么"></a>location的作用是什么</h2><p>根据不同用户请求的URL来执行不同的应用，也就是根据用户请求的网站URL进行匹配，匹配成功即进行相关操作</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>= 开头表示精确匹配</td>
+</tr>
+<tr>
+<td>^~</td>
+<td>^<del>开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/20%/aa，可以被规则^</del> /static/ /aa匹配到（注意是空格）</td>
+</tr>
+<tr>
+<td>~</td>
+<td>~ 开头表示区分大小写的正则匹配</td>
+</tr>
+<tr>
+<td>~*</td>
+<td>~* 开头表示不区分大小写的正则匹配</td>
+</tr>
+<tr>
+<td>!~和!~*</td>
+<td>!<del>和!</del>*分别为区分大小写不匹配及不区分大小写不匹配的正则</td>
+</tr>
+<tr>
+<td>/</td>
+<td>用户所使用的代理（一般为浏览器</td>
+</tr>
+</tbody></table>
+<pre><code>  location = / &#123;
+      #规则A
+  &#125;
+  location = /login &#123;
+      #规则B
+  &#125;
+  location ^~ /static/ &#123;
+      #规则C
+  &#125;
+  location ~ \.(gif|jpg|png|js|css)$ &#123;
+      #规则D
+  &#125;
+  location ~* \.png$ &#123;
+      #规则E
+  &#125;
+  location !~ \.xhtml$ &#123;
+      #规则F
+  &#125;
+  location !~* \.xhtml$ &#123;
+      #规则G
+  &#125;
+  location / &#123;
+      #规则H
+  &#125;
+</code></pre>
+<h2 id="nginx如何限流"><a href="#nginx如何限流" class="headerlink" title="nginx如何限流"></a>nginx如何限流</h2><p>Nginx限流就是限制用户请求速度，防止服务器受不了</p>
+<ul>
+<li>正常限制访问频率</li>
+<li>突发限制访问频率</li>
+<li>限制并发连接数</li>
+</ul>
+<p>限流都是基于漏桶流算法：</p>
+<p>​    突发流量会进入到一个漏桶，漏桶会按照定义的速率一次处理请求，如果突发流量过大就会直接溢出，则多余的请求会被拒绝，所以漏桶算法能够控制数据</p>
+<p>【令牌桶算法：存在一个固定大小的令牌桶，会以恒定的速率远远不断产生令牌。如果令牌消耗速率小于生产令牌的速度，令牌就会一直产生直到装满整个令牌桶】</p>
+<h2 id="nginx配置高可用"><a href="#nginx配置高可用" class="headerlink" title="nginx配置高可用"></a>nginx配置高可用</h2><p>使用 keepalived </p>
+<p>在  /etc/keepalived/keepalived.conf 配置文件中进行配置</p>
+<pre><code>global_defs &#123;
+   notification_email &#123;
+      acassen@firewall.loc
+         failover@firewall.loc
+         sysadmin@firewall.loc
+   &#125;
+   notification_email_from Alexandre.Cassen@firewall.loc
+      smtp_server 192.168.130.172
+      smtp_connect_timeout 30
+      router_id LVS_DEVEL
+&#125;
+vrrp_script chk_http_port &#123;
+   script &quot;/usr/local/src/nginx_check.sh&quot;
+      interval 2 #（检测脚本执行的间隔）
+      weight 2
+&#125;
+vrrp_instance VI_1 &#123;
+   state BACKUP # 备份服务器上将 MASTER 改为 BACKUP 
+      interface ens33 //网卡
+      virtual_router_id 51 # 主、备机的 virtual_router_id 必须相同
+      priority 100 # 主、备机取不同的优先级，主机值较大，备份机值较小
+      advert_int 1
+      authentication &#123;
+      auth_type PASS
+         auth_pass 1111
+   &#125;
+   virtual_ipaddress &#123;
+      192.168.17.50 // VRRP H 虚拟地址
+   &#125;
+&#125;
+</code></pre>
+<pre class=" language-shell"><code class="language-shell">#!/bin/bash
+A=`ps -C nginx –no-header |wc -l`
+if [ $A -eq 0 ];then
+    /usr/local/nginx/sbin/nginx
+    sleep 2
+    if [ `ps -C nginx --no-header |wc -l` -eq 0 ];then
+    killall keepalived
+    fi
+fi
+</code></pre>
+<h2 id="Nginx怎么判断IP不可访问"><a href="#Nginx怎么判断IP不可访问" class="headerlink" title="Nginx怎么判断IP不可访问"></a>Nginx怎么判断IP不可访问</h2><pre class=" language-java"><code class="language-java">#如果访问ip地址为 <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">130.172</span><span class="token punctuation">,</span>则返回<span class="token number">403</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>$remote_addr <span class="token operator">=</span> <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">130.172</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token number">403</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Rewirte全局变量是什么"><a href="#Rewirte全局变量是什么" class="headerlink" title="Rewirte全局变量是什么"></a>Rewirte全局变量是什么</h2><pre><code>$args    这个变量等于请求行中的参数，同$query_string
+$content length    请求头中的Content-length字段。
+$content_type    请求头中的Content-Type字段。
+$document_root    当前请求在root指令中指定的值。
+$host    请求主机头字段，否则为服务器名称。
+$http_user_agent    客户端agent信息
+$http_cookie    客户端cookie信息
+$limit_rate    这个变量可以限制连接速率。
+$request_method    客户端请求的动作，通常为GET或POST。
+$remote_addr    客户端的IP地址。
+$remote_port    客户端的端口。
+$remote_user    已经经过Auth Basic Module验证的用户名。
+$request_filename    当前请求的文件路径，由root或alias指令与URI请求生成。
+$scheme    HTTP方法（如http，https）。
+$server_protocol    请求使用的协议，通常是HTTP/1.0或HTTP/1.1。
+$server_addr    服务器地址，在完成一次系统调用后可以确定这个值。
+$server_name    服务器名称。
+$server_port    请求到达服务器的端口号。
+$request_uri    包含请求参数的原始URI，不包含主机名，如”/foo/bar.php?arg=baz”。
+$uri    不带请求参数的当前URI，$uri不包含主机名，如”/foo/bar.html”。
+$document_uri    与$uri相同。
+</code></pre>
+<h2 id="什么是MQ"><a href="#什么是MQ" class="headerlink" title="什么是MQ"></a>什么是MQ</h2><p>MQ就是消息队列，是软件和软件进行通信的中间产品</p>
+<ul>
+<li>异步处理：相比于传统串行、并行，提高了系统吞吐量</li>
+<li>应用解耦：系统间提高消息通信，不用关心其他系统的处理</li>
+<li>流量削峰：可以通过消息队列长度控制请求量；可以缓解短时间的高并发请求</li>
+<li>日志处理：解决大量日志传输</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>系统可用性降低<ul>
+<li>系统运行的好好的，消息队列挂了。</li>
+</ul>
+</li>
+<li>系统复杂性提高<ul>
+<li>加了消息队列，需要考虑很多方面的问题，比如一致性、如何保证消息不被重复消费，以及可靠传输等</li>
+</ul>
+</li>
+<li>一致性问题<ul>
+<li>A系统处理完后返回成功，系统就以为你这个请求成功了，但是要是BCD三个系统那里，BD两个系统写库成功了，结果C系统写库失败了该怎么办</li>
+</ul>
+</li>
 </ul>
 
                 
@@ -3454,7 +3639,7 @@ STATEMENT：可以禁用一级缓存；
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">305.2k</span>&nbsp;字
+                class="white-color">307k</span>&nbsp;字
             
             
             
