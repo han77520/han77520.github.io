@@ -475,14 +475,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    30.5k
+                    30.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    119 分
+                    120 分
                 </div>
                 
 
@@ -1864,34 +1864,6 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="重定向和请求转发的区别"><a href="#重定向和请求转发的区别" class="headerlink" title="重定向和请求转发的区别?"></a>重定向和请求转发的区别?</h2><p>​    请求转发只能将请求转发给同一个Web应用中的其他资源，而重定向不仅可以定向到当前应用程序中的其他资源，也可以重定向到其他站点上的资源。</p>
 <p>​    重定向结束后，浏览器地址栏显示URL会发生改变,由初始的URL地址变成重定向的目标URL.而请求转发过程结束后,浏览器地址栏保持初始的URL地址不变。</p>
 <p>​    转发是发生在服务端的，重定向是发生在客户端的</p>
-<h2 id="IOC-和-DI"><a href="#IOC-和-DI" class="headerlink" title="IOC 和 DI"></a>IOC 和 DI</h2><p>IOC 是控制反转，DI是依赖注入，是对IOC 的诠释</p>
-<p>控制反转就是把对象的调用权交给容器，通过容器来创建对象并管理对象之间的依赖关系。</p>
-<p>依赖注入就是把配置对象的工作交由容器负责，查找资源的逻辑应该从组件的代码中抽取出来，交给容器来完成。</p>
-<p>依赖注入通过setter方法或者构造器来注入，setter注入需要类提供无参构造器</p>
-<h2 id="Sprng自动装配的方式"><a href="#Sprng自动装配的方式" class="headerlink" title="Sprng自动装配的方式"></a>Sprng自动装配的方式</h2><p>byName：根据bean的名字进行自动装配</p>
-<p>byType：根据bean的类型进行自动装配</p>
-<p>constructor：用构造器的参数，如果正好有一个Bean与构造器的参数类型相同则可以自动装配，否则会导致错误。</p>
-<h2 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h2><p>就是在不改变源代码的情况下，在主干功能里面添加新功能，通过CGLIB或者JDK的动态代理来实现</p>
-<h2 id="SpringMVC的原理"><a href="#SpringMVC的原理" class="headerlink" title="SpringMVC的原理"></a>SpringMVC的原理</h2><ul>
-<li>客户端的所有请求都交给前端控制器DispatcherServlet来处理，它会负责调用系统的其他模块来真正处理用户的请求</li>
-<li>DispatcherServlet收到请求后，将根据请求的信息和HandlerMpping找到处理该请求的Handler</li>
-<li>接着通过HandlerAdapter对该处理器进行封装</li>
-<li>HandlerAdapter用同一的接口对各种Handler中的方法进行调用</li>
-<li>Handler完成对用户请求的处理之后会返回一个ModelAndView对象给DispatcherServlet，ModelAndView包含了数据模型以及相应的视图的信息</li>
-<li>ModelAndView的视图是逻辑视图，DispatcherServlet借助于视图解析器ViewResolver完成从逻辑视图到真实视图对象的解析工作。</li>
-<li>得到真正的视图对象后，DispatcherServlet利用视图对象对模型数据进行渲染</li>
-<li>客户端最终得到响应</li>
-</ul>
-<p>‘</p>
-<h2 id="阐述Spring框架中Bean的生命周期"><a href="#阐述Spring框架中Bean的生命周期" class="headerlink" title="阐述Spring框架中Bean的生命周期?"></a>阐述Spring框架中Bean的生命周期?</h2><ul>
-<li>通过构造器创建 bean 实例（无参数构造） </li>
-<li>为 bean 的属性设置值或者对其他 bean 的引用（调用 set 方法）</li>
-<li>把 bean 实例传递 bean 后置处理器的方法 postProcessBeforeInitialization </li>
-<li>调用 bean 的初始化的方法（需要进行配置初始化的方法）</li>
-<li>把 bean 实例传递 bean 后置处理器的方法 postProcessAfterInitialization </li>
-<li>获取创建好的bean实例对象</li>
-<li>当容器关闭时候，调用 bean 的销毁的方法（需要进行配置销毁的方法）</li>
-</ul>
 <h2 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h2><p>​    简单来说就是用同样的对象调用同样的方法但是做了不同的事情。多态性又分为编译时多态性和运行时多态性，方法重载就是编译时多态性，而方法重写就是运行时多态性，运行时多态性就是面向对象的核心，要求必须有方法重写和父类的引用指向子类的对象。</p>
 <h2 id="包装类的缓存"><a href="#包装类的缓存" class="headerlink" title="包装类的缓存"></a>包装类的缓存</h2><p>​    如果整型字面量的值在-128到127之间,那么不会new新的Integer对象，而是直接引用常量池中的Integer对象，所以上面的面试题中f1f2的结果是true,而f3f4的结果是false。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -2909,6 +2881,65 @@ $document_uri    与$uri相同。
 <h2 id="redis事务"><a href="#redis事务" class="headerlink" title="redis事务"></a>redis事务</h2><p>​    事务是一个单独的隔离操作，事务中的所有命令都会序列化、按顺序地执行，事务在执行的过程中，不会被其他客户端发送来的命令请求所打断</p>
 <p>相关命令</p>
 <p>MULTI  EXEC  DISCARD  WATCH</p>
+<h2 id="Spring-Framework"><a href="#Spring-Framework" class="headerlink" title="Spring Framework"></a>Spring Framework</h2><p>​    Spring 是一个轻量级的开源应用框架，旨在降低应用程序开发的复杂度，由于spring的封层框架，用户可以自由选择自己需要的组件。</p>
+<p>Spring 特点 </p>
+<ul>
+<li>方便解耦，简化开发 </li>
+<li>Aop 编程支持 </li>
+<li>方便程序测试 </li>
+<li>方便和其他框架进行整合 </li>
+<li>方便进行事务操作 </li>
+<li>降低 API 开发难度</li>
+</ul>
+<h2 id="IOC-和-DI"><a href="#IOC-和-DI" class="headerlink" title="IOC 和 DI"></a>IOC 和 DI</h2><p>IOC 是控制反转，DI是依赖注入，是对IOC 的诠释</p>
+<p>控制反转就是把对象的调用权交给容器，通过容器来创建对象并管理对象之间的依赖关系。</p>
+<p>依赖注入就是把配置对象的工作交由容器负责，查找资源的逻辑应该从组件的代码中抽取出来，交给容器来完成。</p>
+<p>依赖注入通过setter方法或者构造器来注入，setter注入需要类提供无参构造器</p>
+<h2 id="Spring自动装配的方式"><a href="#Spring自动装配的方式" class="headerlink" title="Spring自动装配的方式"></a>Spring自动装配的方式</h2><p>byName：根据bean的名字进行自动装配</p>
+<p>byType：根据bean的类型进行自动装配</p>
+<p>constructor：用构造器的参数，如果正好有一个Bean与构造器的参数类型相同则可以自动装配，否则会导致错误。</p>
+<h2 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h2><p>就是在不改变源代码的情况下，在主干功能里面添加新功能，通过CGLIB或者JDK的动态代理来实现</p>
+<h2 id="Spring中的IOC容器"><a href="#Spring中的IOC容器" class="headerlink" title="Spring中的IOC容器"></a>Spring中的IOC容器</h2><ul>
+<li>Spring提供IOC容器实现两种方式<ul>
+<li>BeanFactory：IOC容器最基本的实现，是Spring内部的使用接口，不提供开发人员使用<ul>
+<li>特点：加载配置文件的时候不会去创建对象，在获取和使用的时候才去创建</li>
+</ul>
+</li>
+<li>ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能，一般由开发人员进行使用<ul>
+<li>特点：加载配置文件时候就会把在配置文件中的对象进行创建</li>
+<li>主要实现类1：ClassPathXmlApplicationContext，参数中配置文件的路径是类路径下的相对路径</li>
+<li>主要实现类2：FileSystemXmlApplicationContext，参数中配置文件的路径是磁盘中的绝对路径</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>好处：</p>
+<ul>
+<li>最小化应用程序的代码量</li>
+<li>应用解耦</li>
+<li>支持即时的实例化和延迟加载服务</li>
+</ul>
+<h2 id="阐述Spring框架中Bean的生命周期"><a href="#阐述Spring框架中Bean的生命周期" class="headerlink" title="阐述Spring框架中Bean的生命周期?"></a>阐述Spring框架中Bean的生命周期?</h2><ul>
+<li>通过构造器创建 bean 实例（无参数构造） </li>
+<li>为 bean 的属性设置值或者对其他 bean 的引用（调用 set 方法）</li>
+<li>把 bean 实例传递 bean 后置处理器的方法 postProcessBeforeInitialization </li>
+<li>调用 bean 的初始化的方法（需要进行配置初始化的方法）</li>
+<li>把 bean 实例传递 bean 后置处理器的方法 postProcessAfterInitialization </li>
+<li>获取创建好的bean实例对象</li>
+<li>当容器关闭时候，调用 bean 的销毁的方法（需要进行配置销毁的方法）</li>
+</ul>
+<h2 id="SpringMVC的原理"><a href="#SpringMVC的原理" class="headerlink" title="SpringMVC的原理"></a>SpringMVC的原理</h2><ul>
+<li>客户端的所有请求都交给前端控制器DispatcherServlet来处理，它会负责调用系统的其他模块来真正处理用户的请求</li>
+<li>DispatcherServlet收到请求后，将根据请求的信息和HandlerMpping找到处理该请求的Handler</li>
+<li>接着通过HandlerAdapter对该处理器进行封装</li>
+<li>HandlerAdapter用同一的接口对各种Handler中的方法进行调用</li>
+<li>Handler完成对用户请求的处理之后会返回一个ModelAndView对象给DispatcherServlet，ModelAndView包含了数据模型以及相应的视图的信息</li>
+<li>ModelAndView的视图是逻辑视图，DispatcherServlet借助于视图解析器ViewResolver完成从逻辑视图到真实视图对象的解析工作。</li>
+<li>得到真正的视图对象后，DispatcherServlet利用视图对象对模型数据进行渲染</li>
+<li>客户端最终得到响应</li>
+</ul>
+<p>‘</p>
 
                 
             </div>
@@ -3680,7 +3711,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">308.3k</span>&nbsp;字
+                class="white-color">308.7k</span>&nbsp;字
             
             
             
