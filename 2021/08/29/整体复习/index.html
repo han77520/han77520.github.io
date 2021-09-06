@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-05
+                    2021-09-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    29.2k
+                    30.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    114 分
+                    119 分
                 </div>
                 
 
@@ -2868,6 +2868,47 @@ $document_uri    与$uri相同。
 </ul>
 </li>
 </ul>
+<h2 id="RabbitMQ基本概念"><a href="#RabbitMQ基本概念" class="headerlink" title="RabbitMQ基本概念"></a>RabbitMQ基本概念</h2><p><strong>Broker</strong>：接收和分发消息的应用，RabbitMQ Server 就是 Message Broker</p>
+<p><strong>Virtual host</strong>：出于多租户和安全因素设计的，把 AMQP(高级消息队列协议) 的基本组件划分到一个虚拟的分组中，类似于网络中的 namespace 概念。当多个不同的用户使用同一个 RabbitMQ server 提供的服务时，可以划分出多个 vhost，每个用户在自己的 vhost 创建exchange／queue 等</p>
+<p><strong>Connection</strong>：publisher／consumer 和 broker 之间的 TCP 连接</p>
+<p><strong>Channel</strong>：如果每一次访问 RabbitMQ 都建立一个 Connection，在消息量大的时候建立 TCP Connection 的开销将是巨大的，效率也较低。Channel 是在 connection 内部建立的逻辑连接，如果应用程序支持多线程，通常每个 thread 创建单独的 channel 进行通讯，AMQP(高级消息队列协议) method 包含了 channel id 帮助客户端和 message broker 识别 channel，所以 channel 之间是完全隔离的。<strong>Channel 作为轻量级的</strong>，<strong>Connection极大减少了操作系统建立TCP connection的开销</strong> </p>
+<p><strong>Exchange</strong>：message 到达 broker 的第一站，根据分发规则，匹配查询表中的 routing key，分发消息到 queue 中去。常用的类型有：direct (point-to-point), topic (publish-subscribe) and fanout (multicast：多数据传播)</p>
+<p><strong>Queue</strong>：消息最终被送到这里等待 consumer 取走</p>
+<p><strong>Binding</strong>：exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key，Binding 信息被保存到 exchange 中的查询表中，用于 message 的分发依据</p>
+<p><strong>RoutingKey</strong>：路由键</p>
+<ul>
+<li>direct模式根据路由键把消息派发到一个指定队列。</li>
+<li>fanout模式不管路由键，将消息派发给对应的绑定了交换器的所有消息队列。</li>
+<li>topic模式是根据路由键的规则匹配，有选择性的进行广播。</li>
+<li>Routing Key就是路由规则，消息对应的队列。路由键来规定。</li>
+</ul>
+<h2 id="什么是Redis及优缺点"><a href="#什么是Redis及优缺点" class="headerlink" title="什么是Redis及优缺点"></a>什么是Redis及优缺点</h2><p>​    Redis本质上是一个Key-Value类型的内存数据库，整个数据库统统加载到内存中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。</p>
+<p>​    Redis性能是非常出色的，不过最大的魅力是在于Redis支持多种数据结构，此外单个value的最大限制是1GB。而且Redis 速度快，还支持事务。</p>
+<p>​    Redis的主要缺点是数据库容量受到物理内存的限制，不能用做海量数据的高性能读写。</p>
+<h2 id="Redis-和-Memcached-相比有哪些优势"><a href="#Redis-和-Memcached-相比有哪些优势" class="headerlink" title="Redis 和 Memcached 相比有哪些优势"></a>Redis 和 Memcached 相比有哪些优势</h2><p>Memcached  所有的值均是简单的字符串，Redis 支持更丰富的数据类型</p>
+<p>Redis 的速度比 memcache快很多</p>
+<p>Redis 可以持久化数据</p>
+<h2 id="Redis-数据类型"><a href="#Redis-数据类型" class="headerlink" title="Redis 数据类型"></a>Redis 数据类型</h2><p>String、List、Set、ZSet、hashes</p>
+<h2 id="Redis-数据淘汰策略"><a href="#Redis-数据淘汰策略" class="headerlink" title="Redis 数据淘汰策略"></a>Redis 数据淘汰策略</h2><p>根据淘汰策略可以实现Redis 中的数据都是热点数据</p>
+<ul>
+<li>noeviction(默认) ： 对于写请求不再提供服务，直接返回错误，DEL请求和部分特殊请求除外</li>
+<li>allkeys-lru：从所有key中使用LRU(最近最少使用)算法进行淘汰</li>
+<li>volatile-lru：从设置了过期时间的key中使用LRU算法淘汰</li>
+<li>allkeys-random：从所有key中随机淘汰</li>
+<li>volatile-random：从设置了过期时间的key中随机淘汰</li>
+<li>volatile-ttl：在设置了过期时间的key中，根据key 的过期时间进行淘汰，越快过期的越优先淘汰</li>
+</ul>
+<h2 id="为什么Redis-需要把所有数据放到内存中"><a href="#为什么Redis-需要把所有数据放到内存中" class="headerlink" title="为什么Redis 需要把所有数据放到内存中"></a>为什么Redis 需要把所有数据放到内存中</h2><p>Redis 为了达到最快的读写速度，所有将数据都读到内存中，并通过异步的方式将数据写入磁盘</p>
+<p>如果不将数据放在内存中，磁盘  I/O  速度会严重影响Redis 的性能</p>
+<h2 id="Redis-什么情况下会导致整个集群不可用"><a href="#Redis-什么情况下会导致整个集群不可用" class="headerlink" title="Redis 什么情况下会导致整个集群不可用"></a>Redis 什么情况下会导致整个集群不可用</h2><p>​    有 A  B  C 三个节点的集群，在没有复制模型的情况下，如果节点B失败了，那么整个集群就会以为缺少对应范围的卡槽而不可用</p>
+<h2 id="Redis-使用场景"><a href="#Redis-使用场景" class="headerlink" title="Redis 使用场景"></a>Redis 使用场景</h2><h3 id="会话缓存"><a href="#会话缓存" class="headerlink" title="会话缓存"></a>会话缓存</h3><p>是最常用的一种Redis 情景，用Redis 缓存会比其他存储的优势在于 Redis 提供持久化</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>Redis 在内存存储引擎领域 的一大优点是提供list和set操作，这使得Redis 能作为一个很好的消息队列平台来使用</p>
+<h3 id="排行榜-计数器"><a href="#排行榜-计数器" class="headerlink" title="排行榜/计数器"></a>排行榜/计数器</h3><p>Redis 在内存中有对数字进行递增或递减的操作实现，还有集合和有序集合也使这些操作更加简单</p>
+<h2 id="Redis-哈希槽"><a href="#Redis-哈希槽" class="headerlink" title="Redis 哈希槽"></a>Redis 哈希槽</h2><p>​    Redis 集群有16384个哈希槽，每个key通过CRC16校验后对 16384取模来决定放置哪个槽，集群的每个节点负责一部分hash槽。</p>
+<h3 id="Redis-主从复制"><a href="#Redis-主从复制" class="headerlink" title="Redis 主从复制"></a>Redis 主从复制</h3><p>​    为了使部分节点失败或者大部分节点无法通信的情况下集群仍然可用，所以集群使用了主从复制模型，每个节点都会有N-1个复制品</p>
+<h2 id="redis事务"><a href="#redis事务" class="headerlink" title="redis事务"></a>redis事务</h2><p>​    事务是一个单独的隔离操作，事务中的所有命令都会序列化、按顺序地执行，事务在执行的过程中，不会被其他客户端发送来的命令请求所打断</p>
+<p>相关命令</p>
+<p>MULTI  EXEC  DISCARD  WATCH</p>
 
                 
             </div>
@@ -3639,7 +3680,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">307k</span>&nbsp;字
+                class="white-color">308.3k</span>&nbsp;字
             
             
             
