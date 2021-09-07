@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-06
+                    2021-09-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    31.3k
+                    32k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    121 分
+                    124 分
                 </div>
                 
 
@@ -2891,11 +2891,12 @@ $document_uri    与$uri相同。
 <li>方便进行事务操作 </li>
 <li>降低 API 开发难度</li>
 </ul>
-<h2 id="IOC-和-DI"><a href="#IOC-和-DI" class="headerlink" title="IOC 和 DI"></a>IOC 和 DI</h2><p>IOC 是控制反转(原理是工厂模式 + 反射机制)，DI是依赖注入，是对IOC 的诠释</p>
+<h2 id="IOC-和-DI"><a href="#IOC-和-DI" class="headerlink" title="IOC 和 DI"></a>IOC 和 DI</h2><p>IOC 是控制反转(原理是工厂模式 + 反射机制)，DI是依赖注入，是IOC 的一方面</p>
 <p>控制反转就是把对象的调用权交给容器，通过容器来创建对象并管理对象之间的依赖关系。</p>
-<p>依赖注入就是把配置对象的工作交由容器负责，查找资源的逻辑应该从组件的代码中抽取出来，交给容器来完成。</p>
-<p>依赖注入<strong>通过setter方法或者构造器来注入</strong>，setter注入需要类提供无参构造器</p>
-<h2 id="Spring自动装配的方式"><a href="#Spring自动装配的方式" class="headerlink" title="Spring自动装配的方式"></a>Spring自动装配的方式</h2><p>Spring装配：就是bean在Spring容器中组合在一起时，就被称为装配</p>
+<p>依赖注入就是把配置对象的工作交由容器负责。</p>
+<p>依赖注入<strong>通过setter方法或者构造器来注入</strong>，setter注入前提是需要类用无参构造器创建对象</p>
+<h2 id="Spring自动装配的方式"><a href="#Spring自动装配的方式" class="headerlink" title="Spring自动装配的方式"></a>Spring自动装配的方式</h2><p>Spring装配：就是bean在Spring容器中组合在一起时，就被称为装配，前提是容器需要知道bean的依赖关系</p>
+<p>什么是bean的自动装配：容器能自动处理bean之间的协作</p>
 <p>byName：根据bean的名字进行自动装配</p>
 <p>byType：根据bean的类型进行自动装配</p>
 <p>constructor：用构造器的参数，如果正好有一个Bean与构造器的参数类型相同则可以自动装配，否则会导致错误。</p>
@@ -2926,12 +2927,24 @@ $document_uri    与$uri相同。
 <p>由IOC容器实例化，配置，装配和管理。</p>
 <h2 id="阐述Spring框架中Bean的生命周期"><a href="#阐述Spring框架中Bean的生命周期" class="headerlink" title="阐述Spring框架中Bean的生命周期?"></a>阐述Spring框架中Bean的生命周期?</h2><ul>
 <li>通过构造器创建 bean 实例（无参数构造） </li>
+<li>调用set方法设置属性</li>
 <li>把 bean 实例传递 bean 后置处理器的方法 postProcessBeforeInitialization </li>
 <li>调用 bean 的初始化的方法（需要进行配置初始化的方法）</li>
 <li>把 bean 实例传递 bean 后置处理器的方法 postProcessAfterInitialization </li>
 <li>获取创建好的bean实例对象</li>
 <li>当容器关闭时候，调用 bean 的销毁的方法（需要进行配置销毁的方法）</li>
 </ul>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--
+    init-method属性:执行初始化方法
+   destroy-method属性：执行销毁方法
+--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>orders<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.spring5.bean.Orders<span class="token punctuation">"</span></span> <span class="token attr-name">init-method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>initMethod<span class="token punctuation">"</span></span> <span class="token attr-name">destroy-method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>destroyMethod<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>oName<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>手机<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!--配置后置处理器--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myBeanPost<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.spring5.bean.MyBeanPost<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+</code></pre>
 <h2 id="Spirng支持的bean-scope"><a href="#Spirng支持的bean-scope" class="headerlink" title="Spirng支持的bean scope"></a>Spirng支持的bean scope</h2><ul>
 <li>Singleton - 每个Spring IOC 容器仅有一个单实例</li>
 <li>Prototype - 每次请求都会产生一个新的实例</li>
@@ -2943,15 +2956,115 @@ $document_uri    与$uri相同。
 <li>声明式事务：事务管理与业务代码分离，仅使用注解或基于XML的配置来管理事务</li>
 </ul>
 <h2 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h2><p>就是在不改变源代码的情况下，在主干功能里面添加新功能，通过CGLIB或者JDK的动态代理来实现</p>
-<h2 id="什么是Aspect"><a href="#什么是Aspect" class="headerlink" title="什么是Aspect"></a>什么是Aspect</h2><p>​     Aspect 由 切入点和通知组成，既包含了横切逻辑的定义，也包括了连接点的定义，AOP将切面定义的横切逻辑编织到切面所指定的连接点中。</p>
+<h2 id="什么是Aspect"><a href="#什么是Aspect" class="headerlink" title="什么是Aspect"></a>什么是Aspect</h2><p>​     Aspect 由 切入点和通知组成，既包含了横切逻辑的定义，也包括了切入点的定义，AOP将切面定义的横切逻辑编织到切面所指定的连接点中。</p>
 <h2 id="什么是通知"><a href="#什么是通知" class="headerlink" title="什么是通知"></a>什么是通知</h2><p>特定切入点处的切面所采取的动作就是通知(advice)。</p>
 <ul>
 <li>before：在切入点方法之前执行，使用@Before注解</li>
+<li>Aroud：在切入点方法之前和之后执行，使用@Around注解，必须在代码内指明要通知的方法</li>
+<li>After(finally)：在切入点方法之后执行，无论切入点方法正常还是异常，使用@After注解</li>
 <li>After Returning：在切入点方法正常执行后执行，使用 @After Returning注解</li>
 <li>After Throwing：仅在切入点方法中抛出异常退出时执行，使用 @After Throwing注解</li>
-<li>After(finally)：在切入点方法之后执行，无论切入点方法正常还是异常，使用@After注解</li>
-<li>Aroud：在切入点方法之前和之后执行，使用@Around注解</li>
 </ul>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ *  环绕通知
+ * @param proceedingJoinPoint
+ * @throws Throwable
+ */</span>
+<span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">around</span><span class="token punctuation">(</span>ProceedingJoinPoint proceedingJoinPoint<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"环绕之前........."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    proceedingJoinPoint<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//被增强的方法执行,如果没有的话，@Before是执行不了的</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"环绕之后........."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Spring由哪些模块组成"><a href="#Spring由哪些模块组成" class="headerlink" title="Spring由哪些模块组成"></a>Spring由哪些模块组成</h2><ul>
+<li>Core module<ul>
+<li>Core模块是Spring的核心类库，Spring的所有功能都依赖于该类库，Core主要实现IOC功能，Spring的所有功能都是借助IOC实现的。</li>
+</ul>
+</li>
+<li>Context module<ul>
+<li>这个模块扩展了BeanFactory的概念，增加了消息、事件传播以及验证的支持</li>
+</ul>
+</li>
+<li>AOP module<ul>
+<li>AOP模块是Spring的AOP库，提供了AOP（拦截器）机制，并提供常用的拦截器</li>
+</ul>
+</li>
+<li>DAO module<ul>
+<li>对传统的JDBC进行了抽象，还提供了声明性事务。</li>
+</ul>
+</li>
+<li>ORM module<ul>
+<li>提供对常用的ORM框架的管理和辅助支持</li>
+</ul>
+</li>
+<li>Web module<ul>
+<li>提供了WEB开发的基础集成特性</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是内部Bean"><a href="#什么是内部Bean" class="headerlink" title="什么是内部Bean"></a>什么是内部Bean</h2><p>​    当一个bean仅被用作另一个bean属性时，就被声明为一个内部bean，通常是匿名的，Scope 一般是 prototype</p>
+<h2 id="注入java集合"><a href="#注入java集合" class="headerlink" title="注入java集合"></a>注入java集合</h2><pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>集合类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"stu"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.whw.spring5.collectiontype.Student"</span><span class="token operator">></span>
+
+   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>数组类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"courses"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>array<span class="token operator">></span>
+         <span class="token operator">&lt;</span>value<span class="token operator">></span>java课程<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
+         <span class="token operator">&lt;</span>value<span class="token operator">></span>数据结构<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
+         <span class="token operator">&lt;</span>value<span class="token operator">></span>数据库<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>array<span class="token operator">></span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+
+   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>List类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"list"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>list<span class="token operator">></span>
+         <span class="token operator">&lt;</span>value<span class="token operator">></span>王瀚文<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
+         <span class="token operator">&lt;</span>value<span class="token operator">></span>瀚文<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>list<span class="token operator">></span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+
+   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>maps类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"maps"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>map<span class="token operator">></span>
+         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"JAVA"</span> value<span class="token operator">=</span><span class="token string">"java"</span><span class="token operator">/</span><span class="token operator">></span>
+         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"PHP"</span> value<span class="token operator">=</span><span class="token string">"php"</span><span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>map<span class="token operator">></span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+
+   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>sets<span class="token operator">--</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"sets"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>set<span class="token operator">></span>
+         <span class="token operator">&lt;</span>value<span class="token operator">></span>MySQL<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
+         <span class="token operator">&lt;</span>value<span class="token operator">></span>Redis<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>set<span class="token operator">></span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+
+   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>注入List集合类型，值是对象<span class="token operator">--</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"courseList"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>list<span class="token operator">></span>
+         <span class="token operator">&lt;</span>ref bean<span class="token operator">=</span><span class="token string">"course1"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>ref<span class="token operator">></span>
+         <span class="token operator">&lt;</span>ref bean<span class="token operator">=</span><span class="token string">"course2"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>ref<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>list<span class="token operator">></span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+
+   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>注入Map集合类型，值是对象<span class="token operator">--</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"courseMaps"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>map<span class="token operator">></span>
+         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"1"</span> value<span class="token operator">-</span>ref<span class="token operator">=</span><span class="token string">"course1"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>entry<span class="token operator">></span>
+         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"2"</span> value<span class="token operator">-</span>ref<span class="token operator">=</span><span class="token string">"course2"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>entry<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>map<span class="token operator">></span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>创建多个course对象<span class="token operator">--</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"course1"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.whw.spring5.collectiontype.Course"</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cName"</span> value<span class="token operator">=</span><span class="token string">"Spring5框架"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
+<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"course2"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.whw.spring5.collectiontype.Course"</span><span class="token operator">></span>
+   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cName"</span> value<span class="token operator">=</span><span class="token string">"MyBatis框架"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
+</code></pre>
 <h2 id="SpringMVC的原理"><a href="#SpringMVC的原理" class="headerlink" title="SpringMVC的原理"></a>SpringMVC的原理</h2><ul>
 <li>客户端的所有请求都交给前端控制器DispatcherServlet来处理，它会负责调用系统的其他模块来真正处理用户的请求</li>
 <li>DispatcherServlet收到请求后，将根据请求的信息和HandlerMpping找到处理该请求的Handler，最后以HandlerExecutionChain对象的形式返回</li>
@@ -2963,6 +3076,7 @@ $document_uri    与$uri相同。
 <li>客户端最终得到响应</li>
 </ul>
 <p>‘</p>
+<h2 id="Spring对DAO的支持"><a href="#Spring对DAO的支持" class="headerlink" title="Spring对DAO的支持"></a>Spring对DAO的支持</h2><p>Spring面向DAO指定了一个通用的异常体系，屏蔽具体持久化技术之间的差异，使业务层和具体的持久化技术实现解耦。</p>
 
                 
             </div>
@@ -3734,7 +3848,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">309.1k</span>&nbsp;字
+                class="white-color">309.9k</span>&nbsp;字
             
             
             

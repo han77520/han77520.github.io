@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-06
+                    2021-09-07
                 </div>
                 
 
@@ -1258,15 +1258,23 @@ http://www.springframework.org/schema/context/spring-context.xsd
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="AOP术语"><a href="#AOP术语" class="headerlink" title="AOP术语"></a>AOP术语</h3><ul>
-<li>连接点<ul>
+<li><p>Aspect：切面</p>
+<ul>
+<li>在Spring中意为所有通知方法所在的类</li>
+</ul>
+</li>
+<li><p>连接点</p>
+<ul>
 <li>类里面可以被切入的方法，就被称作连接点</li>
 </ul>
 </li>
-<li>切入点(JoinPoint)<ul>
+<li><p>切入点(JoinPoint)</p>
+<ul>
 <li>实际被增强的方法就是切入点</li>
 </ul>
 </li>
-<li>通知(advice)<ul>
+<li><p>通知(advice)</p>
+<ul>
 <li>除了方法本身以外，又新增的逻辑</li>
 <li>通知的类型<ul>
 <li>前置通知，在方法前面新增的逻辑</li>
@@ -1278,8 +1286,9 @@ http://www.springframework.org/schema/context/spring-context.xsd
 </li>
 </ul>
 </li>
-<li>切面<ul>
-<li>切面是一个动作，就是把增强的逻辑应用到切入点的过程</li>
+<li><p>织入</p>
+<ul>
+<li>织入是一个动作，就是把增强的逻辑应用到切入点的过程</li>
 </ul>
 </li>
 </ul>
@@ -1466,6 +1475,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>config</span><span class="token punctuation">></span></span>
 </code></pre>
+<p>【补充：自调用通知方法不执行，私有方法通知不执行。】</p>
 <h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2><h3 id="描述-3"><a href="#描述-3" class="headerlink" title="描述"></a>描述</h3><p>Spring 框架对 JDBC 进行封装，使用 JdbcTemplate 方便实现对数据库操作</p>
 <h3 id="实现增删改查"><a href="#实现增删改查" class="headerlink" title="实现增删改查"></a>实现增删改查</h3><p>xml文件的配置</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
@@ -3058,7 +3068,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">309.1k</span>&nbsp;字
+                class="white-color">309.9k</span>&nbsp;字
             
             
             
