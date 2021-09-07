@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-05
+                    2021-09-06
                 </div>
                 
 
@@ -1262,11 +1262,11 @@ http://www.springframework.org/schema/context/spring-context.xsd
 <li>类里面可以被切入的方法，就被称作连接点</li>
 </ul>
 </li>
-<li>切入点<ul>
+<li>切入点(JoinPoint)<ul>
 <li>实际被增强的方法就是切入点</li>
 </ul>
 </li>
-<li>通知(增强)<ul>
+<li>通知(advice)<ul>
 <li>除了方法本身以外，又新增的逻辑</li>
 <li>通知的类型<ul>
 <li>前置通知，在方法前面新增的逻辑</li>
@@ -1350,14 +1350,14 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonProxy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserProxy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
 </code></pre>
 <ul>
 <li>在增强类上面添加注解 @Aspect</li>
 </ul>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token annotation punctuation">@Aspect</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonProxy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserProxy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
 </code></pre>
 <ul>
 <li>在 spring 配置文件中，开启 AspectJ  生成代理对象</li>
@@ -3058,7 +3058,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">308.7k</span>&nbsp;字
+                class="white-color">309.1k</span>&nbsp;字
             
             
             
