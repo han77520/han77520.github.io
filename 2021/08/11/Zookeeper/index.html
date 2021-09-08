@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-15
+                    2021-09-08
                 </div>
                 
 
@@ -562,7 +562,7 @@
 </li>
 <li><p>解压到指定目录</p>
 <ul>
-<li> tar -zxvf apache-zookeeper-3.5.7-bin.tar.gz -C /opt/module/</li>
+<li> tar -zxvf apache-zookeeper-3.5.7-bin.tar.gz  -C  /opt/module/</li>
 </ul>
 </li>
 <li><p>修改名称</p>
@@ -646,7 +646,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="第3章-Zookeeper集群操作"><a href="#第3章-Zookeeper集群操作" class="headerlink" title="第3章 Zookeeper集群操作"></a>第<em>3</em>章 Zookeeper集群操作</h2><h3 id="3-1-集群操作"><a href="#3-1-集群操作" class="headerlink" title="3.1 集群操作"></a>3.1 集群操作</h3><p>在 hadoop102、hadoop103 和 hadoop104 三个节点上都部署 Zookeeper。</p>
+<h2 id="第三章-Zookeeper集群操作"><a href="#第三章-Zookeeper集群操作" class="headerlink" title="第三章 Zookeeper集群操作"></a>第三章 Zookeeper集群操作</h2><h3 id="3-1-集群操作"><a href="#3-1-集群操作" class="headerlink" title="3.1 集群操作"></a>3.1 集群操作</h3><p>在 hadoop102、hadoop103 和 hadoop104 三个节点上都部署 Zookeeper。</p>
 <ul>
 <li><p>解压安装 步骤见上</p>
 </li>
@@ -926,8 +926,7 @@ esac
 <li>临时目录节点：客户端与Zookeeper断开连接后，该节点被删除</li>
 <li>临时顺序编号目录节点：客户端与 Zookeeper 断开连接后 ，该节点被删除 ，只是Zookeeper给该节点名称进行顺序编号。</li>
 </ul>
-<p>【创建znode时设置顺序标识，znode名称后会附加一个值，这个值(顺序号)是一个单调递增的计数器，由父节点维护，</p>
-<p>   <strong>在分布式系统中，顺序号可以被用于为所有的事件进行全局排序，这样客户端可以通过顺序号推断事件的顺序</strong>】</p>
+<p>【创建znode时设置顺序标识，znode名称后会附加一个值，这个值(顺序号)是一个单调递增的计数器，由父节点维护，<strong>在分布式系统中，顺序号可以被用于为所有的事件进行全局排序，这样客户端可以通过顺序号推断事件的顺序</strong>】</p>
 <ul>
 <li>create   /sanguo   “diaochan”<ul>
 <li>创建 sanguo  节点，值为 diaochan</li>
@@ -1543,7 +1542,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </ul>
 </li>
 </ul>
-<h3 id="6-2-生成集群安装对少zookeeper合适"><a href="#6-2-生成集群安装对少zookeeper合适" class="headerlink" title="6.2 生成集群安装对少zookeeper合适"></a>6.2 生成集群安装对少zookeeper合适</h3><p>安装奇数台。</p>
+<h3 id="6-2-生成集群安装多少zookeeper合适"><a href="#6-2-生成集群安装多少zookeeper合适" class="headerlink" title="6.2 生成集群安装多少zookeeper合适"></a>6.2 生成集群安装多少zookeeper合适</h3><p>安装奇数台。</p>
 <ul>
 <li>10 台服务器：3 台 zk； </li>
 <li>20 台服务器：5 台 zk； </li>
@@ -2320,7 +2319,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">309.9k</span>&nbsp;字
+                class="white-color">312.9k</span>&nbsp;字
             
             
             

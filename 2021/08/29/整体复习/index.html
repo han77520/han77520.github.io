@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-07
+                    2021-09-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    32k
+                    35k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    124 分
+                    135 分
                 </div>
                 
 
@@ -3065,18 +3065,167 @@ $document_uri    与$uri相同。
    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cName"</span> value<span class="token operator">=</span><span class="token string">"MyBatis框架"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
 </code></pre>
+<h2 id="Spring对DAO的支持"><a href="#Spring对DAO的支持" class="headerlink" title="Spring对DAO的支持"></a>Spring对DAO的支持</h2><p>Spring面向DAO屏蔽具体持久化技术之间的差异，使业务层和具体的持久化技术实现解耦。</p>
+<h2 id="什么是Spring-MVC"><a href="#什么是Spring-MVC" class="headerlink" title="什么是Spring MVC"></a>什么是Spring MVC</h2><p>​    Spring MVC是一个基于Java实现的轻量级Web框架，通过把模型-视图-控制器分离，将web层进行解耦，把复杂的web应用分成逻辑清晰的几部分，简化开发，减少出错。</p>
+<p>优点：</p>
+<ul>
+<li>支持各种视图技术</li>
+<li>与spring框架集成</li>
+<li>把一整部分分成小部分分开处理</li>
+</ul>
+<p>Spring MVC的组件</p>
+<ul>
+<li>前端控制器：DispatcherServlet<ul>
+<li>作用：接收请求，响应结果，相当于转发器，减少了其他部分之间的耦合度</li>
+</ul>
+</li>
+<li>处理器映射器 HandlerMapping<ul>
+<li>作用：根据请求的URL来查找Handler</li>
+</ul>
+</li>
+<li>处理器适配器 HandlerAdapter<ul>
+<li>作用：执行Handler</li>
+</ul>
+</li>
+<li>处理器 Handler<ul>
+<li>也就是 controller层</li>
+</ul>
+</li>
+<li>视图解析器 ViewResolver<ul>
+<li>作用：进行视图解析，根据视图逻辑名解析为真正的视图</li>
+</ul>
+</li>
+</ul>
 <h2 id="SpringMVC的原理"><a href="#SpringMVC的原理" class="headerlink" title="SpringMVC的原理"></a>SpringMVC的原理</h2><ul>
 <li>客户端的所有请求都交给前端控制器DispatcherServlet来处理，它会负责调用系统的其他模块来真正处理用户的请求</li>
-<li>DispatcherServlet收到请求后，将根据请求的信息和HandlerMpping找到处理该请求的Handler，最后以HandlerExecutionChain对象的形式返回</li>
-<li>DispatcherServlet根据获得的Handler，选择合适的HandlerAdapter</li>
-<li>提取Request中的模型数据，开始执行Controller</li>
+<li>DispatcherServlet收到请求后，将根据请求的信息和HandlerMpping找到处理该请求的Handler，最后以HandlerExecutionChain对象的形式返回给 DispatcherServlet</li>
+<li>DispatcherServlet根据获得的Handler，选择合适的 HandlerAdapter</li>
+<li>HandlerAdapter 调用具体的处理器 Handler</li>
 <li>Controller完成对用户请求的处理之后会返回一个ModelAndView对象给DispatcherServlet，ModelAndView包含了数据模型以及相应的视图的信息</li>
 <li>ModelAndView的视图是逻辑视图，DispatcherServlet借助于视图解析器ViewResolver完成从逻辑视图到真实视图对象的解析工作。</li>
-<li>得到真正的视图对象后，DispatcherServlet利用视图对象对模型数据进行渲染</li>
-<li>客户端最终得到响应</li>
+<li>得到真正的视图View后，DispatcherServlet利用视图对象对模型数据进行渲染</li>
+<li>DispatcherServlet响应用户</li>
 </ul>
-<p>‘</p>
-<h2 id="Spring对DAO的支持"><a href="#Spring对DAO的支持" class="headerlink" title="Spring对DAO的支持"></a>Spring对DAO的支持</h2><p>Spring面向DAO指定了一个通用的异常体系，屏蔽具体持久化技术之间的差异，使业务层和具体的持久化技术实现解耦。</p>
+<h2 id="MVC设计模式的好处"><a href="#MVC设计模式的好处" class="headerlink" title="MVC设计模式的好处"></a>MVC设计模式的好处</h2><p>​    mvc是一种设计模式，模型 model，视图 View，控制器 Controller。三层架构的设计模式用于实现前端页面的展现和后端业务数据处理的分离。</p>
+<h2 id="注解的原理"><a href="#注解的原理" class="headerlink" title="注解的原理"></a>注解的原理</h2><p>​    注解本质是一个继承了 Annotation 的特殊接口，具体实现类是 Java运行时生成的动态代理类，通过反射获取注解时，返回的是 java运行时生成的动态代理对象，通过代理对象调用注解中的方法，会最终调用 AnnotationInvocationHandler的invoke方法，该方法会从 memberValues这个map中索引出对应的值(键是我们注解属性名称，值就是该属性当初被赋上的值。)，而memberValues的来源是java常量池</p>
+<h2 id="Controller的作用"><a href="#Controller的作用" class="headerlink" title="@Controller的作用"></a>@Controller的作用</h2><p>​    Controller类负责处理 DispatcherServlet分发的请求，把用户请求的数据经过业务逻辑处理之后封装成一个Model，然后返回前端控制器。</p>
+<p>​    用 @Controller 注解标注的类即为 Controller对象，处理器将会扫描使用了@Controller的类的方法，并检测方法是否使用了@RequestMapping注解，只有使用了@RequestMapping之后才是真正请求的处理器，@Controller只是定义了一个控制类。</p>
+<h2 id="解决POST请求参数的乱码问题"><a href="#解决POST请求参数的乱码问题" class="headerlink" title="解决POST请求参数的乱码问题"></a>解决POST请求参数的乱码问题</h2><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--配置springMVC的编码过滤器--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>CharacterEncodingFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">></span></span>org.springframework.w eb.filter.CharacterEncodingFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>encoding<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>forceResponseEncoding<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-mapping</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>CharacterEncodingFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-mapping</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="SpringMVC的异常处理"><a href="#SpringMVC的异常处理" class="headerlink" title="SpringMVC的异常处理"></a>SpringMVC的异常处理</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ControllerAdvice</span> <span class="token comment" spellcheck="true">//将当前类标识为异常处理的组件</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExceptionController</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//@ExceptionHandler用于设置所标识方法处理的异常</span>
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span>ArithmeticException<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//ex表示当前请求处理中出现的异常对象</span>
+    <span class="token keyword">public</span> String <span class="token function">handleArithmeticException</span><span class="token punctuation">(</span>Exception ex<span class="token punctuation">,</span> Model model<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        model<span class="token punctuation">.</span><span class="token function">addAttribute</span><span class="token punctuation">(</span><span class="token string">"ex"</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token string">"error"</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="SpringMVC拦截器"><a href="#SpringMVC拦截器" class="headerlink" title="SpringMVC拦截器"></a>SpringMVC拦截器</h2><p>preHandle：控制器方法执行之前执行preHandle()，其boolean类型的返回值表示是否拦截或放行，返回true为放行，即调用控制器方法；返回false表示拦截，即不调用控制器方法</p>
+<p>postHandle：控制器方法执行之后执行postHandle()</p>
+<p>afterComplation：处理完视图和模型数据，渲染视图完毕之后执行afterComplation()</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FirstInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">HandlerInterceptor</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token annotation punctuation">@Override</span>
+   <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">preHandle</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">,</span> Object handler<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//返回false表示拦截，返回ture表示放行</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+   <span class="token annotation punctuation">@Override</span>
+   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postHandle</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">,</span> Object handler<span class="token punctuation">,</span> ModelAndView modelAndView<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+   <span class="token annotation punctuation">@Override</span>
+   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterCompletion</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">,</span> Object handler<span class="token punctuation">,</span> Exception ex<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>【<strong>必须得在xml中配置才可以使用</strong>】</p>
+<h2 id="什么是ZooKeeper"><a href="#什么是ZooKeeper" class="headerlink" title="什么是ZooKeeper"></a>什么是ZooKeeper</h2><p>​    ZooKeeper 是一个分布式应用程序协调服务，它是集群的管理者，监视这集群中各个节点的状态，根据节点提交的反馈来执行下一步操作，最终将高效功能稳定的系统提供给用户。</p>
+<p>​    客户端的读请求可以被集群中的任意一台机器处理，对于写请求，会先给leader，leader写完之后在通知follower，随着集群集群的增多，读请求的吞吐量会提高但是写请求的吞吐量会下降</p>
+<h2 id="ZooKeeper-提供了两个东西"><a href="#ZooKeeper-提供了两个东西" class="headerlink" title="ZooKeeper 提供了两个东西"></a>ZooKeeper 提供了两个东西</h2><h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>ZooKeeper 提供了一个多层级的节点 znode，文件系统中只有文件节点可以存放数据。ZooKeeper 为了保证高吞吐和低延迟，在内存中维护了这个数组的目录结构，这也使得 ZooKeeper  不能存放大量的数据，每个节点的数据上限为 1MB。</p>
+<p>​    四种类型的 znode</p>
+<ul>
+<li>PERSISTENT：持久化目录节点，客户端 和 ZooKeeper 断开连接后，该节点依旧存在。</li>
+<li>PERSISTENT_SEQUENTIAL：持久化顺序编号目录节点，客户端 和 ZooKeeper 断开连接后，该节点依旧存在。ZooKeeper 给该节点名称进行顺便编号</li>
+<li>EPHEMERAL：临时目录结点，客户端 和 ZooKeeper 断开连接后，该节点被删除。</li>
+<li>EPHEMERAL_SEQUENTIAL：临时顺序编号目录节点，客户端 和 ZooKeeper 断开连接后，该节点被删除。ZooKeeper 给该节点名称进行顺便编号</li>
+</ul>
+<h3 id="通知机制"><a href="#通知机制" class="headerlink" title="通知机制"></a>通知机制</h3><p>​    client端会对某个znode建立一个 watcher事件，当 znode发生变化时，这些 client会收到 ZooKeeper 的通知，然后 client可以根据 znode变化来做出业务上的改变等。</p>
+<h2 id="ZooKeeper-做了什么"><a href="#ZooKeeper-做了什么" class="headerlink" title="ZooKeeper 做了什么"></a>ZooKeeper 做了什么</h2><h3 id="命名服务"><a href="#命名服务" class="headerlink" title="命名服务"></a>命名服务</h3><p>​    通过指定的名字来获取资源或者服务的地址，利用 ZooKeeper  创建一个全局的路径，这个路径作为一个名字指向集群提供服务的地址。</p>
+<h3 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h3><p>​    程序部署在不同的机器上，将程序的配置信息放在 zk的 znode下，当有znode发生改变时，可以通过改变 zk 中某个目录节点的内容，利用 watcher通知给各个客户端</p>
+<h3 id="集群管理"><a href="#集群管理" class="headerlink" title="集群管理"></a>集群管理</h3><p>两方面</p>
+<ul>
+<li><p>是否有机器加入和退出</p>
+</li>
+<li><p>选举master</p>
+</li>
+</ul>
+<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><p>锁服务分两类</p>
+<h4 id="保持独占"><a href="#保持独占" class="headerlink" title="保持独占"></a>保持独占</h4><p>​    将 ZooKeeper 上的一个znode看做是一把锁，通过create的方式来实现，所有客户端都去创建 /distribute_lock 节点，最终成功创建的那个客户也即用于了这把锁，用完删除掉自己创建的结点就可以释放锁</p>
+<h4 id="控制时序"><a href="#控制时序" class="headerlink" title="控制时序"></a>控制时序</h4><p>​    /distribute_lock已经预先存在，所有客户端在它下面创建临时顺序编号目录节点，序号最小的获得锁，用完删除</p>
+<p>==获得分布式锁流程==</p>
+<p>​    在获取分布式锁的时候在locker节点下创建临时顺序节点，释放锁的时候删除该临时节点。</p>
+<p>​    接着调用 getChildren(“locker”) 来获取 locker 下面的所有节点，客户端获取到所有的子节点 之后，如果发现自己创建的结点并非 locker 所有子节点中最小的，说明自己还没有获取到锁，如果发现自己创建的结点在所有创建的子节点中序号最小，那么就认为获取到了锁。此时客户端需要找到比自己小一号的那个节点，对其注册事件监听器，当这个被关注的节点删除后，客户点的watcher会收到通知，此时再次判断自己创建的节点是否是序号最小的，如果是则获取锁，不是就接着重复上述步骤，</p>
+<h3 id="队列管理"><a href="#队列管理" class="headerlink" title="队列管理"></a>队列管理</h3><p>两种类型队列</p>
+<ul>
+<li>同步队列，当一个队列的成员都聚齐时，这个队列才可用，否则一直等待所有成员到达<ul>
+<li>实现方法：在约定目录下创建临时节点，监听节点数目是否是要求数目</li>
+</ul>
+</li>
+<li>队列按照 FIFO 方式进行入队和出队操作<ul>
+<li>实现方法： 和分布式锁服务中的控制时序场景一致，入列有编号，出列按编号。在特定的目录下创建PERSISENT_SEQUENTIAL节点，创建成功时Watcher通知等待的队列，队列删除序号最小的节点用于消费，此场景下 Zookeeper 的 zonde用于消息存储，znode存储的数据就是消息队列中的消息内容，按顺序取出就行，由于创建的结点是持久化的，所以不必担心队列消费的丢失问题</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h2><p>ZooKeeper 要在所有机器之间做数据复制，有以下好处</p>
+<ul>
+<li>容错：一个节点出错，不至于让整个系统停止工作，别的结点可以接管它的工作；</li>
+<li>提高系统的扩展能力：把负载分布在多个节点上，或者增加节点来提高系统的负载能力</li>
+</ul>
+<p>​    ZooKeeper 采用的方式是写任意，也就是对数据的修改可以提交给任意的结点。通过增加机器，它的读吞吐能力和响应能力扩展性非常好。而写的吞吐量肯定下降(这也是它建立observer的原因)，而响应能力是取决于具体的实现方式，是延迟复制的保持最终一致性，还是立即复制的快速响应。</p>
+<h2 id="ZooKeeper-工作原理"><a href="#ZooKeeper-工作原理" class="headerlink" title="ZooKeeper 工作原理"></a>ZooKeeper 工作原理</h2><p>​    ZooKeeper 的核心是原子广播，这个机制保证了各个server之间的同步，实现这个机制的协议叫做Zab协议。Zab协议有两种模式，**恢复模式(选主)<strong>、</strong>广播模式(同步)**，当服启动或者在领导者崩溃之后，Zab就进入了恢复模式，当领导者选出来且大多数Server完成了和Leader的状态同步以后，恢复模式就结束了，状态同步保证了leader和Server具有相同的系统状态。</p>
+<h2 id="恢复-选主-模式"><a href="#恢复-选主-模式" class="headerlink" title="恢复(选主)模式"></a>恢复(选主)模式</h2><p>有两种</p>
+<h3 id="basic-paxos"><a href="#basic-paxos" class="headerlink" title="basic paxos"></a>basic paxos</h3><ul>
+<li>选举线程由发现leader不能用的server发起选举的线程担任，主要是对投票结果进行统计，并选出推荐的Server</li>
+<li>选举线程首先向所有Server发起一次询问</li>
+<li>选举线程收到恢复后，获取对方的id，并存储到当前询问对象列表中，最后获取对方提议的leader相关信息，并将这些信息存储到当前选举的投票记录表中</li>
+<li>收到所有server回复后，计算出zxid最大的server，并将这个server相关信息设置成下一次要投票的server</li>
+<li>线程将当前的zxid最大的server设置为当前server要推荐的Leader，如果此时获胜的server获得 n/2 + 1 的server票数，设置当前推荐server为leader</li>
+</ul>
+<h3 id="fast-paxos"><a href="#fast-paxos" class="headerlink" title="fast paxos"></a>fast paxos</h3><p>​    fast paxos流程是在选举过程中，某Server首先向所有Server 提议自己要成为leader，当其它Server 收到提议以后，解决epoch和zxid 的冲突，并接受对方的提议，然后向对方发送接受提议完成的消息，重复这个流程，最后一定能选举出Leader.</p>
+<h2 id="广播-同步-模式"><a href="#广播-同步-模式" class="headerlink" title="广播(同步)模式"></a>广播(同步)模式</h2><p>选完leader之后，就进入同步过程</p>
+<ul>
+<li>leader等待server 连接</li>
+<li>Follower连接leader，将最大的zxid发送给leader</li>
+<li>Leader根据follower的zxid确定同步点</li>
+<li>完成同步后通知follower已经成为uptodate状态</li>
+<li>Follower收到成为uptodate的消息后，又可以重新接收client的请求进行服务了</li>
+</ul>
+<h2 id="为什么要有leader"><a href="#为什么要有leader" class="headerlink" title="为什么要有leader"></a>为什么要有leader</h2><p>​    在分布式环境中，有些业务逻辑只需要集群中的某一台机器进行执行就可以，其他的集群可以共享这个结果，这样可以大大减少重复计算，提高性能</p>
+<h2 id="ZooKeeper-保证事务顺序的一致性"><a href="#ZooKeeper-保证事务顺序的一致性" class="headerlink" title="ZooKeeper 保证事务顺序的一致性"></a>ZooKeeper 保证事务顺序的一致性</h2><p>​    zookeeper采用了递增的事务ld来标识，所有的proposal(提议)都在被提出的时候加上了zxid, zxid实际上是一个64位的数字,高32位是epoch(时期;纪元; ,世:新时代)用来标识leader是否发生改变，如果有新的leader产生出来，epoch会自增，低32位用来递增计数。当新产生proposal的时候，会依据数据库的两阶段过程，首先会向其他的server发出事务执行请求，如果超过半数的机器都能执行并且能够成功，那么就会开始执行。</p>
 
                 
             </div>
@@ -3848,7 +3997,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">309.9k</span>&nbsp;字
+                class="white-color">312.9k</span>&nbsp;字
             
             
             
