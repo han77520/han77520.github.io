@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-09
+                    2021-09-11
                 </div>
                 
 
@@ -515,7 +515,7 @@
 <li>线程加锁前，必须读取主内存的最新值到自己的工作内存.</li>
 <li>加锁解锁是同一把锁</li>
 </ul>
-<p>​    由于JVM运行程序的实体是线程，而每个线程创建时JVM都会为其创建-一个工作内存(有些地方称为栈空间)，工作内存是每个线程的私有数据区域，而Java内存模型中规定所有变量都存储在主内存，主内存是共享内存区域，所有线程都可以访问，但线程对变量的操作(读取赋值等)必须在工作内存中进行，首先要将变量从主内存拷贝的自己的工作内存空间，然后对变量进行操作，操作完成后再将变量写回主内存，不能直接操作主内存中的变量，各个线程中的工作内存中存储着主内存中的变量副本拷贝，因此不同的线程间无法访问对方的工作内存，线程间的通信(传值)必须通过主内存来完成，其简要访问过程如下图:</p>
+<p>​    由于JVM运行程序的实体是线程，而每个线程创建时JVM都会为其创建一个工作内存(有些地方称为栈空间)，工作内存是每个线程的私有数据区域，而Java内存模型中规定所有变量都存储在主内存，主内存是共享内存区域，所有线程都可以访问，但线程对变量的操作(读取赋值等)必须在工作内存中进行，首先要将变量从主内存拷贝的自己的工作内存空间，然后对变量进行操作，操作完成后再将变量写回主内存，不能直接操作主内存中的变量，各个线程中的工作内存中存储着主内存中的变量副本拷贝，因此不同的线程间无法访问对方的工作内存，线程间的通信(传值)必须通过主内存来完成，其简要访问过程如下图:</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210909160712.png"></p>
 <h2 id="什么是volatile"><a href="#什么是volatile" class="headerlink" title="什么是volatile"></a>什么是volatile</h2><p>volatile是jvm提供的轻量级的同步机制，有三个特性</p>
 <ul>
@@ -664,14 +664,7 @@
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="volatile单例模式"><a href="#volatile单例模式" class="headerlink" title="volatile单例模式"></a>volatile单例模式</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * @author 王瀚文
- * @Description:
- * @date 2021-09-09 17:17
- */</span>
-
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonDemo</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h3 id="volatile单例模式"><a href="#volatile单例模式" class="headerlink" title="volatile单例模式"></a>volatile单例模式</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonDemo</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> SingletonDemo instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
 
