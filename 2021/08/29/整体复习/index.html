@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-13
+                    2021-09-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    52.4k
+                    57.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    198 分
+                    215 分
                 </div>
                 
 
@@ -4250,6 +4250,250 @@ $document_uri    与$uri相同。
 </ol>
 <p>​    但是由于JVM具有指令重排的特性，执行顺序有可能变成1-&gt;3-&gt;2，指令重排在单线程环境下不会出现问题，但是在多线程环境下会导致一个线程获得还没有初始化的实例。例如，线程T1执行了1和3，此时T2调用 getInstance()不为空，因此返回 instance，但此时 instance 还未被初始化</p>
 <p>​    使用volatile禁止指令重排，保证在多线程环境下也能正常运行</p>
+<h2 id="什么是SpringCloud"><a href="#什么是SpringCloud" class="headerlink" title="什么是SpringCloud"></a>什么是SpringCloud</h2><p>​    SpringCloud是一系列框架的集合，利用springboot的便利简化了分布式系统基础设施的开发，比如服务注册，配置中心，负载均衡，断路器，数据监控等，都可以用springboot做到一键启动和部署</p>
+<p>优点：</p>
+<ul>
+<li>服务拆分粒度更细，有利于资源重复利用，有利于提高开发效率</li>
+<li>服务之间采用Restful的轻量级通讯机制</li>
+<li>可以更精准的制定优化服务方案，提高系统的可维护性</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>微服务过多，治理成本高，不利于维护系统</li>
+<li>分布式系统开发的成本高</li>
+</ul>
+<h2 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h2><p>​    微服务是一种架构风格，它是把一个应用拆分围绕着业务功能拆分为一组小型服务，每个服务都可以独立的部署和升级，服务之间用 HTTP 或者 RPC 交互</p>
+<p>优点：</p>
+<ul>
+<li>单一职责：每个服务仅负责自己业务领域的功能</li>
+<li>自治：一个微服务就是一个独立的实体，可以部署、升级、服务与服务之间通过HTTP等进行通信，并且一个微服务实例可以被替换成另一种实现，而对其他的微服务不产生影响</li>
+<li>逻辑清晰：微服务单一职责特性使微服务看起来逻辑清晰，易于维护</li>
+<li>简化部署：单系统中修改一处需要部署整个系统，而微服务中修改一处可单独部署一个服务</li>
+<li>技术异构：不同的服务之间，可以根据自己的业务特点选择不同的技术架构。比如数据库等</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>复杂度高：服务调用要考虑被调用方故障、过载、消息丢失等各种异常情况，代码逻辑更加复杂。</li>
+<li>状态监控：系统由多个独立运行的微服务构成，需要设计一个良好的监控系统对各个微服务的运行状态进行监控</li>
+<li>通信延迟：微服务之间调用会有时间消耗，造成通信延迟</li>
+</ul>
+<h2 id="SpringCloud-和-SpringBoot的认识"><a href="#SpringCloud-和-SpringBoot的认识" class="headerlink" title="SpringCloud 和 SpringBoot的认识"></a>SpringCloud 和 SpringBoot的认识</h2><p>​    SpringBoot是 Spring的一套快速配置脚手架，可以基于 SpringBoot 快速开发单个微服务， SpringCloud 是一个基于 SpringBoot实现的云应用开发工具</p>
+<p>​    SpringBoot 专注于快速、方便集成的单个微服务个体，SpringCloud关注全局的服务治理框架。</p>
+<p>​    SpringCloud  很大一部分是基于SpringBoot 来实现的，没有SpringCloud  就没有 SpringBoot</p>
+<h2 id="什么是服务熔断"><a href="#什么是服务熔断" class="headerlink" title="什么是服务熔断"></a>什么是服务熔断</h2><p>​    达到最大服务访问后，直接拒绝访问，拉闸限电，然后调用服务降级的方法并返回友好提示</p>
+<h2 id="什么是服务降级"><a href="#什么是服务降级" class="headerlink" title="什么是服务降级"></a>什么是服务降级</h2><p>​    consumer端如果发现某个provider出现异常情况，比如经常超时，数据错误，这是consumer端可以采用一定的策略降级provider的逻辑，例如返回固定的数据等。</p>
+<p>​    provider 端：当provider发现流量激增的时候，为了保护稳定性，也可以考虑降级服务。</p>
+<p>​    </p>
+<h2 id="微服务技术栈"><a href="#微服务技术栈" class="headerlink" title="微服务技术栈"></a>微服务技术栈</h2><ul>
+<li>服务网关 Zuul、GateWay</li>
+<li>服务注册发现：Eureka 、zookeeper</li>
+<li>负载均衡服务调用：Ribbon</li>
+<li>服务接口调用 OpenFeign</li>
+<li>服务限流降级熔断 Hystrix、Sentinel</li>
+<li>配置中心 Config</li>
+<li>。。。</li>
+</ul>
+<h2 id="服务的注册与发现的原理"><a href="#服务的注册与发现的原理" class="headerlink" title="服务的注册与发现的原理"></a>服务的注册与发现的原理</h2><p>​    服务在发布时指定对应的服务名(服务名包括了IP. 地址和端口)，将服务注册到注册中心(Eureka或者Zookeeper)，这一过程是Spring Cloud自动实现的，只需要在main 方法添加@EnableDisscoveryClient 即可。</p>
+<p>​    调用方法：传递服务名称通过注册中心获取所有的可用实例，通过负载均衡策略调用( Ribbon和Feign)对应的服务。</p>
+<h2 id="Eureka和Zookeeper都可以提供服务的注册与发现功能，有什么区别"><a href="#Eureka和Zookeeper都可以提供服务的注册与发现功能，有什么区别" class="headerlink" title="Eureka和Zookeeper都可以提供服务的注册与发现功能，有什么区别"></a>Eureka和Zookeeper都可以提供服务的注册与发现功能，有什么区别</h2><h3 id="Zookeeper保证CP"><a href="#Zookeeper保证CP" class="headerlink" title="Zookeeper保证CP"></a>Zookeeper保证CP</h3><p>​    zk可以保证数据一致性和分区容错性，但不能保证可用性。</p>
+<p>​    Zookeeper中，当master节点因为网络故障等其他原因与其他节点失去联系时，剩余节点会重新进行leader选举，由于选举时间太长且期间整个zk集群都是不可用的，虽然最终服务能够恢复，但漫长的选举时间导致的注册长期不可用是不能容忍的</p>
+<h3 id="Eureka保证-AP"><a href="#Eureka保证-AP" class="headerlink" title="Eureka保证 AP"></a>Eureka保证 AP</h3><p>​    Eureka各个节点都是平等的，几个节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka的客户端在向某个Eureka注册或者发现连接失败，则会自动切换到其他节点，只要有一台Eureka还在，就能保证注册服务可用，只不过查到的信息可能不是最新的</p>
+<h2 id="Eureka服务注册与发现原理"><a href="#Eureka服务注册与发现原理" class="headerlink" title="Eureka服务注册与发现原理"></a>Eureka服务注册与发现原理</h2><p>Eureka包含两个组件：</p>
+<ul>
+<li><p>Eureka Server：提供服务注册服务<br>各个微服务节点通过配置启动后，会在EurekaServer中进行注册， 这样EurekaServer中的服务注册表中将会存储所有可用服务节点的信息,服务节点的信息可以在界面中直观看到。</p>
+</li>
+<li><p>EurekaClient：通过注册中心进行访问<br>是一个Java客户端，用于简化Eureka Server的交互,客户端同时也具备一个内置的、 使用轮询(round-robin)负载算法的负载均衡器。在应用启动后，将会向Eureka Server发送心跳(默认周期为30秒)。如果Eureka Server在多个心跳周期内没有接收到某个节点的心跳，EurekaServer将会从服务注册表中把这个服务节点移除(默认90秒)</p>
+</li>
+</ul>
+<p>原理</p>
+<ol>
+<li>每30s发送心跳检测重新进行租约，如果客户端不能多次更新租约，它将在90s内从服务器注册中心移除.</li>
+<li>注册信息和更新会被复制到其他Eureka节点，来自任何区域的客户端可以查找到注册中心信息，每30s发生一次复制来定位他们的服务，并进行远程调用。这也就是Eureka为什么不能保证一致性的原因</li>
+<li>客户端还可以缓存一些服务实例信息，所以即使Eureka全挂掉，客户端也是可以定位到服务地址的。</li>
+</ol>
+<p>多个消费者调用同一接口，eruka 的分配方式：</p>
+<ul>
+<li>RoundRobinRule:轮询策略， 以轮询的方式选择服务器，这个是默认值。</li>
+<li>RandomRule:随机选择，随机从服务器列表中选择一个进行访问;</li>
+<li>BestAvailableRule:最大可用策略，先过滤出故障服务器后，选择一个当前并发请求数最小的</li>
+</ul>
+<p>Eureka自我保护：</p>
+<p>​    Eureka在运行期间会统计心跳失败的比例，在15分钟内是否低于85%，如果出现了低于的情况，Eureka Server会将当前的实例注册信息保护起来，同时提示一个警告，一旦进入保护模式，Eureka Server将会尝试保护其服务注册表中的信息，不再删除服务注册表中的数据。也就是不会注销任何微服务。Eureka仍然能够接受新服务的注册和查询请求，但是不会被同步到其他节点(高可用)。当网络稳定时，当前实例新的注册信息会被同步到其他节点中(最终一致性)。Eureka可以很好的应对因网络故障导致部分节点失去联系的情况,而不会像ZooKeeper一样使得整个注册系统瘫痪。</p>
+<h2 id="漏桶算法和令牌桶算法"><a href="#漏桶算法和令牌桶算法" class="headerlink" title="漏桶算法和令牌桶算法"></a>漏桶算法和令牌桶算法</h2><p>漏桶算法：</p>
+<p>​    请求先进入到漏桶里，漏桶以一定的速度出水，当水流入速度过大会直接溢出，可以看出漏桶算法能强行限制数据的传输速率</p>
+<p>令牌桶算法</p>
+<p>​    系统会以一个恒定的速度往桶里放入令牌，而如果请求需要处理，则需要先从桶里获取一个令牌，当桶里没有令牌时，拒绝服务，如果桶满了的话，直接丢弃请求</p>
+<h2 id="SpringCloud-核心组件及其作用以及工作原理"><a href="#SpringCloud-核心组件及其作用以及工作原理" class="headerlink" title="SpringCloud 核心组件及其作用以及工作原理"></a>SpringCloud 核心组件及其作用以及工作原理</h2><h3 id="SpringCloud-由以下几个核心组件构成"><a href="#SpringCloud-由以下几个核心组件构成" class="headerlink" title="SpringCloud 由以下几个核心组件构成"></a>SpringCloud 由以下几个核心组件构成</h3><ul>
+<li>Eureka：各个服务启动时，Eureka Client都会将服务注册到 Eureka Server，并且 Eureka Client还可以反过来从 Eureka Server拉取注册表，从而知道其他服务在哪里</li>
+<li>Ribbon：服务间发起请求的时候，基于Ribbon做负载均衡，从一个服务的多台机器中选择一台</li>
+<li>Feign：基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求</li>
+<li>Hystrix：请求是通过Hystrix的线程池发起的，不同的请求走不同的线程池，实现了不同服务调用的隔离，避免了服务雪崩问题</li>
+<li>Zuul：前端对后端的调用，统一从Zuul网关进入，由Zuul网关转发请求给对方的服务</li>
+</ul>
+<h2 id="什么是Hystrix"><a href="#什么是Hystrix" class="headerlink" title="什么是Hystrix"></a>什么是Hystrix</h2><p>​    Hystrix是一个用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时、异常等，Hystrix能够保证在一个依赖出问题的情况下，不会导致整体服务失败，避免级联故障，以提高分布式系统的弹性。 服务熔断“断路器”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控（类似熔断保险丝），向调用方返回一个符合预期的、可处理的备选响应（FallBack），而不是长时间的等待或者抛出调用方无法处理的异常，这样就保证了服务调用方的线程不会被长时间、不必要地占用，从而避免了故障在分布式系统中的蔓延，乃至雪崩。</p>
+<h2 id="为什么要使用服务熔断以及原理"><a href="#为什么要使用服务熔断以及原理" class="headerlink" title="为什么要使用服务熔断以及原理"></a>为什么要使用服务熔断以及原理</h2><p>​    当一个服务调用另一个服务，由于网络原因或者自身原因出现问题时，调用者就会等待被调者的响应，当更多的服务请求到这些资源时，导致更多的请求等待，这样就会发生服务雪崩，断路器就是解决这一问题的。</p>
+<p><strong>原理：</strong></p>
+<p>熔断器开关由关闭到打开的状态转换是通过当前服务健康状况和设定阈值比较决定的。</p>
+<p>【服务的健康状况=请求失败数/请求总数】</p>
+<ul>
+<li>当熔断器开关关闭时，请求被允许通过熔断器，如果当前健康状况高于设定阈值，开关继续保持关闭，如果当前健康状况低于设定阈值，开关切换为打开状态</li>
+<li>当熔断器开关打开时，请求被禁止通过</li>
+<li>熔断器开关打开一段时间后，熔断器会自动进入半开状态，这是熔断器只允许一个请求通过，当该请求调用成功时，熔断器恢复到关闭状态，若该请求失败，熔断器继续保持打开状态，接下来的请求被禁止通过</li>
+</ul>
+<h2 id="服务雪崩"><a href="#服务雪崩" class="headerlink" title="服务雪崩"></a>服务雪崩</h2><p>服务雪崩效应是一种因服务提供者不可用导致服务调用者不可用，并将不可用逐渐放大的过程</p>
+<p>原因：</p>
+<ul>
+<li>流量激增</li>
+<li>硬件故障</li>
+<li>线程同步等待：如果一个核心业务线程调用非核心线程，这个非核心线程交由第三方系统完成，当第三方系统本身出现问题，导致核心线程阻塞，一直处于等待状态，而进程间的调用是有超时限制的，最终这条线程将断掉，也可能引发雪崩；</li>
+</ul>
+<p>解决：</p>
+<ul>
+<li>针对流量激增，采用自动扩缩容以应对突发流量，或在负载均衡器上安装限流模块。</li>
+<li>针对硬件故障，多机房容灾，跨机房路由，异地多活等。</li>
+<li>针对同步等待，使用Hystrix做故障隔离，熔断器机制等可以解决依赖服务不可用的问题。</li>
+</ul>
+<h2 id="接口限流方法"><a href="#接口限流方法" class="headerlink" title="接口限流方法"></a>接口限流方法</h2><ul>
+<li>限制瞬时并发数：如nginx的limit_conn模块</li>
+<li>限制远程接口调用速率</li>
+<li>限制MQ的消费速率</li>
+</ul>
+<h2 id="微服务之间是如何独立通讯的"><a href="#微服务之间是如何独立通讯的" class="headerlink" title="微服务之间是如何独立通讯的"></a>微服务之间是如何独立通讯的</h2><h3 id="REST-HTTP-协议"><a href="#REST-HTTP-协议" class="headerlink" title="REST HTTP 协议"></a>REST HTTP 协议</h3><p>REST 请求在微服务中是最为常用的一种通讯方式，它依赖于 HTTP\HTTPS 协议。</p>
+<ul>
+<li>每一个 URI 代表 1 种资源</li>
+<li>客户端使用 GET、POST、PUT、DELETE 4 个表示操作方式的动词对服务端资源进行操作</li>
+<li>客户端与服务端之间的交互在请求之间是无状态的,从客户端到服务端的每个请求都必须包含理解请求所必需的信息</li>
+</ul>
+<h3 id="RPC远程过程调用"><a href="#RPC远程过程调用" class="headerlink" title="RPC远程过程调用"></a>RPC远程过程调用</h3><p>​     RPC(Remote Procedure Call Protocol)——远程过程调用协议，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。</p>
+<ul>
+<li>客户端(Client)，服务的调用方。</li>
+<li>客户端存根(Client Stub)，存放服务端的地址消息，再将客户端的请求参数打包成网络消息，然后通过网络远程发送给服务方。</li>
+<li>服务端(Server)，真正的服务提供者。</li>
+<li>服务端存根(Server Stub)，接收客户端发送过来的消息，将消息解包，并调用本地的方法。   </li>
+</ul>
+<h2 id="什么是-Feign以及优点"><a href="#什么是-Feign以及优点" class="headerlink" title="什么是 Feign以及优点"></a>什么是 Feign以及优点</h2><p>​    Feign是一个声明式WebService客户端，只需要几个注解和抽象方法就可以实现服务接口的调用</p>
+<ul>
+<li>feign采用了基于接口的注解</li>
+<li>Feign整合了 Ribbon，具有负载均衡的能力</li>
+<li>整合了Hystrix，具有熔断功能</li>
+</ul>
+<p>使用：</p>
+<ul>
+<li>导入依赖</li>
+</ul>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<ul>
+<li>在配置类上添加  @EnableFeignClients</li>
+<li>指定一个接口，标明调用哪个服务的哪个方法</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"CLOUD-PAYMENT-SERVICE"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">PaymentFeignService</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/payment/get/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
+    CommonResult <span class="token function">getPaymentById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Ribbon本地负载的衡客户端与Nginx服务端负载均衡区别"><a href="#Ribbon本地负载的衡客户端与Nginx服务端负载均衡区别" class="headerlink" title="Ribbon本地负载的衡客户端与Nginx服务端负载均衡区别"></a>Ribbon本地负载的衡客户端与Nginx服务端负载均衡区别</h2><ul>
+<li>Nginx是服务器负载均衡，客户端所有请求都会交给nginx,然后由nginx实现转发请求。即负载均衡是由服务端实现的。</li>
+<li>Ribbon本地负载均衡，在调用微服务接口时候，会在注册中心上获取注册信息服务列表之后缓存到 JVM 本地，从而在本地实现RPC远程服务调用技术。</li>
+</ul>
+<p>负载均衡的意义：</p>
+<p>​    负载均衡目的在优化资源的使用，最小化响应时间，最大化吞吐量</p>
+<h2 id="什么是-Spring-Cloud-Bus"><a href="#什么是-Spring-Cloud-Bus" class="headerlink" title="什么是 Spring Cloud Bus"></a>什么是 Spring Cloud Bus</h2><p>​    Spring Cloud Bus 将分布式的节点用轻量的消息代理连接起来，它可以用于广播配置文件的更改或者服务直接的通讯，也可用于通讯，也可用于监控。如果修改了配置文件，发送一-次请求，所有的客户端便会重新读取配置文件。</p>
+<h2 id="你所知道微服务的技术栈有哪些"><a href="#你所知道微服务的技术栈有哪些" class="headerlink" title="你所知道微服务的技术栈有哪些"></a>你所知道微服务的技术栈有哪些</h2><table>
+<thead>
+<tr>
+<th>微服务条目</th>
+<th>技术栈</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务开发</td>
+<td>Spring Boot、Spring、SpringMVC</td>
+</tr>
+<tr>
+<td>服务配置与管理</td>
+<td>阿里的Dlamond</td>
+</tr>
+<tr>
+<td>服务注册与发现</td>
+<td>Eureka、Consul、Zookeeper</td>
+</tr>
+<tr>
+<td>服务调用</td>
+<td>RestFul、RPC</td>
+</tr>
+<tr>
+<td>服务熔断器</td>
+<td>Hystrix</td>
+</tr>
+<tr>
+<td>负载均衡</td>
+<td>Nginx、Ribbon</td>
+</tr>
+<tr>
+<td>服务接口调用</td>
+<td>Feign</td>
+</tr>
+<tr>
+<td>消息队列</td>
+<td>RabbitMQ、ActiveMQ</td>
+</tr>
+<tr>
+<td>服务配置中心管理</td>
+<td>SpringCloudConfig</td>
+</tr>
+<tr>
+<td>服务路由</td>
+<td>Zuul</td>
+</tr>
+<tr>
+<td>服务部署</td>
+<td>Docker</td>
+</tr>
+<tr>
+<td>事件消息总线</td>
+<td>SpringCloudBus</td>
+</tr>
+</tbody></table>
+<h2 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a>Spring Cloud Config</h2><p>​     SpringCloud Config为微服务架构中的微服务提供集中化的外部配置支持，配置服务器为各个不同微服务应用的所有环境提供了一个中心化的外部配置。 配置服务器默认采用git来存储配置信息，这样就有助于对环境配置进行版本管理，并且可以通过git客户端工具来方便的管理和访问配置内容。 </p>
+<h2 id="Spring-Cloud-Netfilx"><a href="#Spring-Cloud-Netfilx" class="headerlink" title="Spring Cloud Netfilx"></a>Spring Cloud Netfilx</h2><p>Spring Cloud Netfilx包括：</p>
+<ul>
+<li>Eureka：服务治理组件，包括服务端的注册中心和客户端的访问发现机制</li>
+<li>Ribbon：负载均衡的服务调用组件，具有多种负载均衡调用策略</li>
+<li>Hystrix：服务容错组件，实现了断路器模式，为依赖服务的出错和延迟提供了错误能力</li>
+<li>Feign：基于Ribbon 和 Hystrix 的声明式服务调用组件；</li>
+<li>Zuul：API网关组件，对请求提供路由及过滤功能</li>
+</ul>
+<h2 id="微服务的端到端测试意味着什么"><a href="#微服务的端到端测试意味着什么" class="headerlink" title="微服务的端到端测试意味着什么"></a>微服务的端到端测试意味着什么</h2><p>​    端到端测试验证工作流中的所有流程,以检查–切是否按预期工作。它还确保系统以统一的方式工作，从而满足业务需求。</p>
+<h2 id="SOA和微服务架构之间的主要区别是什么"><a href="#SOA和微服务架构之间的主要区别是什么" class="headerlink" title="SOA和微服务架构之间的主要区别是什么"></a>SOA和微服务架构之间的主要区别是什么</h2><p>==<strong>SOA没搞懂</strong>==</p>
+<h2 id="什么是凝聚力"><a href="#什么是凝聚力" class="headerlink" title="什么是凝聚力"></a>什么是凝聚力</h2><p>模块内部元素所属的程度被认为是凝聚力</p>
+<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p>  单体应用被拆分成微服务应用，原来的三个模块被拆分成三个独立的应用，分别使用三个独立的数据源，业务操作需要调用三个服务来完成。此时每个服务内部的数据一致性由本地事务来保证，但是全局的数据一致性问题没法保证。 </p>
+<p>  一次业务操作需要跨多个数据源或需要跨多个系统进行远程调用，就会产生分布式事务问题</p>
+<p>分布式事务处理过程是 一个 ID+三个组件  的模型</p>
+<ul>
+<li><p>Transaction ID XID：全局唯一的事务ID</p>
+</li>
+<li><p>Transaction Coordinator (TC)：事务协调器，维护全局事务的运行状态，负责协调并驱动全局事务的提交或回滚；</p>
+</li>
+<li><p>Transaction Manager (TM)：控制全局事务的边界，负责开启一个全局事务，并最终发起全局提交或全局回滚的决议；</p>
+</li>
+<li><p>Resource Manager (RM)：控制分支事务，负责分支注册、状态汇报，并接收事务协调器的指令，驱动分支（本地）事务的提交和回滚</p>
+</li>
+</ul>
+<p>处理过程：</p>
+<p>​        TM 向 TC 申请开启一个全局事务，全局事务创建成功并生成一个全局唯一的 XID；XID 在微服务调用链路的上下文中传播；RM 向 TC 注册分支事务，将其纳入 XID 对应全局事务的管辖；TM 向 TC 发起针对 XID 的全局提交或回滚决议；TC 调度 XID 下管辖的全部分支事务完成提交或回滚请求。  </p>
+<h2 id="什么是网关"><a href="#什么是网关" class="headerlink" title="什么是网关"></a>什么是网关</h2><p>​    网关相当于一个网络服务架构的入口，所有网络请求都必须通过网关转发到具体的服务</p>
+<p>​    作用就是统一管理微服务请求，权限控制，负载均衡、路由转发、监控</p>
+<p>​    网关和过滤器有什么区别：</p>
+<p>网关是对所有服务的请求进行分析过滤，过滤器是对单个服务而言</p>
+<h2 id="Zuul网关如何搭建集群"><a href="#Zuul网关如何搭建集群" class="headerlink" title="Zuul网关如何搭建集群"></a>Zuul网关如何搭建集群</h2><p>​    使用Nginx的upstream设置Zuul服务集群，通过location拦截请求并转发到upstream，默认使用轮询机制对Zuul集群发送请求。</p>
 
                 
             </div>
@@ -5021,7 +5265,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">333.4k</span>&nbsp;字
+                class="white-color">338.2k</span>&nbsp;字
             
             
             

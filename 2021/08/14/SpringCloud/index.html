@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-18
+                    2021-09-14
                 </div>
                 
 
@@ -1047,7 +1047,7 @@ mybatis:
     <span class="token comment" spellcheck="true">#false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务</span>
     <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
     <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
-      <span class="token comment" spellcheck="true">#设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。</span>
+      <span class="token comment" spellcheck="true">#设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。</span>
       <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//$&amp;<span class="token comment" spellcheck="true">#123;eureka.instance.hostname&amp;#125;:$&amp;#123;server.port&amp;#125;/eureka/</span>
 </code></pre>
 <p>配置主类</p>
@@ -1880,7 +1880,7 @@ mybatis:
 <h2 id="第六章-Ribbon负载均衡服务调用"><a href="#第六章-Ribbon负载均衡服务调用" class="headerlink" title="第六章 Ribbon负载均衡服务调用"></a>第六章 Ribbon负载均衡服务调用</h2><h3 id="6-1-Ribbon作用"><a href="#6-1-Ribbon作用" class="headerlink" title="6.1 Ribbon作用"></a>6.1 Ribbon作用</h3><ul>
 <li>负载均衡  + RestTemplate调用</li>
 </ul>
-<p>​    简单的说，Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件负载均衡算法和服务调用。Ribbon客户端组件提供一系列完善的配置项如连接超时，重试等。简单的说，就是在配置文件中列出Load Balancer (简称LB)后面所有的机器，Ribbon会自动的帮助你基于某种规则(如简单轮询，随机连接等)去连接这些机器。我们很容易使用Ribbon实现自定义的负载均衡算法。</p>
+<p>​    简单的说，Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件负载均衡算法和服务调用。Ribbon客户端组件提供一系列完善的配置项,如连接超时，重试等。简单的说，就是在配置文件中列出Load Balancer (简称LB)后面所有的机器，Ribbon会自动的帮助你基于某种规则(如简单轮询，随机连接等)去连接这些机器。我们很容易使用Ribbon实现自定义的负载均衡算法。</p>
 <h3 id="6-2-负载均衡LB是什么："><a href="#6-2-负载均衡LB是什么：" class="headerlink" title="6.2 负载均衡LB是什么："></a>6.2 负载均衡LB是什么：</h3><p>Load Balance，简单的说就是将用户的请求平摊的分配到多个服务器上，从而达到系统的高可用</p>
 <ul>
 <li>集中式LB<ul>
@@ -2001,8 +2001,8 @@ mybatis:
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="第七章-OpenFeign-服务接口调用"><a href="#第七章-OpenFeign-服务接口调用" class="headerlink" title="第七章 OpenFeign 服务接口调用"></a>第七章 OpenFeign 服务接口调用</h2><h3 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h3><p>​    Feign是一个声明式WebService客户端。 使用Feign能让编写Web Service客户端更加简单。它的使用方法是定义一个服务接口然后在上面添加注解。Feign也支 持可拔插式的编码器和解码器。Spring Cloud对Feign进行了封装，使其支持了Spring MVC标准注解和HttpMessageConverters。Feign可以 与Eureka和Ribbon组合使用以支持负载均衡。</p>
-<p>Feign旨在使编写Java Http客户端变得更容易。<br>    前面在使用Ribbon+ RestTemplate时，利用RestTemplate对http请求的封装处理,形成了一套模版化的调用方法。 但是在实际开发中，于对服务依赖的调用可能不止一-处， 往往一个接口会被 多处调用，所以通常都会针对每个微服务自行封装-些客户端类来包装这些依赖服务的调用。所以，Feign在此基础 上做了进一步封装, 由他来帮助我们定义和实现依赖服务接口的定义。在Feign的实现下我们只需创建一个接口并使用注解的方式来配置它(以前是Dao接口 上面标注Mapper注解,现在是一个微服务接口上面标注一个Feign注解即可)，即可完成对服务提供方的接口绑定,简化了使用Spring cloud Ribbon时，自动封装服务调用客户端的开发量。</p>
+<h2 id="第七章-OpenFeign-服务接口调用"><a href="#第七章-OpenFeign-服务接口调用" class="headerlink" title="第七章 OpenFeign 服务接口调用"></a>第七章 OpenFeign 服务接口调用</h2><h3 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h3><p>​    Feign是一个声明式WebService客户端。 使用Feign能让编写Web Service客户端更加简单。它的使用方法是定义一个服务接口然后在上面添加注解。Feign也支持可拔插式的编码器和解码器。Spring Cloud对Feign进行了封装，使其支持了Spring MVC标准注解和HttpMessageConverters。Feign可以 与Eureka和Ribbon组合使用以支持负载均衡。</p>
+<p>Feign旨在使编写Java Http客户端变得更容易。<br>    前面在使用Ribbon+ RestTemplate时，利用RestTemplate对http请求的封装处理,形成了一套模版化的调用方法。 但是在实际开发中，对于服务依赖的调用可能不止一-处， 往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装-些客户端类来包装这些依赖服务的调用。所以，Feign在此基础 上做了进一步封装, 由他来帮助我们定义和实现依赖服务接口的定义。在Feign的实现下我们只需创建一个接口并使用注解的方式来配置它(以前是Dao接口 上面标注Mapper注解，现在是一个微服务接口上面标注一个Feign注解即可)，即可完成对服务提供方的接口绑定,简化了使用Spring cloud Ribbon时，自动封装服务调用客户端的开发量。</p>
 <p>Feign集成了Ribbon</p>
 <p>​    利用Ribbon维护了Payment的服务列表信息，且通过轮询实现了客户端的负载均衡。而与Ribbon不同的是，通过feign只需要定义服务绑定接口且以声明式的方法,优雅而简单的实现了服务调用</p>
 <h3 id="7-2-创建-cloud-consumer-feign-order80-工程"><a href="#7-2-创建-cloud-consumer-feign-order80-工程" class="headerlink" title="7.2 创建 cloud-consumer-feign-order80 工程"></a>7.2 创建 cloud-consumer-feign-order80 工程</h3><p>依赖</p>
@@ -2192,7 +2192,8 @@ mybatis:
     <span class="token comment" spellcheck="true">#feign日志以什么级别监控哪个接口</span>
     <span class="token key atrule">com.whw.springcloud.service.PaymentFeignService</span><span class="token punctuation">:</span> debug
 </code></pre>
-<h2 id="第八章-Hystrix断路器"><a href="#第八章-Hystrix断路器" class="headerlink" title="第八章 Hystrix断路器"></a>第八章 Hystrix断路器</h2><h3 id="8-1-概述"><a href="#8-1-概述" class="headerlink" title="8.1 概述"></a>8.1 概述</h3><p> Hystrix是一个用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时、异常等，Hystrix能够保证在一个依赖出问题的情况下，不会导致整体服务失败，避免级联故障，以提高分布式系统的弹性。 “断路器”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控（类似熔断保险丝），向调用方返回一个符合预期的、可处理的备选响应（FallBack），而不是长时间的等待或者抛出调用方无法处理的异常，这样就保证了服务调用方的线程不会被长时间、不必要地占用，从而避免了故障在分布式系统中的蔓延，乃至雪崩。   </p>
+<h2 id="第八章-Hystrix断路器"><a href="#第八章-Hystrix断路器" class="headerlink" title="第八章 Hystrix断路器"></a>第八章 Hystrix断路器</h2><h3 id="8-1-概述"><a href="#8-1-概述" class="headerlink" title="8.1 概述"></a>8.1 概述</h3><pre><code> Hystrix是一个用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时、异常等，Hystrix能够保证在一个依赖出问题的情况下，不会导致整体服务失败，避免级联故障，以提高分布式系统的弹性。 “断路器”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控（类似熔断保险丝），向调用方返回一个符合预期的、可处理的备选响应（FallBack），而不是长时间的等待或者抛出调用方无法处理的异常，这样就保证了服务调用方的线程不会被长时间、不必要地占用，从而避免了故障在分布式系统中的蔓延，乃至雪崩。   
+</code></pre>
 <h3 id="8-2-Hystrix重要概念"><a href="#8-2-Hystrix重要概念" class="headerlink" title="8.2 Hystrix重要概念"></a>8.2 Hystrix重要概念</h3><h4 id="8-2-1-服务降级"><a href="#8-2-1-服务降级" class="headerlink" title="8.2.1 服务降级"></a>8.2.1 服务降级</h4><p>fallback：服务器忙，请稍后再试，不让客户等待并立刻返回一个友好提示</p>
 <p>出现降级的情况</p>
 <ul>
@@ -3089,7 +3090,7 @@ feign:
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="第十章-Config-分布式配置中心"><a href="#第十章-Config-分布式配置中心" class="headerlink" title="第十章 Config 分布式配置中心"></a>第十章 Config 分布式配置中心</h2><h3 id="10-1-分布式系统面临的配置问题"><a href="#10-1-分布式系统面临的配置问题" class="headerlink" title="10.1 分布式系统面临的配置问题"></a>10.1 分布式系统面临的配置问题</h3><p>   微服务意味着要将单体应用中的业务拆分成一个个子服务，每个服务的粒度相对较小，因此系统中会出现大量的服务。由于每个服务都需要必要的配置信息才能运行，所以一套集中式的、动态的配置管理设施是必不可少的。SpringCloud提供了ConfigServer来解决这个问题，我们每一个微服务自己带着一个application.yml，上百个配置文件的管理。。</p>
+<h2 id="第十章-Config-分布式配置中心"><a href="#第十章-Config-分布式配置中心" class="headerlink" title="第十章 Config 分布式配置中心"></a>第十章 Config 分布式配置中心</h2><h3 id="10-1-分布式系统面临的配置问题"><a href="#10-1-分布式系统面临的配置问题" class="headerlink" title="10.1 分布式系统面临的配置问题"></a>10.1 分布式系统面临的配置问题</h3><p>   微服务意味着要将单体应用中的业务拆分成一个个子服务，每个服务的粒度相对较小，因此系统中会出现大量的服务。由于每个服务都需要必要的配置信息才能运行，所以一套集中式的、动态的配置管理设施是必不可少的。SpringCloud提供了ConfigServer来解决这个问题，我们每一个微服务自己带着一个application.yml，上百个配置文件的管理…..</p>
 <h3 id="10-2-Config概述"><a href="#10-2-Config概述" class="headerlink" title="10.2 Config概述"></a>10.2 Config概述</h3><p>​     SpringCloud Config为微服务架构中的微服务提供集中化的外部配置支持，配置服务器为各个不同微服务应用的所有环境提供了一个中心化的外部配置。 </p>
 <p>​    SpringCloud Config分为服务端和客户端两部分。 服务端也称为分布式配置中心，它是一个独立的微服务应用，用来连接配置服务器并为客户端提供获取配置信息，加密/解密信息等访问接口；客户端则是通过指定的配置中心来管理应用资源，以及与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息，配置服务器默认采用git来存储配置信息，这样就有助于对环境配置进行版本管理，并且可以通过git客户端工具来方便的管理和访问配置内容。 </p>
 <h3 id="10-3-作用"><a href="#10-3-作用" class="headerlink" title="10.3 作用"></a>10.3 作用</h3><ul>
@@ -3100,7 +3101,7 @@ feign:
 <li>将配置信息以REST接口的形式暴露</li>
 </ul>
 <h3 id="10-4-与github的整合"><a href="#10-4-与github的整合" class="headerlink" title="10.4 与github的整合"></a>10.4 与github的整合</h3><p>本地硬盘目录上新建git仓库并clone</p>
-<p>git命令：git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#46;&#x7a;&#104;&#x6c;&#104;&#54;&#46;&#99;&#x6e;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#46;&#x7a;&#104;&#x6c;&#104;&#54;&#46;&#99;&#x6e;</a>:han77520/SpringCloud-Config.git</p>
+<p>git命令：git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#x2e;&#x7a;&#104;&#x6c;&#x68;&#x36;&#x2e;&#99;&#x6e;">&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#x2e;&#x7a;&#104;&#x6c;&#x68;&#x36;&#x2e;&#99;&#x6e;</a>:han77520/SpringCloud-Config.git</p>
 <p>在文件夹内打开git bash，输入命令即可从github上 down 下来</p>
 <h3 id="10-5-创建-cloud-config-center-3344-工程"><a href="#10-5-创建-cloud-config-center-3344-工程" class="headerlink" title="10.5 创建 cloud-config-center-3344 工程"></a>10.5 创建 cloud-config-center-3344 工程</h3><p>依赖</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
@@ -5893,7 +5894,7 @@ feign:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">333.4k</span>&nbsp;字
+                class="white-color">338.2k</span>&nbsp;字
             
             
             
