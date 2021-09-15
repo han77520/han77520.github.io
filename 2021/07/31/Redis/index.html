@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-09
+                    2021-09-15
                 </div>
                 
 
@@ -651,7 +651,7 @@
 <li>统一密码管理，所有库有着同样的密码</li>
 </ul>
 <p>==<strong>Redis是单线程 + 多路 IO 复用技术</strong>==</p>
-<p>​       多路复用是指使用一个线程来检查多个文件描述符( Socket )的就绪状态,比如调用select和poll函数,传入多个文件描述符,如果有一个文件描述符就绪,则返回,否则阻塞直到超时。得到就绪状态后进行真正的操作可以在同一个线程里执行,也可以启动新的线程执行(比如使用线程池)。也就是<strong>单个线程，跟踪、管理多个I/O流 。</strong></p>
+<p>​       多路复用是指使用一个线程来检查多个文件描述符( Socket )的就绪状态,比如调用select和epoll函数,传入多个文件描述符,如果有一个文件描述符就绪,则返回,否则阻塞直到超时。得到就绪状态后进行真正的操作可以在同一个线程里执行,也可以启动新的线程执行(比如使用线程池)。也就是<strong>单个线程，跟踪、管理多个I/O流 。</strong></p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210801005200.png"></p>
 <p>在黄牛买到票之前， 1,2,3号他们还是干自己的事情，这就是多路 IO 复用，提高CPU利用率</p>
 <p>Redis与Memcache的三点不同：支持多数据类型，支持持久化，单线程 + 多路 IO 复用</p>
@@ -1738,9 +1738,9 @@
 <h4 id="Fork"><a href="#Fork" class="headerlink" title="Fork"></a>Fork</h4><ul>
 <li><p>Fork的作用是复制一个与当前进程一样的进程。 新进程的所有数据(变量、环境变量、程序计数器等)数值都和原进程一致， 但是是一个全新的进程 ,并作为原进程的子进程</p>
 </li>
-<li><p>在Linux程序中, fork会产生一个和父进程完全相同的子进程 ，但子进程在此后多会exec系统调用，出于效率考虑,，Linux中引入了”写时复制技术”。</p>
+<li><p>在Linux程序中, fork会产生一个和父进程完全相同的子进程 ，但子进程在此后多会被exec系统调用，出于效率考虑,，Linux中引入了”写时复制技术”。</p>
 </li>
-<li><p><em>一般情况父进程和子进程会共用同一段物理内存</em>,只有进程空间的各段的内容要发生变化时,才会将父进程的内容复制一份给子进程。。</p>
+<li><p>一般情况父进程和子进程会共用同一段物理内存_,只有进程空间的各段的内容要发生变化时,才会将父进程的内容复制一份给子进程。</p>
 </li>
 </ul>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210802110201.png"></p>
@@ -1756,7 +1756,7 @@
 <h4 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h4><ul>
 <li>Fork的时候，内存中的数据被克隆了一份，大致2倍的膨胀性需要考虑</li>
 <li>虽然Redis在fork时使用了写时拷贝技术,但是如果数据庞大时还是比较消耗性能。</li>
-<li>RDB是在备份周期中没间隔一段时间做一次备份，如果Redis意外down掉的话，就会丢失最后一次快照后的所有修改。</li>
+<li>RDB是在备份周期中每间隔一段时间做一次备份，如果Redis意外down掉的话，就会丢失最后一次快照后的所有修改。</li>
 </ul>
 <h3 id="持久化操作-–-AOF"><a href="#持久化操作-–-AOF" class="headerlink" title="持久化操作 – AOF"></a>持久化操作 – AOF</h3><p> AOF(Append Only File)</p>
 <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>==<strong>以日志的形式来记录每个写操作(增量保存)</strong>== ，将Redis执行过的**所有写指令记录下来(读操作不记录)**，只许追加文件但不可以改写文件,，redis启动之初会读取该文件重新构建数据，换言之， redis重启的话就根据日志文件的内容将写指令从前到后执行一次，以完成数据的恢复工作。</p>
@@ -1765,7 +1765,7 @@
 <h4 id="AOF持久化流程"><a href="#AOF持久化流程" class="headerlink" title="AOF持久化流程"></a>AOF持久化流程</h4><ul>
 <li><p>客户端的请求写命令会被append追加到AOF缓冲区内。</p>
 </li>
-<li><p>AOF缓冲区根据AOF同步频率的设置 [always，everysec，no]  将操作sync同步到磁盘的AOF文件中。</p>
+<li><p>AOF缓冲区根据AOF同步频率的设置 [always，everysec，no]  将操作sync写到磁盘的AOF文件中。</p>
 </li>
 <li><p>AOF文件大小超过重写策略或手动重写时，会对AOF文件  rewrite 重写，压缩 AOF文件容量。</p>
 </li>
@@ -1813,7 +1813,7 @@
 <li>使用新的AOF文件覆盖旧的AOF文件,完成AOF重写。。</li>
 </ul>
 <h4 id="优势-1"><a href="#优势-1" class="headerlink" title="优势"></a>优势</h4><ul>
-<li>备份机制更加文件，丢失数据概率更低</li>
+<li>备份机制追加文件，丢失数据概率更低</li>
 <li>可读的日志文本，通过操作APO 文件，可以处理误操作。</li>
 </ul>
 <h4 id="劣势-1"><a href="#劣势-1" class="headerlink" title="劣势"></a>劣势</h4><ul>
@@ -2033,7 +2033,7 @@ cluster<span class="token operator">-</span>node<span class="token operator">-</
 <p>   当发现Redis的命中率开始急速降低，需要排查访问对象和访问的数据，和运维人员配合，可以设置黑名单限制服务。</p>
 </li>
 </ul>
-<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>​    缓存击穿是指缓存中没有但数据库中有的数据（一般是缓存时间到期），这时由于并发用户特别多，同时读缓存没读到数据，又同时去数据库去取数据，引起数据库压力瞬间增大，造成过大压力</p>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>​    缓存击穿是指一条数据缓存中没有但数据库中有的数据（一般是缓存时间到期），这时由于并发用户特别多，同时读缓存没读到数据，又同时去数据库去取数据，引起数据库压力瞬间增大，造成过大压力</p>
 <h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
 <li>预先设置热门数据：在redis高峰访问之前，把一些热门数据提前存到redis里面，加大这些热门数据的key的时长，或者设置为永不过时</li>
 <li>实时调整：现场监控哪些数据热门，实时调整key的过期时长</li>
@@ -2048,7 +2048,7 @@ cluster<span class="token operator">-</span>node<span class="token operator">-</
 </li>
 <li><p>设置过期标志更新缓存<br>   记录缓存数据是否过期(设置提前量) ,如果过期会触发通知另外的线程在后台去更新实际key的缓存。</p>
 </li>
-<li><p>将缓存失效时间分散开下。</p>
+<li><p>将缓存失效时间分散开</p>
 <pre><code>  比如我们可以在原有的失效时间基础上增加一个随机值,比如1-5 分钟的随机值，这样每-一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。
 </code></pre>
 </li>
@@ -3016,7 +3016,7 @@ cluster<span class="token operator">-</span>node<span class="token operator">-</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">338.2k</span>&nbsp;字
+                class="white-color">343.3k</span>&nbsp;字
             
             
             

@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-31
+                    2021-09-15
                 </div>
                 
 
@@ -1029,7 +1029,7 @@
 </ul>
 <p>最终步骤</p>
 <ul>
-<li>CA使用CSK加密服务端的pk，得到一个licence给服务端(大多收费)</li>
+<li>CA使用CSK加密服务端的公钥pk，得到一个licence给服务端(大多收费)</li>
 <li>客户端不再请求pk，而是直接请求licence</li>
 <li>客户端用CPK解密得到pk，CPK不需要去CA获取，直接就在操作系统中获取了。操作系统写死了大量的CPK</li>
 <li>之后的所有请求响应都是通过pk加密的</li>
@@ -1037,7 +1037,7 @@
 <li>服务端确定SSL版本，对称加密算法，随机数2，并发送给客户端</li>
 <li>客户端认证证书，认证不通过则停止</li>
 <li>客户端向服务端发送随机数3以及一个将上述几步传输的数据全部进行hash算法的值</li>
-<li>服务端也会通过hash算法计算，接着比较客户端上传的值是否和自己计算的一样，如果一样的话，就将随机数1,2,3通过两者协商好的算法得到秘钥k</li>
+<li>服务端也会通过hash算法计算，接着比较客户端上传的值是否和自己计算的一样，如果一样的话，就将随机数1,2,3通过两者协商好的算法得到秘钥sk</li>
 <li>服务端将上述几步的数据通过hash算法计算得到值响应给客户端</li>
 <li>客户端重新计算1,2,4步的数据的hash值，比较是否相同。相同的话客户端也通过之前协商好的算法计算得到k</li>
 <li>客户端用 k 加密上传数据给服务端</li>
@@ -1832,7 +1832,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">338.2k</span>&nbsp;字
+                class="white-color">343.3k</span>&nbsp;字
             
             
             
