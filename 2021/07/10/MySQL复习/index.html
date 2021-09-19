@@ -1663,7 +1663,7 @@ SELECT * FROM employees  WHERE commission_pct  LIKE '%%' AND last_name LIKE '%%'
 的结果是否一样？并说明原因
 
 结果：
-  如果判断的字段有null，则不一样，没有null值就一样
+  如果commission_pct或者last_name有null，则不一样，没有null值就一样，因为LIKE只会判断有值的
 </code></pre>
 <h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><h3 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h3><pre class=" language-mysql"><code class="language-mysql">/*
 数据操作语言：
