@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-10
+                    2021-09-19
                 </div>
                 
 
@@ -626,7 +626,6 @@ SELECT last_name,department_id FROM employees
 WHERE department_id <> 90
 
 
-
 #查询工资z在10000到20000之间的员工名、工资以及奖金
 SELECT last_name,salary,commission_pct FROM employees
 WHERE salary >= 10000 AND salary <= 20000;
@@ -729,7 +728,6 @@ ORDER BY salary DESC;
         如 concat、length、ifnull等
     2、分组函数
       功能：做统计使用，又称为统计函数、聚合函数、组函数
-    
 </code></pre>
 <h4 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h4><pre class=" language-mysql"><code class="language-mysql">常见函数：
     一、单行函数
@@ -811,13 +809,14 @@ SELECT CEIL(-1.02);#2
 SELECT FLOOR(-9.99);#-10
 
 #truncate 截断
-SELECT TRUNCATE(1.69999,1);
+SELECT TRUNCATE(1.69999,1); #保留小数点后1位
 
 #取余，结果的符号和被除数一样
 /*
 取余公式：
-mod(a,b) ：  a-a/b*b
-
+mod(a,b) ：  a-a/b*b  
+a/b 的结果取正再乘以b
+                                            
 示例：
 mod(-10,-3):-10- (-10)/(-3)*（-3）=-1
 */
@@ -844,16 +843,16 @@ SELECT YEAR('1998-1-1') 年;
 SELECT MONTH(NOW()) 月;
 SELECT MONTHNAME(NOW()) 月;
 
-#str_to_date 将字符通过指定的格式转换成日期
+#str_to_date 将字符通过指定的格式转换成日期 【c% 和 m% 作用一样】
 SELECT STR_TO_DATE('1998-3-2','%Y-%c-%d') AS out_put;
 
 #查询入职日期为1992-4-3的员工信息
 SELECT * FROM employees WHERE hiredate = '1992-4-3';
 或者
 SELECT * FROM employees WHERE hiredate = STR_TO_DATE('4-3-1992','%c-%d-%Y');
-STR_TO_DATE('4-3-1992','%c-%d-%Y') == '1992-4-3'
+只要把字符串转换为日期型，日期的格式不一样也可以查出来，比如日期格式为4-3-1992，也可以查出1992-4-3的来
 
-#date_format 将日期转换成字符
+#date_format 将日期转换成字符 【y表示两位数的年，比如21年;Y表示四位数的年，比如2021】
 SELECT DATE_FORMAT(NOW(),'%y年%m月%d日') AS out_put;
 
 #查询有奖金的员工名和入职日期(xx月/xx日 xx年)
@@ -913,7 +912,6 @@ WHEN 50 THEN salary*1.3
 ELSE salary
 END AS 新工资
 FROM employees;
-
 
 
 #3.case 函数的使用二：类似于 多重if
@@ -993,13 +991,11 @@ SELECT MAX(hiredate),MIN(hiredate) FROM employees;
 SELECT COUNT(commission_pct) FROM employees;
 SELECT COUNT(last_name) FROM employees;
 
-#3、忽略null值
+#3、忽略null值,只会统计commission_pct不为null的
 SELECT COUNT(commission_pct) FROM employees;
-SELECT commission_pct FROM employees;
 
 
 #4、和distinct搭配
-
 SELECT SUM(DISTINCT salary),SUM(salary) FROM employees;
 
 
@@ -1030,16 +1026,15 @@ INNODB存储引擎下，COUNT(*)和COUNT(1)的效率差不多，比COUNT(字段)
 1、和分组函数一同查询的字段必须是group by后出现的字段
 2、筛选分为两类：分组前筛选(where)和分组后筛选(having)
 
-           针对的表                  位置               连接的关键字
-分组前筛选    原始表                   group by前         where
+                针对的表                    位置               连接的关键字
+分组前筛选        原始表                   group by前           where
     
-分组后筛选    group by后的结果集     group by后            having
+分组后筛选        group by后的结果集     group by后          having
 
 一般来讲，能用分组前筛选的，尽量使用分组前筛选，提高效率
 
 3、分组可以按单个字段也可以按多个字段(多个字段之间用逗号隔开，没有顺序要求)
 4、可以搭配着排序使用(放在整个分组查询的最后)
-
 */
 
 
@@ -1191,7 +1186,7 @@ SELECT e.employee_id, e.last_name, m.employee_id,m.last_name
 FROM employees e, employees m
 WHERE e.`manager_id`=m.`employee_id`;
 </code></pre>
-<p><strong>重点关注别名的注意点、分组、非等值连接、自连接</strong></p>
+<p><strong>重点关注别名的注意点、分组、==非等值连接==、自连接</strong></p>
 <h4 id="sql99语法"><a href="#sql99语法" class="headerlink" title="sql99语法"></a>sql99语法</h4><pre class=" language-mysql"><code class="language-mysql">/*
 语法：
     select 查询列表
@@ -1222,9 +1217,9 @@ inner join 表2 别名
 on 连接条件;
 
 分类：
-等值
-非等值
-自连接
+   等值
+   非等值
+   自连接
 
 特点：
 ①添加排序、分组、筛选
@@ -1326,7 +1321,7 @@ WHERE e.`last_name` LIKE '%k%'
  4、全外连接=内连接的结果+表1中有但表2没有的+表2中有但表1没有的
  */
  
-#引入：查询男朋友 不在男神表的的女神名
+#引入：查询男朋友 不在男神表的女神名
 #左外连接
 SELECT b.*,bo.boyName
 FROM beauty b
@@ -3752,7 +3747,7 @@ CALL test_randstr_insert(10)$
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.1k</span>&nbsp;字
+                class="white-color">347.2k</span>&nbsp;字
             
             
             
