@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-19
+                    2021-09-20
                 </div>
                 
 
@@ -1504,7 +1504,7 @@ WHERE (employee_id,salary)=(
     SELECT MIN(employee_id),MAX(salary)
     FROM employees
 );
-
+#这个表中编号最小的员工的工资正好是最高的，要不然查不出来
 
 #二、select后面
 /*
@@ -1566,15 +1566,11 @@ WHERE NOT EXISTS (
 【in 和 exist的区别】
 1、适用表的类型不同。
 in是子查询为驱动表，外面的表为被驱动表，故适用于子查询结果集小而外面的表结果集大的情况。
-exists是外面的表位驱动表，子查询里面的表为被驱动表，故适用于外面的表结果集小而子查询结果集大的情况。
+exists是外面的表为驱动表，子查询里面的表为被驱动表，故适用于外面的表结果集小而子查询结果集大的情况。
 
-2、子查询关联不同。
-exists一般都是关联子查询。对于关联子查询，必须先执行外层查询，接着对所有通过过滤条件的记录，执行内层查询。外层查询和内层查询相互依赖，因为外层查询会把数据传递给内层查询。
-in则一般都是非关联子查询，非关联子查询则必须先完成内层查询之后，外层查询才能介入。
-
-3、执行次数不同。
+2、执行次数不同。
 IN 语句：只执行一次，确定给定的值是否与子查询或列表中的值相匹配。in在查询的时候，首先查询子查询的表，然后将内表和外表做一个笛卡尔积，然后按照条件进行筛选。所以相对内表比较小的时候，in的速度较快。
-EXISTS语句：执行次数根据表的长度而定。指定一个子查询，检测行的存在。遍历循环外表，然后看外表中的记录有没有和内表的数据一样的。匹配上就将结果放入结果集中。
+EXISTS语句：先查询外表，遍历循环外表，然后看外表中的记录是不是满足where条件。满足的话就将结果放入结果集中。
 </code></pre>
 <p><strong>重点关注标量子查询的案例4、列子查询案例2、==select后面的案例1、from后面的案例1、exists后面（相关子查询）==</strong></p>
 <h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><p>应用场景：当要显示的数据，一页显示不全，需要分页提交sql请求</p>
@@ -1592,12 +1588,11 @@ EXISTS语句：执行次数根据表的长度而定。指定一个子查询，�
     
     offset要显示条目的起始索引（起始索引从0开始）
     size 要显示的条目个数
+    也就是显示从索引+1处开始，显示后面的size条记录
     
 特点：
     ①limit语句放在查询语句的最后 
-    ②公式
-    要显示的页数 page，每页的条目数size
-    
+    ②公式：（page：要显示的页数，size：每页的条目数）
     select 查询列表
     from 表
     limit (page-1)*size,size;
@@ -1631,7 +1626,7 @@ union
 要查询的结果来自于多个表，且多个表没有直接的连接关系，但查询的信息一致时
 
 特点：★
-1、要求多条查询语句的查询列数是一致的！
+1、要求多条查询语句的查询字段是一致的！
 2、要求多条查询语句的查询的每一列的类型和顺序最好一致，类型要是不一致的话会尝试自动转换，转不成就报错
 3、union关键字默认去重，如果使用union all 可以包含重复项
 */
@@ -1655,6 +1650,7 @@ SELECT * FROM employees  WHERE department_id>90;
     having                      6
     order by                   8
     limit 起始条目索引，条目数  9
+子查询的执行优先于主查询执行
 </code></pre>
 <h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><pre class=" language-mysql"><code class="language-mysql">试问：
 SELECT * FROM employees
@@ -1684,7 +1680,7 @@ INSERT INTO beauty(id,NAME,sex,borndate,phone,photo,boyfriend_id)
 VALUES(13,'唐艺昕','女','1990-4-23','1898888888',NULL,2);
 
 
-#2.不可以为null的列必须插入值。可以为null的列如何插入值？ 字段和值都可省略
+#2.不可以为null的列必须插入值。可以为null的列如何插入值？ 直接写null或者字段和值都不写，就默认为null
 #方式一：
 INSERT INTO beauty(id,NAME,sex,borndate,phone,photo,boyfriend_id)
 VALUES(13,'唐艺昕','女','1990-4-23','1898888888',NULL,2);
@@ -1766,7 +1762,7 @@ WHERE id=2;
 UPDATE boys bo 
 RIGHT JOIN beauty b 
 ON bo.`id` = b.`boyfriend_id`
-SET phone='119',bo.`userCP`=1000
+SET phone='114',bo.`userCP`=1000
 WHERE bo.id = 1
 
 #案例2：修改没有男朋友的女神的男朋友编号都为2号
@@ -1801,10 +1797,8 @@ inner|left|right join 表2 别名 on 连接条件
 where 筛选条件;
 
 
-
 方式二：truncate：表中数据全部删除
 语法：truncate table 表名;
-
 */
 
 
@@ -1812,7 +1806,7 @@ where 筛选条件;
 #1.单表的删除
 #案例：删除手机号以9结尾的女神信息
 DELETE FROM beauty
-WHERE phone LIKE '%8'
+WHERE phone LIKE '%9'
 
 
 #2.多表的删除【级联删除】
@@ -1935,7 +1929,7 @@ DROP DATABASE IF EXISTS 旧库名;
 CREATE DATABASE 新库名;
 
 DROP TABLE IF EXISTS 旧表名;
-CREATE TABLE  表名();
+CREATE TABLE  表名(...);
 
 
 
@@ -2014,7 +2008,6 @@ M和D都可以省略
 
 原则：
 所选择的类型越简单越好，能保存数值的类型越小越好
-
 */
 
 
@@ -2066,8 +2059,8 @@ timestamp    4       1970-2038           受
     
     CHECK:检查约束【mysql中不支持】      比如年龄、性别
     
-    PRIMARY KEY:主键，用于保证该字段的值具有唯一性，并且非空     比如学号、员工编号等
-        并且主键的名字是mysql指定的，为PRIMARY，就改变不了
+    PRIMARY KEY:将字段设置为主键，用于保证该字段的值具有唯一性，并且非空     比如学号、员工编号等
+        并且主键的名字是mysql指定的，就为PRIMARY，就改变不了
     
     FOREIGN KEY:外键，用于限制两个表的关系，用于保证该字段的值必须来自于主表的关联列的值
         在从表添加外键约束，用于引用主表中某列的值
@@ -2116,7 +2109,7 @@ CREATE TABLE stuinfo(
 
 语法：在各个字段的最下面
  【constraint 约束名】 约束类型(字段名) ， 【constraint 约束名】可以不加，默认是字段名
- 不支持非空、检查
+ 不支持非空、检查、默认
 */
 
 DROP TABLE IF EXISTS stuinfo;
@@ -2146,7 +2139,6 @@ CREATE TABLE IF NOT EXISTS stuinfo(
     seat INT UNIQUE,
     majorid INT,
     CONSTRAINT fk_stuinfo_major FOREIGN KEY(majorid) REFERENCES major(id)
-
 );
 </code></pre>
 <h3 id="修改表时添加约束"><a href="#修改表时添加约束" class="headerlink" title="修改表时添加约束"></a>修改表时添加约束</h3><pre class=" language-mysql"><code class="language-mysql">#二、修改表时添加约束
@@ -2203,7 +2195,7 @@ ALTER TABLE stuinfo MODIFY COLUMN age INT ;
 ALTER TABLE stuinfo DROP PRIMARY KEY;
 
 #4.删除唯一
-ALTER TABLE stuinfo DROP INDEX site;
+ALTER TABLE stuinfo DROP INDEX 加上有唯一索引的列;
 
 #5.删除外键
 ALTER TABLE stuinfo DROP FOREIGN KEY fk_stuinfo_major;
@@ -2250,7 +2242,7 @@ ON DELETE SET NULL:就代表级联置空
 1、标识列必须和主键搭配吗？不一定，但要求是一个key
 2、一个表可以有几个标识列？至多一个！！！
 3、标识列的类型只能是数值型
-4、标识列可以通过 SET auto_increment_increment=3;设置步长，可以通过 手动插入值，设置起始值
+4、标识列可以通过 SET auto_increment=3;设置步长，可以通过 手动插入值，设置起始值
 5、改变表自增列的值为n,ALTER TABLE beauty AUTO_INCREMENT = n
 </code></pre>
 <h2 id="TCL"><a href="#TCL" class="headerlink" title="TCL"></a>TCL</h2><h3 id="事务介绍"><a href="#事务介绍" class="headerlink" title="事务介绍"></a>事务介绍</h3><pre class=" language-mysql"><code class="language-mysql">Transaction Control Language 事务控制语言
@@ -2289,18 +2281,17 @@ set autocommit=0;
 set autocommit=0;
 start transaction;可选的
 
-步骤2：编写事务中的sql语句(只支持insert update delete)
+步骤2：编写事务中的sql语句(只支持 insert update delete)
 语句1;
 语句2;
 ...
 
 步骤3：结束事务
-commit;提交事务
-rollback;回滚事务
-rollback to;回滚到指定的地方
+commit; 提交事务
+rollback; 回滚事务
+rollback to; 回滚到指定的地方
 
-
-savepoint 节点名;设置保存点
+savepoint 加上节点名; 设置保存点
 
 事务并发:
     1.事务的并发是如何发生的
@@ -2316,7 +2307,7 @@ savepoint 节点名;设置保存点
 read uncommitted：  有           有              有
 read committed：    无           有              有
 repeatable read：   无           无              有
-serializable         无       无           无               
+serializable        无       无           无               
 从上往下隔离级别依次递增，性能逐次降低
 
 mysql 中默认第三个隔离级别 repeatable read
@@ -2347,7 +2338,7 @@ ACID
 <td>视图</td>
 <td>create view</td>
 <td>只是保存了sql逻辑</td>
-<td>增删改查，只是一般不能增删改</td>
+<td>增删改查，不过一般只能做查询操作</td>
 </tr>
 <tr>
 <td>表</td>
@@ -2415,12 +2406,13 @@ alter view 视图名
 as 
 查询语句;
 </code></pre>
-<h3 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h3><pre class=" language-mysql"><code class="language-mysql">前提是权限的够
+<h3 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h3><pre class=" language-mysql"><code class="language-mysql">前提是权限得够
 语法：drop view 视图名,视图名,...;
 </code></pre>
 <h3 id="查看视图"><a href="#查看视图" class="headerlink" title="查看视图"></a>查看视图</h3><pre class=" language-mysql"><code class="language-mysql">DESC myv3;
 </code></pre>
-<h3 id="视图的更新"><a href="#视图的更新" class="headerlink" title="视图的更新"></a>视图的更新</h3><pre class=" language-mysql"><code class="language-mysql">CREATE OR REPLACE VIEW myv1
+<h3 id="视图的更新"><a href="#视图的更新" class="headerlink" title="视图的更新"></a>视图的更新</h3><p>==<strong>对视图的插入修改删除都会影响到原来的表，所以一般会给视图添加只读的权限</strong>==</p>
+<pre class=" language-mysql"><code class="language-mysql">CREATE OR REPLACE VIEW myv1
 AS
 SELECT last_name,email
 FROM employees;
@@ -2428,7 +2420,6 @@ FROM employees;
 SELECT * FROM myv1;
 SELECT * FROM employees;
 
-对视图的插入修改删除都会影响到原来的表，所以一般会给视图添加只读的权限
 
 #1.插入：
 INSERT INTO myv1 VALUES('张飞','zf@qq.com');
@@ -2442,14 +2433,14 @@ DELETE FROM myv1 WHERE last_name = '张无忌';
 #具备以下特点的视图不允许更新
     ①包含以下关键字的sql语句：分组函数、distinct、group  by、having、union或者union all
     ②常量视图
-    ③视图中包含Select中包含子查询
+    ③视图中的Select里包含子查询
     ④视图中包含join
     ⑤视图中的from包含一个不能更新的视图
     ⑥视图中的where子句的子查询引用了from子句中的表
 </code></pre>
 <h3 id="视图的好处"><a href="#视图的好处" class="headerlink" title="视图的好处"></a>视图的好处</h3><ul>
 <li>重用sql语句</li>
-<li>简化复杂的sql操作，不必知道它的查询细节</li>
+<li>对sql进行封装</li>
 <li>保护数据，提高安全性</li>
 </ul>
 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><pre class=" language-mysql"><code class="language-mysql">系统变量：
@@ -2460,7 +2451,7 @@ DELETE FROM myv1 WHERE last_name = '张无忌';
     用户变量
     局部变量
 </code></pre>
-<h3 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h3><pre class=" language-mysql"><code class="language-mysql">说明：变量由系统定义，不是用户定义，属于服务器层面
+<h3 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h3><pre class=" language-mysql"><code class="language-mysql">说明：变量由系统定义，属于服务器层面
 
 使用步骤：
 1、查看所有系统变量
@@ -2573,18 +2564,19 @@ SELECT 局部变量名;
 <li>提高代码的重用性</li>
 <li>简化操作</li>
 </ul>
-<h3 id="存储过程概念"><a href="#存储过程概念" class="headerlink" title="存储过程概念"></a>存储过程概念</h3><pre class=" language-mysql"><code class="language-mysql">含义：一组预选编译好的SQL语句的集合，可理解为批处理语句
+<h3 id="存储过程概念"><a href="#存储过程概念" class="headerlink" title="存储过程概念"></a>存储过程概念</h3><pre class=" language-mysql"><code class="language-mysql">含义：一组预先编译好的SQL语句的集合，可理解为批处理语句
 
 好处：(简单、安全、性能高)
       1.提高代码的重用性
       2.简化操作
       3.减少了编译次数并且减少了和数据库服务器连接次数，提高了效率
 </code></pre>
-<h3 id="创建语法"><a href="#创建语法" class="headerlink" title="创建语法"></a>创建语法</h3><pre class=" language-mysql"><code class="language-mysql">
+<h3 id="创建语法"><a href="#创建语法" class="headerlink" title="创建语法"></a>创建语法</h3><pre class=" language-mysql"><code class="language-mysql">delimiter $ #设置结束标识
 CREATE PROCEDURE 存储过程名(参数列表)
 BEGIN
     存储过程体（一组合法的sql语句）
 END
+delimiter ; #将结束标识恢复为;
 
 注意：
 1、参数列表包含三部分
@@ -2603,11 +2595,7 @@ delimiter 结束标记
 案例：
 delimiter $
 </code></pre>
-<h3 id="调用语法"><a href="#调用语法" class="headerlink" title="调用语法"></a>调用语法</h3><h4 id="1-空参列表"><a href="#1-空参列表" class="headerlink" title="1.空参列表"></a>1.空参列表</h4><pre class=" language-mysql"><code class="language-mysql">
-#案例：插入到admin表中五条记录
-
-SELECT * FROM admin;
-
+<h3 id="调用语法"><a href="#调用语法" class="headerlink" title="调用语法"></a>调用语法</h3><h4 id="1-空参列表"><a href="#1-空参列表" class="headerlink" title="1.空参列表"></a>1.空参列表</h4><pre class=" language-mysql"><code class="language-mysql">#案例：插入到admin表中五条记录
 DELIMITER $
 
 CREATE PROCEDURE myp1()
@@ -2615,10 +2603,10 @@ BEGIN
     INSERT INTO admin(username,`password`) 
     VALUES('john1','0000'),('lily','0000'),('rose','0000'),('jack','0000'),('tom','0000');
 END $
-
+DELIMITER ;
 
 #调用
-CALL myp1()$
+CALL myp1();
 </code></pre>
 <h4 id="2-创建带in模式参数的存储过程"><a href="#2-创建带in模式参数的存储过程" class="headerlink" title="2.创建带in模式参数的存储过程"></a>2.创建带in模式参数的存储过程</h4><pre class=" language-mysql"><code class="language-mysql">#案例1：创建存储过程实现 根据女神名，查询对应的男神信息
 CREATE PROCEDURE myp2(IN beautyName VARCHAR(20))
@@ -2633,7 +2621,6 @@ END $
 CALL myp2('柳岩')$
 
 
-
 #案例2 ：创建存储过程实现，用户是否登录成功
 CREATE PROCEDURE myp4(IN username VARCHAR(20),IN PASSWORD VARCHAR(20))
 BEGIN
@@ -2644,7 +2631,7 @@ BEGIN
     WHERE admin.username = username
     AND admin.password = PASSWORD;
     
-    SELECT IF(result>0,'成功','失败');#使用
+    SELECT IF(result>0,'成功','失败');#直接就可以输出成功/失败
 END $
 
 #调用
@@ -2661,7 +2648,9 @@ BEGIN
     WHERE b.name=beautyName ;
     
 END $
-
+#调用
+CALL myp5('小昭',@bName)$
+SELECT @bName$
 
 #案例2：根据输入的女神名，返回对应的男神名和魅力值
 
@@ -2672,8 +2661,10 @@ BEGIN
     RIGHT JOIN
     beauty b ON b.boyfriend_id = boys.id
     WHERE b.name=beautyName ;
-    
 END $
+#调用
+CALL myp5('小昭',@bName,@usercp)$
+SELECT @bName$,@usercp$
 </code></pre>
 <h4 id="4-创建带inout模式参数的存储过程"><a href="#4-创建带inout模式参数的存储过程" class="headerlink" title="4.创建带inout模式参数的存储过程"></a>4.创建带inout模式参数的存储过程</h4><pre class=" language-mysql"><code class="language-mysql">#案例1：传入a和b两个值，最终a和b都翻倍并返回
 
@@ -2813,7 +2804,7 @@ end
 特点：
  1. 可以作为表达式，嵌套在其他语句中使用，应用在任何地方
     可以作为独立的语句去使用，只能放在BEGIN END中
- 2. 如果WHEN中的值满足或条件成俐，则执行对应的THEN后面的语句，并且结束CASE
+ 2. 如果WHEN中的值满足或条件成立，则执行对应的THEN后面的语句，并且结束CASE
     如果都不满足，则执行ELSE中的语句或值
  3.ELSE可以省略，如果ELSE省略了，并且所有WHEN条件都不满足，则返回NULL
  
@@ -3747,7 +3738,7 @@ CALL test_randstr_insert(10)$
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.2k</span>&nbsp;字
+                class="white-color">347.1k</span>&nbsp;字
             
             
             
@@ -3985,7 +3976,7 @@ color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
 </script>
 
 <!-- 樱花-->
-<script type="text/javascript" src="/js/sakura.js"></script>
+<!--<script type="text/javascript" src="/js/sakura.js"></script>-->
 
 <!-- 雪花 -->
 <!-- <script type="text/javascript" src="/js/snow.js"></script> -->
