@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-21
+                    2021-09-20
                 </div>
                 
 
@@ -1621,7 +1621,7 @@ Statement st <span class="token operator">=</span> conn<span class="token punctu
 <li>调用 Connection 对象的 <strong>setAutoCommit(false);</strong> 以取消自动提交事务</li>
 <li>在所有的 SQL 语句都成功执行后，调用 <strong>commit();</strong> 方法提交事务</li>
 <li>在出现异常时，调用 <strong>rollback();</strong> 方法回滚事务</li>
-<li>.恢复每次DML操作的自动提交功能</li>
+<li>恢复每次DML操作的自动提交功能</li>
 </ul>
 <blockquote>
 <p>若此时 Connection 没有被关闭，还可能被重复使用，则需要恢复其自动提交状态 setAutoCommit(true)。尤其是在使用数据库连接池技术时，执行close()方法前，建议恢复自动提交状态。</p>
@@ -1740,7 +1740,7 @@ Statement st <span class="token operator">=</span> conn<span class="token punctu
 </tr>
 </tbody></table>
 <ul>
-<li>Oracle 支持的 2 种事务隔离级别：<strong>READ COMMITED</strong>, SERIALIZABLE。 Oracle 默认的事务隔离级别为: <strong>READ COMMITED</strong> 。</li>
+<li>Oracle 支持的 2 种事务隔离级别：<strong>READ COMMITED</strong>, SERIALIZABLE。 Oracle 默认的事务隔离级别为: <strong>READ COMMITED</strong> </li>
 </ul>
 <ul>
 <li>Mysql 支持 4 种事务隔离级别。Mysql 默认的事务隔离级别为: <strong>REPEATABLE READ。</strong></li>
@@ -2364,6 +2364,7 @@ Statement st <span class="token operator">=</span> conn<span class="token punctu
         Connection conn <span class="token operator">=</span> source<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <pre class=" language-properties"><code class="language-properties"><span class="token attr-name">driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
 <span class="token attr-name">url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8</span>
@@ -3558,7 +3559,7 @@ Statement st <span class="token operator">=</span> conn<span class="token punctu
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.1k</span>&nbsp;字
+                class="white-color">347.2k</span>&nbsp;字
             
             
             

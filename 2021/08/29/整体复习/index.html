@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-16
+                    2021-09-21
                 </div>
                 
 
@@ -705,7 +705,7 @@ mysql> DELIMITER ;
 <p>​    普通内部类作为外部类的一个成员，在普通内部类中可以直接访问外部类属性，调用外部类的方法(静态和非静态都可以)。普通类里面不能有静态属性和方法</p>
 <p>​    如果外部类要调用内部类的普通属性和方法，无论是不是静态的，必须创建一个内部类的对象，使用该对象访问属性或者调用方法。如果是静态内部类的静态属性和方法，则可以直接通过类调用。</p>
 <p>​    如果其他类要访问普通内部类的属性和方法，必须要在外部类中创建一个普通内部类的对象作为一个属性，其他类可以通过该属性调用普通内部类的方法或者访问普通内部类的属性</p>
-<p>​    如果其他的类要访问静态内部类的属性或者调用静态内部类的方法，直接创建一个静态内部类即可。</p>
+<p>​    如果其他的类要访问静态内部类的属性或者调用静态内部类的方法，直接创建一个静态内部类的对象即可。</p>
 <h2 id="Static关键字"><a href="#Static关键字" class="headerlink" title="Static关键字"></a>Static关键字</h2><p>​    static修饰方法是静态方法，表示该方法是当前类的，静态方法不能被重写，<strong>子类可以直接调用父类的静态方法</strong>，在static中不能使用this和super关键字。</p>
 <p>​    Static修饰变量是静态变量或者叫类变量，静态变量被所有实例所共享，不会依赖于对象。静态变量在内存中只有一份拷贝，在JVM加载类的时候，只为静态分配一次内存。</p>
 <h2 id="java中的继承是单继承还是多继承"><a href="#java中的继承是单继承还是多继承" class="headerlink" title="java中的继承是单继承还是多继承"></a>java中的继承是单继承还是多继承</h2><p>java中既有单继承，又有多继承，对于java类来说是单继承，对于接口来说是多继承</p>
@@ -1452,8 +1452,8 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <li>java.util,Collection 是一个集合接口(集合类的一个顶级接口) 。它提供了对集合对象进行基本操作的通用接口方法.    Collection接口在Java类库中有很多具体的实现。Collection 接口的意义是为各种具体的集合提供了最大化的统一操<br>作方式，其直接继承接口有List与Set。</li>
 <li>Collections 则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。</li>
 </ul>
-<h2 id="TreeMap-和-TreeSet-在排序时如何比较元素"><a href="#TreeMap-和-TreeSet-在排序时如何比较元素" class="headerlink" title="TreeMap 和 TreeSet 在排序时如何比较元素"></a>TreeMap 和 TreeSet 在排序时如何比较元素</h2><p>​    TreeSet 要求存放的对象所属的类必须实现Comparable接口，该接口提供了比较元素的comparTo()方法，当插入元素时会回调该方法比较元素的大小</p>
-<p>   TreeMap 要求存放的键值对映射的键必须实现Comparable接口从而根据键对元素进行排序</p>
+<h2 id="TreeMap-和-TreeSet-在排序时如何比较元素"><a href="#TreeMap-和-TreeSet-在排序时如何比较元素" class="headerlink" title="TreeMap 和 TreeSet 在排序时如何比较元素"></a>TreeMap 和 TreeSet 在排序时如何比较元素</h2><p>​    TreeSet 要求<strong>存放的对象所属的类必须实现Comparable接口或者利用构造器传入comparator接口</strong>，该接口提供了比较元素的comparTo()方法，当插入元素时会回调该方法比较元素的大小</p>
+<p>   TreeMap 要求存放的键值对映射的键必须实现Comparable接口或者利用构造器传入comparator接口从而根据键对元素进行排序</p>
 <h2 id="HashMap和ConcurrentHashMap的区别"><a href="#HashMap和ConcurrentHashMap的区别" class="headerlink" title="HashMap和ConcurrentHashMap的区别"></a>HashMap和ConcurrentHashMap的区别</h2><p>ConcurrentHashMap对每个桶都用CAS和synchronized 结合实现更加细粒度的锁，多线程操作只会锁住当前操作索引的结点。</p>
 <p>HashMap的键值对允许有null。ConcurrentHashMap都不允许，因为 ConcurrentHashMap 是用于多线程的 ，如果ConcurrentHashMap.get(key)得到了 null ，这就无法判断，是映射的value是 null ，还是没有找到对应的key而为 null ，就有了二义性。而用于单线程状态的 HashMap 却可以用containsKey(key) 去判断到底是否包含了这个 null 。</p>
 <h2 id="JDK1-8-中为什么使用内置锁-synchronized替换-可重入锁-ReentrantLock？"><a href="#JDK1-8-中为什么使用内置锁-synchronized替换-可重入锁-ReentrantLock？" class="headerlink" title="JDK1.8 中为什么使用内置锁 synchronized替换 可重入锁 ReentrantLock？"></a>JDK1.8 中为什么使用内置锁 synchronized替换 可重入锁 ReentrantLock？</h2><ul>
@@ -1699,7 +1699,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <p>方式二</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton singleton<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> Singleton singleton<span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
@@ -5763,7 +5763,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.1k</span>&nbsp;字
+                class="white-color">347.2k</span>&nbsp;字
             
             
             
