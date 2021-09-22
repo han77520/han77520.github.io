@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-21
+                    2021-09-22
                 </div>
                 
 
@@ -506,6 +506,7 @@
 <li>String:不可变的字符序列；底层使用char[]存储</li>
 <li>StringBuffer:可变的字符序列；线程安全的，效率低；底层使用char[]存储</li>
 <li>StringBuilder:可变的字符序列；jdk5.0新增的，线程不安全的，效率高；底层使用char[]存储</li>
+<li>都是用final修饰的类</li>
 </ul>
 <p>为什么string是不可变的？</p>
 <p>·    在string常量池中，可能有很多的引用指向同一个字符串，如果string类是可变的，那么一个引用修改此值，其他的引用也都跟着变化，存在一个客户的操作影响到其他客户情况。所以将他设置成不可变的，所谓不可变，就是如果一个客户修改此字符串，那么将会在重新创建一个string对象，不会对原来的值产生影响。</p>
@@ -524,7 +525,7 @@
  * 如果其中有一个是变量，按照自动类型转换规则处理成一致的类型；
  * 如果都是常量:
  *      如果一个是char，如果另一个是[0~65535]之间的整数按char处理；
- *         如果一个是char，另一个是其他，按照自动类型转换规则处理成一致的类型；
+ *       如果一个是char，另一个是其他，按照自动类型转换规则处理成一致的类型；
  */</span>
 </code></pre>
 <h2 id="接口和类在设计层面的区别"><a href="#接口和类在设计层面的区别" class="headerlink" title="接口和类在设计层面的区别"></a>接口和类在设计层面的区别</h2><p>​    ①<strong>抽象类是对一种事物的抽象，即对类抽象，而接口是对行为的抽象。抽象类是对整个类整体进行抽象，包括属性、行为，但是接口却是对类局部（行为）进行抽象。</strong>举个简单的例子，飞机和鸟是不同类的事物，但是它们都有一个共性，就是都会飞。那么在设计的时候，可以将飞机设计为一个类Airplane，将鸟设计为一个类Bird，但是不能将 飞行这个特性也设计为类，因此它只是一个行为特性，并不是对一类事物的抽象描述。此时可以将飞行设计为一个接口Fly，包含方法fly( )，然后Airplane和Bird分别根据自己的需要实现Fly这个接口。然后至于有不同种类的飞机，比如战斗机、民用飞机等直接继承Airplane即可，对于鸟也是类似的，不同种类的鸟直接继承Bird类即可。从这里可以看出，继承是一个 “是不是”的关系，而 接口 实现则是 “有没有”的关系。如果一个类继承了某个抽象类，则子类必定是抽象类的种类，而接口实现则是有没有、具备不具备的关系，比如鸟是否能飞（或者是否具备飞行这个特点），能飞行则可以实现这个接口，不能飞行就不实现这个接口。</p>
@@ -675,7 +676,7 @@ mysql> DELIMITER ;
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="使用数据库连接池有有什么好处"><a href="#使用数据库连接池有有什么好处" class="headerlink" title="使用数据库连接池有有什么好处"></a>使用数据库连接池有有什么好处</h2><p>​    数据库连接是非常消耗资源的，影响到程序的性能指标。连接池是用来分配、管理、释放数据库连接的，可以使应用程序重复使用同一个数据库连接，而不是每次都创建一个新的数据库连接。通过释放空闲时间较长的数据库连接避免数据库因为创建太多的连接而造成的连接遗漏问题，提高了程序性能。</p>
-<h2 id="GC是什么-为什么要有GC"><a href="#GC是什么-为什么要有GC" class="headerlink" title="GC是什么? 为什么要有GC"></a>GC是什么? 为什么要有GC</h2><p>​        答：GC是垃圾收集的意思（Garbage Collection）,内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java提供的GC功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的，Java语言没有提供释放已分配内存的显示操作方法</p>
+<h2 id="GC是什么-为什么要有GC"><a href="#GC是什么-为什么要有GC" class="headerlink" title="GC是什么? 为什么要有GC"></a>GC是什么? 为什么要有GC</h2><p>​        答：GC是垃圾收集的意思（Garbage Collection），内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java提供的GC功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的，Java语言没有提供释放已分配内存的显示操作方法</p>
 <p>​    垃圾回收机制回收任何对象之前，总会先调用它的finalize方法（如果覆盖该方法，让一个新的引用变量重新引用该对象，则会重新激活对象）。</p>
 <p>​    如果对象的引用被置为null，垃圾收集器在下一个垃圾回调周期中才会释放其占用的内存，不会立即释放对象占用的内存</p>
 <h2 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a>线程和进程的区别</h2><p><strong>进程</strong>是系统进行资源分配的独立单位，<strong>线程</strong>是CPU调度和分派的基本单位。</p>
@@ -693,20 +694,20 @@ mysql> DELIMITER ;
 <li>拥有资源：进程是拥有资源的一个独立单位，线程不拥有系统资源，但可以访问隶属于进程的资源</li>
 <li>系统开销：在创建或撤销进程的时候，由于系统都要为之分配和回收资源，导致系统的开销明显大于创建或撤销线程时的开销，但进程有独立的地址空间，进程崩溃后，在保护模式下不会对其他的进程产生影响，而线程只是一个进程中的不同的执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，所以多进程的程序要比多线程的程序健壮性高，但是在进程切换时，耗费的资源较大，效率要差些。</li>
 </ul>
-<h2 id="重载和重写的"><a href="#重载和重写的" class="headerlink" title="重载和重写的"></a>重载和重写的</h2><p>​        OverLoad为重载，Override为重写，方法的重写和重载就是java多态性的不同表现，并且重写是父类和子类中的多态性的一种表现。</p>
+<h2 id="重载和重写的区别"><a href="#重载和重写的区别" class="headerlink" title="重载和重写的区别"></a>重载和重写的区别</h2><p>​        OverLoad为重载，Override为重写，方法的重写和重载就是java多态性的不同表现，并且重写是父类和子类中的多态性的一种表现。</p>
 <p>​        如果在子类中定义某方法与其父类有相同的名称和参数，就说该方法被重写了，子类的对象使用这个方法时，调用子类中的定义，对它而言，父类中的定义如同被“屏蔽”了。</p>
 <p>​       如果在一个类中定义了多个同名的方法，它们或有不同的参数个数或者有不用的参数类型，则称为方法重载</p>
 <h2 id="如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？"><a href="#如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？" class="headerlink" title="如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？"></a>如果对象的引用被值为null，垃圾收集器是否会立即释放对象占用的内存？</h2><p>不会立即被回收，但是在下一个垃圾回收周期中这个对象将是可被回收的。</p>
 <h2 id="类与对象的关系"><a href="#类与对象的关系" class="headerlink" title="类与对象的关系"></a>类与对象的关系</h2><p>类是对象的抽象，对象是类的具体，类是对象的模板，对象是类的实例</p>
 <h2 id="Char类型能不能转成int类型？"><a href="#Char类型能不能转成int类型？" class="headerlink" title="Char类型能不能转成int类型？"></a>Char类型能不能转成int类型？</h2><p>​    Char在java中也是比较特殊的类型，int值从1开始，一共有2的16次方个数据；Char &lt; int &lt; long &lt; float &lt; double；Char类型可以隐式转换成int、double类型，但是不能隐式转换成string；如果Char类型转成byte，short类型的时候，需要强转。Char类型的默认值为 ‘ ‘ 。</p>
-<h2 id="Java中有没有指针？"><a href="#Java中有没有指针？" class="headerlink" title="Java中有没有指针？"></a>Java中有没有指针？</h2><p>有，但是被隐藏了，开发人员无法直接操作指针，有jvm来操作指针</p>
+<h2 id="Java中有没有指针？"><a href="#Java中有没有指针？" class="headerlink" title="Java中有没有指针？"></a>Java中有没有指针？</h2><p>有，但是被隐藏了，开发人员无法直接操作指针，由jvm来操作指针</p>
 <h2 id="Java中是值传递还是引用传递"><a href="#Java中是值传递还是引用传递" class="headerlink" title="Java中是值传递还是引用传递"></a>Java中是值传递还是引用传递</h2><p><strong>是值传递。</strong>Java 语言的参数传递只有值传递。对于基本数据类型，传递的是值的副本，而不是值本身；对于对象类型作为参数被传递到方法中时，参数的值就是该对象的引用的一个副本。指向同一个对象，对象的内容可以在被调用的方法内改变，但对象的引用(不是引用的副本) 是永远不会改变的。</p>
-<h2 id="内部类与静态内部类的区别"><a href="#内部类与静态内部类的区别" class="headerlink" title="内部类与静态内部类的区别"></a>内部类与静态内部类的区别</h2><p>​    静态内部类是独立于外部类的存在，在静态内部类中无法直接访问外部类中的非静态变量和方法，如果要访问的话，必须new一个外部类的对象，使用new出来的对象进行访问。但是可以直接访问静态的变量，调用静态的方法。</p>
+<h2 id="普通内部类与静态内部类的区别"><a href="#普通内部类与静态内部类的区别" class="headerlink" title="普通内部类与静态内部类的区别"></a>普通内部类与静态内部类的区别</h2><p>​    静态内部类是独立于外部类的存在，在静态内部类中无法直接访问外部类中的非静态变量和方法，如果要访问的话，必须new一个外部类的对象，使用new出来的对象进行访问。但是可以直接访问静态的变量，调用静态的方法。</p>
 <p>​    普通内部类作为外部类的一个成员，在普通内部类中可以直接访问外部类属性，调用外部类的方法(静态和非静态都可以)。普通类里面不能有静态属性和方法</p>
 <p>​    如果外部类要调用内部类的普通属性和方法，无论是不是静态的，必须创建一个内部类的对象，使用该对象访问属性或者调用方法。如果是静态内部类的静态属性和方法，则可以直接通过类调用。</p>
 <p>​    如果其他类要访问普通内部类的属性和方法，必须要在外部类中创建一个普通内部类的对象作为一个属性，其他类可以通过该属性调用普通内部类的方法或者访问普通内部类的属性</p>
 <p>​    如果其他的类要访问静态内部类的属性或者调用静态内部类的方法，直接创建一个静态内部类的对象即可。</p>
-<h2 id="Static关键字"><a href="#Static关键字" class="headerlink" title="Static关键字"></a>Static关键字</h2><p>​    static修饰方法是静态方法，表示该方法是当前类的，静态方法不能被重写，<strong>子类可以直接调用父类的静态方法</strong>，在static中不能使用this和super关键字。</p>
+<h2 id="Static关键字"><a href="#Static关键字" class="headerlink" title="Static关键字"></a>Static关键字</h2><p>​    static修饰方法是静态方法，表示该方法是当前类的，静态方法不能被重写，<strong>子类可以直接调用父类的静态方法，但实现类不能调用接口的静态方法</strong>，在static中不能使用this和super关键字。</p>
 <p>​    Static修饰变量是静态变量或者叫类变量，静态变量被所有实例所共享，不会依赖于对象。静态变量在内存中只有一份拷贝，在JVM加载类的时候，只为静态分配一次内存。</p>
 <h2 id="java中的继承是单继承还是多继承"><a href="#java中的继承是单继承还是多继承" class="headerlink" title="java中的继承是单继承还是多继承"></a>java中的继承是单继承还是多继承</h2><p>java中既有单继承，又有多继承，对于java类来说是单继承，对于接口来说是多继承</p>
 <h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><p>​    如果父类中没有无参构造器，子类中的构造器又没有显式调用父类中的有参构造器，则会报错，因为子类默认调用父类的无参构造器</p>
@@ -742,13 +743,13 @@ mysql> DELIMITER ;
 <h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>​        <strong>对象序列化机制</strong>允许把内存中的Java对象转换成二进制流(使用ObjectOutputStream)，从而允许把这种二进制流持久地保存在磁盘上，或通过网络将这种二进制流传输到另一个网络节点。当其它程序获取了这种二进制流，就可以反序列化为原来的Java对象(使用ObjectInputStream)</p>
 <p>​        序列化的好处在于可将任何实现了Serializable接口的对象转化为<strong>字节数据</strong>，使其在保存和传输时可被还原</p>
 <h2 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h2><p>1&gt;  transient的作用及使用方法：<br>     java 的transient关键字为我们提供了便利，你只需要实现Serilizable接口，将不需要序列化的属性前添加    关键字transient，序列化对象的时候，这个属性就不会序列化到指定的目的地中；<br>2&gt; transient 使用小结<br>     1）一旦变量被transient修饰，变量将不再是对象持久化的一部分，该变量内容在序列化后无法获得访问。</p>
-<p>​     2）transient关键字只能修饰变量，而不能修饰方法和类。注意，本地变量是不能被transient关键字修饰的。       变量如果是用户自定义类变量，则该类需要实现Serializable接口。</p>
-<p>​     3）被transient关键字修饰的变量不再能被序列化，一个静态变量不管是否被transient修饰，均不能被序列        化。</p>
+<p>​     2）transient关键字只能修饰变量，而不能修饰方法和类。注意，本地变量是不能被transient关键字修饰的。变量如果是用户自定义类变量，则该类需要实现Serializable接口。</p>
+<p>​     3）被transient关键字修饰的变量不再能被序列化，一个静态变量不管是否被transient修饰，均不能被序列化。</p>
 <p>3&gt; 被transient关键字修饰的变量也是能被序列化<br>     若实现的是Externalizable接口，则没有任何东西可以自动序列化，需要在writeExternal方法中进行手动指定所要序列化的变量，这与是否被transient修饰无关。</p>
 <h2 id="什么是集合"><a href="#什么是集合" class="headerlink" title="什么是集合"></a>什么是集合</h2><ul>
 <li><p>集合就是一个放数据的容器，准确的说是放数据对象引用的容器</p>
 </li>
-<li><p>集合类存放的都是对象的引用，而不是对象本身</p>
+<li><p><strong>集合类存放的都是对象的引用，而不是对象本身</strong></p>
 </li>
 <li><p>常见的有list、set、map</p>
 </li>
@@ -4812,10 +4813,10 @@ $document_uri    与$uri相同。
 <p>第二次挥手，Server 收到FIN后，发送一个ACK=1，ack number= seq1 + 1，进入CLOSE_WAIT状态，此时服务端已经没有要发送的数据了，但仍然可以接收服务器发送的数据</p>
 <p>第三次挥手，Server 将FIN置为1，发送一个序列号seq2和ack number= seq1 + 1给Client，进入LAST_ACK状态</p>
 <p>第四次挥手，Client收到服务器的FIN后，进入TIME_WAIT状态，接着将ACK置为1，发送一个ack number = seq2 + 1给服务器，服务器收到后确认ack number 后，变为CLOSED状态，不再向客户端发送数据。客户端等待2*MSL(报文段最长寿命)时间后，也进入CLOSED状态，完成四次挥手</p>
+<p><img src="QQ%E6%88%AA%E5%9B%BE20210916100437.png"></p>
 <h2 id="为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手-CLOSE-WAIT状态意义是什么"><a href="#为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手-CLOSE-WAIT状态意义是什么" class="headerlink" title="为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手(CLOSE WAIT状态意义是什么)"></a>为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手(CLOSE WAIT状态意义是什么)</h2><p>​    因为服务器收到客户端断开连接的请求时，服务器可能还有一些数据没有发完，这时先回复ACK，表示接收到了断开连接的请求。等到数据发完之后再发FIN，断开服务器到客户端的数据传。</p>
 <h2 id="客户端TIME-WAIT状态的意义是什么"><a href="#客户端TIME-WAIT状态的意义是什么" class="headerlink" title="客户端TIME WAIT状态的意义是什么"></a>客户端TIME WAIT状态的意义是什么</h2><p>​    第四次挥手时，客户端发送给服务器的ACK有可能丢失，TIME WAIT状态就是用来重发可能丢失的ACK报文。如果Server没有收到ACK，就会给客户端重发FIN，如果Client在2*MSL的时间内收到了FIN，就会重新发送ACK并再次等待2MSL，防止Server没有收到ACK而不断重发FIN。</p>
 <p>​    MSL(Maximum Segment lifetime)，指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client 都没有再次收到FIN，那么Client 推断ACK已经，被成功接收，则结束TCP连接。</p>
-<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210916100437.png"></p>
 <h2 id="什么是Socket"><a href="#什么是Socket" class="headerlink" title="什么是Socket"></a>什么是Socket</h2><p>​    网络上的两个程序通过一个双向的通讯连接实现数据的交换，这个双向链路的一端称为Socket，通常用来实现客户方和服务方的连接，Socket由一个IP地址和一个端口号唯一确定，java环境下，Socket主要还是基于TCP/IP协议的网络编程，    </p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>whw<span class="token punctuation">.</span>java1<span class="token punctuation">;</span>
 
@@ -4873,8 +4874,6 @@ $document_uri    与$uri相同。
 
             <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-
 
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">//服务端</span>
@@ -5763,7 +5762,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.2k</span>&nbsp;字
+                class="white-color">347.3k</span>&nbsp;字
             
             
             
