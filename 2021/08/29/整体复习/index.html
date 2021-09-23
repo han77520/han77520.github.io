@@ -30,8 +30,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
+</head>
 
 
 
@@ -468,14 +468,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-22
+                    2021-09-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    66.2k
+                    66.3k
                 </div>
                 
 
@@ -766,7 +766,7 @@ mysql> DELIMITER ;
 </ul>
 <h2 id="使用集合框架的好处"><a href="#使用集合框架的好处" class="headerlink" title="使用集合框架的好处"></a>使用集合框架的好处</h2><ul>
 <li>容量自增长</li>
-<li>提供了高性能的数据结构和算法，是编码更轻松，提高了程序的速度和质量</li>
+<li>提供了高性能的数据结构和算法，使编码更轻松，提高了程序的速度和质量</li>
 <li>可以方便的扩展和改写集合，提高代码复用性和可操作性</li>
 </ul>
 <h2 id="Java中使用Collections-的最佳实践"><a href="#Java中使用Collections-的最佳实践" class="headerlink" title="Java中使用Collections 的最佳实践"></a>Java中使用Collections 的最佳实践</h2><ul>
@@ -889,8 +889,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
       <span class="token function">grow</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p>​    在插入元素之前，它会先检查是否需要扩容，然后再把元素添加到数组中最后一个元素的后面。在 ensureCapacityInternal 方法中，我们可以看见，如果当 elementData 为空数组时，它会使用默认的大小去扩容。所以</p>
-<p>说，通过无参构造方法来创建 ArrayList 时，它的大小其实是为 0 的，只有在使用到的时候，才会通过 grow 方法去创建一个大小为 10 的数组。</p>
+<p>​    在插入元素之前，它会先检查是否需要扩容，然后再把元素添加到数组中最后一个元素的后面。在 ensureCapacityInternal 方法中，我们可以看见，如果当 elementData 为空数组时，它会使用默认的大小去扩容。所以说，通过无参构造方法来创建 ArrayList 时，它的大小其实是为 0 的，只有在使用到的时候，才会通过 grow 方法去创建一个大小为 10 的数组。</p>
 <ul>
 <li>set方法</li>
 </ul>
@@ -1179,7 +1178,7 @@ E <span class="token function">elementData</span><span class="token punctuation"
 <li>否则采用传统的链式方法插入。如果插入之后链的长度达到临界值(桶内的元素达到8并且桶的长度大于64)，则链表转换为红黑树</li>
 </ul>
 </li>
-<li>如果同种存在重复的键，则为该键替换新值。</li>
+<li>如果同时存在重复的键，则为该键替换新值。</li>
 <li>如果size大于阈值，则进行扩容</li>
 </ul>
 <p>【处理冲突的方法：rehash 再哈希、链地址法 ，hashMap中用的就是这个、开放定址法、公共溢出区】</p>
@@ -1221,9 +1220,9 @@ E <span class="token function">elementData</span><span class="token punctuation"
 <ul>
 <li><p>==<strong>当哈希表中的键值对的个数超过 容量*0.75 时进行扩容，不是桶的占用量超过 容量*0.75 进行扩容</strong>==</p>
 </li>
-<li><p>当哈希表中的条目数超出了加载因子与当前容量的乘积时，并且要存放的位置已经有元素了（hash碰撞），必须满足这两个条件，才要对该哈希表进行 rehash 操作，会将容量扩大为原来两倍。通常，默认加载因子是 0.75, 这是在时间和空间成本上寻求一种折衷。加载因子过高虽然减少了空间开销，但同时也增加了查询成本。</p>
+<li><p>当哈希表中的条目数超出了加载因子与当前容量的乘积时，<strong>并且要存放的位置已经有元素了（hash碰撞）</strong>，必须满足这两个条件，才要对该哈希表进行 resize 操作，会将容量扩大为原来两倍。通常，默认加载因子是 0.75，这是在时间和空间成本上寻求一种折衷。加载因子过高虽然减少了空间开销，但同时也增加了冲突几率。</p>
 </li>
-<li><p>(e.hash &amp; oldCap)，计算扩容后的存放位置，只有两种可能：位置不变或索引+旧容量大小</p>
+<li><p>e.hash &amp; (newCap - 1)，计算扩容后的存放位置，只有两种可能：位置不变或索引+旧容量大小</p>
 <p>因为由于扩容是扩大为原数组大小的 2 倍，用于计算数组位置的掩码仅仅只是高位多了一个 1，扩容前长度为 16，用于计算(n-1) &amp; hash 的二进制 n-1 为 0000 1111，扩容为 32 后的二进制就高位多了 1，为 0001 1111。<br>因为是&amp; 运算，1 和任何数 &amp; 都是它本身，那就分二种情况，如下图：原数据 hashcode 高位第 4 位为 0 和高位为 1 的情况；第四位高位为 0，重新 hash 数值不变，第四位为 1，重新 hash 数值比原来大 16（旧数组的容量）<br><img src="/images/QQ%E6%88%AA%E5%9B%BE20210831201940.png"></p>
 </li>
 </ul>
@@ -1436,7 +1435,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 </tbody></table>
 <h2 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h2><p>Hashtable 默认的初始化容量为 11，负载因子0.75，扩容是原来的2n+1</p>
 <p>HashTable 是直接在操作方法上加 synchronized 关键字，锁住整个数组，粒度比较大，多线程访问时候，只要有一个线程访问或操作该对象，那其他线程只能阻塞等待需要的锁被释放，在竞争激烈的多线程场景中性能就会非常差！</p>
-<h2 id="如果使用Object作为HashMap的key，应该怎么办"><a href="#如果使用Object作为HashMap的key，应该怎么办" class="headerlink" title="如果使用Object作为HashMap的key，应该怎么办"></a>如果使用Object作为HashMap的key，应该怎么办</h2><p>​    重写hashCode()是因为需要计算存储数据的存储位置，需要注意不要试图从散列码计算中排除掉一个对象的关键部分来提高性能，这样虽然能更快但可能导致更多的Hash碰撞</p>
+<h2 id="如果使用类作为HashMap的key，应该怎么办"><a href="#如果使用类作为HashMap的key，应该怎么办" class="headerlink" title="如果使用类作为HashMap的key，应该怎么办"></a>如果使用类作为HashMap的key，应该怎么办</h2><p>​    重写hashCode()，因为需要计算存储数据的存储位置，需要注意不要试图从散列码计算中排除掉一个对象的关键部分来提高性能，这样虽然能更快但可能导致更多的Hash碰撞</p>
 <p>​    重写equals()，需要遵守自反性(x.equals(x)必须返回 true)，对称性( x.equals(y)返回true时，y.equals(x)也必须返回true)，传递性(xequals(y)和y.equals(z)都返回true时，x.equals(Z)也必须返回true)，一致性(当x和y引用的对象信息没有被修改时，多次调用x.equals (y)应该得到同样的返回值)以及对于任何非null的引用值x，x.equals(null)必须返回false的这几个特性，目的是为了保证key在哈希表中的唯一性</p>
 <h2 id="HashMap为什么不直接使用hashCode-计算后的哈希值直接作为table的下标"><a href="#HashMap为什么不直接使用hashCode-计算后的哈希值直接作为table的下标" class="headerlink" title="HashMap为什么不直接使用hashCode()计算后的哈希值直接作为table的下标?"></a>HashMap为什么不直接使用hashCode()计算后的哈希值直接作为table的下标?</h2><p>​     hashCode()方法返回的是int整数类型，其范围为(2个31)<del>(2 ^ 31 - 1),约有40亿个映射空间,而HashMap的容量范围是在16(初始化默认值)</del>2^30;HashMap通常情况下是取不到最大值的,并且设备上也难以提供这么多的存储空间，从而导致通过hashCode()计算出的哈希值可能不在数组大小范围内，进而无法匹配存储位置；</p>
 <h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><ul>
@@ -1450,14 +1449,13 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <li>“一般我们需要对一个集合使用自定义排序时，我们就要重写CompareTo方法或Compare方法,当我们需要对某一个集合实现两种排序方式,比如一个song对象中的歌名和歌手名分别采用一种排序方法的话，我们可以重写CompareTo方法和使用自制的Compara方法或者以两个Comparator来实现歌名排序和歌星名排序，第二种代表我们只能使用两个参数版的Collections,sort()。</li>
 </ul>
 <h2 id="Collection和Collections-有什么区别"><a href="#Collection和Collections-有什么区别" class="headerlink" title="Collection和Collections 有什么区别?"></a>Collection和Collections 有什么区别?</h2><ul>
-<li>java.util,Collection 是一个集合接口(集合类的一个顶级接口) 。它提供了对集合对象进行基本操作的通用接口方法.    Collection接口在Java类库中有很多具体的实现。Collection 接口的意义是为各种具体的集合提供了最大化的统一操<br>作方式，其直接继承接口有List与Set。</li>
+<li>java.util.Collection 是一个集合接口(集合类的一个顶级接口) 。它提供了对集合对象进行基本操作的通用接口方法.    Collection接口在Java类库中有很多具体的实现。Collection 接口的意义是为各种具体的集合提供了最大化的统一操<br>作方式，其直接继承接口有List与Set。</li>
 <li>Collections 则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。</li>
 </ul>
-<h2 id="TreeMap-和-TreeSet-在排序时如何比较元素"><a href="#TreeMap-和-TreeSet-在排序时如何比较元素" class="headerlink" title="TreeMap 和 TreeSet 在排序时如何比较元素"></a>TreeMap 和 TreeSet 在排序时如何比较元素</h2><p>​    TreeSet 要求<strong>存放的对象所属的类必须实现Comparable接口或者利用构造器传入comparator接口</strong>，该接口提供了比较元素的comparTo()方法，当插入元素时会回调该方法比较元素的大小</p>
-<p>   TreeMap 要求存放的键值对映射的键必须实现Comparable接口或者利用构造器传入comparator接口从而根据键对元素进行排序</p>
+<h2 id="TreeMap-和-TreeSet-在排序时如何比较元素"><a href="#TreeMap-和-TreeSet-在排序时如何比较元素" class="headerlink" title="TreeMap 和 TreeSet 在排序时如何比较元素"></a>TreeMap 和 TreeSet 在排序时如何比较元素</h2><p>​       TreeMap和TreeSet 要求<strong>存放的对象所属的类必须实现Comparable接口或者利用构造器传入comparator接口</strong>，该接口提供了比较元素的comparTo()方法，当插入元素时会回调该方法比较元素的大小</p>
 <h2 id="HashMap和ConcurrentHashMap的区别"><a href="#HashMap和ConcurrentHashMap的区别" class="headerlink" title="HashMap和ConcurrentHashMap的区别"></a>HashMap和ConcurrentHashMap的区别</h2><p>ConcurrentHashMap对每个桶都用CAS和synchronized 结合实现更加细粒度的锁，多线程操作只会锁住当前操作索引的结点。</p>
 <p>HashMap的键值对允许有null。ConcurrentHashMap都不允许，因为 ConcurrentHashMap 是用于多线程的 ，如果ConcurrentHashMap.get(key)得到了 null ，这就无法判断，是映射的value是 null ，还是没有找到对应的key而为 null ，就有了二义性。而用于单线程状态的 HashMap 却可以用containsKey(key) 去判断到底是否包含了这个 null 。</p>
-<h2 id="JDK1-8-中为什么使用内置锁-synchronized替换-可重入锁-ReentrantLock？"><a href="#JDK1-8-中为什么使用内置锁-synchronized替换-可重入锁-ReentrantLock？" class="headerlink" title="JDK1.8 中为什么使用内置锁 synchronized替换 可重入锁 ReentrantLock？"></a>JDK1.8 中为什么使用内置锁 synchronized替换 可重入锁 ReentrantLock？</h2><ul>
+<h2 id="JDK1-8-中为什么使用内置锁-synchronized替换-可重入锁-ReentrantLock？"><a href="#JDK1-8-中为什么使用内置锁-synchronized替换-可重入锁-ReentrantLock？" class="headerlink" title="***JDK1.8 中为什么使用内置锁 synchronized替换 可重入锁 ReentrantLock？"></a>***JDK1.8 中为什么使用内置锁 synchronized替换 可重入锁 ReentrantLock？</h2><ul>
 <li><p>在JDK1.6中，对synchronized锁的实现引入的大量的优化，并且synchronized有多中锁状态，会从无锁–&gt; 偏向锁 –&gt; 轻量级锁 –&gt; 重量级锁 一步步升级</p>
 </li>
 <li><p>减少内存开销，假设使用可重入锁来获取同步支持，那么每个节点都需要通过继承AQS来获得同步支持。但并不是每个节点都需要获得同步支持，只有链表的头结点需要同步，这无疑就带来了巨大的内存浪费</p>
@@ -1526,7 +1524,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
                 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
             <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>binCount <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">//链表长度大于/等于8，将链表转成红黑树</span>
+                <span class="token comment" spellcheck="true">//链表长度大于等于8，将链表转成红黑树</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>binCount <span class="token operator">>=</span> TREEIFY_THRESHOLD<span class="token punctuation">)</span>
                     <span class="token function">treeifyBin</span><span class="token punctuation">(</span>tab<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token comment" spellcheck="true">//如果是重复键，直接将旧值返回</span>
@@ -1551,7 +1549,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <ul>
 <li>如果为null，通过CAS的方式尝试添加</li>
 <li>如果 (fh = f.hash) == MOVED 为true，说明其他线程在扩容，协助扩容</li>
-<li>如果都不满足，synchronized锁住f节点，判断时链表还是红黑树，遍历插入</li>
+<li>如果都不满足，synchronized锁住f节点，判断是链表还是红黑树，遍历插入</li>
 </ul>
 </li>
 <li><p>当在链表长度达到 8 的时候，数组扩容或者将链表转换为红黑树</p>
@@ -1595,14 +1593,12 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="ConcurrentHashMap-迭代器是强一致性还是弱一致性？"><a href="#ConcurrentHashMap-迭代器是强一致性还是弱一致性？" class="headerlink" title="ConcurrentHashMap 迭代器是强一致性还是弱一致性？"></a>ConcurrentHashMap 迭代器是强一致性还是弱一致性？</h2><p>​    与 HashMap 迭代器是强一致性不同，ConcurrentHashMap 迭代器是弱一致性。</p>
 <p>​    ConcurrentHashMap 的迭代器创建之后，就会按照hash表结构遍历每个元素，但在遍历过程中，内部元素可能发生变化，如果变化发生在已遍历过的部分，迭代器就不会反映出来，而如果变化发生在未遍历过的部分，迭代器就会发现并反映出来，这就是弱一致性。这样迭代器线程可以使用原来老的数据，而写线程也可以并发的完成改变，更重要的，这保证了多个线程并发执行的连续性和扩展性，是性能提升的关键。</p>
 <h2 id="使用Collections-synchronizedMap方法，对方法进行加同步锁。"><a href="#使用Collections-synchronizedMap方法，对方法进行加同步锁。" class="headerlink" title="使用Collections.synchronizedMap方法，对方法进行加同步锁。"></a>使用Collections.synchronizedMap方法，对方法进行加同步锁。</h2><p>​    如果传入的是 HashMap 对象，其实也是对 HashMap 做的方法做了一层包装，里面使用对象锁来保证多线程场景下，线程安全，本质也是对 HashMap 进行全表锁。<strong>在竞争激烈的多线程环境下性能依然也非常差，不推荐使用！</strong></p>
-<h2 id="生产者–消费者问题"><a href="#生产者–消费者问题" class="headerlink" title="生产者–消费者问题"></a>生产者–消费者问题</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>locks<span class="token punctuation">.</span>Condition<span class="token punctuation">;</span>
+<h2 id="生产者—消费者问题"><a href="#生产者—消费者问题" class="headerlink" title="生产者—消费者问题"></a>生产者—消费者问题</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>locks<span class="token punctuation">.</span>Condition<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>locks<span class="token punctuation">.</span>Lock<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>locks<span class="token punctuation">.</span>ReentrantLock<span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name">AirConditioner</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Lock lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Condition condition <span class="token operator">=</span> lock<span class="token punctuation">.</span><span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
@@ -1683,7 +1679,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="线程安全单例模式"><a href="#线程安全单例模式" class="headerlink" title="线程安全单例模式"></a>线程安全单例模式</h2><p>方式一：</p>
+<h2 id="线程安全单例模式"><a href="#线程安全单例模式" class="headerlink" title="线程安全单例模式"></a>线程安全单例模式</h2><p>方式一</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     
     <span class="token keyword">private</span> <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -1704,7 +1700,6 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 
     <span class="token keyword">private</span> <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-
     <span class="token keyword">public</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>Singleton<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -1718,9 +1713,9 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="java中wait和sleep的区别"><a href="#java中wait和sleep的区别" class="headerlink" title="java中wait和sleep的区别"></a>java中wait和sleep的区别</h2><p>sleep()方法(休眠)是线程类(Thread)的静态方法，调用此方法会让当前线程暂停执行指定的时间，将执行机会(CPU) 让给其他线程，但是对象的锁依然保持，因此休眠时间结束后会自动恢复就绪状态 。wait()是Object类的方法，调用对象的wait()方法导致当前线程放弃对象的锁(线程暂停执行) ，进入对象的等待池(wait pool) ，只有调用对象的notify()方法(或notifyAlI()方法)时才能唤醒等待池中的线程进入等锁池(lock pool)， 如果线程重新获得对象的锁就可以进入就绪状态。</p>
-<h2 id="Java-的sleep-方法和yield-方法有什么区别"><a href="#Java-的sleep-方法和yield-方法有什么区别" class="headerlink" title="Java 的sleep()方法和yield()方法有什么区别?"></a>Java 的sleep()方法和yield()方法有什么区别?</h2><p>​    sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会; yield()方法只会给相同优先级或更高优先级的线程以运行的机会。</p>
-<p>​    线程执行 sleep0方法后转入阻塞( blocked)状态，而执行yield()方法后转入就绪(ready) 状态</p>
+<h2 id="java中wait和sleep的区别"><a href="#java中wait和sleep的区别" class="headerlink" title="java中wait和sleep的区别"></a>java中wait和sleep的区别</h2><p>​    sleep()方法(休眠)是线程类(Thread)的静态方法，调用此方法会让当前线程暂停执行指定的时间，将执行机会(CPU) 让给其他线程，但是对象的锁依然保持，因此休眠时间结束后会自动恢复就绪状态 。wait()是Object类的方法，调用对象的wait()方法导致当前线程放弃对象的锁(线程暂停执行) ，进入对象的等待池(wait pool) ，只有调用对象的notify()方法(或notifyAlI()方法)时才能唤醒等待池中的线程进入等锁池(lock pool)， 如果线程重新获得对象的锁就可以进入就绪状态。</p>
+<h2 id="Java-的sleep-方法和yield-方法有什么区别"><a href="#Java-的sleep-方法和yield-方法有什么区别" class="headerlink" title="***Java 的sleep()方法和yield()方法有什么区别?"></a>***Java 的sleep()方法和yield()方法有什么区别?</h2><p>​    sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会; yield()方法只会给相同优先级或更高优先级的线程以运行的机会。</p>
+<p>​    线程执行 sleep()方法后转入阻塞(blocked)状态，时间结束后才恢复就绪状态。而执行yield()方法后转入就绪(ready) 状态</p>
 <p>​    sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常。</p>
 <h2 id="怎么将byte转换为String"><a href="#怎么将byte转换为String" class="headerlink" title="怎么将byte转换为String?"></a>怎么将byte转换为String?</h2><p>使用String的构造器，不过使用时要显示的标明编码规则</p>
 <h2 id="Java中-操作符是线程安全的吗"><a href="#Java中-操作符是线程安全的吗" class="headerlink" title="Java中++操作符是线程安全的吗?"></a>Java中++操作符是线程安全的吗?</h2><p>​    不是线程安全的操作，它涉及到多个指令，读取变量值，增加，然后存储回内存，这个过程可能会出现多个线程交差</p>
@@ -1774,12 +1769,12 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <td>b结束</td>
 </tr>
 </tbody></table>
-<h2 id="System-out-println-3-0-1-0-3"><a href="#System-out-println-3-0-1-0-3" class="headerlink" title="System.out.println(3 * 0.1 == 0.3);"></a>System.out.println(3 * 0.1 == 0.3);</h2><p>false,因为有些浮点数不能完全精确表示出来</p>
+<h2 id="System-out-println-3-0-1-0-3"><a href="#System-out-println-3-0-1-0-3" class="headerlink" title="System.out.println(3 * 0.1 == 0.3);"></a>System.out.println(3 * 0.1 == 0.3);</h2><p>false，因为有些浮点数不能完全精确表示出来，在计算机中 3 * 0.1 = 0.30000000000000004</p>
 <h2 id="64位JVM中，int的长度是多少"><a href="#64位JVM中，int的长度是多少" class="headerlink" title="64位JVM中，int的长度是多少"></a>64位JVM中，int的长度是多少</h2><p>​    Java中，int类型变量的长度是一个固定值，与平台无关，都是32位，意思就是说，在32位和64位的java虚拟机中，int类型的长度是相同的</p>
 <h2 id="Java中WeakReference、SoftReference-和-StrongReference"><a href="#Java中WeakReference、SoftReference-和-StrongReference" class="headerlink" title="Java中WeakReference、SoftReference 和 StrongReference"></a>Java中WeakReference、SoftReference 和 StrongReference</h2><p>StrongReference：在实际开发中最为普遍的引用。申请一个内存空间的时候，就已经是强引用了。</p>
 <p>SoftReference ：拥有强引用的属性，并且更加安全。如果有一个对象具有软引用，在内存空间足够的情况下，除非内存空间接近临界值，jvm即将抛出oom的时候，垃圾回收器才会将该引用对象进行回收，避免了系统内存溢出的情况</p>
 <p>WeakReference：与软引用对比来说，弱引用的生命周期更短。当垃圾回收器扫描到只有弱引用的对象的时候，不管内存空间是否足够，都会直接被垃圾回收器回收。不过也不用特别担心，垃圾回收器是一个优先级比较低的现场，因此不一定很快可以发现弱引用的对象。</p>
-<h2 id="编写多线程时候遵循哪些最佳实践"><a href="#编写多线程时候遵循哪些最佳实践" class="headerlink" title="编写多线程时候遵循哪些最佳实践"></a>编写多线程时候遵循哪些最佳实践</h2><ul>
+<h2 id="编写多线程时候遵循哪些最佳实践"><a href="#编写多线程时候遵循哪些最佳实践" class="headerlink" title="***编写多线程时候遵循哪些最佳实践"></a>***编写多线程时候遵循哪些最佳实践</h2><ul>
 <li><p>使用线程池</p>
 </li>
 <li><p>给线程命名，调试方便</p>
@@ -1801,12 +1796,10 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="一个文件中是否有多个类"><a href="#一个文件中是否有多个类" class="headerlink" title="一个文件中是否有多个类"></a>一个文件中是否有多个类</h2><p>可以，但是只能有一个类是public的，而且这个类的名字和文件名必须一致</p>
 <h2 id="什么是事务"><a href="#什么是事务" class="headerlink" title="什么是事务"></a>什么是事务</h2><p>事务是一个或一组sql语句组成的一个执行单元，这个执行单元要么全部执行，要么全部不执行。</p>
 <ul>
-<li><p>原子性：事务中各个元素不可分割，全部执行成功或者撤销所有</p>
-</li>
-<li><p>一致性：事务执行前后数据的状态保持一致</p>
-</li>
-<li><p>持久性：事务完成后对系统的影响是永久的</p>
-</li>
+<li>原子性：事务中各个元素不可分割，全部执行成功或者撤销所有</li>
+<li>一致性：事务执行前后数据的状态保持一致</li>
+<li>持久性：事务完成后对系统的影响是永久的</li>
+<li>隔离性：事务之间是隔离的，不能相互影响</li>
 </ul>
 <h2 id="Get和Post请求的区别"><a href="#Get和Post请求的区别" class="headerlink" title="Get和Post请求的区别"></a>Get和Post请求的区别</h2><ul>
 <li>get发送的文本内容大小有限，而post请求没有限制</li>
@@ -1838,12 +1831,12 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 </ul>
 <h2 id="Session与cookie的区别"><a href="#Session与cookie的区别" class="headerlink" title="Session与cookie的区别?"></a>Session与cookie的区别?</h2><p>Session保存在服务端，cookie保存在客户端</p>
 <p>Session保存的是对象，cookie保存的是字符串</p>
-<p>Session在服务器关闭后自动小时，cookie不会</p>
+<p>Session在服务器关闭后自动消失，cookie不会</p>
 <h2 id="存储过程和函数的区别"><a href="#存储过程和函数的区别" class="headerlink" title="存储过程和函数的区别"></a>存储过程和函数的区别</h2><ul>
 <li>存储过程的关键字是 procedure，函数的关键字是 function</li>
 <li>函数必须有返回值，存储过程没有返回值，但是有传出参数</li>
 <li>函数注重的结果，存储过程注重的是过程</li>
-<li>函数可以在select语句中直接使用，存储过程不能</li>
+<li>函数是select调用，存储过程是 call 调用</li>
 </ul>
 <h2 id="jsp的作用域有哪些"><a href="#jsp的作用域有哪些" class="headerlink" title="jsp的作用域有哪些"></a>jsp的作用域有哪些</h2><p>PageContext：在当前页面有效</p>
 <p>Request：在一次请求内有效</p>
@@ -1852,7 +1845,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="重定向和请求转发的区别"><a href="#重定向和请求转发的区别" class="headerlink" title="重定向和请求转发的区别?"></a>重定向和请求转发的区别?</h2><p>​    请求转发只能将请求转发给同一个Web应用中的其他资源，而重定向不仅可以定向到当前应用程序中的其他资源，也可以重定向到其他站点上的资源。</p>
 <p>​    重定向结束后，浏览器地址栏显示URL会发生改变,由初始的URL地址变成重定向的目标URL.而请求转发过程结束后,浏览器地址栏保持初始的URL地址不变。</p>
 <p>​    转发是发生在服务端的，重定向是发生在客户端的</p>
-<h2 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h2><p>​    简单来说就是用同样的对象调用同样的方法但是做了不同的事情。多态性又分为编译时多态性和运行时多态性，方法重载就是编译时多态性，而方法重写就是运行时多态性，运行时多态性就是面向对象的核心，要求必须有方法重写和父类的引用指向子类的对象。</p>
+<h2 id="多态性"><a href="#多态性" class="headerlink" title="***多态性"></a>***多态性</h2><p>​    简单来说就是用同样的对象调用同样的方法但是做了不同的事情。多态性又分为编译时多态性和运行时多态性，方法重载就是编译时多态性，而方法重写就是运行时多态性，运行时多态性就是面向对象的核心，要求必须有方法重写和父类的引用指向子类的对象。</p>
 <h2 id="包装类的缓存"><a href="#包装类的缓存" class="headerlink" title="包装类的缓存"></a>包装类的缓存</h2><p>​    如果整型字面量的值在-128到127之间,那么不会new新的Integer对象，而是直接引用常量池中的Integer对象，所以上面的面试题中f1f2的结果是true,而f3f4的结果是false。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     Integer f1 <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span>f2 <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span>f3 <span class="token operator">=</span> <span class="token number">150</span><span class="token punctuation">,</span>f4 <span class="token operator">=</span> <span class="token number">150</span><span class="token punctuation">;</span>
@@ -1889,14 +1882,14 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <td>-128~127</td>
 </tr>
 <tr>
-<td>Character</td>
-<td>char</td>
-<td>0~127</td>
-</tr>
-<tr>
 <td>Long</td>
 <td>long</td>
 <td>-128~127</td>
+</tr>
+<tr>
+<td>Character</td>
+<td>char</td>
+<td>0~127</td>
 </tr>
 <tr>
 <td>Float</td>
@@ -1910,7 +1903,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 </tr>
 </tbody></table>
 <h2 id="数据类型之间的转换"><a href="#数据类型之间的转换" class="headerlink" title="数据类型之间的转换"></a>数据类型之间的转换</h2><p>基本数据类型转字符串：调用String类的ValueOf()方法返回相应的字符串或者用 加上一个空字符串</p>
-<h2 id="怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符"><a href="#怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符" class="headerlink" title="怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符"></a>怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h2 id="怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符"><a href="#怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符" class="headerlink" title="***怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符"></a>***怎样将GB2312编码的字符串转换为IS0-8859-1编码的字符</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     String s1 <span class="token operator">=</span> <span class="token string">"你好"</span><span class="token punctuation">;</span>
     <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         String s2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>s1<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token string">"GB2312"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"ISO-8859-1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1920,8 +1913,8 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后"><a href="#try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行，什么时候被执行-在return前还是后" class="headerlink" title="try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?"></a>try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行,在return前还是后?</h2><p>​    会执行，在方法返回调用者之前执行。</p>
-<p>​    在finally中改变返回值的做法不好，因为如果存在finally代码块，try中的return语句不会立马返回调用者，而是记录下返回值等待finally代码块执行完之后再向调用者返回其值，如果在finally中修改了返回值，就会返回修改后的值，显然，在fina中返回或者修改会对程序造成很大的困扰。</p>
+<h2 id="try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行-什么时候被执行-在return前还是后"><a href="#try-里有一个return语句-那么紧跟在这个try后的finally-里的代码会不会被执行-什么时候被执行-在return前还是后" class="headerlink" title="try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行,什么时候被执行,在return前还是后?"></a>try{}里有一个return语句,那么紧跟在这个try后的finally{}里的代码会不会被执行,什么时候被执行,在return前还是后?</h2><p>​    会执行，在方法返回调用者之前执行。</p>
+<p>​    在finally中改变返回值的做法不好，因为如果存在finally代码块，try中的return语句不会立马返回调用者，而是记录下返回值等待finally代码块执行完之后再向调用者返回其值，如果在finally中修改了返回值，就会返回修改后的值，显然，在finally中返回或者修改会对程序造成很大的困扰。</p>
 <h2 id="什么是DAO模式"><a href="#什么是DAO模式" class="headerlink" title="什么是DAO模式"></a>什么是DAO模式</h2><p>​    DAO就是一个为持久化机制提供了接口的对象，在不暴露底层持久化方案实现细节的前提下提供了各种对数据的操作，在实际开发中，应该将所有对数据源的访问操作进行抽象化后封装在一个公共的API中。DAO模式包含了两个模式，一个是Data Accessor(数据访问器)，Data Object(数据对象)，前者要解决如何访问数据的问题，而后者要解决的是如何用对象封装数据</p>
 <h2 id="事务的ACID"><a href="#事务的ACID" class="headerlink" title="事务的ACID"></a>事务的ACID</h2><p>这里只说明隔离性：并发执行的事务彼此无法看到对方的中间状态</p>
 <p>【只有在并发数据访问时才需要事务】</p>
@@ -1932,12 +1925,25 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <ul>
 <li>matches()</li>
 <li>replaceAll()</li>
+<li>replace()</li>
 <li>split()</li>
 </ul>
 <h2 id="如何通过反射创建对象"><a href="#如何通过反射创建对象" class="headerlink" title="如何通过反射创建对象"></a>如何通过反射创建对象</h2><p>方法1：通过类对象调用  newInstance()方法</p>
 <p>方法2：通过类对象的  getDeclaredConstructor() 获取构造器对象并调用  newInstance() 方法创建对象，例如</p>
-<p>​            String.class.getConstructor(String.class).newInstance(“hello”);</p>
-<h2 id="如何通过反射获取和设置对象私有字段的值"><a href="#如何通过反射获取和设置对象私有字段的值" class="headerlink" title="如何通过反射获取和设置对象私有字段的值"></a>如何通过反射获取和设置对象私有字段的值</h2><p>通过类对象的 getDeclaredFiled() 方法获取字段对象，然后再通过字段对象的 setAccessible(true) 将其设置为可以访问，接下来就可以通过  get/set 方法来获取/设置字段的值了。</p>
+<p>​            String.class.getDeclaredConstructor(String.class).newInstance(“hello”);</p>
+<h2 id="如何通过反射获取和设置对象私有字段的值"><a href="#如何通过反射获取和设置对象私有字段的值" class="headerlink" title="如何通过反射获取和设置对象私有字段的值"></a>如何通过反射获取和设置对象私有字段的值</h2><p>通过类对象的 getDeclaredFiled() 方法返回Field对象，然后再通过字段对象的 setAccessible(true) 将其设置为可以访问，接下来就可以通过  get/set 方法来获取/设置字段的值了。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    Test test <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Field name <span class="token operator">=</span> Test<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    name<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    name<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span><span class="token string">"hhh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchFieldException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
 <h2 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h2><ul>
 <li>以字节为单位输入输出数据，字节流按照8位传输，继承inputStream和OutputStream</li>
 <li>以字符为单位输入输出数据，字符流按照16位传输，继承自Reader和Writer</li>
@@ -1945,14 +1951,14 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <p><img src="https://img-blog.csdnimg.cn/20190418184716728.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3ODc1NTg1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="字节流和字符流哪个好？怎么选择？"><a href="#字节流和字符流哪个好？怎么选择？" class="headerlink" title="字节流和字符流哪个好？怎么选择？"></a>字节流和字符流哪个好？怎么选择？</h2><ol>
 <li>大多数情况下使用字节流会更好，因为大多数时候 IO 操作都是直接操作磁盘文件，所以这些流在传输时都是以字节的方式进行的（图片等都是按字节存储的）</li>
-<li>如果对于操作需要通过 IO 在内存中频繁处理字符串的情况使用字符流会好些，因为字符流具备缓冲区，提高了性能</li>
+<li>如果对于操作需要通过 IO 在内存中频繁处理字符串的情况使用字符流会好些，因为字符流具备缓存区，提高了性能</li>
 </ol>
-<h2 id="什么是缓冲区？有什么作用？"><a href="#什么是缓冲区？有什么作用？" class="headerlink" title="什么是缓冲区？有什么作用？"></a>什么是缓冲区？有什么作用？</h2><ol>
+<p>字节流的操作不会经过缓冲区（内存）而是直接操作文本本身的，而字符流的操作会先经过缓冲区（内存）然后通过缓冲区再操作文件</p>
+<h2 id="什么是缓存区？有什么作用？"><a href="#什么是缓存区？有什么作用？" class="headerlink" title="什么是缓存区？有什么作用？"></a>什么是缓存区？有什么作用？</h2><ol>
 <li>缓冲区就是一段特殊的内存区域，很多情况下当程序需要频繁地操作一个资源（如文件或数据库）则性能会很低，所以为了提升性能就可以将一部分数据暂时读写到缓存区，以后直接从此区域中读写数据即可，这样就显著提升了性。</li>
-<li>对于 Java 字符流的操作都是在缓冲区操作的，所以如果我们想在字符流操作中主动将缓冲区刷新到文件则可以使用 flush() 方法操作。</li>
+<li>对于 Java 字符流的操作都是在缓冲区操作的，所以如果我们想在字符流操作中主动将缓存区刷新到文件则可以使用 flush() 方法操作。</li>
 </ol>
-<h2 id="字符流和字节流有什么区别？"><a href="#字符流和字节流有什么区别？" class="headerlink" title="字符流和字节流有什么区别？"></a>字符流和字节流有什么区别？</h2><p>​    字节流的操作不会经过缓冲区（内存）而是直接操作文本本身的，而字符流的操作会先经过缓冲区（内存）然后通过缓冲区再操作文件</p>
-<h2 id="InputStream里的read-返回的是什么-read-byte-data-是什么意思-返回的是什么值？"><a href="#InputStream里的read-返回的是什么-read-byte-data-是什么意思-返回的是什么值？" class="headerlink" title="InputStream里的read()返回的是什么,read(byte[] data)是什么意思,返回的是什么值？"></a>InputStream里的read()返回的是什么,read(byte[] data)是什么意思,返回的是什么值？</h2><ul>
+<h2 id="InputStream里的read-返回的是什么-read-byte-data-是什么意思-返回的是什么值？"><a href="#InputStream里的read-返回的是什么-read-byte-data-是什么意思-返回的是什么值？" class="headerlink" title="***InputStream里的read()返回的是什么,read(byte[] data)是什么意思,返回的是什么值？"></a>***InputStream里的read()返回的是什么,read(byte[] data)是什么意思,返回的是什么值？</h2><ul>
 <li>返回的是所读取的字节的int型（范围0-255），如果返回-1，则表明读取结束</li>
 </ul>
 <pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
@@ -2040,7 +2046,6 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 </ol>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 从内存中写出数据到硬盘的文件里
- * &lt;p>
  * 说明：
  * 1.输出操作，对应的File是可以不存在的,并不会报异常
  * 2.File对应硬盘中的文件
@@ -2121,7 +2126,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="什么是Linux"><a href="#什么是Linux" class="headerlink" title="什么是Linux"></a>什么是Linux</h2><p>​     Linux 是一套类似Unix的操作系统，一般的web项目和其他的一些项目所需要的东西都是部署在Linux上的，Linux是一个多用户，多线程和多CPU的操作系统。它继承了Unix以时网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
+<h2 id="什么是Linux"><a href="#什么是Linux" class="headerlink" title="什么是Linux"></a>什么是Linux</h2><p>​     Linux 是一套类似Unix的操作系统，一般的web项目和其他的一些项目所需要的东西都是部署在Linux上的，Linux是一个多用户，多线程和多CPU的操作系统。它继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
 <h2 id="Windows-和-Linux-的区别"><a href="#Windows-和-Linux-的区别" class="headerlink" title="Windows 和 Linux 的区别"></a>Windows 和 Linux 的区别</h2><ul>
 <li>Windows 适合于普通用户使用，Linux 适合软件开发部署</li>
 <li>Linux 可以针对机器的配置有针对性的优化</li>
@@ -2133,10 +2138,10 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <p>​    硬件环境：Linux 对硬件要求较低，Unix较高</p>
 <p>​    </p>
 <h2 id="什么是Linux内核"><a href="#什么是Linux内核" class="headerlink" title="什么是Linux内核"></a>什么是Linux内核</h2><p>​    linux系统的核心是内核，内核控制着计算机系统上的所有硬件和软件，在必要的时候分配硬件，还可以根据需要执行软件</p>
-<h2 id="什么是root账户"><a href="#什么是root账户" class="headerlink" title="什么是root账户"></a>什么是root账户</h2><p>​    root帐户就像十个系统管理员帐户，允许你完全控制系统。你可以在此处创建和维护用户帐户，为每个帐户分配不同的权限。每次安装Linux时都是默认帐户。</p>
+<h2 id="什么是root账户"><a href="#什么是root账户" class="headerlink" title="什么是root账户"></a>什么是root账户</h2><p>​    root帐户就像是个系统管理员帐户，允许你完全控制系统。你可以在此处创建和维护用户帐户，为每个帐户分配不同的权限。每次安装Linux时都是默认帐户。</p>
 <h2 id="什么是硬链接-和-软链接"><a href="#什么是硬链接-和-软链接" class="headerlink" title="什么是硬链接 和 软链接"></a>什么是硬链接 和 软链接</h2><p>​    硬链接可以认为是一个指向文件索引节点的指针。</p>
 <p>​    软链接也叫符号链接，类似于windows 里的快捷方式，主要存放了链接其他文件的路径，当原文件移动到其他目录中，在访问链接文件系统就找不到了，实际场景下使用软连接比较多</p>
-<p>​    </p>
+<p>​     软连接示例：在/home 目录下创建一个软连接 linkToRoot，连接到 /root 目录   ln  -s  /root  LinkToRoot</p>
 <h2 id="Shell脚本"><a href="#Shell脚本" class="headerlink" title="Shell脚本"></a>Shell脚本</h2><p>一个Shell脚本就是一个文件，包含一个或多个命令，将这些命令在配合一定的逻辑来完成一些日常的工作</p>
 <h2 id="Linux运行级别"><a href="#Linux运行级别" class="headerlink" title="Linux运行级别"></a>Linux运行级别</h2><p>0 ：关机<br>1 ：单用户【可以找回丢失的密码】<br>2：多用户状态没有网络服务<br>3：多用户状态有网络服务<br>4：保留<br>5：图形界面<br>6：系统重启</p>
 <h2 id="Tomcat的8005、8009、8080三个端口的含义"><a href="#Tomcat的8005、8009、8080三个端口的含义" class="headerlink" title="Tomcat的8005、8009、8080三个端口的含义"></a>Tomcat的8005、8009、8080三个端口的含义</h2><p>8005：关闭时使用</p>
@@ -2159,17 +2164,17 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="查看系统支持的所有信号"><a href="#查看系统支持的所有信号" class="headerlink" title="查看系统支持的所有信号"></a>查看系统支持的所有信号</h2><p>kill  -l</p>
 <h2 id="查看磁盘使用空间和空闲空间"><a href="#查看磁盘使用空间和空闲空间" class="headerlink" title="查看磁盘使用空间和空闲空间"></a>查看磁盘使用空间和空闲空间</h2><p>df -hl</p>
 <h2 id="查看环境变量"><a href="#查看环境变量" class="headerlink" title="查看环境变量"></a>查看环境变量</h2><p>env :查看所有</p>
-<p>home：env $HOME</p>
+<p>查看home环境变量：env $HOME</p>
 <h2 id="查看整个文件，显示行号，有文本的显示行号"><a href="#查看整个文件，显示行号，有文本的显示行号" class="headerlink" title="查看整个文件，显示行号，有文本的显示行号"></a>查看整个文件，显示行号，有文本的显示行号</h2><p>cat -n a.txt</p>
 <p>cat -b a.txt</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210903214035.png"></p>
 <h2 id="进程放到后台运行"><a href="#进程放到后台运行" class="headerlink" title="进程放到后台运行"></a>进程放到后台运行</h2><p>./aa.sh &amp;</p>
 <p>把 aa.sh 放到后台运行</p>
 <h2 id="验证网络可连接命令以及原理"><a href="#验证网络可连接命令以及原理" class="headerlink" title="验证网络可连接命令以及原理"></a>验证网络可连接命令以及原理</h2><p>​    使用ping命令。这个ping命令发送一个特殊的网络数据包到一台指定的主机。大多数接收这个包的网络设备将会恢复它来允许网络连接验证，一旦启动，会持续在特定时间发送数据包</p>
-<h2 id="查看端口是否被占用"><a href="#查看端口是否被占用" class="headerlink" title="查看端口是否被占用"></a>查看端口是否被占用</h2><p> netstat -ntulp | grep  端口号</p>
-<p>f: 仅显示tcp相关选项</p>
-<p>u:仅显示udp相关选项</p>
+<h2 id="查看端口是否被占用"><a href="#查看端口是否被占用" class="headerlink" title="查看端口是否被占用"></a>查看端口是否被占用</h2><p>netstat -ntulp | grep  端口号</p>
 <p>n：拒绝显示别名，能显示数字的都转换为数字</p>
+<p>t: 仅显示tcp相关选项</p>
+<p>u:仅显示udp相关选项</p>
 <p>l : 仅列出在 Listen的服务状态</p>
 <p>p : 显示建立相关连接的程序名</p>
 <h2 id="什么是MyBatis"><a href="#什么是MyBatis" class="headerlink" title="什么是MyBatis"></a>什么是MyBatis</h2><ul>
@@ -2199,7 +2204,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
    <span class="token comment" spellcheck="true">//1.根据全局配置文件得到SqlSessionFactory对象</span>
    String resource <span class="token operator">=</span> <span class="token string">"mybatis-config.xml"</span><span class="token punctuation">;</span>
    InputStream inputStream <span class="token operator">=</span> Resources<span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    SqlSessionFactory sqlSessionFactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionFactoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   SqlSessionFactory sqlSessionFactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionFactoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
    
    <span class="token comment" spellcheck="true">//2.获取sqlSession对象，可以指定参数，默认为false，意为不自动提交，可以改为true</span>
    SqlSession sqlSession <span class="token operator">=</span> sqlSessionFactory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2236,7 +2241,7 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 <h2 id="MyBatis-缓存机制"><a href="#MyBatis-缓存机制" class="headerlink" title="MyBatis 缓存机制"></a>MyBatis 缓存机制</h2><p>使用的是PerpetualCache（永久缓存）类，存储原理就是==<strong>map集合</strong>==</p>
 <h3 id="一级缓存（本地缓存）"><a href="#一级缓存（本地缓存）" class="headerlink" title="一级缓存（本地缓存）"></a>一级缓存（本地缓存）</h3><ul>
 <li>sqlSession级别的缓存，<strong>一级缓存是一直开启的</strong>，查出的数据都会放在map中<ul>
-<li>​       与数据库同一次会话期间查询到的数据会放在本地缓存中，以后如果需要获取获取相同的数据，直接从缓存中拿，没必要再去查询数据库</li>
+<li>与数据库同一次会话期间查询到的数据会放在本地缓存中，以后如果需要获取获取相同的数据，直接从缓存中拿，没必要再去查询数据库</li>
 <li>一级缓存失效的情况 (没有使用到当前一级缓存的情况下，就还需要在向数据库发出查询)<ul>
 <li>sqlSession不相同</li>
 <li>sqlSession相同，查询条件不同</li>
@@ -2292,16 +2297,16 @@ Iterator<span class="token operator">&lt;</span>String<span class="token operato
 </li>
 </ul>
 </li>
+</ul>
+</li>
 <li><p><strong>POJO需要实现序列化接口</strong></p>
 <ul>
 <li>序列化：把一个Java对象写入到硬盘或者传输到网路上面的其它计算机，需要把相应的对象写成转换成字节流。</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <h3 id="和缓存有关的设置-属性"><a href="#和缓存有关的设置-属性" class="headerlink" title="和缓存有关的设置/属性"></a>和缓存有关的设置/属性</h3><ul>
-<li><p>全局配置文件中的 &lt;setting&gt; 标签 中cacheEnabled属性，为true一级、二级都可用；为false二级关闭，一级一直可用</p>
+<li><p>全局配置文件中的 &lt;setting&gt; 标签中cacheEnabled属性，为true一级、二级都可用；为false二级关闭，一级一直可用</p>
 </li>
 <li><p>每个select标签都有useCache=”true”的属性：一级、二级都可用</p>
 <pre><code>   false：一级缓存依然使用，二级缓存不使用
@@ -2512,14 +2517,9 @@ STATEMENT：可以禁用一级缓存；
 <h2 id="Mybatis是如何进行分页，以及插件原理"><a href="#Mybatis是如何进行分页，以及插件原理" class="headerlink" title="Mybatis是如何进行分页，以及插件原理"></a>Mybatis是如何进行分页，以及插件原理</h2><p>使用RowBounds对象进行分页，或者直接编写sql，或者使用mybatis的分页插件</p>
 <p>插件原理：</p>
 <ol>
-<li><p>mybatis仅可以编写ParameterHandler、ResultSetHandler、StatementHandler、Executor这4个接口的插件，mybatis通过动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这4个接口对象的方法时，就会进入拦截方法，具体的逻辑就是在invocationHandler的invoke()方法。</p>
-<ol start="2">
-<li>实现mybatis的interceptor接口并复写 intercept()方法，然后再给插件编写注解，指定要拦截哪个接口的方法即可<ol start="3">
+<li>mybatis仅可以编写ParameterHandler、ResultSetHandler、StatementHandler、Executor这4个接口的插件，mybatis通过动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这4个接口对象的方法时，就会进入拦截方法，具体的逻辑就是在invocationHandler的invoke()方法。</li>
+<li>实现mybatis的interceptor接口并复写 intercept()方法，然后再给插件编写注解，指定要拦截哪个接口的方法即可</li>
 <li>在配置文件中配置插件</li>
-</ol>
-</li>
-</ol>
-</li>
 </ol>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 完成插件签名：
@@ -2581,9 +2581,9 @@ STATEMENT：可以禁用一级缓存；
 
 <span class="token comment" spellcheck="true">//当有多个插件时，是按照插件配置的顺序一层一层的代理代理对象，执行目标的方法之后，按照逆向顺序执行</span>
 </code></pre>
-<h2 id="mybatis和xml映射文件和内部数据结构之间的映射关系"><a href="#mybatis和xml映射文件和内部数据结构之间的映射关系" class="headerlink" title="mybatis和xml映射文件和内部数据结构之间的映射关系"></a>mybatis和xml映射文件和内部数据结构之间的映射关系</h2><p>​    MyBatis将所有的全局配置信息都封装到Configuration内部。在Xml映射文件中，标签会被解析为ParamaterMap对象，其每个子元素会解析为ParamaterMapping对象。标签会被解析为ResultMap对象，标签会被解析为ResultMap对象，其每个子元素会被解析为ResultMapping对象，每一个增删改查标签均会被解析为MappedStatement对象，标签内的sql会被解析为BoundSql对象。</p>
+<h2 id="Mybatis和xml映射文件和内部数据结构之间的映射关系"><a href="#Mybatis和xml映射文件和内部数据结构之间的映射关系" class="headerlink" title="Mybatis和xml映射文件和内部数据结构之间的映射关系"></a>Mybatis和xml映射文件和内部数据结构之间的映射关系</h2><p>​    MyBatis将所有的全局配置信息都封装到Configuration内部。在Xml映射文件中，标签会被解析为ParamaterMap对象，其每个子元素会解析为ParamaterMapping对象。标签会被解析为ResultMap对象，其每个子元素会被解析为ResultMapping对象，每一个增删改查标签均会被解析为MappedStatement对象，标签内的sql会被解析为BoundSql对象。</p>
 <h2 id="通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗"><a href="#通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗" class="headerlink" title="通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗"></a>通常一个xml映射文件对应一个dao接口与之对应，其内部的方法可以重载吗</h2><p>不能重载，因为通过Dao寻找xml对应的方法的时候全类名+方法名的方式寻找，如果方法名一样的话会有冲突。</p>
-<h2 id="mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗"><a href="#mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗" class="headerlink" title="mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗"></a>mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗</h2><p>​    虽然Mybatis解析xml映射文件是按照顺序解析的。但是被引用B标签依然可以定义在任何地方，都可以被正确识别的，Mybatis解析A标签，发现A标签用了B标签，但是B标签尚未被解析到，此时Mybatis会将A标签标记为未解析状态，然后继续解析剩余的标签，待所有标签解析完成后，MyBatis会重新解析那些被标记为未解析的标签，此时在解析A标签时，B标签已经存在，A标签也就可以正常解析完成了。</p>
+<h2 id="Mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗"><a href="#Mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗" class="headerlink" title="Mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗"></a>Mybatis映射文件，如果A标签通过include引用了B标签内容。A、B标签有顺序要求吗</h2><p>​    虽然Mybatis解析xml映射文件是按照顺序解析的。但是被引用B标签依然可以定义在任何地方，都可以被正确识别的，Mybatis解析A标签，发现A标签用了B标签，但是B标签尚未被解析到，此时Mybatis会将A标签标记为未解析状态，然后继续解析剩余的标签，待所有标签解析完成后，MyBatis会重新解析那些被标记为未解析的标签，此时在解析A标签时，B标签已经存在，A标签也就可以正常解析完成了。</p>
 <h2 id="Mybatis的几个Executor执行器以及区别"><a href="#Mybatis的几个Executor执行器以及区别" class="headerlink" title="Mybatis的几个Executor执行器以及区别"></a>Mybatis的几个Executor执行器以及区别</h2><p>共有三个执行器 </p>
 <ul>
 <li>SimpleExecutor：每一次执行update或select，就开启一个statement对象，<strong>用完立刻关闭</strong></li>
@@ -2591,11 +2591,11 @@ STATEMENT：可以禁用一级缓存；
 <li>BatchExecutor：批处理</li>
 </ul>
 <p>可以通过DefaultSqlSessionFactory创建SqlSession的方法传递ExecutorType类型参数</p>
-<h2 id="mybatis原理"><a href="#mybatis原理" class="headerlink" title="mybatis原理"></a>mybatis原理</h2><p>1、获取sqlSessionFactory对象:<br>      解析文件的每一个信息保存在Configuration中，返回包含Configuration的DefaultSqlSession；<br>      注意：【MappedStatement】：代表一个增删改查的详细信息</p>
+<h2 id="Mybatis原理"><a href="#Mybatis原理" class="headerlink" title="Mybatis原理"></a>Mybatis原理</h2><p>1、获取sqlSessionFactory对象:<br>      解析文件的每一个信息保存在Configuration中，返回包含Configuration的DefaultSqlSession；<br>      注意：【MappedStatement】：代表一个增删改查的详细信息</p>
 <p>2、获取sqlSession对象<br>      返回一个DefaultSqlSession对象，包含Executor和Configuration;<br>      这一步会创建Executor对象；用于增删改查的执行</p>
 <p>3、获取接口的代理对象（MapperProxy），一个接口就对应这一个MapperProxyFactory<br>      getMapper，使用MapperProxyFactory创建一个MapperProxy的代理对象<br>      代理对象里面包含了，DefaultSqlSession（Executor）</p>
 <p>4、执行增删改查方法</p>
-<p>总结：<br>   1、根据配置文件（全局，sql映射）初始化出Configuration对象<br>   2、创建一个DefaultSqlSession对象，<br>      他里面包含Configuration以及<br>      Executor（根据全局配置文件中的defaultExecutorType创建出对应的Executor）<br> 3、DefaultSqlSession.getMapper（）：拿到Mapper接口对应的MapperProxy；<br> 4、MapperProxy里面有（DefaultSqlSession）；<br> 5、执行增删改查方法：<br>      1）调用DefaultSqlSession的增删改查（Executor）；<br>      2）会创建一个StatementHandler对象。<br>         （同时也会创建出ParameterHandler和ResultSetHandler）<br>      3）调用StatementHandler预编译参数以及设置参数值;<br>         使用ParameterHandler来给sql设置参数<br>      4）调用StatementHandler的增删改查方法；<br>      5）ResultSetHandler封装结果<br> 注意：<br>   四大对象每个创建的时候都有一个interceptorChain.pluginAll(parameterHandler);</p>
+<p>总结：<br>   1、根据配置文件（全局，sql映射）初始化出Configuration对象<br>   2、创建一个DefaultSqlSession对象，<br>      他里面包含Configuration以及Executor（根据全局配置文件中的defaultExecutorType创建出对应的Executor）<br> 3、DefaultSqlSession.getMapper（）：拿到Mapper接口对应的MapperProxy；<br> 4、MapperProxy里面有（DefaultSqlSession）；<br> 5、执行增删改查方法：<br>      1）调用DefaultSqlSession的增删改查（Executor）；<br>      2）会创建一个StatementHandler对象。<br>         （同时也会创建出ParameterHandler和ResultSetHandler）<br>      3）调用StatementHandler预编译参数以及设置参数值;<br>         使用ParameterHandler来给sql设置参数<br>      4）调用StatementHandler的增删改查方法；<br>      5）ResultSetHandler封装结果<br> 注意：<br>   四大对象每个创建的时候都有一个interceptorChain.pluginAll(parameterHandler);</p>
 <h2 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h2><p>Nginx是高性能的HTTP和反省代理的服务器，处理并发能力十分强悍，可以实现</p>
 <ul>
 <li><p>反向代理：</p>
