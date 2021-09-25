@@ -30,8 +30,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="瀚77的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-23
+                    2021-09-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    66.3k
+                    66.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    248 分
+                    249 分
                 </div>
                 
 
@@ -2615,8 +2615,8 @@ STATEMENT：可以禁用一级缓存；
 </ul>
 </li>
 </ul>
-<h2 id="Nignx如何处理HTTP请求"><a href="#Nignx如何处理HTTP请求" class="headerlink" title="Nignx如何处理HTTP请求"></a>Nignx如何处理HTTP请求</h2><ol>
-<li>Nginx在启动时，会解析配置文件，得到需要监听的端口和ip地址，然后再Nginx的master进程里面先初始化好监控的sokcet</li>
+<h2 id="Nignx如何处理HTTP请求"><a href="#Nignx如何处理HTTP请求" class="headerlink" title="***Nignx如何处理HTTP请求"></a>***Nignx如何处理HTTP请求</h2><ol>
+<li>Nginx在启动时，会解析配置文件，得到需要监听的端口和ip地址，然后在Nginx的master进程里面先初始化好监控的sokcet</li>
 <li>然后再fork(一个现有进程可以调用fork函数创建一个新进程)出多个子进程</li>
 <li>此时，客户端就可以向nginx发起连接了，当客户端与nginx进行三次握手，与nginx建立好一个连接后，子进程竞争accept新的连接，某一个进程会accept成功，得到这个建立好的连接socker，然后创建nginx对连接的封装。ngx_connection_t</li>
 <li>接着设置读写事件处理函数，并添加读写事件来与客户端进行数据的交换</li>
@@ -2629,8 +2629,8 @@ STATEMENT：可以禁用一级缓存；
 &#125;
 </code></pre>
 <p>服务器名被保留位一个空字符串，它将没有主机头字段的情况下匹配请求，而一个特殊的Nignx的非标准代码返回，从而终止连接。</p>
-<h2 id="Nignx的Master-和-Worker进程"><a href="#Nignx的Master-和-Worker进程" class="headerlink" title="Nignx的Master 和 Worker进程"></a>Nignx的Master 和 Worker进程</h2><p>Master 进程：读取及评估配置和维持</p>
-<p>Worker进程：处理请求</p>
+<h2 id="Nignx的Master-和-Worker进程"><a href="#Nignx的Master-和-Worker进程" class="headerlink" title="Nignx的Master 和 Worker进程"></a>Nignx的Master 和 Worker进程</h2><p>Master 进程：master进程负责管理worker进程，并负责读取配置文件和判断文件语法的工作，且只有一个。</p>
+<p>Worker进程：用于处理请求，有多个</p>
 <h2 id="Nignx是如何实现高并发"><a href="#Nignx是如何实现高并发" class="headerlink" title="Nignx是如何实现高并发"></a>Nignx是如何实现高并发</h2><p>​    一个主进程，多个工作进程，每个工作进程可以处理多个请求，每进来一个request，会有一个worker进程去处理，但不是全程的处理，处理到可能发生阻塞的地方，比如后端服务器转发request，并等待请求返回，那么，这个处理的worker继续处理其他请求，而一旦上游服务器返回了，就会触发这个事件，worker才会来接手，这个request才会接着往下走，由于web服务器的工作性质决定了每个request的大部分生命都是在网络传输中，实际上花费在server机器上的时间片并不多，这就是几个进程就可以解决高并发的秘密所在。</p>
 <h2 id="Nignx为什么不使用多线程"><a href="#Nignx为什么不使用多线程" class="headerlink" title="Nignx为什么不使用多线程"></a>Nignx为什么不使用多线程</h2><p>​    nginx使用单线程来处理异步非阻塞请求，不会为每个请求配置cpu和内存，节省了大量资源，同时也减少了大量的cpu上下文切换。</p>
 <h2 id="为什么要做动静分离"><a href="#为什么要做动静分离" class="headerlink" title="为什么要做动静分离"></a>为什么要做动静分离</h2><p>​    在软件开发中，有些请求是需要后台处理的(如: .jsp等) ，有些请求是不需要经过后台处理的(如:cSS、html、jpg、 js 等等)，这些不需要经过后台处理的文件称为静态文件，否则动态文件。因此我们后台处理忽略静态文件，但是如果直接忽略静态文件的话，后台的请求次数就明显增多了。在我们对资源的响应速度有要求的时候，应该使用这种动静分离的策略去解决动、静分<br>离将网站静态资源(HTML, JavaScript;CSS等)与后台应用分开部署，提高用户访问静态代码的速度，降低对后台应用访问。这里将静态资源放到nginx中，动态资源转发到tomcat服务器中，毕竟Tomcat的优势是处理动态请求。</p>
@@ -3041,8 +3041,8 @@ $document_uri    与$uri相同。
 <li>采用单线程，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗CPU。</li>
 <li>不用考虑锁的问题，不存在因为死锁而导致的性能消耗</li>
 </ul>
-<h2 id="Redis是单线程-多路io复用的理解"><a href="#Redis是单线程-多路io复用的理解" class="headerlink" title="Redis是单线程+多路io复用的理解"></a>Redis是单线程+多路io复用的理解</h2><p>Redis的单线程是指<strong>Redis的网络IO和键值对的读写是由一个线程来完成</strong>的，而其他的功能，比如持久化等是由其他的线程执行</p>
-<p>IO多路复用（IO Multiplexing）：异步阻塞IO<br>    用户将 IO 请求交给 select ， select 调用socket ，然后由select 监听返回，当soket 返回时，select返回，用户再次发起IO ，得到返回数据 ，这与同步阻塞IO 的区别在于，用户可以注册多个select IO请求，这样就实现了，在单线程中，同时处理多个IO请求 的目的。</p>
+<h2 id="Redis是单线程-多路IO复用的理解"><a href="#Redis是单线程-多路IO复用的理解" class="headerlink" title="Redis是单线程+多路IO复用的理解"></a>Redis是单线程+多路IO复用的理解</h2><p>​     客户端与服务端建立连接交由socket，可以同时建立多个连接，redis会基于这些建立的连接去探测哪个连接已经接收完了客户端的请求数据（注意：不是探测哪个连接建立好了，而是探测哪个接收完了请求数据），而且这里的探测动作就是单线程的开始，一旦探测到则基于接收到的数据开始数据处理阶段，然后返回数据，再继续探测下一个已经接收完请求数据的网络连接。注意，从探测到数据处理再到数据返回，全程单线程。这应该就是所谓的redis单线程</p>
+<p>IO多路复用（IO Multiplexing）：异步阻塞IO<br>    多路IO复用有select，poll，epoll这些模式。select监测数量能力有限。poll监测数量没有限制，但是需要一个一个核查。配epoll监测数量没有限制，也不需要一个一个核查，直接看是否有一个正确的标识。起到一个监视的效果，就绪后，Redis直接执行，不需要等待，没有就绪时线程做其他事情</p>
 <h2 id="Redis常用命令管理"><a href="#Redis常用命令管理" class="headerlink" title="Redis常用命令管理"></a>Redis常用命令管理</h2><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210915193657.png"></p>
 <h2 id="缓存穿透问题"><a href="#缓存穿透问题" class="headerlink" title="缓存穿透问题"></a>缓存穿透问题</h2><p>​    缓存穿透是指缓存和数据库中都没有的数据，而用户不断的发起请求。</p>
 <p>解决：</p>
@@ -3077,12 +3077,12 @@ $document_uri    与$uri相同。
 </code></pre>
 </li>
 </ul>
-<h2 id="Redis实现附近的人"><a href="#Redis实现附近的人" class="headerlink" title="Redis实现附近的人"></a>Redis实现附近的人</h2><p>​    将给定的位置对象(纬度、经度、名字)添加到指定的key.其中，key为集合名称。</p>
+<h2 id="Redis实现附近的人"><a href="#Redis实现附近的人" class="headerlink" title="Redis实现附近的人"></a>Redis实现附近的人</h2><p>​    将给定的位置对象(纬度、经度、名字)添加到指定的key。其中，key为集合名称。</p>
 <p>geoadd &lt;key&gt; &lt;longitude&gt;  &lt;latitude&gt;  &lt;member&gt;</p>
 <ul>
 <li>添加地理位置（经度，纬度，名称），可以添加多个</li>
 </ul>
-<h2 id="什么是Spring"><a href="#什么是Spring" class="headerlink" title="什么是Spring"></a>什么是Spring</h2><p>​    Spring 是一个轻量级的开源应用框架，旨在降低应用程序开发的复杂度，由于spring的分层框架，用户可以自由选择自己需要的组件。</p>
+<h2 id="什么是Spring"><a href="#什么是Spring" class="headerlink" title="什么是Spring"></a>什么是Spring</h2><p>​    Spring 是一个轻量级的开源应用框架，旨在降低应用程序开发的复杂度，由于Spring的分层框架，用户可以自由选择自己需要的组件。</p>
 <p>Spring 特点 </p>
 <ul>
 <li>方便解耦，简化开发 </li>
@@ -3102,7 +3102,7 @@ $document_uri    与$uri相同。
 <p>byType：根据bean的类型进行自动装配</p>
 <p>constructor：用构造器的参数，如果正好有一个Bean与构造器的参数类型相同则可以自动装配，否则会导致错误。</p>
 <p>自动装配的局限性：有覆盖的可能性、基本数据类型不能自动装配</p>
-<h2 id="Spring中的IOC容器"><a href="#Spring中的IOC容器" class="headerlink" title="Spring中的IOC容器"></a>Spring中的IOC容器</h2><p>什么是ioc容器：ioc容器就是用来管理、创建、装配 Java对象的</p>
+<h2 id="Spring中的IOC容器"><a href="#Spring中的IOC容器" class="headerlink" title="Spring中的IOC容器"></a>Spring中的IOC容器</h2><p>什么是IOC容器：IOC容器就是用来管理、创建、装配 Java对象的</p>
 <ul>
 <li>Spring提供IOC容器实现两种方式<ul>
 <li>BeanFactory：IOC容器最基本的实现，是Spring内部的使用接口，不提供开发人员使用，使用懒加载<ul>
@@ -3205,66 +3205,66 @@ $document_uri    与$uri相同。
 </li>
 </ul>
 <h2 id="什么是内部Bean"><a href="#什么是内部Bean" class="headerlink" title="什么是内部Bean"></a>什么是内部Bean</h2><p>​    当一个bean仅被用作另一个bean属性时，就被声明为一个内部bean，通常是匿名的，Scope 一般是 prototype</p>
-<h2 id="注入java集合"><a href="#注入java集合" class="headerlink" title="注入java集合"></a>注入java集合</h2><pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>集合类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"stu"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.whw.spring5.collectiontype.Student"</span><span class="token operator">></span>
+<h2 id="注入java集合"><a href="#注入java集合" class="headerlink" title="注入java集合"></a>注入java集合</h2><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--集合类型属性的注入--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stu<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.spring5.collectiontype.Student<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>数组类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"courses"</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>array<span class="token operator">></span>
-         <span class="token operator">&lt;</span>value<span class="token operator">></span>java课程<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
-         <span class="token operator">&lt;</span>value<span class="token operator">></span>数据结构<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
-         <span class="token operator">&lt;</span>value<span class="token operator">></span>数据库<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>array<span class="token operator">></span>
-   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+   <span class="token comment" spellcheck="true">&lt;!--数组类型属性的注入--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>courses<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>array</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>java课程<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>数据结构<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>数据库<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>array</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
 
-   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>List类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"list"</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>list<span class="token operator">></span>
-         <span class="token operator">&lt;</span>value<span class="token operator">></span>王瀚文<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
-         <span class="token operator">&lt;</span>value<span class="token operator">></span>瀚文<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>list<span class="token operator">></span>
-   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+   <span class="token comment" spellcheck="true">&lt;!--List类型属性的注入--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>王瀚文<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>瀚文<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
 
-   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>maps类型属性的注入<span class="token operator">--</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"maps"</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>map<span class="token operator">></span>
-         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"JAVA"</span> value<span class="token operator">=</span><span class="token string">"java"</span><span class="token operator">/</span><span class="token operator">></span>
-         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"PHP"</span> value<span class="token operator">=</span><span class="token string">"php"</span><span class="token operator">/</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>map<span class="token operator">></span>
-   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+   <span class="token comment" spellcheck="true">&lt;!--maps类型属性的注入--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>maps<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>JAVA<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>PHP<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>php<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
 
-   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>sets<span class="token operator">--</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"sets"</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>set<span class="token operator">></span>
-         <span class="token operator">&lt;</span>value<span class="token operator">></span>MySQL<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
-         <span class="token operator">&lt;</span>value<span class="token operator">></span>Redis<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>set<span class="token operator">></span>
-   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+   <span class="token comment" spellcheck="true">&lt;!--sets--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sets<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>set</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>MySQL<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>Redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>set</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
 
-   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>注入List集合类型，值是对象<span class="token operator">--</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"courseList"</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>list<span class="token operator">></span>
-         <span class="token operator">&lt;</span>ref bean<span class="token operator">=</span><span class="token string">"course1"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>ref<span class="token operator">></span>
-         <span class="token operator">&lt;</span>ref bean<span class="token operator">=</span><span class="token string">"course2"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>ref<span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>list<span class="token operator">></span>
-   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
+   <span class="token comment" spellcheck="true">&lt;!--注入List集合类型，值是对象--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>courseList<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ref</span> <span class="token attr-name">bean</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>course1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ref</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ref</span> <span class="token attr-name">bean</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>course2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ref</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
 
-   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>注入Map集合类型，值是对象<span class="token operator">--</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"courseMaps"</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>map<span class="token operator">></span>
-         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"1"</span> value<span class="token operator">-</span>ref<span class="token operator">=</span><span class="token string">"course1"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>entry<span class="token operator">></span>
-         <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"2"</span> value<span class="token operator">-</span>ref<span class="token operator">=</span><span class="token string">"course2"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>entry<span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>map<span class="token operator">></span>
-   <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
+   <span class="token comment" spellcheck="true">&lt;!--注入Map集合类型，值是对象--></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>courseMaps<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">value-ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>course1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">value-ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>course2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
 
-<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>创建多个course对象<span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"course1"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.whw.spring5.collectiontype.Course"</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cName"</span> value<span class="token operator">=</span><span class="token string">"Spring5框架"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
-<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"course2"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.whw.spring5.collectiontype.Course"</span><span class="token operator">></span>
-   <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cName"</span> value<span class="token operator">=</span><span class="token string">"MyBatis框架"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
+<span class="token comment" spellcheck="true">&lt;!--创建多个course对象--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>course1<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.spring5.collectiontype.Course<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cName<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Spring5框架<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>course2<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.spring5.collectiontype.Course<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cName<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyBatis框架<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
 </code></pre>
 <h2 id="Spring对DAO的支持"><a href="#Spring对DAO的支持" class="headerlink" title="Spring对DAO的支持"></a>Spring对DAO的支持</h2><p>Spring面向DAO屏蔽具体持久化技术之间的差异，使业务层和具体的持久化技术实现解耦。</p>
 <h2 id="什么是Spring-MVC"><a href="#什么是Spring-MVC" class="headerlink" title="什么是Spring MVC"></a>什么是Spring MVC</h2><p>​    Spring MVC是一个基于Java实现的轻量级Web框架，通过把模型-视图-控制器分离，将web层进行解耦，把复杂的web应用分成逻辑清晰的几部分，简化开发，减少出错。</p>
@@ -3272,7 +3272,7 @@ $document_uri    与$uri相同。
 <ul>
 <li>支持各种视图技术</li>
 <li>与spring框架集成</li>
-<li>把一整部分分成小部分分开处理</li>
+<li>把一整部分 分成小部分 分开处理</li>
 </ul>
 <p>Spring MVC的组件</p>
 <ul>
@@ -3307,14 +3307,14 @@ $document_uri    与$uri相同。
 <li>得到真正的视图View后，DispatcherServlet利用视图对象对模型数据进行渲染</li>
 <li>DispatcherServlet响应用户</li>
 </ul>
-<h2 id="MVC设计模式的好处"><a href="#MVC设计模式的好处" class="headerlink" title="MVC设计模式的好处"></a>MVC设计模式的好处</h2><p>​    mvc是一种设计模式，模型 model，视图 View，控制器 Controller。三层架构的设计模式用于实现前端页面的展现和后端业务数据处理的分离。</p>
-<h2 id="注解的原理"><a href="#注解的原理" class="headerlink" title="注解的原理"></a>注解的原理</h2><p>​    注解本质是一个继承了 Annotation 的特殊接口，具体实现类是 Java运行时生成的动态代理类，通过反射获取注解时，返回的是 java运行时生成的动态代理对象，通过代理对象调用注解中的方法，会最终调用 AnnotationInvocationHandler的invoke方法，该方法会从 memberValues这个map中索引出对应的值(键是我们注解属性名称，值就是该属性当初被赋上的值。)，而memberValues的来源是java常量池</p>
+<h2 id="MVC设计模式的好处"><a href="#MVC设计模式的好处" class="headerlink" title="MVC设计模式的好处"></a>MVC设计模式的好处</h2><p>​    MVC是一种设计模式，模型 model，视图 View，控制器 Controller。三层架构的设计模式用于实现前端页面的展现和后端业务数据处理的分离。</p>
+<h2 id="注解的原理"><a href="#注解的原理" class="headerlink" title="注解的原理"></a>注解的原理</h2><p>​    注解本质是一个继承了 Annotation 的特殊接口，具体实现类是 Java运行时生成的动态代理类，通过反射获取注解时，返回的是 java运行时生成的动态代理对象，通过代理对象调用注解中的方法，会最终调用 AnnotationInvocationHandler的invoke方法，该方法会从 memberValues这个map中索引出对应的值(键是我们注解方法名称，值就是该属性当初被赋上的值)，而memberValues的来源是java常量池</p>
 <h2 id="Controller的作用"><a href="#Controller的作用" class="headerlink" title="@Controller的作用"></a>@Controller的作用</h2><p>​    Controller类负责处理 DispatcherServlet分发的请求，把用户请求的数据经过业务逻辑处理之后封装成一个Model，然后返回前端控制器。</p>
 <p>​    用 @Controller 注解标注的类即为 Controller对象，处理器将会扫描使用了@Controller的类的方法，并检测方法是否使用了@RequestMapping注解，只有使用了@RequestMapping之后才是真正请求的处理器，@Controller只是定义了一个控制类。</p>
 <h2 id="解决POST请求参数的乱码问题"><a href="#解决POST请求参数的乱码问题" class="headerlink" title="解决POST请求参数的乱码问题"></a>解决POST请求参数的乱码问题</h2><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--配置springMVC的编码过滤器--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>CharacterEncodingFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">></span></span>org.springframework.w eb.filter.CharacterEncodingFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">></span></span>org.springframework.web.filter.CharacterEncodingFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>encoding<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
@@ -3408,7 +3408,7 @@ $document_uri    与$uri相同。
 <ul>
 <li>@SpringBootConfiguration：实现配置文件的功能</li>
 <li>@EnableAutoConfiguration：开启自动配置的功能，也可以关闭某个自动配置项</li>
-<li>ComponentScan：组件扫描</li>
+<li>@ComponentScan：组件扫描</li>
 </ul>
 <h2 id="bootstrap-yaml-和-application-yaml有什么区别"><a href="#bootstrap-yaml-和-application-yaml有什么区别" class="headerlink" title="bootstrap.yaml 和  application.yaml有什么区别"></a>bootstrap.yaml 和  application.yaml有什么区别</h2><p>bootstrap.yml 和 application.yml 都可以用来配置参数。</p>
 <p>bootstrap.yml 用来配置系统级别的一些参数配置，这些参数一般是不会变动的。一旦bootStrap.yml 被加载，内容就不会被覆盖了。还用于一些加密/解密的场景</p>
@@ -3417,7 +3417,7 @@ $document_uri    与$uri相同。
 <h2 id="SpringBoot配置加载顺序"><a href="#SpringBoot配置加载顺序" class="headerlink" title="SpringBoot配置加载顺序"></a>SpringBoot配置加载顺序</h2><p>properties — &gt;  YAML —-&gt; 系统环境变量 —&gt; 命令行参数</p>
 <p>通过 @Value、@ConfigurationProperties 、@PropertySource可以读取配置文件</p>
 <h2 id="SpringBoot自动配置原理"><a href="#SpringBoot自动配置原理" class="headerlink" title="SpringBoot自动配置原理"></a>SpringBoot自动配置原理</h2><p>​    注解@EnableAutoConfiguration有个功能是一启动就去寻找Starter包下的resources/META-INF/spring.factories文件给容器中加载的所有配置类，然后根据导入的启动器开启自动配置项和配置文件中大量的 @Conditionalxxx 的注解判断是否要将Bean注入到容器中，进而完成自动配置。</p>
-<h2 id="SpringBoot中的Starters"><a href="#SpringBoot中的Starters" class="headerlink" title="SpringBoot中的Starters"></a>SpringBoot中的Starters</h2><p>​    Starters是启动器，包含了一系列可以集成到应用里面的依赖包，实现了一站式集成Spring及其他技术，不需要到处找实例代码和依赖包</p>
+<h2 id="SpringBoot中的Starters"><a href="#SpringBoot中的Starters" class="headerlink" title="SpringBoot中的Starters"></a>SpringBoot中的Starters</h2><p>​    Starters是启动器，包含了一系列可以集成到应用里面的依赖包，实现了一站式集成Spring及其他技术，不需要到处找示例代码和依赖包</p>
 <p>常见的启动器：</p>
 <ul>
 <li>spring-boot-starter-web</li>
@@ -3435,13 +3435,13 @@ $document_uri    与$uri相同。
 <li>打成 Fat jar包，直接 java -jar 运行</li>
 <li>直接执行main()</li>
 </ul>
-<h1 id="SpringBoot中的监视器，看完在来完善"><a href="#SpringBoot中的监视器，看完在来完善" class="headerlink" title="==SpringBoot中的监视器，看完在来完善=="></a>==SpringBoot中的监视器，看完在来完善==</h1><p>​    Springboot actuator是spring启动框架中的重要功能之一。Spring boot监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTP URL访问的REST端点来检查状态。</p>
-<h2 id="SpringBoot可以兼容老的Spring项目吗"><a href="#SpringBoot可以兼容老的Spring项目吗" class="headerlink" title="SpringBoot可以兼容老的Spring项目吗"></a>SpringBoot可以兼容老的Spring项目吗</h2><p>使用 @ImportResource 注解导入老的Spring的项目配置文件</p>
+<h2 id="SpringBoot中的监视器"><a href="#SpringBoot中的监视器" class="headerlink" title="SpringBoot中的监视器"></a>SpringBoot中的监视器</h2><p>​    Springboot actuator是Spring启动框架中的重要功能之一。Spring boot监视器可帮助访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTP URL访问的REST端点来检查状态。</p>
+<h2 id="SpringBoot可以兼容老的Spring项目吗"><a href="#SpringBoot可以兼容老的Spring项目吗" class="headerlink" title="SpringBoot可以兼容老的Spring项目吗"></a>SpringBoot可以兼容老的Spring项目吗</h2><p>使用 @ImportResource 注解导入老的Spring项目的xml配置文件</p>
 <h2 id="各服务间通信，对Restful-和-RPC这两种方式如何做选择"><a href="#各服务间通信，对Restful-和-RPC这两种方式如何做选择" class="headerlink" title="各服务间通信，对Restful 和 RPC这两种方式如何做选择"></a>各服务间通信，对Restful 和 RPC这两种方式如何做选择</h2><p>建议使用 Restful，可以在不同的语言之间实现服务通讯</p>
 <h2 id="Spring-Caceh三种常见缓存注解"><a href="#Spring-Caceh三种常见缓存注解" class="headerlink" title="Spring Caceh三种常见缓存注解"></a>Spring Caceh三种常见缓存注解</h2><ul>
 <li>@Cacheable ，用来声明方法是可缓存，将结果存储到缓存中以便后续使用相同参数调用时不需执行实际的方法，直接从缓存中取值。</li>
-<li>@CachePut， 使用@CachePut 标注的方法在执行前，不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入缓存中。</li>
-<li>@CacheEvict, 是用来标注在需要清除缓存元素的方法或类上的，当标记在一个类上时表示其中所有的方法的执行都会触发缓存的清除操作。</li>
+<li>@CachePut，使用@CachePut 标注的方法在执行前，不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入缓存中。</li>
+<li>@CacheEvict，是用来标注在需要清除缓存元素的方法或类上的，当标记在一个类上时表示其中所有的方法的执行都会触发缓存的清除操作。</li>
 </ul>
 <h2 id="Spring，SpringBoot和Spring-Cloud的关系"><a href="#Spring，SpringBoot和Spring-Cloud的关系" class="headerlink" title="Spring，SpringBoot和Spring Cloud的关系"></a>Spring，SpringBoot和Spring Cloud的关系</h2><p>Spring最初最核心的两个功能就是 IOC 和 AOP，在这两个功能上不断的发展，才有了Spring事务和MVC等产品</p>
 <p>SpringBoot是在spring的基础上发展而来的，为了更容易的使用 String</p>
@@ -3464,32 +3464,31 @@ $document_uri    与$uri相同。
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-jetty<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
-<h2 id="如何在SpringBoot启动的时候运行一些特定的代码"><a href="#如何在SpringBoot启动的时候运行一些特定的代码" class="headerlink" title="如何在SpringBoot启动的时候运行一些特定的代码"></a>如何在SpringBoot启动的时候运行一些特定的代码</h2><p>​    实现接口 ApplicationRunner 和  CommandLineRunner 这两个接口实现方式一样，都是只提供了一个run()，在加入到IOC容器中就行了。</p>
+<h2 id="如何在SpringBoot启动的时候运行一些特定的代码"><a href="#如何在SpringBoot启动的时候运行一些特定的代码" class="headerlink" title="如何在SpringBoot启动的时候运行一些特定的代码"></a>如何在SpringBoot启动的时候运行一些特定的代码</h2><p>​    实现接口 ApplicationRunner 和  CommandLineRunner 这两个接口，实现方式一样，都是只提供了一个run()，在加入到IOC容器中就行了。</p>
 <h2 id="SpringBoot-2-X有什么新特性-与1-X有什么区别"><a href="#SpringBoot-2-X有什么新特性-与1-X有什么区别" class="headerlink" title="SpringBoot 2.X有什么新特性?与1.X有什么区别"></a>SpringBoot 2.X有什么新特性?与1.X有什么区别</h2><ul>
 <li>依赖JDK版本升级为 8</li>
 <li>支持 spring 5+，Tomcat 8.5+，Thymeleaf3+</li>
 <li>响应式Spring编程</li>
 </ul>
 <h2 id="什么是Spring-Profiles"><a href="#什么是Spring-Profiles" class="headerlink" title="什么是Spring Profiles"></a>什么是Spring Profiles</h2><p>​    Spring Profiles 允许用户根据配置文件中的环境来注册bean，当应用程序是开发环境时，只有某些bean可以加载，而在生成环境中，其他的bean可以被加载。也就是不同的环境加载不同的配置</p>
-<p>​    启动的时候添加参数  java -jar  xxx.jar –spring.profiles.active=test/productor</p>
+<p>​    方法1：创建application-test.yaml 或者 application-dev.yaml 等配置文件，然后再主配置文件application.yaml启用对应的配置文件就行</p>
+<p>​    方法2：启动的时候添加参数  java -jar  xxx.jar –spring.profiles.active=test/productor</p>
 <h2 id="什么是-Spring-Batch"><a href="#什么是-Spring-Batch" class="headerlink" title="什么是 Spring Batch"></a>什么是 Spring Batch</h2><p>​    Spring Batch 提供了用于处理大量记录的可重用函数，包括事务，作业处理统计等，它还提供了更先进的技术服务和功能，通过优化和分区技术，可以实现高批量和高性能批处理作业。简单以及复杂的大批量批处理作业以高度可扩展的方式利用框架处理重要大量的信息。</p>
 <h2 id="什么是-CSRF攻击"><a href="#什么是-CSRF攻击" class="headerlink" title="什么是 CSRF攻击"></a>什么是 CSRF攻击</h2><p>​    CSRF代表跨站请求伪造。这是一种攻击，迫使最终用户在当前通过身份验证的Web应用程序上执行不需要的操作。</p>
 <h2 id="什么是WebSockets"><a href="#什么是WebSockets" class="headerlink" title="什么是WebSockets"></a>什么是WebSockets</h2><p>​    WebSocket 是一个持久化的协议并且基于HTTP协议完成一部分握手，它最大特点就是，服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话。</p>
 <p>​    从初始连接使用HTTP，然后将此连接升级为套接字的连接，然后这个连接用于未来所有的通信</p>
-<h2 id="如何给静态变量赋值"><a href="#如何给静态变量赋值" class="headerlink" title="如何给静态变量赋值"></a>如何给静态变量赋值</h2><p>如果是给静态变量赋值,直接使用@value()，不起作用</p>
+<h2 id="如何给静态变量赋值"><a href="#如何给静态变量赋值" class="headerlink" title="***如何给静态变量赋值"></a>***如何给静态变量赋值</h2><p>如果是给静态变量赋值,直接使用@value()，不起作用</p>
 <p>要赋值，需要提供此属性的set方法，在set方法上使用@Value(“${user.name}”)</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> String userName；
-   
+
 <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&amp;#123;user.name&amp;#125;"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUserName</span><span class="token punctuation">(</span>String userName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
    userName <span class="token operator">=</span> userName；
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="SpringBoot-事务的使用"><a href="#SpringBoot-事务的使用" class="headerlink" title="SpringBoot 事务的使用"></a>SpringBoot 事务的使用</h2><p>在启动类上使用 @EnableTransactionManagement开启事务之后，在service方法上添加注解 @Transactional</p>
-<h2 id="什么是FreeMarker模板"><a href="#什么是FreeMarker模板" class="headerlink" title="什么是FreeMarker模板?"></a>什么是FreeMarker模板?</h2><p>​    FreeMarker是一个基于Java 的模板引擎，最初专注于使用MVC软件架构进行动态网页生成。使用Freemarker, 的主要优点是表示层和业务层的完全分离。程序员可以处理应用程序代码，而设计人员可以处理html页面设计。最后使用freemarker可以将这些结合起来，给出最终的输出页面。</p>
-<h2 id="什么是ZooKeeper"><a href="#什么是ZooKeeper" class="headerlink" title="什么是ZooKeeper"></a>什么是ZooKeeper</h2><p>​    ZooKeeper 是一个分布式应用程序协调服务，它是集群的管理者，监视这集群中各个节点的状态，根据节点提交的反馈来执行下一步操作，最终将高效功能稳定的系统提供给用户。</p>
-<p>​    默认端口2181</p>
-<p>​    客户端的读请求可以被集群中的任意一台机器处理，对于写请求，会先给leader，leader写完之后在通知follower，随着集群集群的增多，读请求的吞吐量会提高但是写请求的吞吐量会下降</p>
+<h2 id="SpringBoot-打成的jar包和普通的jar有什么区别"><a href="#SpringBoot-打成的jar包和普通的jar有什么区别" class="headerlink" title="SpringBoot 打成的jar包和普通的jar有什么区别"></a>SpringBoot 打成的jar包和普通的jar有什么区别</h2><p>​    SpringBoot项目最终打包成的jar是可执行jar ，这种jar可以直接通过 java -jar xxx.jar 命令来运行，这种jar 不可以作为普通的jar被其他项目依赖，即使依赖了也无法使用其中的类。<br>​    SpringBoot的jar无法被其他项目依赖，主要还是他和普通jan的结构不同。普通的jar包，解压后直接就是包名，包里就是我们的代码，而SpringBoot 打包成的可执行jar解压后，在\BOOT-INF\classes目录下才是我们的代码,因此无法被直接引用。如果非要引用，可以在pom.xml 文件中增加配置，将SpringBoot项目打包成两个jar ，一个可执行，一个可引用。</p>
+<h2 id="什么是FreeMarker模板"><a href="#什么是FreeMarker模板" class="headerlink" title="***什么是FreeMarker模板?"></a>***什么是FreeMarker模板?</h2><p>​    FreeMarker是一个基于Java 的模板引擎，最初专注于使用MVC软件架构进行动态网页生成。使用Freemarker, 的主要优点是表示层和业务层的完全分离。程序员可以处理应用程序代码，而设计人员可以处理html页面设计。最后使用freemarker可以将这些结合起来，给出最终的输出页面。</p>
 <h2 id="spring-boot-starter-parent有什么用"><a href="#spring-boot-starter-parent有什么用" class="headerlink" title="spring-boot-starter-parent有什么用"></a>spring-boot-starter-parent有什么用</h2><ul>
 <li>定义java编译器版本为8</li>
 <li>使用 UTF-8格式编码</li>
@@ -3497,7 +3496,9 @@ $document_uri    与$uri相同。
 <li>通过profile,定义的不同环境的配置文件，例如application-dev.properties 和 application-dev.yml.</li>
 </ul>
 <h2 id="swagger"><a href="#swagger" class="headerlink" title="swagger"></a>swagger</h2><p>​    swagger可以用来快速生成一个接口文档网站，接口一旦发生变化，文档就会自动更新，所有开发工程师访问这一个在线网站就可以获取到最新的接口文档，非常方便。</p>
-<h2 id="SpringBoot-打成的jar包和普通的jar有什么区别"><a href="#SpringBoot-打成的jar包和普通的jar有什么区别" class="headerlink" title="SpringBoot 打成的jar包和普通的jar有什么区别"></a>SpringBoot 打成的jar包和普通的jar有什么区别</h2><p>​    SpringBoot项目最终打包成的jar是可执行jar ，这种jar可以直接通过 java -jar xxx.jar 命令来运行，这种jar 不可以作为普通的jar被其他项目依赖，即使依赖了也无法使用其中的类。<br>​    SpringBoot的jar无法被其他项目依赖，主要还是他和普通jan的结构不同。普通的jar包，解压后直接就是包名，包里就是我们的代码，而SpringBoot 打包成的可执行jar解压后，在\BOOT-INF\classes目录下才是我们的代码,因此无法被直接引用。如果非要引用，可以在pom.xml 文件中增加配置，将SpringBoot项目打包成两个jar ，一个可执行，一个可引用。</p>
+<h2 id="什么是ZooKeeper"><a href="#什么是ZooKeeper" class="headerlink" title="什么是ZooKeeper"></a>什么是ZooKeeper</h2><p>​    ZooKeeper 是一个分布式应用程序协调服务，它是集群的管理者，监视这集群中各个节点的状态，根据节点提交的反馈来执行下一步操作，最终将高效功能稳定的系统提供给用户。</p>
+<p>​    默认端口2181</p>
+<p>​    客户端的读请求可以被集群中的任意一台机器处理，对于写请求，会先给leader，leader写完之后在通知follower，随着集群集群的增多，读请求的吞吐量会提高但是写请求的吞吐量会下降</p>
 <h2 id="ZooKeeper-提供了两个东西"><a href="#ZooKeeper-提供了两个东西" class="headerlink" title="ZooKeeper 提供了两个东西"></a>ZooKeeper 提供了两个东西</h2><h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>ZooKeeper 提供了一个多层级的节点 znode，文件系统中只有文件节点可以存放数据。ZooKeeper 为了保证高吞吐和低延迟，在内存中维护了这个数组的目录结构，这也使得 ZooKeeper  不能存放大量的数据，每个节点的数据上限为 1MB。</p>
 <p>​    四种类型的 znode</p>
 <ul>
@@ -5762,7 +5763,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.3k</span>&nbsp;字
+                class="white-color">347.5k</span>&nbsp;字
             
             
             
