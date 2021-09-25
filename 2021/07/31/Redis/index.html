@@ -468,14 +468,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-18
+                    2021-09-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    17.5k
+                    17.6k
                 </div>
                 
 
@@ -658,35 +658,35 @@
 <h4 id="Redis-key键操作"><a href="#Redis-key键操作" class="headerlink" title="Redis key键操作"></a>Redis key键操作</h4><ul>
 <li><p>keys *  </p>
 <ul>
-<li>查看当前所有库</li>
+<li>查看当前所有库的key</li>
 </ul>
 </li>
-<li><p>exists  key</p>
+<li><p>exists  &lt;key&gt;</p>
 <ul>
 <li>判断某个key是否存在</li>
 </ul>
 </li>
-<li><p>type key</p>
+<li><p>type &lt;key&gt;</p>
 <ul>
 <li>查看你的key对应的value是什么类型</li>
 </ul>
 </li>
-<li><p>del key</p>
+<li><p>del &lt;key&gt;</p>
 <ul>
 <li>删除指定的key数据</li>
 </ul>
 </li>
-<li><p>unlink  key</p>
+<li><p>unlink  &lt;key&gt;</p>
 <ul>
 <li><strong>根据value选择非阻塞删除</strong>，也就是仅将key从keyspace元数据中删除，<strong>真正的删除会在后续异步操作</strong></li>
 </ul>
 </li>
-<li><p>expire key  时间</p>
+<li><p>expire &lt;key&gt;  时间</p>
 <ul>
 <li>为给定的key设置过期时间，单位为秒，若是没有设置过期时间，则默认永不过期</li>
 </ul>
 </li>
-<li><p>ttl  key</p>
+<li><p>ttl  &lt;key&gt;</p>
 <ul>
 <li>查看还有多少秒过期，-1表示永不过期，-2表示已经过期</li>
 </ul>
@@ -871,7 +871,7 @@
 </li>
 <li><p>lindex  &lt;key&gt; &lt;index&gt; </p>
 <ul>
-<li>按照索引下标（从0开始）获得元素（从左到右）</li>
+<li>按照指定的索引下标（从0开始）获得元素（从左到右）</li>
 </ul>
 </li>
 <li><p>llen  &lt;key&gt;  </p>
@@ -956,7 +956,7 @@
 </li>
 <li><p>sdiff &lt;key1&gt; &lt;key2&gt;</p>
 <ul>
-<li>返回key1集合中的，key2集合中没有的差集元素</li>
+<li>返回key1集合中有的，key2集合中没有的差集元素</li>
 </ul>
 </li>
 </ul>
@@ -975,7 +975,7 @@
 </li>
 <li><p>hget  &lt;key1&gt;  &lt;filed&gt; </p>
 <ul>
-<li>取出 &lt;key1&gt;集合 &lt;filed&gt;的值</li>
+<li>取出 &lt;key1&gt;集合 &lt;filed&gt;字段的值</li>
 </ul>
 </li>
 <li><p>hmset  &lt;key1&gt;   &lt;filed1&gt; &lt;value1&gt;   &lt;field2&gt; &lt;value2&gt;</p>

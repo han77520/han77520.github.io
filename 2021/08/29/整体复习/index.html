@@ -468,14 +468,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-24
+                    2021-09-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    66.5k
+                    66.4k
                 </div>
                 
 
@@ -2596,7 +2596,7 @@ STATEMENT：可以禁用一级缓存；
 <p>3、获取接口的代理对象（MapperProxy），一个接口就对应这一个MapperProxyFactory<br>      getMapper，使用MapperProxyFactory创建一个MapperProxy的代理对象<br>      代理对象里面包含了，DefaultSqlSession（Executor）</p>
 <p>4、执行增删改查方法</p>
 <p>总结：<br>   1、根据配置文件（全局，sql映射）初始化出Configuration对象<br>   2、创建一个DefaultSqlSession对象，<br>      他里面包含Configuration以及Executor（根据全局配置文件中的defaultExecutorType创建出对应的Executor）<br> 3、DefaultSqlSession.getMapper（）：拿到Mapper接口对应的MapperProxy；<br> 4、MapperProxy里面有（DefaultSqlSession）；<br> 5、执行增删改查方法：<br>      1）调用DefaultSqlSession的增删改查（Executor）；<br>      2）会创建一个StatementHandler对象。<br>         （同时也会创建出ParameterHandler和ResultSetHandler）<br>      3）调用StatementHandler预编译参数以及设置参数值;<br>         使用ParameterHandler来给sql设置参数<br>      4）调用StatementHandler的增删改查方法；<br>      5）ResultSetHandler封装结果<br> 注意：<br>   四大对象每个创建的时候都有一个interceptorChain.pluginAll(parameterHandler);</p>
-<h2 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h2><p>Nginx是高性能的HTTP和反省代理的服务器，处理并发能力十分强悍，可以实现</p>
+<h2 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h2><p>Nginx是高性能的HTTP和反向代理的服务器，处理并发能力十分强悍，可以实现</p>
 <ul>
 <li><p>反向代理：</p>
 <ul>
@@ -3498,7 +3498,7 @@ $document_uri    与$uri相同。
 <h2 id="swagger"><a href="#swagger" class="headerlink" title="swagger"></a>swagger</h2><p>​    swagger可以用来快速生成一个接口文档网站，接口一旦发生变化，文档就会自动更新，所有开发工程师访问这一个在线网站就可以获取到最新的接口文档，非常方便。</p>
 <h2 id="什么是ZooKeeper"><a href="#什么是ZooKeeper" class="headerlink" title="什么是ZooKeeper"></a>什么是ZooKeeper</h2><p>​    ZooKeeper 是一个分布式应用程序协调服务，它是集群的管理者，监视这集群中各个节点的状态，根据节点提交的反馈来执行下一步操作，最终将高效功能稳定的系统提供给用户。</p>
 <p>​    默认端口2181</p>
-<p>​    客户端的读请求可以被集群中的任意一台机器处理，对于写请求，会先给leader，leader写完之后在通知follower，随着集群集群的增多，读请求的吞吐量会提高但是写请求的吞吐量会下降</p>
+<p>​    客户端的读请求可以被集群中的任意一台机器处理，对于写请求，会先给leader，leader写完之后在通知follower，随着集群的增多，读请求的吞吐量会提高但是写请求的吞吐量会下降</p>
 <h2 id="ZooKeeper-提供了两个东西"><a href="#ZooKeeper-提供了两个东西" class="headerlink" title="ZooKeeper 提供了两个东西"></a>ZooKeeper 提供了两个东西</h2><h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>ZooKeeper 提供了一个多层级的节点 znode，文件系统中只有文件节点可以存放数据。ZooKeeper 为了保证高吞吐和低延迟，在内存中维护了这个数组的目录结构，这也使得 ZooKeeper  不能存放大量的数据，每个节点的数据上限为 1MB。</p>
 <p>​    四种类型的 znode</p>
 <ul>
@@ -3528,7 +3528,7 @@ $document_uri    与$uri相同。
 <h4 id="控制时序"><a href="#控制时序" class="headerlink" title="控制时序"></a>控制时序</h4><p>​    /distribute_lock已经预先存在，所有客户端在它下面创建临时顺序编号目录节点，序号最小的获得锁，用完删除</p>
 <p>==获得分布式锁流程==</p>
 <p>​    在获取分布式锁的时候在locker节点下创建临时顺序节点，释放锁的时候删除该临时节点。</p>
-<p>​    接着调用 getChildren(“locker”) 来获取 locker 下面的所有节点，客户端获取到所有的子节点 之后，如果发现自己创建的结点并非 locker 所有子节点中最小的，说明自己还没有获取到锁，如果发现自己创建的结点在所有创建的子节点中序号最小，那么就认为获取到了锁。此时客户端需要找到比自己小一号的那个节点，对其注册事件监听器，当这个被关注的节点删除后，客户点的watcher会收到通知，此时再次判断自己创建的节点是否是序号最小的，如果是则获取锁，不是就接着重复上述步骤，</p>
+<p>​    接着调用 getChildren(“locker”) 来获取 locker 下面的所有节点，客户端获取到所有的子节点 之后，如果发现自己创建的结点并非 locker 所有子节点中最小的，说明自己还没有获取到锁，如果发现自己创建的结点在所有创建的子节点中序号最小，那么就认为获取到了锁。此时客户端需要找到比自己小一号的那个节点，对其注册事件监听器，当这个被关注的节点删除后，客户点的watcher会收到通知，此时再次判断自己创建的节点是否是序号最小的，如果是则获取锁，不是就接着重复上述步骤。</p>
 <h3 id="队列管理"><a href="#队列管理" class="headerlink" title="队列管理"></a>队列管理</h3><p>两种类型队列</p>
 <ul>
 <li>同步队列，当一个队列的成员都聚齐时，这个队列才可用，否则一直等待所有成员到达<ul>
@@ -3540,7 +3540,7 @@ $document_uri    与$uri相同。
 </ul>
 </li>
 </ul>
-<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>​    首先建立znode节点，并建立监听器监视znode子节点的状态（用于在服务器增添时及时同步当前集群中服务器列表）。在每个服务器启动时，在znode节点下建立子节点（可以用服务器地址命名）,并在对应的字节点下存入服务器的相关信息。这样，我们在zookeeper服务器上可以获取当前集群中的服务器列表及相关信息，可以自定义一个负载均衡算法，在每个请求过来时从zookeeper服务器中获取当前集群服务器列表，根据算法选出其中一个服务器来处理请求。</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>​    首先建立znode节点，并建立监听器监视znode子节点的状态（用于在服务器增添时及时同步当前集群中服务器列表）。在每个服务器启动时，在znode节点下建立子节点（可以用服务器地址命名）,并在对应的子节点下存入服务器的相关信息。这样，我们在zookeeper服务器上可以获取当前集群中的服务器列表及相关信息，可以自定义一个负载均衡算法，在每个请求过来时从zookeeper服务器中获取当前集群服务器列表，根据算法选出其中一个服务器来处理请求。</p>
 <h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><p>​    发布者将数据发布到ZooKeeper上一个或多个节点上，订阅者从中订阅数据，从而动态获取数据的目的，实现配置信息的集中式管理和数据动态更新。</p>
 <p>两种设计模式</p>
 <ul>
@@ -3567,7 +3567,7 @@ $document_uri    与$uri相同。
 <ul>
 <li>选举线程由发现leader不能用的server发起选举的线程担任，主要是对投票结果进行统计，并选出推荐的Server</li>
 <li>选举线程首先向所有Server发起一次询问</li>
-<li>选举线程收到恢复后，获取对方的id，并存储到当前询问对象列表中，最后获取对方提议的leader相关信息，并将这些信息存储到当前选举的投票记录表中</li>
+<li>选举线程收到回复后，获取对方的id，并存储到当前询问对象列表中，最后获取对方提议的leader相关信息，并将这些信息存储到当前选举的投票记录表中</li>
 <li>收到所有server回复后，计算出zxid最大的server，并将这个server相关信息设置成下一次要投票的server</li>
 <li>线程将当前的zxid最大的server设置为当前server要推荐的Leader，如果此时获胜的server获得 n/2 + 1 的server票数，设置当前推荐server为leader</li>
 </ul>
@@ -3582,11 +3582,11 @@ $document_uri    与$uri相同。
 <li>Follower收到成为uptodate的消息后，又可以重新接收client的请求进行服务了</li>
 </ul>
 <h2 id="广播模式"><a href="#广播模式" class="headerlink" title="广播模式"></a>广播模式</h2><p>对写请求进行广播</p>
-<p>​        客户端发送请求给 Leader节点，Leader节点自己先进行写操作，完了之后通知 Follower节点进行写，写完之后  Follower节点  回应Leader节点。只要超过半数的服务器写完，Leader节点就可以通知客户端请求已经完成，剩下的 Follower节点 在进行写操作</p>
+<p>​        客户端发送请求给 Leader节点，Leader节点自己先进行写操作，完了之后通知 Follower节点进行写，写完之后  Follower节点回应Leader节点。只要超过半数的服务器写完，Leader节点就可以通知客户端请求已经完成，剩下的 Follower节点 在进行写操作。</p>
 <p>​        客户端发送请求给 Follower节点 ，Follower节点转发给Leader节点，Leader节点自己进行写操作，完了之后通知 Follower节点 进行写操作，Follower节点 写完之后回应 Leader节点。只要超过半数的 服务器写操作完成，Leader节点就通知那个接收请求的Follower节点，让其通知客户端写操作完成。</p>
 <h2 id="为什么要有leader"><a href="#为什么要有leader" class="headerlink" title="为什么要有leader"></a>为什么要有leader</h2><p>​    在分布式环境中，有些业务逻辑只需要集群中的某一台机器进行执行就可以，其他的集群可以共享这个结果，这样可以大大减少重复计算，提高性能。</p>
 <p>​    这时候当一个server 加入ZooKeeper服务中，它会在恢复模式下启动，发现leader, 并和leader 进行状态同步。待到同步结束，它也参与消息广播。ZooKeeper.服务一直维持在Broadcast状态，直到leader崩溃了或者leader 失去了大部分的followers 支持。</p>
-<h2 id="ZooKeeper-保证事务顺序的一致性"><a href="#ZooKeeper-保证事务顺序的一致性" class="headerlink" title="ZooKeeper 保证事务顺序的一致性"></a>ZooKeeper 保证事务顺序的一致性</h2><p>​    zookeeper采用了递增的事务ld来标识，所有的proposal(提议)都在被提出的时候加上了zxid, zxid实际上是一个64位的数字,高32位是epoch(时期;纪元; ,世:新时代)用来标识leader是否发生改变，如果有新的leader产生出来，epoch会自增，低32位用来递增计数。当新产生proposal的时候，会依据数据库的两阶段过程，首先会向其他的server发出事务执行请求，如果超过半数的机器都能执行并且能够成功，那么就会开始执行。</p>
+<h2 id="ZooKeeper-保证事务顺序的一致性"><a href="#ZooKeeper-保证事务顺序的一致性" class="headerlink" title="ZooKeeper 保证事务顺序的一致性"></a>ZooKeeper 保证事务顺序的一致性</h2><p>​    ZooKeeper 采用了递增的事务ld来标识，所有的proposal(提议)都在被提出的时候加上了zxid, zxid实际上是一个64位的数字,高32位是epoch(时期;纪元; ,世:新时代)用来标识leader是否发生改变，如果有新的leader产生出来，epoch会自增，低32位从0开始递增计数。同一任期内，ZXID是连续的，每个结点又都保存着自身最新生效的ZXID，通过对比新提案的ZXID与自身最新ZXID是否相差“1”，来保证事务严格按照顺序生效的。当新产生proposal的时候，会依据数据库的两阶段过程，首先会向其他的server发出事务执行请求，如果超过半数的机器都能执行并且能够成功，那么就会开始执行。</p>
 <h2 id="Zookeeper-Watcher机制"><a href="#Zookeeper-Watcher机制" class="headerlink" title="Zookeeper Watcher机制"></a>Zookeeper Watcher机制</h2><p>​    Zookeeper 允许客户端向服务端的某个Znode注册一个 Watcher监听，当服务端的一些指定事件触发了这个Watcher，服务端会向指定客户端发送一个事件通知来实现分布式的通知功能，然后客户端根据 Watcher做出业务上的改变</p>
 <p>特性：</p>
 <ul>
@@ -3597,7 +3597,7 @@ $document_uri    与$uri相同。
 <p>为什么是一次性的原因</p>
 <p>​    如果服务端变动频繁，每次变动都要通知客户端，给服务器造成了很大的压力，而且在很多情况下，不需要知道服务端的每一次变动，只需要得到最新的数据即可</p>
 <p>​    </p>
-<h2 id="ACL访问控制列表"><a href="#ACL访问控制列表" class="headerlink" title="ACL访问控制列表"></a>ACL访问控制列表</h2><p>​    zookeeper利用ACL策略控制节点的访问权限，如节点数据读写，节点创建，节点删除，读取子节点列表，设置节点权限等。</p>
+<h2 id="ACL访问控制列表"><a href="#ACL访问控制列表" class="headerlink" title="ACL访问控制列表"></a>ACL访问控制列表</h2><p>​    ZooKeeper 利用ACL策略控制节点的访问权限，如节点数据读写，节点创建，节点删除，读取子节点列表，设置节点权限等。</p>
 <p>有三个纬度</p>
 <ul>
 <li>权限模式Scheme<ul>
@@ -3736,9 +3736,9 @@ $document_uri    与$uri相同。
 <p>运行：当CPU开始调度处于就绪状态的线程时，此线程才得以真正的执行</p>
 <p>阻塞：处于运行状态的线程由于某些原因，暂时放弃对CPU的使用权，停止执行，此时进入阻塞状态，直到其进入就绪                         状态，才有机会再次被CPU调用以进入到运行状态。</p>
 <ul>
-<li>等待阻塞：运行状态中的线程执行wait0方法， 使本线程进入到等待阻塞状</li>
+<li>等待阻塞：运行状态中的线程执行wait()方法， 使本线程进入到等待阻塞状态</li>
 <li>同步阻塞：线程在获取synchronized同步锁失败(因为锁被其它线程所占用)，就会进入同步阻塞</li>
-<li>其他阻塞：通过调用线程的sleep()或join0或发出了I/O请求时，线程会进入到阻塞状态。当sleep()状态超时、join()等 待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。</li>
+<li>其他阻塞：通过调用线程的sleep()或join()或发出了I/O请求时，线程会进入到阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。</li>
 </ul>
 <p>死亡：线程执行完或者因为异常退出了run()方法，该线程结束生命周期</p>
 <h2 id="什么是线程池"><a href="#什么是线程池" class="headerlink" title="什么是线程池"></a>什么是线程池</h2><p>​    线程池就是提前创建若干个线程，如果有任务需要处理，线程池里的线程就会处理任务，处理完之后线程并不会被销毁，而是等待下一个任务。</p>
@@ -3784,7 +3784,6 @@ $document_uri    与$uri相同。
                 countDownLatch<span class="token punctuation">.</span><span class="token function">countDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//计数器 -1</span>
             <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//执行结果</span>
@@ -3801,7 +3800,7 @@ $document_uri    与$uri相同。
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  *   CyclicBarrier的字面意思是可循环（Cyclic）使用的屏障（Barrier）。
  *  它要做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，然后执行CyclicBarrier构造器里面的线程
- *  接着所有被屏障拦截的线程才会继续执行。 线程进入屏障通过CyclicBarrier的await()方法。
+ *  接着所有被屏障拦截的线程才会继续执行。
  */</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CyclicBarrierDemo</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -3971,7 +3970,7 @@ $document_uri    与$uri相同。
 <li>synchronized 不可中断，除非抛出异常或者正常运行完成</li>
 <li>Lock 可中断<ul>
 <li>设置 lock.tryLock(Long timeout, TimeUnit unit)</li>
-<li>lock.lockInterruptibly允许在等待时由其它线程调用等待线程的Thread.interrupt方法来中断等待线程的等待而直接返回，这时不用获取锁，而会抛出一个InterruptedException</li>
+<li>lock.lockInterruptibly()允许在等待时由其它线程调用等待线程的Thread.interrupt方法来中断等待线程的等待而直接返回，这时不用获取锁，而会抛出一个InterruptedException</li>
 </ul>
 </li>
 </ul>
@@ -3989,8 +3988,8 @@ $document_uri    与$uri相同。
 </ul>
 </li>
 </ul>
-<h2 id="synchronized-和-volatile的区别"><a href="#synchronized-和-volatile的区别" class="headerlink" title="synchronized 和 volatile的区别"></a>synchronized 和 volatile的区别</h2><p>联系就是 volatile 是轻量级锁，synchronized 是重量级锁</p>
-<p>区别</p>
+<h2 id="synchronized-和-volatile-的区别"><a href="#synchronized-和-volatile-的区别" class="headerlink" title="synchronized 和 volatile 的区别"></a>synchronized 和 volatile 的区别</h2><p>联系就是 volatile 是轻量级锁，synchronized 是重量级锁</p>
+<p>区别 </p>
 <ul>
 <li>volatile 是变量修饰符，synchronized可以修饰方法，代码块</li>
 <li>volatile 只能实现变量的可见性，不能保证原子性，synchronized都可以实现</li>
@@ -3998,15 +3997,14 @@ $document_uri    与$uri相同。
 <li>volatile性能比 synchronized要好，但是功能不如synchronized，所以一般还是用 synchronized的</li>
 </ul>
 <h2 id="什么是乐观锁和悲观锁"><a href="#什么是乐观锁和悲观锁" class="headerlink" title="什么是乐观锁和悲观锁"></a>什么是乐观锁和悲观锁</h2><p>乐观锁</p>
-<p>​    对于并发间操作产生的线程安全问题持乐观状态，认为竞争不会发生，因此不需要持有锁，用CAS来实现乐观锁的修          改操作</p>
+<p>​    对于并发间操作产生的线程安全问题持乐观状态，认为竞争不会发生，因此不需要持有锁，用CAS来实现乐观锁的修改操作</p>
 <p>悲观锁</p>
 <p>​    对于并发间操作产生的线程安全问题持悲观状态，认为竞争总会发生，因此每次对资源的操作都会持有一个独占锁</p>
 <h2 id="sleep和wait有什么区别"><a href="#sleep和wait有什么区别" class="headerlink" title="sleep和wait有什么区别"></a>sleep和wait有什么区别</h2><p>sleep 方法和wait方法都可以用来放弃CPU一定的时间。</p>
 <p>不同点在于如果线程持有某个对象的监视器，sleep 方法不会放弃这个对象的监视器，wait方法会放弃这个对象的监视器</p>
-<h2 id="ThreadLocal是什么"><a href="#ThreadLocal是什么" class="headerlink" title="ThreadLocal是什么"></a>ThreadLocal是什么</h2><p>​    ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会相互干扰，这种变量在线程的声明周期内其作用，可以在同一线程的不同组件之间传递公共变量。</p>
+<h2 id="ThreadLocal是什么"><a href="#ThreadLocal是什么" class="headerlink" title="ThreadLocal是什么"></a>ThreadLocal是什么</h2><p>​    ThreadLocal类是用来解决多线程的数据安全问题的，</p>
 <p>底层原理：</p>
-<p>​    每个Thread维护一个 ThreadLocalMap，这个Map的key是ThreadLocal的实例，value才是真正要存储的值。</p>
-<p>​    由ThreadLocal负责向map获取和设置线程的变量</p>
+<p>​    每个ThreadLocal维护一个 ThreadLocalMap，这个Map的key是当前线程，value才是真正要存储的值。并且一个线程只能存储一个数据，要关联多个数据则需要多个ThreadLocal对象，由ThreadLocal负责向map中get和set线程的变量值，可以在同一线程的不同组件之间传递公共变量。</p>
 <table>
 <thead>
 <tr>
@@ -4089,14 +4087,13 @@ $document_uri    与$uri相同。
 <h2 id="为什么不能直接调用run-方法"><a href="#为什么不能直接调用run-方法" class="headerlink" title="为什么不能直接调用run()方法"></a>为什么不能直接调用run()方法</h2><p>​    new 一个 Thread就进入了创建状态，调用 start()方法进入了就绪状态，当分配到时间片就可以执行线程里的run()了</p>
 <p>而直接调用run()，会把run()当成一个main线程下的普通方法去执行。</p>
 <p>​    </p>
-<h2 id="为什么Thread类的sleep-和yield-方法是静态的"><a href="#为什么Thread类的sleep-和yield-方法是静态的" class="headerlink" title="为什么Thread类的sleep()和yield ()方法是静态的?"></a>为什么Thread类的sleep()和yield ()方法是静态的?</h2><p>如果sleep和yield是静态方法，那么不管哪个线程，只要一调用就把自己给sleep、yield了。</p>
-<p>如果sleep和yield是实例方法，那就热闹了。一个线程可以获取其他线程对象的引用，然后通过引用调要其他线程的sleep和yield方法，让其他线程让出CPU使用权。试想，如果每个线程都可以通过sleep、yield其他线程的方式来让自己获得CPU使用权，那不是世界大乱了。线程之间可以互相sleep，互相yield。</p>
+<h2 id="为什么Thread类的sleep-和yield-方法是静态的"><a href="#为什么Thread类的sleep-和yield-方法是静态的" class="headerlink" title="为什么Thread类的sleep()和yield ()方法是静态的?"></a>为什么Thread类的sleep()和yield ()方法是静态的?</h2><p>Thread类的sleep()和yield()方法将在当前正在执行的线程上运行。所以在其他处于等待状态的线程上调用这些方法是没有意义的</p>
 <h2 id="如何停止一个正在运行的线程"><a href="#如何停止一个正在运行的线程" class="headerlink" title="如何停止一个正在运行的线程"></a>如何停止一个正在运行的线程</h2><ul>
 <li>退出标志位</li>
 <li>使用stop方法</li>
 <li>使用interrupt方法中断线程</li>
 </ul>
-<h2 id="Java中interrupt、interrupted-和isInterrupted-方法的区别"><a href="#Java中interrupt、interrupted-和isInterrupted-方法的区别" class="headerlink" title="Java中interrupt、interrupted 和isInterrupted 方法的区别?"></a>Java中interrupt、interrupted 和isInterrupted 方法的区别?</h2><p>interrupt()：用于中断线程。调用该方法的线程的状态为将被置为”中断”状态。不过只是设置为中断状态位，不会停止            线程</p>
+<h2 id="Java中interrupt、interrupted-和isInterrupted-方法的区别"><a href="#Java中interrupt、interrupted-和isInterrupted-方法的区别" class="headerlink" title="Java中interrupt、interrupted 和isInterrupted 方法的区别?"></a>Java中interrupt、interrupted 和isInterrupted 方法的区别?</h2><p>interrupt()：给线程设置一个中断标志。（注意，这里不同于stop()方法，并不是直接中断）。如果线程正在处于阻塞状态，那么此线程将抛出一个 InterruptedException异常中断线程。</p>
 <p>interrupted ()：查看当前中断信号是true还是false并且清除中断信号。</p>
 <p>isInterrupted ()：可以返回当前中断信号是true还是false，与interrupt最大的差别是不会清除中断信号</p>
 <h2 id="什么是线程同步和线程互斥，有哪几种实现方式"><a href="#什么是线程同步和线程互斥，有哪几种实现方式" class="headerlink" title="什么是线程同步和线程互斥，有哪几种实现方式?"></a>什么是线程同步和线程互斥，有哪几种实现方式?</h2><p>线程同步：在没有完成相关操作之前，不允许其他线程打断它，否则就会破坏数据的完整性，必然会得到错误的处理结果</p>
@@ -4129,7 +4126,7 @@ $document_uri    与$uri相同。
 <h2 id="final不可变对象对并发好处"><a href="#final不可变对象对并发好处" class="headerlink" title="final不可变对象对并发好处"></a>final不可变对象对并发好处</h2><p> 不可变对象保证了内存的可见性，对不可变对象的读取不需要进行额外的同步手段，提升了代码执行效率</p>
 <h2 id="java中导致饥饿的原因"><a href="#java中导致饥饿的原因" class="headerlink" title="java中导致饥饿的原因"></a>java中导致饥饿的原因</h2><ul>
 <li>高优先级线程吞噬所有低优先级线程的CPU时间</li>
-<li>一线程被永久堵塞在-个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。</li>
+<li>一线程被永久堵塞在一个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。</li>
 </ul>
 <h2 id="Executor-和-Executors的区别"><a href="#Executor-和-Executors的区别" class="headerlink" title="Executor 和 Executors的区别"></a>Executor 和 Executors的区别</h2><p>Executors 工具类可以按照不同的需求创建不同的线程池(ThreadPoolExecutor)</p>
 <p>Executor 接口对象能执行线程任务</p>
@@ -4222,7 +4219,7 @@ $document_uri    与$uri相同。
 <li>线程池的所有任务完成后，它最终会收缩到corePoolSize的大小</li>
 </ul>
 <h2 id="如何分配线程池的大小"><a href="#如何分配线程池的大小" class="headerlink" title="如何分配线程池的大小"></a>如何分配线程池的大小</h2><p>要合理的分配线程池的大小，要根据实际情况来定。简单的来说的话就是根据CPU密集和 IO密集来分配</p>
-<h3 id="CPU密集"><a href="#CPU密集" class="headerlink" title="CPU密集"></a>CPU密集</h3><p>​    CPU密集的意思是该任务需要大量的运算，而没有阻塞，CPU-直全速运行。</p>
+<h3 id="CPU密集"><a href="#CPU密集" class="headerlink" title="CPU密集"></a>CPU密集</h3><p>​    CPU密集的意思是该任务需要大量的运算，而没有阻塞，CPU一直全速运行。</p>
 <p>​    配置最大线程数为 CPU + 1个线程</p>
 <h3 id="IO密集"><a href="#IO密集" class="headerlink" title="IO密集"></a>IO密集</h3><p>​    IO密集型，即该任务需要大量的IO，即大量的阻塞。在单线程上运行IO密集型的任务会导致浪费大量的CPU运算能力在等待上。所以在IO密集型任务中使用多线程可以大大的加速程序运行，即时在单核CPU上,这种加速主要就是利用了被浪费掉的阻塞时间。</p>
 <p>​    配置最大线程数为 2 * CPU 个线程</p>
@@ -4254,7 +4251,7 @@ $document_uri    与$uri相同。
 <li>由于写操作的时候，需要拷贝数组，会消耗内存，如果原数组的内容比较多的情况下，内存不足</li>
 <li>虽然能做到最终一致性，但无法满足实时性</li>
 </ul>
-<p>CopyOnWriteArrayList也是一定是线程安全的，理由如下：</p>
+<p>CopyOnWriteArrayList也<strong>不一定</strong>是线程安全的，理由如下：</p>
 <p>​    用一个线程向容器中添加元素，一个线程来读取元素，而读取的操作往往更加频繁。写操作加锁保证了线程安全，读写分离保证了读操作的效率，但是如果这时候有第三个线程进行删除元素操作，读线程去读取容器中最后一个元素，读之前的时候容器大小为i，当去读的时候删除线程突然删除了一个元素，这个时候容器大小变为了i-1，读线程仍然去读取第i个元素，这时候就会发生数组越界。</p>
 <h2 id="并发队列包括非阻塞队列和阻塞队列"><a href="#并发队列包括非阻塞队列和阻塞队列" class="headerlink" title="并发队列包括非阻塞队列和阻塞队列"></a>并发队列包括非阻塞队列和阻塞队列</h2><h3 id="非阻塞队列"><a href="#非阻塞队列" class="headerlink" title="非阻塞队列"></a>非阻塞队列</h3><p>非阻塞队列就是队列没有元素是报异常或返回null，不会被阻塞</p>
 <ul>
@@ -4337,13 +4334,13 @@ $document_uri    与$uri相同。
 <td>不可用</td>
 </tr>
 </tbody></table>
-<h2 id="守护线程和用户线程的区别"><a href="#守护线程和用户线程的区别" class="headerlink" title="守护线程和用户线程的区别"></a>守护线程和用户线程的区别</h2><p>​    任何线程都可以设置为守护线程和用户线程,通过方法Thread,setDaemon(boolon); true则把该线程设置为守护线程,反之则为用户线程。Thread.setDaemon0必须在Thread.start0之前调用，否则运行时会抛出异常。</p>
+<h2 id="守护线程和用户线程的区别"><a href="#守护线程和用户线程的区别" class="headerlink" title="守护线程和用户线程的区别"></a>守护线程和用户线程的区别</h2><p>​    任何线程都可以设置为守护线程和用户线程,通过方法Thread,setDaemon(boolon); true则把该线程设置为守护线程,反之则为用户线程。Thread.setDaemon()必须在Thread.start()之前调用，否则运行时会抛出异常。</p>
 <p>区别：</p>
 <p>​    唯一的区别是判断虚拟机(JVM)何时离开, Daemon是为其他线程提供服务,如果全部的User Thread已经撤离，Daemon没有可服务的线程，JVM撤离。比如JVM的垃圾回收线程是一个守护线程，当所有线程已经撤离，不再产生垃圾，守护线程自然就没事可干了，当垃圾回收线程是Java虚拟机.上仅剩的线程时，Java虚拟机会自动离开。</p>
-<p>​    守护进程在不执行finally子句的情况下就会终止其run()方法</p>
+<p>​    <strong>守护进程在不执行finally子句的情况下就会终止其run()方法</strong></p>
 <h2 id="什么是线程组，为什么在Java中不推荐使用"><a href="#什么是线程组，为什么在Java中不推荐使用" class="headerlink" title="什么是线程组，为什么在Java中不推荐使用?"></a>什么是线程组，为什么在Java中不推荐使用?</h2><p>​    线程组和线程池是两个不同的概念,他们的作用完全不同，前者是为了方便线程的管理，后者是为了管理线程的生命周期，复用线程，减少创建销毁线程的开销。</p>
 <h2 id="怎么检测一个线程是否拥有锁"><a href="#怎么检测一个线程是否拥有锁" class="headerlink" title="怎么检测一个线程是否拥有锁"></a>怎么检测一个线程是否拥有锁</h2><p>holdsLock()方法用于检测一个线程是否持有锁</p>
-<h2 id="volatile-变量和atomic变量有什么不同"><a href="#volatile-变量和atomic变量有什么不同" class="headerlink" title="volatile 变量和atomic变量有什么不同"></a>volatile 变量和atomic变量有什么不同</h2><p>​    Volatile变量可以确保可见性和有序性，即写操作会发生在后续的读操作之前，但它并不能保证原子性。例如用volatile修饰count变量那么count++ 操作就不是原子性的。</p>
+<h2 id="volatile-变量和atomic变量有什么不同"><a href="#volatile-变量和atomic变量有什么不同" class="headerlink" title="volatile 变量和atomic变量有什么不同"></a>volatile 变量和atomic变量有什么不同</h2><p>​    Volatile变量可以确保可见性和有序性，即写操作会发生在后续的读操作之前，但它并不能保证原子性。例如用volatile修饰count变量，那么count++ 操作就不是原子性的。</p>
 <p>​    而AtomicInteger类提供的atomic方法可以让这种操作具有原子性，如getAndIncrement0方法会原子性的进行增量操作把当前值加一，其它数据类型和引用变量也可以进行相似操作。</p>
 <h2 id="什么是Java-Timer类-如何创建一个有特定时间间隔的任务"><a href="#什么是Java-Timer类-如何创建一个有特定时间间隔的任务" class="headerlink" title="什么是Java Timer类?如何创建一个有特定时间间隔的任务?"></a>什么是Java Timer类?如何创建一个有特定时间间隔的任务?</h2><p>​    java.util.Timer是一个工具类，可以用于安排一个线程在未来的某个特定时间执行。Timer类可以用安排一次性任务或者周期任务。java.util.TimerTask是一个实现了Runnable接口的抽象类，我们需要去继承这个类来创建我们自己的定时任务并使用Timer去安排它的执行。</p>
 <h2 id="什么是阻塞式方法"><a href="#什么是阻塞式方法" class="headerlink" title="什么是阻塞式方法"></a>什么是阻塞式方法</h2><p>​    阻塞式方法是指程序会一直等待该方法完成期间不做其他事情，ServerSocket 的 accept()方法就是一直等待客户端连接。这里的阻塞是指调用结果返回之前，当前线程会被挂起，直到得到结果之后才会返回。此外，还有异步和非阻塞式方法在<br>任务完成前就返回。</p>
@@ -4385,7 +4382,7 @@ $document_uri    与$uri相同。
 小王得到了快递
 </code></pre>
 <p>​    java.util.concurrent包中的Exchanger类可用于两个线程之间交换信息。可简单地将Exchanger对象理解为一个包含两个格子的容器，通过exchanger方法可以向两个格子中填充信息。当两个格子中的均被填充时，该对象会自动将两个格子的信息交换，然后返回给线程，从而实现两个线程的信息交换</p>
-<h2 id="在监视器内部是如何做线程同步的"><a href="#在监视器内部是如何做线程同步的" class="headerlink" title="在监视器内部是如何做线程同步的"></a>在监视器内部是如何做线程同步的</h2><p>​    在java虚拟机中，监视器和锁在Java虚拟机中是一块使用的。监视器监视一块同步代码块，确保一次只有一-个线程执行同步代码块。每一-个监视器都和一对象引用相关联。线程在获取锁之前不允许执行同步代码。</p>
+<h2 id="在监视器内部是如何做线程同步的"><a href="#在监视器内部是如何做线程同步的" class="headerlink" title="在监视器内部是如何做线程同步的"></a>在监视器内部是如何做线程同步的</h2><p>​    在java虚拟机中，监视器和锁在Java虚拟机中是一块使用的。监视器监视一块同步代码块，确保一次只有一-个线程执行同步代码块。每一个监视器都和一对象引用相关联。线程在获取锁之前不允许执行同步代码。</p>
 <p>​    一旦或者代码块被synchronized 修饰，那么这个部分就放入了监视器的监视区域，确保一次只能有一个线程执行该部分的代码，线程在获取锁之前不允许执行该部分的代码。</p>
 <p> 提供了隐式监视器synchronized 和 显示监视器 Lock</p>
 <h2 id="一个线程运行时发生异常会怎么样"><a href="#一个线程运行时发生异常会怎么样" class="headerlink" title="一个线程运行时发生异常会怎么样"></a>一个线程运行时发生异常会怎么样</h2><p>​    如果异常没有被捕获，该线程将会停止执行，Thread.UncaughtExceptionHandler是用于处理未捕获异常造成线程突然中断情况的一个内部接口，当一个未捕获异常将造成线程中断的时候，JVM会使用 Thread.getUncaughtExceptionHandler()来查询线程的 UncaughtExceptionHandler 并将线程和异常作为参数传递给 handler 的 uncaughtException()方法进行处理。</p>
@@ -4435,10 +4432,6 @@ $document_uri    与$uri相同。
          <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
       <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-   <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
@@ -4676,7 +4669,6 @@ $document_uri    与$uri相同。
 <li>Zuul：API网关组件，对请求提供路由及过滤功能</li>
 </ul>
 <h2 id="微服务的端到端测试意味着什么"><a href="#微服务的端到端测试意味着什么" class="headerlink" title="微服务的端到端测试意味着什么"></a>微服务的端到端测试意味着什么</h2><p>​    端到端测试验证工作流中的所有流程,以检查–切是否按预期工作。它还确保系统以统一的方式工作，从而满足业务需求。</p>
-<h2 id="SOA和微服务架构之间的主要区别是什么"><a href="#SOA和微服务架构之间的主要区别是什么" class="headerlink" title="SOA和微服务架构之间的主要区别是什么"></a>SOA和微服务架构之间的主要区别是什么</h2><p>==<strong>SOA没搞懂</strong>==</p>
 <h2 id="什么是凝聚力"><a href="#什么是凝聚力" class="headerlink" title="什么是凝聚力"></a>什么是凝聚力</h2><p>模块内部元素所属的程度被认为是凝聚力</p>
 <h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p>  单体应用被拆分成微服务应用，原来的三个模块被拆分成三个独立的应用，分别使用三个独立的数据源，业务操作需要调用三个服务来完成。此时每个服务内部的数据一致性由本地事务来保证，但是全局的数据一致性问题没法保证。 </p>
 <p>  一次业务操作需要跨多个数据源或需要跨多个系统进行远程调用，就会产生分布式事务问题</p>
@@ -4745,7 +4737,7 @@ $document_uri    与$uri相同。
 </li>
 </ul>
 <h2 id="什么是TCP-IP和UDP"><a href="#什么是TCP-IP和UDP" class="headerlink" title="什么是TCP/IP和UDP"></a>什么是TCP/IP和UDP</h2><p>​    TCP/IP即传输控制/网络协议，是面向连接的协议，发送数据前要先建立连接，TCP提供可靠的服务，也就是说。通过TCP连接传输的数据不会丢失，没有重复，并且按顺序到达。</p>
-<p>​    UDP它是属于TCP/IP协议族中的一种。是无连接的协议，发送数据前不需要建立连接，是没有可靠性的协议。因为不需要建立连接所以可以在在网络上以任何可能的路径传输，因此能否到达目的地，到达目的地的时间以及内容的正确性都是不能被保证的。</p>
+<p>​    UDP它是属于TCP/IP协议族中的一种。是无连接的协议，发送数据前不需要建立连接，是没有可靠性的协议。因为不需要建立连接，所以可以在在网络上以任何可能的路径传输，因此能否到达目的地，到达目的地的时间以及内容的正确性都是不能被保证的。</p>
 <p>运行在TCP上的协议：</p>
 <ul>
 <li>HTTP</li>
@@ -4763,7 +4755,7 @@ $document_uri    与$uri相同。
 <li>ARP</li>
 </ul>
 <h2 id="TCP协议与UDP协议有什么区别"><a href="#TCP协议与UDP协议有什么区别" class="headerlink" title="TCP协议与UDP协议有什么区别"></a>TCP协议与UDP协议有什么区别</h2><p>1、<strong>TCP</strong>基于<strong>连接</strong>，而UDP基于<strong>无连接</strong>的； </p>
-<p>2、对系统资源的要求：TCP<strong>较多</strong>（TCP有20个字节信息包），UDP<strong>少</strong>（UDP信息包只有8个字节）；  </p>
+<p>2、对系统资源的要求：TCP<strong>多</strong>（TCP有20个字节信息包），UDP<strong>少</strong>（UDP信息包只有8个字节）；  </p>
 <p>3、TCP是<strong>字节流模式</strong>，而UDP是<strong>数据报文模式</strong> ；</p>
 <p>4、TCP保证数据正确性，<strong>安全可靠</strong>，并且保证<strong>数据顺序</strong>，而UDP可能<strong>丢包</strong>，而且UDP<strong>不保证数据顺序</strong>。</p>
 <h2 id="常见的Http响应状态码"><a href="#常见的Http响应状态码" class="headerlink" title="常见的Http响应状态码"></a>常见的Http响应状态码</h2><p>200：请求被正常处理</p>
@@ -4806,7 +4798,7 @@ $document_uri    与$uri相同。
 <h2 id="可以采用两次握手吗"><a href="#可以采用两次握手吗" class="headerlink" title="可以采用两次握手吗"></a>可以采用两次握手吗</h2><p>​    不行，假设不采用三次握手，那么只要server发出确认，新的连接就建立了，由于现在client并没有发出建立连接的请求，因此不会理睬server的确认，也不会向server发送数据，而server却以为新的运输连接已经建立了，就一直等待client发来的数据，这就白浪费资源了。</p>
 <p>那可以采用四次握手吗</p>
 <p>​    肯定可以：三次握手都可以保证连接成功了，但是四次会降低传输效率</p>
-<h2 id="第3三次握手中，如果客户端的ACK未送达服务器，会怎样"><a href="#第3三次握手中，如果客户端的ACK未送达服务器，会怎样" class="headerlink" title="第3三次握手中，如果客户端的ACK未送达服务器，会怎样"></a>第3三次握手中，如果客户端的ACK未送达服务器，会怎样</h2><p>Server端：由于Server没有收到ACK确认，因此会每隔3秒重发之前的SYN+ACK (默认重发五次，之后自动关闭连接进入CLOSED状态)，Client 收到后会重新传，ACK给Server。</p>
+<h2 id="第三次握手中，如果客户端的ACK未送达服务器，会怎样"><a href="#第三次握手中，如果客户端的ACK未送达服务器，会怎样" class="headerlink" title="第三次握手中，如果客户端的ACK未送达服务器，会怎样"></a>第三次握手中，如果客户端的ACK未送达服务器，会怎样</h2><p>Server端：由于Server没有收到ACK确认，因此会每隔3秒重发之前的SYN+ACK (默认重发五次，之后自动关闭连接进入CLOSED状态)，Client 收到后会重新传，ACK给Server。</p>
 <p>如果服务端没有进入CLOSED，服务端收到数据之后会读取ack  number 进入established状态</p>
 <p>如果服务端进入了CLOSED，Client向服务器发送数据，服务器会以RST包应答</p>
 <h2 id="如果已经建立了连接，但客户端出现了故障怎么办"><a href="#如果已经建立了连接，但客户端出现了故障怎么办" class="headerlink" title="如果已经建立了连接，但客户端出现了故障怎么办"></a>如果已经建立了连接，但客户端出现了故障怎么办</h2><p>​    服务器每收到一次客户端的请求后都会重新复位一个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
@@ -4814,7 +4806,7 @@ $document_uri    与$uri相同。
 <p>第二次挥手，Server 收到FIN后，发送一个ACK=1，ack number= seq1 + 1，进入CLOSE_WAIT状态，此时服务端已经没有要发送的数据了，但仍然可以接收服务器发送的数据</p>
 <p>第三次挥手，Server 将FIN置为1，发送一个序列号seq2和ack number= seq1 + 1给Client，进入LAST_ACK状态</p>
 <p>第四次挥手，Client收到服务器的FIN后，进入TIME_WAIT状态，接着将ACK置为1，发送一个ack number = seq2 + 1给服务器，服务器收到后确认ack number 后，变为CLOSED状态，不再向客户端发送数据。客户端等待2*MSL(报文段最长寿命)时间后，也进入CLOSED状态，完成四次挥手</p>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210916100437.png"></p>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210916100437.png"></p>
 <h2 id="为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手-CLOSE-WAIT状态意义是什么"><a href="#为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手-CLOSE-WAIT状态意义是什么" class="headerlink" title="为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手(CLOSE WAIT状态意义是什么)"></a>为什么不能把服务器发送的ACK和FIN合并起来，变成3次挥手(CLOSE WAIT状态意义是什么)</h2><p>​    因为服务器收到客户端断开连接的请求时，服务器可能还有一些数据没有发完，这时先回复ACK，表示接收到了断开连接的请求。等到数据发完之后再发FIN，断开服务器到客户端的数据传。</p>
 <h2 id="客户端TIME-WAIT状态的意义是什么"><a href="#客户端TIME-WAIT状态的意义是什么" class="headerlink" title="客户端TIME WAIT状态的意义是什么"></a>客户端TIME WAIT状态的意义是什么</h2><p>​    第四次挥手时，客户端发送给服务器的ACK有可能丢失，TIME WAIT状态就是用来重发可能丢失的ACK报文。如果Server没有收到ACK，就会给客户端重发FIN，如果Client在2*MSL的时间内收到了FIN，就会重新发送ACK并再次等待2MSL，防止Server没有收到ACK而不断重发FIN。</p>
 <p>​    MSL(Maximum Segment lifetime)，指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client 都没有再次收到FIN，那么Client 推断ACK已经，被成功接收，则结束TCP连接。</p>
