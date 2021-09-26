@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-14
+                    2021-09-26
                 </div>
                 
 
@@ -2816,7 +2816,7 @@ feign:
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210816211356.png"></p>
 <p>实心圆:共有两种含义。它通过颜色的变化代表了实例的健康程度,它的健康度从绿色&lt;黄色&lt;橙色&lt;红色递减。该实心圆除了颜色的变化之外,它的大小也会根据实例的请求流量发生变化，流量越大该实心圆就越大。所以通过该实心圆的展示，就可以在大量的实例中快速的发现故障实例和高压力实例。</p>
 <p>​    曲线:用来记录2分钟内流量的相对变化，可以通过它来观察到流量的上升和下降趋势。</p>
-<h2 id="第九章-Gateway网关"><a href="#第九章-Gateway网关" class="headerlink" title="第九章 Gateway网关"></a>第九章 Gateway网关</h2><h3 id="9-1-概述"><a href="#9-1-概述" class="headerlink" title="9.1 概述"></a>9.1 概述</h3><pre><code> Gateway是在Spring生态系统之上构建的API网关服务，基于Spring 5，Spring Boot 2和 Project Reactor等技术。Gateway旨在提供一种简单而有效的方式来对API进行路由，以及提供一些强大的过滤器功能， 例如：熔断、限流、重试等SpringCloud Gateway 是 Spring Cloud 的一个全新项目，基于 Spring 5.0+Spring Boot 2.0 和 Project Reactor 等技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的 API 路由管理方式。 SpringCloud Gateway 作为 Spring Cloud 生态系统中的网关，目标是替代 Zuul，在Spring Cloud 2.0以上版本中，没有对新版本的Zuul 2.0以上最新高性能版本进行集成，仍然还是使用的Zuul 1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway是基于WebFlux框架实现的，而WebFlux框架底层则使用了高性能的Reactor模式通信框架Netty。 Spring Cloud Gateway的目标提供统一的路由方式且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/指标，和限流。      
+<h2 id="第九章-Gateway网关"><a href="#第九章-Gateway网关" class="headerlink" title="第九章 Gateway网关"></a>第九章 Gateway网关</h2><h3 id="9-1-概述"><a href="#9-1-概述" class="headerlink" title="9.1 概述"></a>9.1 概述</h3><pre><code> Gateway是在Spring生态系统之上构建的API网关服务，基于Spring 5，Spring Boot 2和 Project Reactor等技术。Gateway旨在提供一种简单而有效的方式来对API进行路由，以及提供一些强大的过滤器功能， 例如：熔断、限流、重试等，SpringCloud Gateway 是 Spring Cloud 的一个全新项目，基于 Spring 5.0+Spring Boot 2.0 和 Project Reactor 等技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的 API 路由管理方式。 SpringCloud Gateway 作为 Spring Cloud 生态系统中的网关，目标是替代 Zuul，在Spring Cloud 2.0以上版本中，没有对新版本的Zuul 2.0以上最新高性能版本进行集成，仍然还是使用的Zuul 1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway是基于WebFlux框架实现的，而WebFlux框架底层则使用了高性能的Reactor模式通信框架Netty。 Spring Cloud Gateway的目标提供统一的路由方式且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/指标，和限流。      
 </code></pre>
 <p>​    ==<strong>SpringCloud Gateway 使用的Webflux中的reactor-netty响应式编程组件，底层使用了Netty通讯框架。</strong>==</p>
 <h3 id="9-2-特点"><a href="#9-2-特点" class="headerlink" title="9.2 特点"></a>9.2 特点</h3><ul>
@@ -2828,7 +2828,7 @@ feign:
 <li>易于编写的 Predicate（断言）和 Filter(过滤器）</li>
 <li>请求限流功能；支持路径重写。 </li>
 </ul>
-<h3 id="9-3-gateway-与-Zuul的区别"><a href="#9-3-gateway-与-Zuul的区别" class="headerlink" title="9.3 gateway 与 Zuul的区别"></a>9.3 gateway 与 Zuul的区别</h3><pre><code> Spring Cloud Gateway 与 Zuul的区别在SpringCloud Finchley 正式版之前，Spring Cloud 推荐的网关是 Netflix 提供的Zuul： 
+<h3 id="9-3-Gateway-与-Zuul的区别"><a href="#9-3-Gateway-与-Zuul的区别" class="headerlink" title="9.3 Gateway 与 Zuul的区别"></a>9.3 Gateway 与 Zuul的区别</h3><pre><code> Spring Cloud Gateway 与 Zuul的区别在SpringCloud Finchley 正式版之前，Spring Cloud 推荐的网关是 Netflix 提供的Zuul： 
 </code></pre>
 <ul>
 <li>Zuul 1.x，是一个基于阻塞 I/ O 的 API Gateway</li>
@@ -3101,7 +3101,7 @@ feign:
 <li>将配置信息以REST接口的形式暴露</li>
 </ul>
 <h3 id="10-4-与github的整合"><a href="#10-4-与github的整合" class="headerlink" title="10.4 与github的整合"></a>10.4 与github的整合</h3><p>本地硬盘目录上新建git仓库并clone</p>
-<p>git命令：git clone <a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#105;&#116;&#46;&#122;&#x68;&#108;&#x68;&#54;&#x2e;&#99;&#x6e;">&#103;&#x69;&#x74;&#64;&#103;&#105;&#116;&#46;&#122;&#x68;&#108;&#x68;&#54;&#x2e;&#99;&#x6e;</a>:han77520/SpringCloud-Config.git</p>
+<p>git命令：git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#46;&#122;&#x68;&#108;&#104;&#54;&#x2e;&#99;&#x6e;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#46;&#122;&#x68;&#108;&#104;&#54;&#x2e;&#99;&#x6e;</a>:han77520/SpringCloud-Config.git</p>
 <p>在文件夹内打开git bash，输入命令即可从github上 down 下来</p>
 <h3 id="10-5-创建-cloud-config-center-3344-工程"><a href="#10-5-创建-cloud-config-center-3344-工程" class="headerlink" title="10.5 创建 cloud-config-center-3344 工程"></a>10.5 创建 cloud-config-center-3344 工程</h3><p>依赖</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
@@ -5894,7 +5894,7 @@ feign:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.5k</span>&nbsp;字
+                class="white-color">349.5k</span>&nbsp;字
             
             
             

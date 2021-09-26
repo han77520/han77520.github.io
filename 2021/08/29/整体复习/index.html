@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-25
+                    2021-09-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    66.4k
+                    68.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    249 分
+                    256 分
                 </div>
                 
 
@@ -2806,42 +2806,6 @@ $request_uri    包含请求参数的原始URI，不包含主机名，如”/foo
 $uri    不带请求参数的当前URI，$uri不包含主机名，如”/foo/bar.html”。
 $document_uri    与$uri相同。
 </code></pre>
-<h2 id="什么是MQ"><a href="#什么是MQ" class="headerlink" title="什么是MQ"></a>什么是MQ</h2><p>MQ就是消息队列，是软件和软件进行通信的中间产品</p>
-<ul>
-<li>异步处理：相比于传统串行、并行，提高了系统吞吐量</li>
-<li>应用解耦：系统间提高消息通信，不用关心其他系统的处理</li>
-<li>流量削峰：可以通过消息队列长度控制请求量；可以缓解短时间的高并发请求</li>
-<li>日志处理：解决大量日志传输</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>系统可用性降低<ul>
-<li>系统运行的好好的，消息队列挂了。</li>
-</ul>
-</li>
-<li>系统复杂性提高<ul>
-<li>加了消息队列，需要考虑很多方面的问题，比如一致性、如何保证消息不被重复消费，以及可靠传输等</li>
-</ul>
-</li>
-<li>一致性问题<ul>
-<li>A系统处理完后返回成功，系统就以为你这个请求成功了，但是要是BCD三个系统那里，BD两个系统写库成功了，结果C系统写库失败了该怎么办</li>
-</ul>
-</li>
-</ul>
-<h2 id="RabbitMQ基本概念"><a href="#RabbitMQ基本概念" class="headerlink" title="RabbitMQ基本概念"></a>RabbitMQ基本概念</h2><p><strong>Broker</strong>：接收和分发消息的应用，RabbitMQ Server 就是 Message Broker</p>
-<p><strong>Virtual host</strong>：出于多租户和安全因素设计的，把 AMQP(高级消息队列协议) 的基本组件划分到一个虚拟的分组中，类似于网络中的 namespace 概念。当多个不同的用户使用同一个 RabbitMQ server 提供的服务时，可以划分出多个 vhost，每个用户在自己的 vhost 创建exchange／queue 等</p>
-<p><strong>Connection</strong>：publisher／consumer 和 broker 之间的 TCP 连接</p>
-<p><strong>Channel</strong>：如果每一次访问 RabbitMQ 都建立一个 Connection，在消息量大的时候建立 TCP Connection 的开销将是巨大的，效率也较低。Channel 是在 connection 内部建立的逻辑连接，如果应用程序支持多线程，通常每个 thread 创建单独的 channel 进行通讯，AMQP(高级消息队列协议) method 包含了 channel id 帮助客户端和 message broker 识别 channel，所以 channel 之间是完全隔离的。<strong>Channel 作为轻量级的</strong>，<strong>Connection极大减少了操作系统建立TCP connection的开销</strong> </p>
-<p><strong>Exchange</strong>：message 到达 broker 的第一站，根据分发规则，匹配查询表中的 routing key，分发消息到 queue 中去。常用的类型有：direct (point-to-point), topic (publish-subscribe) and fanout (multicast：多数据传播)</p>
-<p><strong>Queue</strong>：消息最终被送到这里等待 consumer 取走</p>
-<p><strong>Binding</strong>：exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key，Binding 信息被保存到 exchange 中的查询表中，用于 message 的分发依据</p>
-<p><strong>RoutingKey</strong>：路由键</p>
-<ul>
-<li>direct模式根据路由键把消息派发到一个指定队列。</li>
-<li>fanout模式不管路由键，将消息派发给对应的绑定了交换器的所有消息队列。</li>
-<li>topic模式是根据路由键的规则匹配，有选择性的进行广播。</li>
-<li>Routing Key就是路由规则，消息对应的队列。路由键来规定。</li>
-</ul>
 <h2 id="什么是Redis及优缺点"><a href="#什么是Redis及优缺点" class="headerlink" title="什么是Redis及优缺点"></a>什么是Redis及优缺点</h2><p>Redis：Remote Dictionary Server</p>
 <p>​    Redis本质上是一个Key-Value类型的内存数据库，整个数据库统统加载到内存中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。</p>
 <p>​    Redis性能是非常出色的，不过最大的魅力是在于Redis支持多种数据结构，比如list就可以作为轻量级的消息队列服务，此外单个value的最大限制是1GB。而且Redis 速度快，还支持事务。</p>
@@ -4984,6 +4948,182 @@ $document_uri    与$uri相同。
 </ul>
 <h2 id="对称加密和非对称加密"><a href="#对称加密和非对称加密" class="headerlink" title="对称加密和非对称加密"></a>对称加密和非对称加密</h2><p>​    对称密钥加密是指加密和解密使用同-一个密钥的方式，这种方式存在的最大问题，就是密钥发送问题，即如何安全地将密钥发给对方</p>
 <p>​    非对称加密是指使用一对非对称密钥，即公钥和私钥，公钥可以随意发布，但私钥只有服务器知道。发送密文的一方使用对方的公钥进行加密处理，对方接收到加密信息后，使用自己的私钥进行解密。由于非对称加密的方式不需要发送用来解密的私钥，所以可以保证安全性，但是和对称加密比起来，非常的慢。</p>
+<h2 id="什么是MQ"><a href="#什么是MQ" class="headerlink" title="什么是MQ"></a>什么是MQ</h2><p>MQ就是消息队列，是软件和软件进行通信的中间产品</p>
+<ul>
+<li>异步处理：相比于传统串行、并行，提高了系统吞吐量</li>
+<li>应用解耦：系统间提高消息通信，不用关心其他系统的处理</li>
+<li>流量削峰：可以通过消息队列长度控制请求量；可以缓解短时间的高并发请求</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>系统可用性降低<ul>
+<li>系统运行的好好的，消息队列挂了。</li>
+</ul>
+</li>
+<li>系统复杂性提高<ul>
+<li>加了消息队列，需要考虑很多方面的问题，比如一致性、如何保证消息不被重复消费，以及可靠传输等</li>
+</ul>
+</li>
+<li>一致性问题<ul>
+<li>A系统处理完后返回成功，系统就以为你这个请求成功了，但是要是BCD三个系统那里，BD两个系统写库成功了，结果C系统写库失败了该怎么办</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是RabbitMQ"><a href="#什么是RabbitMQ" class="headerlink" title="什么是RabbitMQ"></a>什么是RabbitMQ</h2><p>RabbitMQ是实现了AMQP的消息中间件，RabbitMQ服务器是用erlang语言编写的</p>
+<p>​    AMQP：高级消息队列协议，它是应用层协议的一个标准，基于此协议的客户端和消息中间件可传递消息，并不受产品、开发语言等条件的限制，RabbitMQ中的交换器，队列，绑定都是遵循AMQP协议中相应的概念</p>
+<p>特点：</p>
+<ul>
+<li>有管理界面</li>
+<li>高可用集群，因为是镜像集群</li>
+<li>灵活的路由</li>
+</ul>
+<h2 id="AMQP三层协议"><a href="#AMQP三层协议" class="headerlink" title="AMQP三层协议"></a>AMQP三层协议</h2><ul>
+<li>Module Layer：协议最高层，主要定义了一些客户端调用的命令，客户端可以用这写命令实现自己的业务逻辑</li>
+<li>Session Layer：中间层，主要负责客户端命令发送给服务器，在将服务器端应答返回客户端，提供可靠同步机制和错误处理</li>
+<li>TransportLayer：最底层，主要传输二进制数据流</li>
+</ul>
+<h2 id="RabbitMQ基本概念"><a href="#RabbitMQ基本概念" class="headerlink" title="RabbitMQ基本概念"></a>RabbitMQ基本概念</h2><p><strong>Broker</strong>：接收和分发消息的应用，Broker就相当于一个RabbitMQ服务节点</p>
+<p><strong>Virtual host</strong>：当多个不同的用户使用同一个 RabbitMQ server 提供的服务时，可以划分出多个 vhost，每个用户在自己的 vhost 创建exchange／queue </p>
+<p><strong>Connection</strong>：publisher／consumer 和 broker 之间的 TCP 连接</p>
+<p><strong>Channel</strong>：如果每一次访问 RabbitMQ 都建立一个 Connection，在消息量大的时候建立 TCP Connection 的开销将是巨大的，效率也较低。Channel 是在 connection 内部建立的逻辑连接，如果应用程序支持多线程，通常每个 thread 创建单独的 channel 进行通讯，AMQP(高级消息队列协议) method 包含了 channel id 帮助客户端和 message broker 识别 channel，所以 channel 之间是完全隔离的。<strong>Channel 作为轻量级的</strong>，<strong>Connection极大减少了操作系统建立TCP connection的开销</strong> </p>
+<p><strong>Exchange</strong>：message 到达 broker 的第一站，根据分发规则，匹配查询表中的 routing key，分发消息到 queue 中去。</p>
+<p>有以下三种交换机</p>
+<ul>
+<li>direct模式根据路由键把消息派发到一个指定队列。</li>
+<li>fanout模式不管路由键，将消息派发给对应的绑定了交换器的所有消息队列。</li>
+<li>topic模式是根据路由键的规则匹配，有选择性的进行广播。</li>
+</ul>
+<p><strong>Queue</strong>：消息最终被送到这里等待 consumer 取走，多个消费者可以订阅同一队列，这时队列中的消息会被平摊给多个消费者进行处理。queue里存放的数据时无数量限制的</p>
+<p><strong>Binding</strong>：exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key(最大255字节)，Binding 信息被保存到 exchange 中的查询表中，用于 message 的分发依据</p>
+<p><strong>RoutingKey</strong>：Routing Key就是路由规则，消息对应的队列。路由键来规定。</p>
+<h2 id="RabbitMQ工作模式"><a href="#RabbitMQ工作模式" class="headerlink" title="RabbitMQ工作模式"></a>RabbitMQ工作模式</h2><h3 id="simple模式"><a href="#simple模式" class="headerlink" title="simple模式"></a>simple模式</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210812221453.png"></p>
+<ul>
+<li>消息生产消息，将消息放入队列中</li>
+<li>消费者监听消息队列，如果队列中有消息，就消费掉。消息被拿走后自动从队列中删除，也可以设置手动应答。</li>
+</ul>
+<h3 id="work工作模式"><a href="#work工作模式" class="headerlink" title="work工作模式"></a>work工作模式</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210926115507.png"></p>
+<p>消息生产者将消息放入队列中，消费者可以有多个，并且同时监听一个队列，多个消费者共同争抢一个消息。一个消息只能被消费一次</p>
+<h3 id="发布订阅-1"><a href="#发布订阅-1" class="headerlink" title="发布订阅"></a>发布订阅</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210926115953.png"></p>
+<p>每个消费者监听自己的队列</p>
+<p>生产者将消息发送给borker，由交换机将消息转发到绑定此交换机的每个队列。</p>
+<h3 id="routing路由"><a href="#routing路由" class="headerlink" title="routing路由"></a>routing路由</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210926120143.png"></p>
+<p>消息生产者将消息发送给交换机，交换机按照路由判断，交换机根据路由的key，只能匹配上路由的key对应的消息队列</p>
+<h3 id="topic主题模式"><a href="#topic主题模式" class="headerlink" title="topic主题模式"></a>topic主题模式</h3><p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210926155310.png"></p>
+<p>路由功能添加模糊匹配。 * 和#代表通配符。* 代表多个单词，#代表一个单词</p>
+<h2 id="如何保证RabbitMQ消息的顺序性"><a href="#如何保证RabbitMQ消息的顺序性" class="headerlink" title="如何保证RabbitMQ消息的顺序性"></a>如何保证RabbitMQ消息的顺序性</h2><p>拆分多个queue，每个queue一个consumer，就是多一些queue而已</p>
+<h2 id="消息如何分发"><a href="#消息如何分发" class="headerlink" title="消息如何分发"></a>消息如何分发</h2><p>​    若该队列至少有一个消费者订阅，消息将以循环的方式发送给消费者，每条消息只会分发给一个订阅的消费者，通过路由可实现多消费的功能</p>
+<h2 id="消息怎么路由"><a href="#消息怎么路由" class="headerlink" title="消息怎么路由"></a>消息怎么路由</h2><p>​    在消息创建的时候，消息将拥有一个路由键，通过路由键可以把队列绑定到交换机上，消息到达交换器后，RabbitMQ会将消息的路由键与队列的路由键进行匹配。</p>
+<p>交换机主要分以下三种：</p>
+<ul>
+<li>fanout：如果交换器收到消息，将会广播到所有绑定的队列上</li>
+<li>direct：如果路由键完全匹配，消息就被投递到相应的队列</li>
+<li>topic：可以使来自不同源头的消息能够到达同一个队列，使用topic交换器时，可以使用通配符</li>
+</ul>
+<h2 id="消息基于什么传输"><a href="#消息基于什么传输" class="headerlink" title="消息基于什么传输"></a>消息基于什么传输</h2><p>​    由于TCP连接的创建和销毁开销较大，且并发数受系统资源限制，会造成性能瓶颈。RabbitMQ使用信道的方式来传输数据，信道是建立在真实的TCP连接内的虚拟连接，且每条TCP上的信道数量没有限制</p>
+<h2 id="如何保证消息不被重复消费或者说如何保证幂等性"><a href="#如何保证消息不被重复消费或者说如何保证幂等性" class="headerlink" title="如何保证消息不被重复消费或者说如何保证幂等性"></a>如何保证消息不被重复消费或者说如何保证幂等性</h2><p>​    <strong>幂等性：用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用</strong></p>
+<p>​    正常情况下，消费者在消费消息的时候，消费完毕后，会发送一个确认消息给消息队列，消息队列就知道该消息被消费了，就会将该消息从消息队列中删除。但是因为网络传输等故障，确认消息没有传到消息队列，导致消息队列不知道自己已经消费过该消息了，再次将消息分发给其他的消费者。</p>
+<p>解决：</p>
+<p>​    将写入队列的数据做一个唯一标识，每次消费消息时，根据唯一标识判断是否消费过。</p>
+<h2 id="如何确保消息正确地发送至RabbitMQ-如何确保消息接收方消费了消息"><a href="#如何确保消息正确地发送至RabbitMQ-如何确保消息接收方消费了消息" class="headerlink" title="如何确保消息正确地发送至RabbitMQ?如何确保消息接收方消费了消息?"></a>如何确保消息正确地发送至RabbitMQ?如何确保消息接收方消费了消息?</h2><p>发送方确认模式：</p>
+<ul>
+<li>将信道设置成confirm模式，则所有在信道上发布的消息都会指派一个唯一的ID<ul>
+<li>开启发布确认：channel.confirmSelect();</li>
+</ul>
+</li>
+<li>一旦消息被投递到目的队列后，或者消息被写入磁盘后，信道会发送一个确认给生产者</li>
+<li>如果RabbitMQ内部发生错误而导致消息丢失，会发送一条未确认消息</li>
+</ul>
+<p>消费方确认模式：</p>
+<ul>
+<li>消费者接收每一条消息都必须进行确认，只有确认之后RabbitMQ才会把消息删除</li>
+</ul>
+<h2 id="如何保证RabbitMQ消息的可靠传输"><a href="#如何保证RabbitMQ消息的可靠传输" class="headerlink" title="如何保证RabbitMQ消息的可靠传输"></a>如何保证RabbitMQ消息的可靠传输</h2><p>生产者方面：通过发送确认机制或者事务机制</p>
+<ul>
+<li><p>发送确认机制：将信道设置成confirm模式，则所有在信道上发布的消息都会指派一个唯一的ID，一旦消息被投递到匹配的队列之后，RabbitMQ会发送一个ACK给生产者，如果没有处理该消息，则会发送一个Nack消息</p>
+</li>
+<li><p>事务机制：发送消息前，开启事务(channel.txSelect())，然后发送消息，如果发送过程中出现异常，事务就会回滚</p>
+<p>  (channel.txRollback())，如果发送成功，则提交事务(channel.txCommit())。</p>
+</li>
+</ul>
+<p>消息队列方面：</p>
+<ul>
+<li><p>处理消息队列丢数据的情况，一般是开启持久化磁盘的配置，将durable 参数置为true即可</p>
+<ul>
+<li><pre class=" language-java"><code class="language-java">Queue<span class="token punctuation">.</span>DeclareOk <span class="token function">queueDeclare</span><span class="token punctuation">(</span>String queue<span class="token punctuation">,</span> <span class="token keyword">boolean</span> durable<span class="token punctuation">,</span> <span class="token keyword">boolean</span> exclusive<span class="token punctuation">,</span> <span class="token keyword">boolean</span> autoDelete<span class="token punctuation">,</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> arguments<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>消费者方面：</p>
+<ul>
+<li><p>消费者丢失数据一般是因为采用了自动确认消息模式，改为手动就行了，具体如下</p>
+<ul>
+<li><pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Channel channel <span class="token operator">=</span> RabbitMQUtil<span class="token punctuation">.</span><span class="token function">getChannel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"C1等待接收处理消息，时间较短"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+        DeliverCallback deliverCallback <span class="token operator">=</span> <span class="token punctuation">(</span>consumerTag<span class="token punctuation">,</span> message<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  
+            <span class="token comment" spellcheck="true">//睡眠</span>
+            <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"接收到的消息"</span> <span class="token operator">+</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+            <span class="token comment" spellcheck="true">/**
+             * 手动应答
+             * 参数1：消息的标记 ；tag
+             * 参数2：是否批量处理，fasle表示不批量
+             */</span>
+            channel<span class="token punctuation">.</span><span class="token function">basicAck</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span><span class="token function">getEnvelope</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeliveryTag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+  
+        CancelCallback cancelCallback <span class="token operator">=</span> consumerTag <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        channel<span class="token punctuation">.</span><span class="token function">basicConsume</span><span class="token punctuation">(</span>TASK_QUEUE_NAME<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span>deliverCallback<span class="token punctuation">,</span>cancelCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="RabbitMQ集群"><a href="#RabbitMQ集群" class="headerlink" title="RabbitMQ集群"></a>RabbitMQ集群</h2><p>RabbitMQ的镜像集群模式：</p>
+<p>   在镜像集群模式下，创建的queue里的消息都会缓存在多个实例上，也就是每个RabbitMQ节点都有这个queue的一个完整镜像，包含全部数据，然后每次写消息到queue的时候，都会自动把消息同步到多个实例queue上</p>
+<h2 id="生产者发送消息过程"><a href="#生产者发送消息过程" class="headerlink" title="生产者发送消息过程"></a>生产者发送消息过程</h2><ul>
+<li>producer 先连接到Broker，建立连接Connection开启一个信道channel</li>
+<li>声明一个交换机   channel.exchangeDeclare(EXCHANGE_NAME,”fanout”);</li>
+<li>声明一个队列     channel.queueDeclare(“队列名称”, false, false, false, null);</li>
+<li>绑定交换机和队列  channel.queueBind(“队列名称”,”交换机名称”,”路由名称”);</li>
+<li>发送消息到交换机，再根据路由键查找队列</li>
+<li>找到将消息存入对应的队列，如果没有找到，就<strong>丢弃或者退回给生产者</strong></li>
+<li>关闭信道</li>
+<li>关闭连接</li>
+</ul>
+<h2 id="消费者接收消息过程"><a href="#消费者接收消息过程" class="headerlink" title="消费者接收消息过程"></a>消费者接收消息过程</h2><ul>
+<li>Consumer先连接到Broker，建立连接Connection开启一个信道</li>
+<li>请求消费队列中的消息</li>
+<li>消费者确认收到信息发送应答ack   channel.basicAck(message.getEnvelope().getDeliveryTag(),false); false表示不是批处理应答</li>
+<li>RabbitMQ从队列中删除已经确定的消息</li>
+<li>关闭信道</li>
+<li>关闭连接</li>
+</ul>
+<h2 id="死信队列"><a href="#死信队列" class="headerlink" title="死信队列"></a>死信队列</h2><p>当消息在队里中变成死信之后，能重新被发送到另一个死信交换机中，绑定的队列就是死信队列</p>
+<p>导致原因：</p>
+<ul>
+<li>消息被拒</li>
+<li>队列已满</li>
+<li>消息TTL过期</li>
+</ul>
+<h2 id="延迟队列"><a href="#延迟队列" class="headerlink" title="延迟队列"></a>延迟队列</h2><p>​    存储对应的延迟消息，指当消息被发送以后，不想让消费者立即拿到消息，而是等待特定时间后，消费者才能拿到这个消息进行消费</p>
+<h2 id="消费者无法处理当前接收的消息如何时决绝"><a href="#消费者无法处理当前接收的消息如何时决绝" class="headerlink" title="消费者无法处理当前接收的消息如何时决绝"></a>消费者无法处理当前接收的消息如何时决绝</h2><ul>
+<li>channel.basicNack</li>
+<li>channel.basicReject</li>
+</ul>
 
                 
             </div>
@@ -5755,7 +5895,7 @@ $document_uri    与$uri相同。
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.5k</span>&nbsp;字
+                class="white-color">349.5k</span>&nbsp;字
             
             
             
