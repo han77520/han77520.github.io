@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-11
+                    2021-10-01
                 </div>
                 
 
@@ -506,7 +506,7 @@
 <h1 id="JUC"><a href="#JUC" class="headerlink" title="JUC"></a>JUC</h1><h2 id="JUC概述"><a href="#JUC概述" class="headerlink" title="JUC概述"></a>JUC概述</h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>JUC ：Java.util.concurrent 在并发编程中使用的工具类</p>
 <h3 id="进程线程管程"><a href="#进程线程管程" class="headerlink" title="进程线程管程"></a>进程线程管程</h3><h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p>​    进程是指在系统中正在运行的一个应用程序，程序一旦运行就是进程，进程是资源分配的最小单位</p>
 <h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><p>​        在一个进程中可以包含若干个线程，一个进程中至少有一个线程。线程可以利用进程所拥有的资源，在引入线程的操作系统中，通常都是把进程作为分配资源的基本单位，而把线程作为独立运行和独立调度的基本单位，由于线程比进程更小，基本上不拥有系统资源，故对它的调度所付出的开销就会小得多，能更高效的提高系统多个程序间并发执行的程度。 </p>
-<h4 id="管程-Monitor"><a href="#管程-Monitor" class="headerlink" title="管程(Monitor)"></a>管程(Monitor)</h4><p>​    又叫监视器，是一种同步机制，保证同一个时间，只有一个线程访问被保护的数据，jvm的同步是基于进入和退出过程的，而进入和退出是通过管程对象进行实现的，每个Java对象都有一个管程对象，管程对象是会跟着java对象一起创建和销毁，</p>
+<h4 id="管程-Monitor"><a href="#管程-Monitor" class="headerlink" title="管程(Monitor)"></a>管程(Monitor)</h4><p>​    又叫监视器，是一种同步机制，<strong>保证同一个时间，只有一个线程访问被保护的数据</strong>，jvm的同步是基于进入和退出过程的，而进入和退出是通过管程对象进行实现的，每个Java对象都有一个管程对象，管程对象是会跟着java对象一起创建和销毁，</p>
 <h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 创建好但是尚未启动的线程的线程状态。
  */</span>
@@ -532,7 +532,6 @@ WAITING<span class="token punctuation">,</span>
  * 线程中调用了wait()、join()等方法从而当前线程被挂起,在规定时间内处于等待状态，超过规定时间就不等待了
  */</span>
 TIMED_WAITING<span class="token punctuation">,</span>
-
 
  <span class="token comment" spellcheck="true">/**
   * 线程终止状态
