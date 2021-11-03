@@ -468,14 +468,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-05
+                    2021-10-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.3k
                 </div>
                 
 
@@ -506,7 +506,7 @@
 <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="第一章-Nginx入门"><a href="#第一章-Nginx入门" class="headerlink" title="第一章 Nginx入门"></a>第一章 Nginx入门</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>​    Nginx是高性能的HTTP和反向代理的服务器，处理高并发能力十分强悍，能经受高负载的考验，有报告表明能支持高达 50,000 个并发连接数。</p>
 <h3 id="1-2-正向代理"><a href="#1-2-正向代理" class="headerlink" title="1.2 正向代理"></a>1.2 正向代理</h3><p>在客户端（浏览器）配置代理服务器，通过代理服务器进行互联网访问</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814212031.png"></p>
-<h3 id="1-3-反向代理"><a href="#1-3-反向代理" class="headerlink" title="1.3 反向代理"></a>1.3 反向代理</h3><p>​    只需要将请求发送到反向代理服务器，由反向代理服务器去选择目标服务器获取数据，接着返回给客户端，此时反向代理服务器和目标对外就是一个服务，暴露的是代理服务器地址，隐藏了真实服务器的ip地址</p>
+<h3 id="1-3-反向代理"><a href="#1-3-反向代理" class="headerlink" title="1.3 反向代理"></a>1.3 反向代理</h3><p>​    只需要将请求发送到反向代理服务器，由反向代理服务器去选择目标服务器获取数据，接着返回给客户端，此时反向代理服务器和目标对外就是一个服务，暴露的是代理服务器地址，隐藏了真实服务器的ip地址 </p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814212413.png"></p>
 <h3 id="1-4-负载均衡"><a href="#1-4-负载均衡" class="headerlink" title="1.4 负载均衡"></a>1.4 负载均衡</h3><p>​    单个服务器解决不了，就增加服务器的数量，然后将请求分发到各个服务器上，==<strong>将原先请求集中到单个服务器上的情况改为将请求分发到多个服务器上，将负载分发到不同的服务器</strong>==，这就是所谓的负载均衡</p>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210814213734.png"></p>
@@ -592,7 +592,7 @@
 </ul>
 <h3 id="3-2-反向代理-实例二"><a href="#3-2-反向代理-实例二" class="headerlink" title="3.2 反向代理 实例二"></a>3.2 反向代理 实例二</h3><p>实现：使用nginx反向代理，根据访问的路径跳转到不同端口的服务中</p>
 <p>访问：<a target="_blank" rel="noopener" href="http://192.168.130.172/edu/">http://192.168.130.172/edu/</a>  直接跳转到 127.0.0.1:8080</p>
-<p>​           <a target="_blank" rel="noopener" href="http://192.168.130.172/vdu/">http://192.168.130.172/vdu/</a>   直接跳转到 127.0.0.1:8080</p>
+<p>​           <a target="_blank" rel="noopener" href="http://192.168.130.172/vdu/">http://192.168.130.172/vdu/</a>   直接跳转到 127.0.0.1:8081</p>
 <p>步骤：</p>
 <ul>
 <li>启动两个tomcat，一个8080端口，一个8081端口</li>
@@ -631,7 +631,7 @@
 <li>每个请求按时间顺序逐一分配到不同的后端服务，如果后端服务器down掉，能自动删除</li>
 </ul>
 </li>
-<li>weight<ul>
+<li>weight权重<ul>
 <li>weight权重默认为1，权重越高被分配的用户越多</li>
 </ul>
 </li>
@@ -675,36 +675,36 @@
 <ul>
 <li>修改 /etc/keepalived/keepalived.conf 配置文件</li>
 </ul>
-<pre><code>global_defs &#123;
-   notification_email &#123;
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">global_defs</span> <span class="token attr-value">&amp;#123;</span>
+<span class="token attr-name">   notification_email</span> <span class="token attr-value">&amp;#123;</span>
       acassen@firewall.loc
          failover@firewall.loc
          sysadmin@firewall.loc
-   &#125;
-   notification_email_from Alexandre.Cassen@firewall.loc
-      smtp_server 192.168.130.172
-      smtp_connect_timeout 30
-      router_id LVS_DEVEL
-&#125;
-vrrp_script chk_http_port &#123;
-   script &quot;/usr/local/src/nginx_check.sh&quot;
-      interval 2 #（检测脚本执行的间隔）
-      weight 2
-&#125;
-vrrp_instance VI_1 &#123;
-   state BACKUP # 备份服务器上将 MASTER 改为 BACKUP 
-      interface ens33 //网卡
-      virtual_router_id 51 # 主、备机的 virtual_router_id 必须相同
-      priority 100 # 主、备机取不同的优先级，主机值较大，备份机值较小
-      advert_int 1
-      authentication &#123;
-      auth_type PASS
-         auth_pass 1111
-   &#125;
-   virtual_ipaddress &#123;
-      192.168.17.50 // VRRP H 虚拟地址
-   &#125;
-&#125;
+   &amp;#125;
+<span class="token attr-name">   notification_email_from</span> <span class="token attr-value">Alexandre.Cassen@firewall.loc</span>
+<span class="token attr-name">      smtp_server</span> <span class="token attr-value">192.168.130.172</span>
+<span class="token attr-name">      smtp_connect_timeout</span> <span class="token attr-value">30</span>
+<span class="token attr-name">      router_id</span> <span class="token attr-value">LVS_DEVEL #LVS_DEVEL是主机的名称</span>
+&amp;#125;
+<span class="token attr-name">vrrp_script</span> <span class="token attr-value">chk_http_port &amp;#123;</span>
+<span class="token attr-name">   script</span> <span class="token attr-value">"/usr/local/src/nginx_check.sh"</span>
+<span class="token attr-name">      interval</span> <span class="token attr-value">2 #（检测脚本执行的间隔）</span>
+<span class="token attr-name">      weight</span> <span class="token attr-value">2</span>
+&amp;#125;
+<span class="token attr-name">vrrp_instance</span> <span class="token attr-value">VI_1 &amp;#123;</span>
+<span class="token attr-name">   state</span> <span class="token attr-value">BACKUP # 备份服务器上将 MASTER 改为 BACKUP </span>
+<span class="token attr-name">      interface</span> <span class="token attr-value">ens33 //网卡</span>
+<span class="token attr-name">      virtual_router_id</span> <span class="token attr-value">51 # 主、备机的 virtual_router_id 必须相同</span>
+<span class="token attr-name">      priority</span> <span class="token attr-value">100 # 主、备机取不同的优先级，主机值较大，备份机值较小</span>
+<span class="token attr-name">      advert_int</span> <span class="token attr-value">1</span>
+<span class="token attr-name">      authentication</span> <span class="token attr-value">&amp;#123;</span>
+<span class="token attr-name">      auth_type</span> <span class="token attr-value">PASS</span>
+<span class="token attr-name">         auth_pass</span> <span class="token attr-value">1111</span>
+   &amp;#125;
+<span class="token attr-name">   virtual_ipaddress</span> <span class="token attr-value">&amp;#123;</span>
+<span class="token attr-name">      192.168.17.50</span> <span class="token attr-value">// VRRP H 虚拟地址</span>
+   &amp;#125;
+&amp;#125;
 </code></pre>
 <ul>
 <li>在 /usr/local/src 添加检测脚本</li>
@@ -1510,7 +1510,7 @@ fi
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">349.7k</span>&nbsp;字
+                class="white-color">347.9k</span>&nbsp;字
             
             
             

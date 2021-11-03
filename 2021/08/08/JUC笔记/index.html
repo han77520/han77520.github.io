@@ -667,7 +667,7 @@ TERMINATED<span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p>【补充：线程调用start() 方法以后不一定会立即创建，具体是看操作系统的。start() 方法会调用 start0() 方法，而start0() 是一个 native 修饰的方法，意味着java代码执行到此后就无能为力了，需要操作系统接管】</p>
+<p>【补充：线程调用start() 方法以后不一定会立即创建，具体是看操作系统的。start() 方法会调用 start0() 方法，而start() 是一个 native 修饰的方法，意味着java代码执行到此后就无能为力了，需要操作系统接管】</p>
 <h2 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h2><h3 id="两个线程之间"><a href="#两个线程之间" class="headerlink" title="两个线程之间"></a>两个线程之间</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 题目；现在两个线程，可以操作初始值为零的一个变量，
  * 实现一个线程对该变量加1，一个线程对该变量减1.
@@ -802,7 +802,7 @@ TERMINATED<span class="token punctuation">;</span>
 <span class="token keyword">class</span> <span class="token class-name">ShareTesource</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
   <span class="token keyword">private</span> <span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//1:A  2:B  3:C</span>
   <span class="token keyword">private</span> Lock lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   
+
   <span class="token comment" spellcheck="true">//这里有三个 Condition 类是因为每一个condition调用 await() 方法，只有对应的condition调用signal()方法才可以唤醒对应的线程</span>
   <span class="token keyword">private</span> Condition condition1 <span class="token operator">=</span> lock<span class="token punctuation">.</span><span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">private</span> Condition condition2 <span class="token operator">=</span> lock<span class="token punctuation">.</span><span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1235,7 +1235,7 @@ TERMINATED<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">/**
- * 1.在主线程中需要执行比较耗时的操作时，但又不想阻塞主线程时，可以把这些作业交给Future对象在后台完成，当主线程将来需要时， 就可以通过Future对象获得后台作业的计算结果或者执行状态。
+ * 1.在主线程中需要执行比较耗时的操作时，但又不想阻塞主线程时，可以把这些作业交给Future对象在后台完成，当主线程将来需要时，就可以通过Future对象获得后台作业的计算结果或者执行状态。
  * 2.一般FutureTask多用于耗时的计算，主线程可以在完成自己的任务后，再去获取结果。
  * 3.仅在计算完成时才能检索结果；如果计算尚未完成，则阻塞 get 方法。一旦计算完成，就不能再重新开始或取消计算。
  * 4.get方法获取结果只有在计算完成时获取，否则会一直阻塞直到任务直到完成状态，然后会返回结果或者抛出异常。
@@ -1660,7 +1660,7 @@ TERMINATED<span class="token punctuation">;</span>
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="分之合并"><a href="#分之合并" class="headerlink" title="分之合并"></a>分之合并</h2><h3 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h3><p>​    Fork/Join它可以将一个大的任务拆分成多 个子任务进行并行处理,最后将子任务结果合并成最后的计算结果,并进行输出。Fork/Join 框架要完成两件事情:。</p>
+<h2 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h2><h3 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h3><p>​    Fork/Join它可以将一个大的任务拆分成多 个子任务进行并行处理,最后将子任务结果合并成最后的计算结果,并进行输出。Fork/Join 框架要完成两件事情:。</p>
 <ul>
 <li>Fork：把-一个复杂任务进行分拆，大事化小。</li>
 <li>Join：把分拆任务的结果进行合并。</li>
@@ -1699,7 +1699,6 @@ TERMINATED<span class="token punctuation">;</span>
          tast02<span class="token punctuation">.</span><span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
          result <span class="token operator">=</span> tast01<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> tast02<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
       <span class="token keyword">return</span> result<span class="token punctuation">;</span>
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -2511,7 +2510,7 @@ TERMINATED<span class="token punctuation">;</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">349.7k</span>&nbsp;字
+                class="white-color">347.9k</span>&nbsp;字
             
             
             

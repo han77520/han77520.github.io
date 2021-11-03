@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-05
+                    2021-10-02
                 </div>
                 
 
@@ -482,7 +482,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    62 分
+                    63 分
                 </div>
                 
 
@@ -698,7 +698,7 @@
 <span class="token attr-name">jdbc.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
 <span class="token attr-name">jdbc.password</span><span class="token punctuation">=</span><span class="token attr-value">172161</span>
 </code></pre>
-<h3 id="settings"><a href="#settings" class="headerlink" title="settings"></a><strong>settings</strong></h3><p> 设置项，后续遇到其他的也会说明</p>
+<h3 id="settings"><a href="#settings" class="headerlink" title="settings"></a>settings</h3><p> 设置项，后续遇到其他的也会说明</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--
     2.settings包含很多重要的设置
     setting:用来设置每一个设置项
@@ -710,8 +710,8 @@
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>setting</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mapUnderscoreToCamelCase<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>settings</span><span class="token punctuation">></span></span>
 </code></pre>
-<h3 id="typeAliases"><a href="#typeAliases" class="headerlink" title="typeAliases"></a>typeAliases</h3><p>起别名</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--  别名不区分大小写！！！
+<h3 id="typeAliases"><a href="#typeAliases" class="headerlink" title="typeAliases"></a>typeAliases</h3><p>起别名，==<strong>别名不区分大小写</strong>==</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--  
         1>typeAliases:别名处理器，可以为我们的java类型其别名
            typeAlias:指定要起别名的类型的全类名
            alias:指定新的别名
@@ -1023,6 +1023,7 @@
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<p>==<strong>一定要注意手动提交数据</strong>==</p>
 <h3 id="MyBatis的参数处理"><a href="#MyBatis的参数处理" class="headerlink" title="MyBatis的参数处理"></a>MyBatis的参数处理</h3><pre class=" language-tex"><code class="language-tex">单个参数：mybatis不会做特殊处理
   #&#123;参数名&#125;：取出参数值。
 
@@ -1040,7 +1041,7 @@
 
 用命名参数来解决以上问题
 
-命名参数：明确指定封装参数时map的key。@Param("id"),@Param("lastName")
+命名参数：明确指定封装参数时map的key,@Param("id"),@Param("lastName")
       多个参数会被封装成一个map，
         key：使用@Param()注解指定的值
         value:参数值
@@ -1074,7 +1075,6 @@ public Employee getEmp(Integer id, @Param("e")Employee employee);
                    数组(array)  key(array)
 public Employee getEmpById(List<Integer> ids);
    取值：取出第一个id的值，#&#123;list[0]&#125;
-
 </code></pre>
 <h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//getEmpByIdAndLastName(@Param("id")Integer id, @Param("lastName")String lastName);</span>
 
@@ -1098,7 +1098,7 @@ public Employee getEmpById(List<Integer> ids);
             
             <span class="token comment" spellcheck="true">//无论有没有标注注解，都额外的将每一个参数也保存到map中，使用新的key：param1...paramN</span>
             <span class="token comment" spellcheck="true">//效果：有Param注解可以#&amp;#123;指定的key&amp;#125;，或者#&amp;#123;param1&amp;#125;</span>
-            <span class="token comment" spellcheck="true">//没有注解的就只有  #&amp;#123;paramn&amp;#125;  一种方式取值</span>
+            <span class="token comment" spellcheck="true">//没有注解的就只有  #&amp;#123;paramN&amp;#125;  一种方式取值</span>
             String genericParamName <span class="token operator">=</span> <span class="token string">"param"</span> <span class="token operator">+</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>names<span class="token punctuation">.</span><span class="token function">containsValue</span><span class="token punctuation">(</span>genericParamName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                param<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>genericParamName<span class="token punctuation">,</span> args<span class="token punctuation">[</span><span class="token punctuation">(</span>Integer<span class="token punctuation">)</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1173,12 +1173,14 @@ Map<span class="token operator">&lt;</span>Integer<span class="token punctuation
    select * from tbl_employee where last_name like #<span class="token entity" title="&#123;">&amp;#123;</span>lastName<span class="token entity" title="&#125;">&amp;#125;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
 </code></pre>
-<h3 id="resultMap"><a href="#resultMap" class="headerlink" title="resultMap"></a>resultMap</h3><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--自定义某个javaBean的封装规则
+<h3 id="resultMap"><a href="#resultMap" class="headerlink" title="resultMap"></a>resultMap</h3><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--
+     自定义某个javaBean的封装规则
     type：自定义规则的java类型
     id：唯一id方便引用
 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MyEmp<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.whw.mybatis.bean.Employee<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-   <span class="token comment" spellcheck="true">&lt;!--指定主键的封装规则
+   <span class="token comment" spellcheck="true">&lt;!--
+      指定主键的封装规则
      id定义主键底层有优化
      column：指定哪一列
      property:指定对应的JavaBean属性
@@ -3211,7 +3213,7 @@ memoryStoreEvictionPolicy - 当内存缓存达到最大，有新的element加入
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">349.7k</span>&nbsp;字
+                class="white-color">347.9k</span>&nbsp;字
             
             
             
