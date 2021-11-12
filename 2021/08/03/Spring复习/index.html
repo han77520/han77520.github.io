@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-07
+                    2021-11-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.6k
+                    10.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    48 分
+                    49 分
                 </div>
                 
 
@@ -504,7 +504,7 @@
             <div id="articleContent">
                 <h1 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h1><p>框架概述 </p>
 <ul>
-<li><p>Spring 是轻量级的开源的 JavaEE 框架 </p>
+<li><p>Spring 是轻量级(意思就是Spring的jar包体积很小，而且不需要依赖其他框架就可以使用)的开源的 JavaEE 框架 </p>
 </li>
 <li><p>Spring 可以解决企业应用开发的复杂性 </p>
 </li>
@@ -525,16 +525,17 @@
 </ul>
 </li>
 </ul>
+<p><img src="/images/image-20211109132146802.png"></p>
 <h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><ul>
 <li>控制反转，把对象创建和对象之间的调用过程，交个spring进行管理</li>
 <li>使用IOC的目的：为了降低耦合度</li>
 </ul>
 <h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><ul>
-<li>xml解析，工厂模式，反射，进一步降低耦合度</li>
+<li>xml解析，工厂模式，反射，进一步降低耦合度(就算是UserDao类的路径变了，但是由于反射，任然可以获取它的Class对象，从而创建UserDao的对象)</li>
 </ul>
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210803181003.png"></p>
 <h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2><ul>
-<li>IOC的思想基于IOC容器来完成，IOC容器底层就是对象工厂</li>
+<li><strong>IOC的思想基于IOC容器来完成，IOC容器底层就是对象工厂</strong></li>
 <li>Spring提供IOC容器实现两种方式<ul>
 <li>BeanFactory：IOC容器最基本的实现，是Spring内部的使用接口，不提供开发人员使用<ul>
 <li>特点：加载配置文件的时候不会去创建对象，在获取和使用的时候才去创建</li>
@@ -673,16 +674,16 @@ Book book <span class="token operator">=</span> context<span class="token punctu
 <ul>
 <li>属性值包含特殊符号</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--
    属性值包含特殊符号 
-    <span class="token number">1</span> 把<span class="token operator">&lt;</span><span class="token operator">></span>进行转义 <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span> <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> 
-    <span class="token number">2</span> 把带特殊符号内容写到  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span>特殊内容<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>
-<span class="token operator">--</span><span class="token operator">></span> 
-<span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"address"</span><span class="token operator">></span> 
-    <span class="token operator">&lt;</span>value<span class="token operator">></span>
-       <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">&lt;&lt;</span>南京<span class="token operator">>></span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">></span> 
-<span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">></span> 
+    1 把&lt;>进行转义 &amp;lt; &amp;gt; 
+    2 把带特殊符号内容写到  &lt;![CDATA[特殊内容]]>
+--></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>address<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>
+       <span class="token cdata">&lt;![CDATA[&lt;&lt;南京>>]]></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span> 
 </code></pre>
 </li>
 </ul>
@@ -745,7 +746,6 @@ Book book <span class="token operator">=</span> context<span class="token punctu
    <span class="token keyword">public</span> Dept <span class="token function">getDept</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
       <span class="token keyword">return</span> dept<span class="token punctuation">;</span>
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
    <span class="token comment" spellcheck="true">//省略所有属性的 set 方法</span>
 
    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -924,7 +924,7 @@ xsi:schemaLocation 里追加  http://www.springframework.org/schema/util 和http
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyBean</span> <span class="token keyword">implements</span> <span class="token class-name">FactoryBean</span><span class="token operator">&lt;</span>Course<span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
    <span class="token comment" spellcheck="true">/**
-     * 定义返回bean
+     * 定义要返回的bean
      * @return
      * @throws Exception
      */</span>
@@ -952,7 +952,7 @@ xsi:schemaLocation 里追加  http://www.springframework.org/schema/util 和http
 <p>   bean 标签里面有  scope  属性 用于设置单实例还是多实例 </p>
 <ul>
 <li>singleton，表示是单实例对象，它在加载 spring 配置文件时候就会创建单实例对象</li>
-<li> prototype，表示是多实例对象 ，它不是在加载 spring 配置文件时候创建对象，在调用 getBean 方法时候创建多实例对象</li>
+<li> prototype，表示是多实例对象 ，它不是在加载 spring 配置文件时候创建对象，而是在调用 getBean 方法时候创建多实例对象</li>
 </ul>
 <h4 id="bean的生命周期"><a href="#bean的生命周期" class="headerlink" title="bean的生命周期"></a>bean的生命周期</h4><p>就是对象创建到对象销毁的过程</p>
 <ul>
@@ -1011,7 +1011,7 @@ xsi:schemaLocation 里追加  http://www.springframework.org/schema/util 和http
    Orders orders <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"orders"</span><span class="token punctuation">,</span> Orders<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第六步：获取创建bean实例对象:"</span> <span class="token operator">+</span> orders<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-   <span class="token comment" spellcheck="true">//销毁bean实例对象</span>
+   <span class="token comment" spellcheck="true">//销毁bean实例对象，就会执行destroyMethod()</span>
    context<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
@@ -1031,7 +1031,7 @@ xsi:schemaLocation 里追加  http://www.springframework.org/schema/util 和http
      bean标签 autowire 属性,配置自动装配
      autowire属性常用两个值
          byName：根据属性名称注入，被注入bean的id值和类属性名称必须一样
-         byType：根据属性类型注入,只能注入有一个，要是有类型一样的会报错
+         byType：根据属性类型注入,如果同一个类有多个对象，则会报错
 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>emp<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.atguigu.spring5.autowire.Emp<span class="token punctuation">"</span></span> <span class="token attr-name">autowire</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>byName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span> 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dept<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.atguigu.spring5.autowire.Dept<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
@@ -1147,7 +1147,7 @@ http://www.springframework.org/schema/context/spring-context.xsd
 <li>@Qualifier：根据名称进行注入</li>
 </ul>
 <p>​     这个@Qualifier 注解的使用，和上面@Autowired 一起使用</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>  <span class="token comment" spellcheck="true">//根据类型进行注入,要是有多个实现类对象，就没法用了，因为不知道该找哪个</span>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>  
 <span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"userDaoImpl"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//根据名称进行注入</span>
 <span class="token keyword">private</span> UserDao userDao<span class="token punctuation">;</span>
 </code></pre>
@@ -1230,7 +1230,7 @@ http://www.springframework.org/schema/context/spring-context.xsd
 <span class="token comment" spellcheck="true">//创建代理对象的代码</span>
 <span class="token keyword">class</span> <span class="token class-name">UserDaoProxy</span> <span class="token keyword">implements</span> <span class="token class-name">InvocationHandler</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-   <span class="token comment" spellcheck="true">/*
+    <span class="token comment" spellcheck="true">/*
       1.传入被代理类
        通过有参构造传递
      */</span>
@@ -1379,7 +1379,6 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token annotation punctuation">@Aspect</span> <span class="token comment" spellcheck="true">//生成代理对象</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserProxy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
 
     <span class="token comment" spellcheck="true">//相同切入点抽取</span>
     <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.whw.spring5.aopanno.User.add(..))"</span><span class="token punctuation">)</span>
@@ -3068,7 +3067,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.9k</span>&nbsp;字
+                class="white-color">348.7k</span>&nbsp;字
             
             
             

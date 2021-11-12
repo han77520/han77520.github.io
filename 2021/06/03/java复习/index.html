@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-21
+                    2021-11-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    28.6k
+                    28.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    122 分
+                    123 分
                 </div>
                 
 
@@ -504,11 +504,20 @@
             <div id="articleContent">
                 <h1 id="记录、总结、思考、提炼、回顾是学习的根本"><a href="#记录、总结、思考、提炼、回顾是学习的根本" class="headerlink" title="记录、总结、思考、提炼、回顾是学习的根本"></a>记录、总结、思考、提炼、回顾是学习的根本</h1><h1 id="复习时不清楚的知识点"><a href="#复习时不清楚的知识点" class="headerlink" title="复习时不清楚的知识点"></a>复习时不清楚的知识点</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><p>​    成员变量有默认值，但局部变量是没有默认值的。</p>
 <p>​    final修饰的成员变量也是没有默认值的，必须的显示赋值，但是一旦赋值为null或者其他的值，就不能改变了，如果是引用变量的话，只要引用不变就可以，对象内部的发生其他变化是不影响。</p>
+<p>​    <strong>局部变量如果要使用的话一定要遵循使用前赋值的规则</strong></p>
 <h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><p>基本数据类型布尔型 是<strong>boolean</strong>  <strong>不是</strong>bool</p>
 <h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>float表示的范围比long还大，是因为浮点类型的单精度值具有 4 个字节，包括一个符号位、一个 8 位 二进制指数和一个 23 位尾数。由于尾数的高顺序位始终为 1，可以省略不写，因此它不是以数字形式存储的。</p>
 <p>8.5，用二进制的科学计数法表示为：1.0001*2^3</p>
 <p>符号位为:0，表示为正，指数位为:3+127=130 ,位数部分为0001</p>
 <p>表示为    0    1000 0010    000 1000 0000 0000 0000 0000</p>
+<h3 id="long"><a href="#long" class="headerlink" title="long"></a>long</h3><p>如果long类型的值后面没有加L，而且它的范围在int类型内，则会自动进行类型提升，如果超过int范围则会报错。</p>
+<p>如果是float的话，不加 F 是错误的，因为不加 F 就会默认是double类型的，double向float转换肯定就报错了</p>
+<h3 id="char"><a href="#char" class="headerlink" title="char"></a>char</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">char</span> c <span class="token operator">=</span> <span class="token string">'5'</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>c<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//i=53，不是等于5，char向int转型后的值是根据ASCII码决定的</span>
+
+<span class="token keyword">char</span> c <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+不加<span class="token string">''</span>号的时候，c代表的符号是ASCII码表中为<span class="token number">5</span>的那个符号
+</code></pre>
 <h3 id="单精度和双精度的区别"><a href="#单精度和双精度的区别" class="headerlink" title="单精度和双精度的区别"></a>单精度和双精度的区别</h3><p>​       含义：表明单精度和双精度精确的范围不一样，单精度，也即float，一般在计算机中存储占用4字节，也32位，有效位数为7位；双精度（double）在计算机中存储占用8字节，64位，有效位数为16位。<br>​      原因：不管float还是double 在计算机上的存储都遵循IEEE规范，使用二进制科学计数法，都包含三个部分：符号位，指数位和尾数部分。其中float的符号位，指数位，尾数部分分别为1,  8,  23.     双精度分别为1,  11,  52。<br>​       精度主要取决于尾数部分的位数，float为23位，除去全部为0的情况以外，最小为2的-23次方，约等于1.19乘以10的-7次方，所以float小数部分只能精确到后面6位，加上小数点前的一位，即有效数字为7位。  类似，double 尾数部分52位，最小为2的-52次方，约为2.22乘以10的-16次方，所以精确到小数点后15位，有效位数为16位。</p>
 <h3 id="数据类型之间的运算"><a href="#数据类型之间的运算" class="headerlink" title="数据类型之间的运算"></a>数据类型之间的运算</h3><p>特别情况：byte、short、char三种类型的变量做运算时，结果为int型！</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">short</span> s <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
@@ -520,8 +529,14 @@ s<span class="token operator">++</span><span class="token punctuation">;</span> 
 <p>char的单引号里面必须放一个字符，即使是空格！！！</p>
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>String str  = 123;  看到这个第一反应居然编译通过的？！  wc</p>
 <p>必须得加 “ “ 才是字符串啊！</p>
-<p>String和任何基本数据类型<strong>都不能</strong>自动转化或强制转换，只能调用方法</p>
+<p>String和任何基本数据类型<strong>都不能</strong>自动转换或强制转换，只能调用方法</p>
 <h3 id="取余运算"><a href="#取余运算" class="headerlink" title="%取余运算"></a>%取余运算</h3><p>取余运算的结果是和被模数的符号是一致的</p>
+<p>取余公式：a - ((int)a/b)*b</p>
+<h3 id="除运算"><a href="#除运算" class="headerlink" title="/ 除运算"></a>/ 除运算</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> num2 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">double</span> result <span class="token operator">=</span> num1 <span class="token operator">/</span> num2 <span class="token operator">+</span> <span class="token number">0.0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 2.0</span>
+<span class="token keyword">double</span> result1 <span class="token operator">=</span> num1 <span class="token operator">/</span> <span class="token punctuation">(</span>num2 <span class="token operator">+</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 2.4</span>
+</code></pre>
 <h3 id="前-和后"><a href="#前-和后" class="headerlink" title="前++和后++"></a>前++和后++</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> a1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> b1 <span class="token operator">=</span> <span class="token operator">++</span>a1<span class="token punctuation">;</span>
 <span class="token function">sout</span><span class="token punctuation">(</span><span class="token string">"a1 = "</span> a1 <span class="token operator">+</span> <span class="token string">",b1 = "</span> b1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//11 11</span>
@@ -535,7 +550,8 @@ s<span class="token operator">++</span><span class="token punctuation">;</span> 
 而且自增不会改变原来的数据类型，+= 也不会改变数据类型
 */</span>
 </code></pre>
-<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>&amp;既可以计算布尔型也可以计算数值型，具体看&amp;两边的类型时什么</p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>运算符有四种：算术、比较、赋值、逻辑</p>
+<p>&amp;既可以计算布尔型也可以计算数值型，具体看&amp;两边的类型时什么</p>
 <p>（&lt;&lt;） 左移运算符最后面全补0,乘以2的n次方</p>
 <p>（&gt;&gt;）右移运算符补数字的时候是根据原来最高位的值确定的，原来最高位是1就全补1，除以2的n次方</p>
 <p>原来最高位是0就全补0</p>
@@ -701,7 +717,26 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 *
 * 算法有多重要！！！  知道了吗？
 */</span>
+
+<span class="token comment" spellcheck="true">//方法二:</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">long</span> start <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lable <span class="token operator">:</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">100000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> j <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token keyword">continue</span> lable<span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//            System.out.println(i);</span>
+
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">long</span> end <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//11</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<p>for循环和while循环的唯一区别就是初始化条件int i = 0 的作用域不同</p>
 <h2 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>​    对象之间最弱的一种关联方式，是临时性的关联。代码中一般指由局部变量、函数参数、返</p>
 <p>回值建立的对于其他对象的调用关系。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">A</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -756,7 +791,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <span class="token keyword">break</span> label<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//跳出指定表示的一层循环结构</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
 </code></pre>
 <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><h4 id="native"><a href="#native" class="headerlink" title="native"></a>native</h4><pre class=" language-tex"><code class="language-tex">native 关键的理解
     使用 native 关键字说明这个方法是原生函数，也就是这个方法是用 C/C++ 等非Java 语言实现的，并且被编译成了 DLL(动态链接库:Windows操作系统共享函数库)，由 java 去调用。
@@ -782,44 +817,35 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YangHuiTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-       <span class="token comment" spellcheck="true">//1.声明并初始化二位数组</span>
-    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> yangHui <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    
-       <span class="token comment" spellcheck="true">//2.给数组元素赋值</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span> yangHui<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        
-        <span class="token comment" spellcheck="true">//2.1给首末元素赋值</span>
-        yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//2.2给每行的非首末元素赋值</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//1.声明并初始化二位数组</span>
+      <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> yangHui <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">//2.给数组元素赋值</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span> yangHui<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+         yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+         <span class="token comment" spellcheck="true">//2.1给首末元素赋值</span>
+         yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+         <span class="token comment" spellcheck="true">//2.2给每行的非首末元素赋值</span>
+         <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> yangHui<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">+</span>yangHui<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>    
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> yangHui<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-       <span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-       <span class="token comment" spellcheck="true">// 打印空格字符串</span>
-       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>yangHui<span class="token punctuation">.</span>length <span class="token operator">-</span> i<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token string">"s"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-           System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%4d"</span><span class="token punctuation">,</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
-           number <span class="token operator">=</span> number <span class="token operator">*</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> j<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        
-        <span class="token comment" spellcheck="true">//或者：</span>
-<span class="token comment" spellcheck="true">//         int num = yangHui.length - i;</span>
-<span class="token comment" spellcheck="true">//            for (int j = 0; j &lt;= num; j++) &amp;#123;</span>
-<span class="token comment" spellcheck="true">//                System.out.print(" ");</span>
-<span class="token comment" spellcheck="true">//            &amp;#125;</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">//            for (int j = 0; j &lt; yangHui[i].length; j++) &amp;#123;</span>
-<span class="token comment" spellcheck="true">//                System.out.print(yangHui[i][j] + " ");</span>
-<span class="token comment" spellcheck="true">//            &amp;#125;</span>
-<span class="token comment" spellcheck="true">//            System.out.println();</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-       
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    
+         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>    
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> yangHui<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+         <span class="token keyword">int</span> num <span class="token operator">=</span> yangHui<span class="token punctuation">.</span>length <span class="token operator">-</span> i<span class="token punctuation">;</span>
+         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> num<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>yangHui<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"\t\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="回形数"><a href="#回形数" class="headerlink" title="回形数"></a>回形数</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>whw<span class="token punctuation">.</span>java<span class="token punctuation">;</span>
@@ -1360,7 +1386,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>③： 为之后的多态性提供了前提</p>
 <h4 id="继承的体现"><a href="#继承的体现" class="headerlink" title="继承的体现"></a>继承的体现</h4><p> 继承发生以后，子类就获取了父类中<strong>所有</strong>的方法和属性，构造器是不能被继承的。</p>
 <p>特别的:父类中声明为private的属性或方法，子类继承父类以后，任然认为获取到了父类中私有的结构，只不过是因为封装性的影响，使得子类不能直接调用父类的结构而已；静态方法不是不可以被继承，同样的，静态方法也可以被继承，但是子类对于静态方法的“重写”是通过隐藏父类的静态方法来实现的，所以静态方法可以被继承，但是不能被重写，因此不能实现多态。</p>
-<h4 id="方法重写的规定"><a href="#方法重写的规定" class="headerlink" title="方法重写的规定"></a>方法重写的规定</h4><h5 id="方法签名"><a href="#方法签名" class="headerlink" title="方法签名"></a>方法签名</h5><p>​              方法的   <strong>方法名 +  形参列表</strong></p>
+<h4 id="方法重写的规定"><a href="#方法重写的规定" class="headerlink" title="方法重写的规定"></a>方法重写的规定</h4><p>==<strong>父类和子类之间的同名不同参数的方法也可以构成重载</strong>==</p>
+<h5 id="方法签名"><a href="#方法签名" class="headerlink" title="方法签名"></a>方法签名</h5><p>​              方法的   <strong>方法名 +  形参列表</strong></p>
 <h5 id="权限修饰符-1"><a href="#权限修饰符-1" class="headerlink" title="权限修饰符"></a>权限修饰符</h5><p>子类重写的方法的权限修饰符不小于父类被重写的方法的权限修饰符</p>
 <p>​        子类<strong>不能重写</strong>父类中声明为private的方法，如果有一个和父类中的同名方法，则此方法是子类中的一个新的方法，和父类中的同名方法没有任何关系</p>
 <h5 id="返回值类型"><a href="#返回值类型" class="headerlink" title="返回值类型"></a>返回值类型</h5><p>父类中被重写的方法的返回值类型是<strong>引用数据类型</strong>A类型，则子类重写的方法的返回值类型可以是A类或者A类的子类</p>
@@ -1618,7 +1645,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 
    <span class="token comment" spellcheck="true">//Integer内部定义了IntegerCache结构，IntegerCache中定义了Integer[],</span>
    <span class="token comment" spellcheck="true">//保存了从-128~127范围的整数。如果我们使用自动装箱的方式，给Integer赋值的范围在</span>
-   <span class="token comment" spellcheck="true">//-128~127范围内时，可以直接使用数组中的元素，不用再去new了。目的：提高效率</span>
+   <span class="token comment" spellcheck="true">//-128~127范围内时，可以直接使用数组中的元素，也就是说相同元素的地址值是相同的，不用再去new了。</span>
+   <span class="token comment" spellcheck="true">//目的：提高效率</span>
 
    Integer m <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
    Integer n <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -4859,7 +4887,7 @@ UDP协议：
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">347.9k</span>&nbsp;字
+                class="white-color">348.7k</span>&nbsp;字
             
             
             
