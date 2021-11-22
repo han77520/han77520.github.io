@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-09
+                    2021-11-17
                 </div>
                 
 
@@ -1337,7 +1337,7 @@ http://www.springframework.org/schema/context/spring-context.xsd
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserProxy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//前置通知</span>
       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"before......"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
@@ -1390,7 +1390,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
      * 前置通知
      * @Before 注解表示作为前置通知
      */</span>
-    <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"before....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -1398,7 +1398,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
     <span class="token comment" spellcheck="true">/**
      * 后置通知（返回通知：返回值之后才执行）
      */</span>
-    <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span><span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterReturning</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"afterReturning........."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -1408,7 +1408,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
      * @param proceedingJoinPoint
      * @throws Throwable
      */</span>
-    <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">around</span><span class="token punctuation">(</span>ProceedingJoinPoint proceedingJoinPoint<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"环绕之前........."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">//被增强的方法执行</span>
@@ -1419,7 +1419,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
     <span class="token comment" spellcheck="true">/**
      * 异常通知
      */</span>
-    <span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span><span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterThrowing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"afterThrowing........."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -1427,7 +1427,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
     <span class="token comment" spellcheck="true">/**
      * 最终通知
      */</span>
-    <span class="token annotation punctuation">@After</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@After</span><span class="token punctuation">(</span><span class="token string">"pointDemo()"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">after</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"after....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -1643,8 +1643,8 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
 </code></pre>
 <h2 id="Spring事务管理介绍"><a href="#Spring事务管理介绍" class="headerlink" title="Spring事务管理介绍"></a>Spring事务管理介绍</h2><p>==事务添加到  JaveEE 三层架构里面 Service 层（业务逻辑层）==</p>
 <h3 id="Spring进行事务管理操作"><a href="#Spring进行事务管理操作" class="headerlink" title="Spring进行事务管理操作"></a>Spring进行事务管理操作</h3><ul>
-<li>编程式事务管理，一般不用</li>
-<li>声明式事务管理，底层使用 AOP 原理<ul>
+<li>编程式事务管理：就是通过代码来控制事务，一般不用</li>
+<li>声明式事务管理：底层使用 AOP 原理<ul>
 <li>基于配置文件，一般不用</li>
 <li>基于注解方式</li>
 </ul>
@@ -1790,7 +1790,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
 <ul>
 <li>timeout：超时时间<ul>
 <li>事务需要在一定时间内进行提交，如果不提交就进行回滚</li>
-<li>默认是 -1， 单位是秒</li>
+<li>默认是 -1，意思就是不超时，单位是秒</li>
 </ul>
 </li>
 </ul>
@@ -1906,7 +1906,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="整合日志-Log4j2"><a href="#整合日志-Log4j2" class="headerlink" title="整合日志 Log4j2"></a>整合日志 Log4j2</h2><p>导入依赖   log4j-api-2.11.2.jar、log4j-core-2.11.2.jar、log4j-slf4j-impl-2.11.2.jar、slf4j-api-1.7.30.jar</p>
-<p>创建  log4j2.xml</p>
+<p>创建  log4j2.xml，文件名必须是这个，否则不能用</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token comment" spellcheck="true">&lt;!--日志级别以及优先级排序: OFF &lt; FATAL &lt; ERROR &lt; WARN &lt; INFO &lt; DEBUG &lt; TRACE &lt; ALL --></span>
 <span class="token comment" spellcheck="true">&lt;!--Configuration 后面的 status 用于设置 log4j2 自身内部的信息输出，可以不设置，
@@ -1957,7 +1957,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
-<li>注解使用在属性上面</li>
+<li>注解使用在属性上面，意味着属性值可以为空</li>
 </ul>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Nullable</span>
     <span class="token keyword">public</span> String name<span class="token punctuation">;</span>
@@ -1975,15 +1975,16 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
    <span class="token comment" spellcheck="true">//3 获取在 spring 注册的对象</span>
 
    <span class="token comment" spellcheck="true">//方法一:</span>
-   <span class="token comment" spellcheck="true">//         context.registerBean(User.class,() -> new User());</span>
-   <span class="token comment" spellcheck="true">//         User user = (User)context.getBean("com.whw.spring5.test.User");</span>
+   context<span class="token punctuation">.</span><span class="token function">registerBean</span><span class="token punctuation">(</span>User<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   User user <span class="token operator">=</span> <span class="token punctuation">(</span>User<span class="token punctuation">)</span>context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"com.whw.spring5.test.User"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
    <span class="token comment" spellcheck="true">//方法二：</span>
    context<span class="token punctuation">.</span><span class="token function">registerBean</span><span class="token punctuation">(</span><span class="token string">"user1"</span><span class="token punctuation">,</span>User<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   User user <span class="token operator">=</span> <span class="token punctuation">(</span>User<span class="token punctuation">)</span>context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"user1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   User user1 <span class="token operator">=</span> <span class="token punctuation">(</span>User<span class="token punctuation">)</span>context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"user1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
+<p>Spring整合 JUnit5 </p>
 <h2 id="SpringWebflux"><a href="#SpringWebflux" class="headerlink" title="SpringWebflux"></a>SpringWebflux</h2><h3 id="描述-4"><a href="#描述-4" class="headerlink" title="描述"></a>描述</h3><ul>
 <li><p>Webflux是 Spring5 添加新的模块，用于 web 开发的，功能和 SpringMVC 类似，但底层原理有很大不同，Webflux 使用当前一种比较流行的==<strong>响应式编程</strong>==出现的框架。</p>
 </li>
@@ -2324,7 +2325,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/">http://han77520.github.io/2021/08/03/Spring%E5%A4%8D%E4%B9%A0/</a>
+                    <a href="http://han77520.github.io/2021/08/03/Spring/">http://han77520.github.io/2021/08/03/Spring/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -3067,7 +3068,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">348.7k</span>&nbsp;字
+                class="white-color">352.3k</span>&nbsp;字
             
             
             
