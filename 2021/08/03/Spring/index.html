@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-17
+                    2021-11-22
                 </div>
                 
 
@@ -527,7 +527,7 @@
 </ul>
 <p><img src="/images/image-20211109132146802.png"></p>
 <h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><ul>
-<li>控制反转，把对象创建和对象之间的调用过程，交个spring进行管理</li>
+<li>控制反转，把对象创建和对象之间的调用过程，交给spring进行管理</li>
 <li>使用IOC的目的：为了降低耦合度</li>
 </ul>
 <h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><ul>
@@ -545,6 +545,7 @@
 <li>特点：加载配置文件时候就会把在配置文件中的对象进行创建</li>
 <li>主要实现类1：ClassPathXmlApplicationContext，参数中配置文件的路径是类路径下的相对路径</li>
 <li>主要实现类2：FileSystemXmlApplicationContext，参数中配置文件的路径是磁盘中的绝对路径</li>
+<li>主要实现类3：AnnotationConfigApplicationContext，使用配置文件的时候用这个类</li>
 </ul>
 </li>
 </ul>
@@ -581,7 +582,7 @@
 </li>
 <li><p>==<strong>DI 是 IOC 的一种实现，它就表示依赖注入，但依赖注入需要在创建对象之后</strong>==</p>
 </li>
-<li><p><strong>IOC 指将对象的创建权，反转到Spring容器</strong><br><strong>DI 指Spring创建对象的过程中，将对象  依赖  属性  通过配置进行注入</strong></p>
+<li><p><strong>IOC 指将对象的创建权，反转到Spring容器中</strong><br><strong>DI 指Spring创建对象的过程中，将对象  依赖  属性  通过配置进行注入</strong></p>
 </li>
 <li><ul>
 <li><p>注入方式1：使用set方法进行注入</p>
@@ -1050,7 +1051,7 @@ xsi:schemaLocation 里追加  http://www.springframework.org/schema/util 和http
 <li>外部 properties 属性文件引入到 spring 配置文件中 </li>
 </ul>
 <pre class=" language-properties"><code class="language-properties"><span class="token attr-name">prop.driverClass</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.jdbc.Driver</span>
-<span class="token attr-name">prop.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;amp;characterEncoding=utf-8</span>
+<span class="token attr-name">prop.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;amp;characterEncoding=utf8</span>
 <span class="token attr-name">prop.userName</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
 <span class="token attr-name">prop.password</span><span class="token punctuation">=</span><span class="token attr-value">172161</span>
 </code></pre>
@@ -1984,7 +1985,6 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Spring整合 JUnit5 </p>
 <h2 id="SpringWebflux"><a href="#SpringWebflux" class="headerlink" title="SpringWebflux"></a>SpringWebflux</h2><h3 id="描述-4"><a href="#描述-4" class="headerlink" title="描述"></a>描述</h3><ul>
 <li><p>Webflux是 Spring5 添加新的模块，用于 web 开发的，功能和 SpringMVC 类似，但底层原理有很大不同，Webflux 使用当前一种比较流行的==<strong>响应式编程</strong>==出现的框架。</p>
 </li>
@@ -3068,7 +3068,7 @@ http://www.springframework.org/schema/context/spring-context.xsd<span class="tok
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">352.3k</span>&nbsp;字
+                class="white-color">352.7k</span>&nbsp;字
             
             
             
