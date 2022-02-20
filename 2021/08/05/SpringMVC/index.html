@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-27
+                    2022-02-17
                 </div>
                 
 
@@ -1025,7 +1025,7 @@
     <span class="token keyword">return</span> <span class="token string">"forward:/testHello"</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p><img src="/images/img003.png" alt="images/image-20210706201316593"></p>
+<p><img src="images/img003.png" alt="images/image-20210706201316593"></p>
 <h3 id="3、重定向视图"><a href="#3、重定向视图" class="headerlink" title="3、重定向视图"></a>3、重定向视图</h3><p>SpringMVC中默认的重定向视图是RedirectView</p>
 <p>当控制器方法中所设置的视图名称以”redirect:”为前缀时，创建RedirectView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀”redirect:”去掉，剩余部分作为最终路径通过重定向的方式实现跳转</p>
 <p>例如”redirect:/“，”redirect:/employee”</p>
@@ -1034,7 +1034,7 @@
     <span class="token keyword">return</span> <span class="token string">"redirect:/testHello"</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<p><img src="/images/img004.png" alt="images/image-20210706201602267"></p>
+<p><img src="images/img004.png" alt="images/image-20210706201602267"></p>
 <blockquote>
 <p>注：</p>
 <p>重定向视图在解析时，会先将redirect:前缀去掉，然后会判断剩余部分是否以/开头，若是则会自动拼接上下文路径</p>
@@ -1646,7 +1646,7 @@
 <h3 id="3、多个拦截器的执行顺序"><a href="#3、多个拦截器的执行顺序" class="headerlink" title="3、多个拦截器的执行顺序"></a>3、多个拦截器的执行顺序</h3><p>a&gt;若每个拦截器的preHandle()都返回true</p>
 <p>此时多个拦截器的执行顺序和拦截器在SpringMVC的配置文件的配置顺序有关：</p>
 <p>preHandle()会按照配置的顺序执行，而postHandle()和afterComplation()会按照配置的反序执行</p>
-<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20210808174322.png"></p>
+<p><img src="images/QQ%E6%88%AA%E5%9B%BE20210808174322.png"></p>
 <p>b&gt;若某个拦截器的preHandle()返回了false</p>
 <p>返回false的那个拦截器和它之前的拦截器的preHandle()都会执行，postHandle()都不执行，返回false的那个拦截器之前的拦截器的afterComplation()会执行</p>
 <h2 id="十一、异常处理器"><a href="#十一、异常处理器" class="headerlink" title="十一、异常处理器"></a>十一、异常处理器</h2><h3 id="1、基于配置的异常处理"><a href="#1、基于配置的异常处理" class="headerlink" title="1、基于配置的异常处理"></a>1、基于配置的异常处理</h3><p>SpringMVC提供了一个处理控制器方法执行过程中所出现的异常的接口：HandlerExceptionResolver</p>
@@ -1838,7 +1838,7 @@
 </ul>
 <p>作用：将模型数据通过页面展示给用户</p>
 <h3 id="2、DispatcherServlet初始化过程"><a href="#2、DispatcherServlet初始化过程" class="headerlink" title="2、DispatcherServlet初始化过程"></a>2、DispatcherServlet初始化过程</h3><p>DispatcherServlet 本质上是一个 Servlet，所以天然的遵循 Servlet 的生命周期。所以宏观上是 Servlet 生命周期来进行调度。</p>
-<p><img src="/images/img005-1628228794518.png" alt="images"></p>
+<p><img src="images/img005-1628228794518.png" alt="images"></p>
 <h5 id="a-gt-初始化WebApplicationContext"><a href="#a-gt-初始化WebApplicationContext" class="headerlink" title="a&gt;初始化WebApplicationContext"></a>a&gt;初始化WebApplicationContext</h5><p>所在类：org.springframework.web.servlet.FrameworkServlet</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">protected</span> WebApplicationContext <span class="token function">initWebApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     WebApplicationContext rootContext <span class="token operator">=</span>
@@ -2180,11 +2180,11 @@
 <p>a) 不存在</p>
 <p>i. 再判断是否配置了mvc:default-servlet-handler</p>
 <p>ii. 如果没配置，则控制台报映射查找不到，客户端展示404错误</p>
-<p><img src="/images/img006.png" alt="image-20210709214911404"></p>
-<p><img src="/images/img007-1628343263210.png" alt="img007"></p>
+<p><img src="images/img006.png" alt="image-20210709214911404"></p>
+<p><img src="images/img007-1628343263210.png" alt="img007"></p>
 <p>iii. 如果有配置，则访问目标资源（一般为静态资源，如：JS,CSS,HTML），找不到客户端也会展示404错误</p>
-<p><img src="/images/img008-1628343209252.png" alt="image-20210709215255693"></p>
-<p><img src="/images/img009-1628343243181.png" alt="img009"></p>
+<p><img src="images/img008-1628343209252.png" alt="image-20210709215255693"></p>
+<p><img src="images/img009-1628343243181.png" alt="img009"></p>
 <p>b) 存在则执行下面的流程</p>
 <ol start="3">
 <li><p>根据该URI，调用HandlerMapping获得该Handler配置的所有相关的对象（包括Handler对象以及Handler对象对应的拦截器），最后以HandlerExecutionChain执行链对象的形式返回。</p>
@@ -2972,7 +2972,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/about" target="_blank">瀚77</a>
@@ -2981,7 +2981,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">352.7k</span>&nbsp;字
+                class="white-color">354k</span>&nbsp;字
             
             
             
