@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-22
+                    2022-02-24
                 </div>
                 
 
@@ -503,7 +503,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="Spring注解版"><a href="#Spring注解版" class="headerlink" title="Spring注解版"></a>Spring注解版</h1><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><p>表明这是一个配置类</p>
-<h2 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h2><p>将此注解标出的方法注册组件到容器中，方法参数的值直接从容器中获取</p>
+<h2 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h2><p>将此注解标注方法的返回值注册组件到容器中，方法参数的值直接从容器中获取</p>
 <h2 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h2><p>开启注解扫描 </p>
 <ul>
 <li>属性 excludeFilters = Filter[] ：指定扫描的时候按照指定规则排除组件</li>
@@ -523,12 +523,12 @@
                                 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
 </code></pre>
 <h2 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h2><ul>
-<li>属性 prototype：获取多实例对象，多实例在获取的时候才创建</li>
-<li>属性 singleton：单实例 ，默认是这个。单实例在 IOC 容器的时候就创建了</li>
+<li>@Scope(“prototype”)    属性 prototype：获取多实例对象，多实例在获取的时候才创建</li>
+<li>@Scope(“singleton”)    属性 singleton：单实例 ，默认是这个。单实例在 IOC 容器的时候就创建了</li>
 </ul>
 <h2 id="Lazy"><a href="#Lazy" class="headerlink" title="@Lazy"></a>@Lazy</h2><p>懒加载</p>
 <ul>
-<li>针对单实例来说的，容器启动时不创建Bean ，第一次使用时才创建</li>
+<li>针对单实例来说的，<strong>容器在启动时不创建Bean ，第一次使用时才创建</strong></li>
 </ul>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//配置类 == 配置文件</span>
 <span class="token annotation punctuation">@Configuration</span> <span class="token comment" spellcheck="true">//表明这是一个配置类</span>
@@ -2302,7 +2302,7 @@ List<span class="token operator">&lt;</span>Object<span class="token operator">>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">354k</span>&nbsp;字
+                class="white-color">354.3k</span>&nbsp;字
             
             
             
